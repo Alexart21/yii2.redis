@@ -1,0 +1,45 @@
+body{
+    background: #ddd;
+    font-family: Arial;
+}
+
+.help-block-error{
+    color: red !important;
+}
+
+.site-login{
+    /*background-color: lime;*/
+    width: 400px;
+    margin: 0 auto;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+input[type=text], input[type=password]{
+    margin: 0 auto;
+    width: 300px;
+    height: 30px;
+    border: none;
+    outline: none;
+    border-left: 1px solid #003333;
+    border-bottom: 1px solid #003333;
+    border-bottom-left-radius: 20px;
+    margin-top: 10px;
+    box-shadow: 0 0 10px #e61b05;
+    padding-left: 1em;
+}
+
+button{
+    font-size: 18px;
+    font-weight: bold;
+    padding: 0.5em;
+    background-color: rgba(15, 102, 116, .5);
+    cursor: pointer;
+    border: 1px solid green;
+    border-radius: 5px;
+}
+
+button:hover{
+    color: #fff;
+    margin-top: -3px;
+}
