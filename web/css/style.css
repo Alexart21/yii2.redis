@@ -1677,8 +1677,8 @@ code {
     font-family: arial;
     text-align: center;
     background: #fff;
-    height: 470px;
-    width: 300px !important;
+    height: 500px;
+    width: 330px !important;
     z-index: 1000;
     box-shadow: 0 0 20px #fff;
     left: calc(100% / 2 - 150px) !important;

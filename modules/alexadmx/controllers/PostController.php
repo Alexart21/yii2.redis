@@ -7,17 +7,15 @@ use Yii;
 use app\models\Post;
 use app\modules\alexadmx\models\PostSearch;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
+//use yii\filters\VerbFilter;
 
 /**
  * PostController implements the CRUD actions for Post model.
  */
 class PostController extends AppAlexadmxController
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
+
+    /*public function behaviors()
     {
         return [
             'verbs' => [
@@ -27,7 +25,8 @@ class PostController extends AppAlexadmxController
                 ],
             ],
         ];
-    }
+    }*/
+
 
     /**
      * Lists all Post models.

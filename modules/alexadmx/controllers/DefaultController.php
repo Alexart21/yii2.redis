@@ -2,39 +2,17 @@
 
 namespace app\modules\alexadmx\controllers;
 
-use app\models\Callback;
-use app\modules\alexadmx\models\Msg;
 use Yii;
-//use yii\web\Controller;
-use yii\filters\AccessControl;
 use app\modules\alexadmx\models\Content;
 use yii\helpers\FileHelper;
-use yii\web\View;
+use yii\web\NotFoundHttpException;
 
 /**
  * Default controller for the `alexadmx` module
  */
 class DefaultController extends AppAlexadmxController
 {
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'roles' => ['@'], // для авторизованных (в нашем сл. для админа)
-                    ]
-                ],
-            ],
-        ];
-    }
 
-    /**
-     * Renders the index view for the module
-     * @return string
-     */
 //    public $layout = 'alexadmx'; // в конфиге прописал
 
     public function actionIndex()

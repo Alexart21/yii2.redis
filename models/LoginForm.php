@@ -40,7 +40,7 @@ class LoginForm extends Model
                 'uncheckedMessage' => 'Подтвердите, что вы не робот'],*/
 
             //reCaptcha v3
-            /*[['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator3::className(),
+           /* [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator3::className(),
                 'secret' => '6LfNdr4ZAAAAAA-JNIMCWXlx_eeYv-JxJzJpdPdz', // unnecessary if reСaptcha is already configured
                 'threshold' => 0.5,
                 'action' => 'login',
@@ -55,7 +55,7 @@ class LoginForm extends Model
             'password' => 'Пароль',
             'rememberMe' => 'Запомнить меня',
 //            'verifyCode' => 'Введите код',
-            'reCaptcha' => '',
+//            'reCaptcha' => '',
         ];
     }
 

@@ -14,10 +14,15 @@ use yii\filters\VerbFilter;
  */
 class CallbackController extends AppAlexadmxController
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
+    /*public function beforeAction($action)
+    {
+        if (Yii::$app->user->isGuest){
+            throw new NotFoundHttpException('страница не найдена');
+        }
+        return parent::beforeAction($action);
+    }*/
+
+    /*public function behaviors()
     {
         return [
             'verbs' => [
@@ -27,7 +32,7 @@ class CallbackController extends AppAlexadmxController
                 ],
             ],
         ];
-    }
+    }*/
 
     /**
      * Lists all Callback models.

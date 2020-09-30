@@ -30,7 +30,7 @@ class callForm extends Model
                 'uncheckedMessage' => 'Подтвердите, что вы не робот'],*/
 
             //reCaptcha v3
-            /*[['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator3::className(),
+           /* [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator3::className(),
                 'secret' => '6LfNdr4ZAAAAAA-JNIMCWXlx_eeYv-JxJzJpdPdz', // unnecessary if reСaptcha is already configured
                 'threshold' => 0.5,
                 'action' => 'call',
@@ -47,7 +47,7 @@ class callForm extends Model
         return [
             'name' => 'Ваше Имя',
             'tel' => 'Номер телефона',
-            'reCaptcha' => '',
+//            'reCaptcha' => '',
         ];
     }
 

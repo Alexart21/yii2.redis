@@ -20,6 +20,10 @@ class ContentController extends AppAlexadmxController
 
     public function beforeAction($action)
     {
+        /*if (Yii::$app->user->isGuest){
+            throw new NotFoundHttpException('страница не найдена');
+        }*/
+
         if ($action->id == 'update') {
             $this->enableCsrfValidation = false;
         }

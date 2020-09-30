@@ -4,13 +4,41 @@
 namespace app\modules\alexadmx\controllers;
 
 use Yii;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use app\modules\alexadmx\models\Msg;
+//use yii\web\ForbiddenHttpException;
+use yii\filters\VerbFilter;
 
 class AppAlexadmxController extends Controller
 {
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'], // для авторизованных (в нашем сл. для админа)
+                    ],
+                ],
+            ],
+            // и без этого постом работает
+            /*'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'post/delete' => ['POST'],
+                    'callback/delete' => ['POST'],
+                    'content/delete' => ['POST'],
+                ],
+            ],*/
+        ];
+    }
+
     public function beforeAction($action)
     {
+
 //        debug(Yii::$app->requestedAction->id);
 // * Количество новых(не помеченных как прочитанные) сообщений
 // * (boolean поле "is_read" в таблицах post и callback в ответе за это)
