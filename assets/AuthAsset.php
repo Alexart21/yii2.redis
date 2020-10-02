@@ -11,6 +11,7 @@ class AuthAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/auth.css',
+        'fontawesome/css/all.min.css',
     ];
 
     public $js = [
@@ -18,7 +19,6 @@ class AuthAsset extends AssetBundle
 
     public $depends = [
         'yii\web\YiiAsset',
-//        'yii\bootstrap4\BootstrapAsset',
     ];
 
 }

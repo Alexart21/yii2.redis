@@ -8,7 +8,7 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use app\modules\alexadmx\models\Msg;
 //use yii\web\ForbiddenHttpException;
-use yii\filters\VerbFilter;
+//use yii\filters\VerbFilter;
 
 class AppAlexadmxController extends Controller
 {

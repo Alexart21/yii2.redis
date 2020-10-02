@@ -1,5 +1,5 @@
 body{
-    background: #ddd;
+    /*background: #ddd;*/
     font-family: Arial;
 }
 
@@ -21,11 +21,11 @@ input[type=text], input[type=password]{
     height: 30px;
     border: none;
     outline: none;
-    border-left: 1px solid #003333;
-    border-bottom: 1px solid #003333;
-    border-bottom-left-radius: 20px;
+    border-left: 2px solid #003333;
+    border-bottom: 2px solid #003333;
+    border-bottom-left-radius: 4px;
     margin-top: 10px;
-    box-shadow: 0 0 10px #e61b05;
+    box-shadow: 0 0 10px #fff;
     padding-left: 1em;
 }
 
@@ -35,11 +35,43 @@ button{
     padding: 0.5em;
     background-color: rgba(15, 102, 116, .5);
     cursor: pointer;
-    border: 1px solid green;
+    border: 1px solid #e61b05;
     border-radius: 5px;
 }
 
 button:hover{
     color: #fff;
-    margin-top: -3px;
+    /*margin-top: -3px;*/
+}
+
+.fa-eye-slash, .fa-eye, .fa-user{
+    display: inline-block !important;
+   margin-left: -35px !important;
+    color: #e61b05;
+}
+
+.site-login{
+    width: 360px !important;
+    margin: auto auto;
+    /*background-color: #ddd;*/
+    padding: 2em;
+    box-shadow: -2rem 2rem 2rem rgba(0, 0, 0, 0.2), inset 0 0 30px #ddd;
+    border: 1px solid #003333;
+    border-radius: 3px;
+    margin-top: calc(100vh/2 - 200px);
+    display: none;
+    /*opacity: 0;*/
+    /*visibility: hidden;*/
+}
+
+::placeholder{
+    font-weight: bold;
+}
+
+img{
+    position: absolute;
+    left: -60px;
+    top: -34px;
+    /*opacity: .4;*/
+    transform: scale(0.5);
 }

@@ -19,10 +19,10 @@ AuthAsset::register($this);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 </head>
-<body class="hold-transition login-page">
+<body>
+<img src="/img/main_img/logo.png" alt="">
 <?php $this->beginBody() ?>
-<?= $content ?>
-
+    <?= $content ?>
 <?php $this->endBody() ?>
 </body>
 </html>
