@@ -62,4 +62,5 @@ Modal::end();
 
 <script>
     $('#callback').modal('show');
+    $('.modal-content').velocity('transition.bounceIn');
 </script>

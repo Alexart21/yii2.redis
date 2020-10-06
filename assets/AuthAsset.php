@@ -15,10 +15,15 @@ class AuthAsset extends AssetBundle
     ];
 
     public $js = [
+        'js/velocity.min.js',
+        'js/velocity.ui.min.js',
     ];
 
     public $depends = [
         'yii\web\YiiAsset',
+        'yii\bootstrap4\BootstrapPluginAsset',
     ];
+
+//    public $jsOptions = ['position' => \yii\web\View::POS_HEAD];
 
 }

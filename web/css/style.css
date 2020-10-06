@@ -95,7 +95,7 @@ textarea {
 /* 10 */
 
 .call-btn>a, .call-btn>a:visited{
-    line-height: 100%;
+    /*line-height: 60px;*/
     color: #222 !important;
 }
 
@@ -104,6 +104,7 @@ textarea {
 }
 
 .call-btn {
+    /*display: inline;*/
     transition: all 0.3s ease;
     letter-spacing: 1px;
     position: relative;

@@ -20,8 +20,15 @@ AuthAsset::register($this);
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 </head>
 <body>
-<img src="/img/main_img/logo.png" alt="">
 <?php $this->beginBody() ?>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
     <?= $content ?>
 <?php $this->endBody() ?>
 </body>

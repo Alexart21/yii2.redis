@@ -1,8 +1,8 @@
 <?php
-use app\assets\AppAsset;
+use app\assets\TestAsset;
 use yii\helpers\Html;
 
-AppAsset::register($this);
+TestAsset::register($this);
 ?>
 
 <?php $this->beginPage() ?>

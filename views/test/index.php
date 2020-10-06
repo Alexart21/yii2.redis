@@ -20,7 +20,9 @@
         logo.classList.toggle('logo-displ');
     }
 </script>
-<div style="font-size: 400%"><span class="fa fa-ruble-sign"></span><span class="fa fa-spinner"></span></div>
+<div style="font-size: 400%"><span class="fa fa-ruble-sign"></span><span class="fab fa-docker" style="font-size: 100px"></span>
+    <span class="fa fa-key"></span>
+</div>
 
 <?php
 use yii\bootstrap4\Alert;
