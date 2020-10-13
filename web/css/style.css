@@ -95,8 +95,10 @@ textarea {
 /* 10 */
 
 .call-btn>a, .call-btn>a:visited{
-    /*line-height: 60px;*/
+    display: block;
+    height: 100% !important;
     color: #222 !important;
+    padding: 4px;
 }
 
 .call-btn>a:hover{
@@ -111,7 +113,7 @@ textarea {
     border: 1px solid #e61b05;
     text-shadow: 1px 1px #e61b05;
     border-radius: 5px;
-    padding: 4px;
+    /*padding: 4px;*/
     text-align: center;
     /*background-color: rgba(253,150,56,.3);*/
     color: #222;
@@ -138,7 +140,7 @@ textarea {
     background: transparent;
 }
 .call-btn:hover:after {
-    background: #e61b05;
+    background: #FD9638;
     -webkit-transform: scale(1);
     transform: scale(1);
 }
@@ -419,12 +421,10 @@ header {
 }
 
 #container {
-    position: relative;
-    max-width: 1300px;
+    position: relative !important;
+    max-width: 1366px;
+    max-width: 1300px;/* Это для своего монитора */
     margin: auto;
-}
-
-#container, #all {
 }
 
 #main {
@@ -434,9 +434,10 @@ header {
 }
 
 #all {
-    position: relative;
+    position: relative !important;
     padding-bottom: 140px; /* Высота прижатого футера здесь !!! */
     overflow: hidden;
+    /*background: lime;*/
     /*background: url(/img/left.gif) repeat-y;*/
 }
 
@@ -729,22 +730,6 @@ ul.highlightTextIn li a:before {
 }
 
 /* MEDIA QUERIES*/
-
-@media all and (min-width: 1367px), all and (min-device-width: 1367px) {
-    /*#container{
-        background: red;
-    }*/
-    /*#scroller {
-        display: none;
-        position: fixed;
-        left: 130px;
-        bottom: 150px;
-        width: 70px;
-        height: 70px;
-        text-align: center;
-    }*/
-}
-
 @media all and (max-width: 1280px), all and (max-device-width: 1280px) {
     nav.resp li a {
         font-size: 14px;
@@ -827,14 +812,6 @@ ul.highlightTextIn li a:before {
     #center span {
         font-size: 12px;
         margin-left: .5em;
-    }
-
-    #scroller {
-        position: absolute;
-        left: 10px !important;
-        width: 60px !important;
-        height: 60px !important;
-        z-index: 10000000;
     }
 
     .triangle {
@@ -1536,7 +1513,6 @@ code {
 #scroller {
     display: none;
     position: fixed;
-    left: 50px;
     bottom: 200px;
     width: 70px;
     height: 70px;
@@ -2524,3 +2500,81 @@ span.fa.fa-ruble-sign
 mark{
     background-color: rgba(255, 255, 153, .6);
 }
+/* блок с иконками мессенджеров*/
+#msg-block{
+    display: none;
+    position: fixed;
+    z-index: 100000;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    height: 40px;
+    border: 1px solid #222;
+    background: #0d6aad;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+#msg-content{
+    margin-top: -20px;
+}
+
+.msg-closed{
+    display: block;
+    font-size: 26px;
+    color: #fff;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.msg-closed i{
+    font-size: 34px;
+    /*color: lime !important;*/
+}
+
+.msg-img{
+    position: absolute;
+    top: -30px;
+    right: 0;
+}
+
+#msg-block hr{
+    border-bottom: 1px solid #222;
+}
+
+.msg-title{
+    width: 80%;
+    margin: 50px auto 0 auto;
+    text-align: center;
+}
+
+.msg-btn{
+    display: block;
+    padding: 5px;
+    text-align: center;
+    background: #0d6aad;
+    border: 0px solid transparent;
+    border-radius: 10px;
+    text-decoration: none !important;
+    font-size: 26px;
+    color: #fff;
+    width: 150px;
+    margin: 0 auto 10px auto;
+}
+
+.msg-btn:hover,.msg-btn:visited{
+    color: #fff !important;
+}
+
+.msg-btn i{
+    font-size: 26px;
+}
+
+#msg-block > button{
+    /*display: none;*/
+    position: absolute;
+    top: 10px;
+    right: 24px;
+}
+
+/**/

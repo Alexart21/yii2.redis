@@ -2,8 +2,7 @@
 use app\assets\AppAsset;
 use yii\helpers\Html;
 use yii\widgets\Pjax;
-//use yii\widgets\Spaceless;
-//use yii\bootstrap\Modal;
+use yii\widgets\Spaceless;
 
 AppAsset::register($this);
 ?>
@@ -237,6 +236,30 @@ AppAsset::register($this);
                 </main>
                 <!-- конец основной контент -->
             </div>
+            <!--кнопка вверх-->
+            <div id="scroller" title="проскролить вверх">
+                <div class="triangle"></div>
+                <span class="scr_text">вверх</span>
+            </div>
+            <!--/-->
+            <!--Окно чата-->
+            <div id="msg-block" data-closed="1">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+                <div id="msg-content">
+                    <div class="msg-closed">
+                        &nbsp;&nbsp;&nbsp;<i class="fab fa-viber"></i> <i class="fab fa-whatsapp"></i> <i class="fab fa-telegram-plane"></i>
+                        <span>Начните чат</span>
+                    </div>
+                    <img class="msg-img rounded-circle img-thumbnail" src="/img/msg.png" alt="">
+                    <h3 class="msg-title">Доброго времени суток, меня зовут Александр</h3>
+                    <span style="display:block;text-align: center">Можете начать чат</span>
+                    <hr>
+                        <a class="msg-btn" href="viber://chat?number=<?= Yii::$app->params['tel1_i'] ?>" target="_blank"><i class="fab fa-viber""></i> Viber</a>
+                        <a class="msg-btn" href="whatsapp://send?phone=<?= Yii::$app->params['tel1_i'] ?>" target="_blank"><i class="fab fa-whatsapp"></i> Watsapp</a>
+                        <a class="msg-btn" href="https://telegram.me/iskander_m21" target="_blank"><i class="fab fa-telegram-plane"></i> Telegram</a>
+                    </div>
+            </div>
+            <!--/-->
         </div>
     </div>
 
@@ -251,8 +274,8 @@ AppAsset::register($this);
     <!--/noindex-->
 </div>
 <script>
-    var screen_w = document.body.clientWidth;
-    var screen_h = document.body.clientHeight;
+    const screen_w = document.body.clientWidth;
+    const screen_h = document.body.clientHeight;
     window.onresize = function () {
         window.screen_w = document.body.clientWidth;
         window.screen_h = document.body.clientHeight;
@@ -261,10 +284,6 @@ AppAsset::register($this);
         onLoad();
     };
 </script>
-<div id="scroller" title="проскролить вверх">
-    <div class="triangle"></div>
-    <span class="scr_text">вверх</span>
-</div>
 <?php $this->endBody() ?>
 <script>
     /* Кастомный алерт */
@@ -322,6 +341,41 @@ AppAsset::register($this);
     (function ($) {
         new WOW().init();
     })(jQuery);
+    //
+    let msgBlock = document.getElementById('msg-block');
+    let msgContent = document.getElementById('msg-content');
+    const al = document.getElementById('container').clientWidth;
+    msgBlock.style.right = (screen_w - al)/2 + 'px'; //позиционируем в правый край родителя
+    function showMsg(){ // показ окна чата
+       $('#msg-block').velocity('transition.bounceIn');
+    }
+        setTimeout(showMsg, 3000);
+    msgContent.addEventListener('click', function () { // разворачиваем окно чата
+        if(msgBlock.getAttribute('data-closed') == '1') {
+            msgBlock.removeAttribute('data-closed');
+            $('button .close').css('display', 'block');
+            document.querySelector('.msg-img').style.left = '120px';
+            $('#msg-block').css({
+                'height': '340px',
+                'background': '#fff'
+            });
+            $('.msg-closed').css('display', 'none');
+            showMsg();
+        }
+    });
+    //
+    const msgClose = document.querySelector('#msg-block button');
+    msgClose.addEventListener('click', function () { // сворачиваем окно чата
+        if (!msgBlock.getAttribute('data-closed')){ // окно не свернуто
+        document.querySelector('.msg-img').style.left = '240px';
+        $('#msg-block').css({
+            'height': '',
+            'background': ''
+        });
+        $('.msg-closed').css('display', 'block');
+        msgBlock.setAttribute('data-closed', '1');
+        }
+    });
 </script>
 </body>
 </html>

@@ -67,7 +67,7 @@ $config = [
             'excludeFiles' => [
 //                'jquery.js', // exclude this file from minification
 //                'jquery.pjax.js', // exclude this file from minification
-                'bootstrap.css', // exclude this file from minification
+//                'bootstrap.css', // exclude this file from minification
             ],
         ],
         'request' => [
