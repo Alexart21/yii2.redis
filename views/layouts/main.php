@@ -233,6 +233,7 @@ AppAsset::register($this);
                 <main id="inc">
                     <div id="inc_loading"></div>
                     <?php echo $content ?>
+
                 </main>
                 <!-- конец основной контент -->
             </div>
@@ -262,14 +263,17 @@ AppAsset::register($this);
             <!--/-->
         </div>
     </div>
-
     <!--noindex-->
     <div style="width:100%;height:10px"></div>
     <footer class="innerShadow gradient3">
         <strong class="company">Alex-art21</strong><sup>&copy;</sup> web developer group 2009&mdash;<?= date('Y') ?> тел. <b
                 class="corpid"><?= Yii::$app->params['tel1'] ?></b><br/>
         <strong>Создание и продвижение сайтов в Чебоксарах</strong><br/>
-        <span>Ваши персональные данные могут быть использованы только в соответстввии с ФЗ №152 <a href="/politic">о персональных данных.</a></span>
+        <span>Ваши персональные данные могут быть использованы только в соответстввии с ФЗ №152 <a style="position: relative;z-index: 100" href="/politic">о персональных данных.</a></span>
+        <br><small style="position: relative;z-index: 100">Этот сайт защищен reCAPTCHA и Google в соответствии с
+        <a href="https://policies.google.com/privacy">политикой конфиденциальности</a> и
+        <a href="https://policies.google.com/terms">условиями применения</a>.
+        </small>
     </footer>
     <!--/noindex-->
 </div>

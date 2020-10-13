@@ -2576,5 +2576,7 @@ mark{
     top: 10px;
     right: 24px;
 }
-
 /**/
+.grecaptcha-badge{
+visibility: hidden;
+}
