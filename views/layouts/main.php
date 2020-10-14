@@ -252,12 +252,13 @@ AppAsset::register($this);
                         <span>Начните чат</span>
                     </div>
                     <img class="msg-img rounded-circle img-thumbnail" src="/img/msg.png" alt="">
-                    <h3 class="msg-title">Доброго времени суток, меня зовут Александр</h3>
-                    <span style="display:block;text-align: center">Можете начать чат</span>
+                    <h3 class="msg-title">Доброго времени суток, меня зовут Александр.</h3>
+                    <span style="display: block;text-align: center;color: #0d6aad">выберите мессенджер и начните чат</span>
+                    <i style="display:block;text-align: right"><span class="msg-mark">v </span><?= date('H:i') ?>&nbsp;&nbsp;</i>
                     <hr>
-                        <a class="msg-btn" href="viber://chat?number=<?= Yii::$app->params['tel1_i'] ?>" target="_blank"><i class="fab fa-viber""></i> Viber</a>
-                        <a class="msg-btn" href="whatsapp://send?phone=<?= Yii::$app->params['tel1_i'] ?>" target="_blank"><i class="fab fa-whatsapp"></i> Watsapp</a>
-                        <a class="msg-btn" href="https://telegram.me/iskander_m21" target="_blank"><i class="fab fa-telegram-plane"></i> Telegram</a>
+                        <a class="msg-btn viber-bg" href="viber://chat?number=<?= Yii::$app->params['tel1_i'] ?>" target="_blank"><i class="fab fa-viber""></i> Viber</a>
+                        <a class="msg-btn watsap-bg" href="whatsapp://send?phone=<?= Yii::$app->params['tel1_i'] ?>" target="_blank"><i class="fab fa-whatsapp"></i> Watsapp</a>
+                        <a class="msg-btn tg-bg" href="https://telegram.me/iskander_m21" target="_blank"><i class="fab fa-telegram-plane"></i> Telegram</a>
                     </div>
             </div>
             <!--/-->
@@ -284,103 +285,8 @@ AppAsset::register($this);
         window.screen_w = document.body.clientWidth;
         window.screen_h = document.body.clientHeight;
     };
-    window.onload = function () {
-        onLoad();
-    };
 </script>
 <?php $this->endBody() ?>
-<script>
-    /* Кастомный алерт */
-    function alert(content,afterFunction){
-        $('<div class="alertm_overlay"></div>').appendTo('body');
-        $('<div class="alertm_all"><a href="#" onclick="alert_close('+afterFunction+'); return false" class="alertm_close">x</a><div class="alertm_wrapper">'+content+'</div><div class="alertm_but" onclick="alert_close('+afterFunction+'); return false">OK</div></div>').appendTo('body');
-        $(".alertm_overlay, .alertm_all").fadeIn("slow");
-        $('.alertm_all').css('margin-top', (-1)*($('.alertm_all').height())+'px');
-    }
-    function alert_close(afterFunctionClouse){
-        $(".alertm_overlay, .alertm_all").remove();
-        afterFunctionClouse;
-    }
-    /**/
-    // alert('MY ALERT');
-    /* "шторка" в шапке */
-    var shtorka = document.querySelector('.shtorka');
-    /**/
-    $(document).on('pjax:beforeSend', function () {
-        document.body.style.cursor = 'progress';
-        let target = $.pjax.options.container; // контейнер куда грузим AJAX данные
-        let method = $.pjax.options.type;
-        if(target == '#my-modal' && method == 'GET'){ // вызов модального окна(обратный звонок)
-            $('#container').prepend('<div id="overlay"></div>');
-            $('#overlay').show();
-            $('#container_loading').show();
-        }else if(method != 'POST') { // данные в блок #inc (основной контент)
-            scrollTo(0,0);
-
-            shtorka.classList.remove('shtorka-animate');
-            $('#container_loading').show();
-        }
-    });
-
-    $(document).on('pjax:complete', function () {
-        shtorka.classList.add('shtorka-animate'); // анимация в шапке
-        document.body.style.cursor = 'default';
-        $('#overlay').remove();
-        $('#container_loading').hide()
-        let method = $.pjax.options.type;
-        if (method == 'POST' && $.pjax.options.url == '/'){ // очищаем поля формы отправки письма
-            document.forms[0].reset();
-        }
-
-        // Ratelimiter сработал
-        $(document).on('pjax:error', function(event, xhr, textStatus, errorThrown, options){
-            if (xhr.status == 429){
-                alert('Количество попыток исчерпано. Не более <?= Yii::$app->params['rateLimit'] ?> попыток в минуту');
-            }
-        });
-    });
-
-
-    ///
-    (function ($) {
-        new WOW().init();
-    })(jQuery);
-    //
-    let msgBlock = document.getElementById('msg-block');
-    let msgContent = document.getElementById('msg-content');
-    const al = document.getElementById('container').clientWidth;
-    msgBlock.style.right = (screen_w - al)/2 + 'px'; //позиционируем в правый край родителя
-    function showMsg(){ // показ окна чата
-       $('#msg-block').velocity('transition.bounceIn');
-    }
-        setTimeout(showMsg, 3000);
-    msgContent.addEventListener('click', function () { // разворачиваем окно чата
-        if(msgBlock.getAttribute('data-closed') == '1') {
-            msgBlock.removeAttribute('data-closed');
-            $('button .close').css('display', 'block');
-            document.querySelector('.msg-img').style.left = '120px';
-            $('#msg-block').css({
-                'height': '340px',
-                'background': '#fff'
-            });
-            $('.msg-closed').css('display', 'none');
-            showMsg();
-        }
-    });
-    //
-    const msgClose = document.querySelector('#msg-block button');
-    msgClose.addEventListener('click', function () { // сворачиваем окно чата
-        if (!msgBlock.getAttribute('data-closed')){ // окно не свернуто
-        document.querySelector('.msg-img').style.left = '240px';
-        $('#msg-block').css({
-            'height': '',
-            'background': ''
-        });
-        $('.msg-closed').css('display', 'block');
-        msgBlock.setAttribute('data-closed', '1');
-        }
-    });
-</script>
 </body>
 </html>
 <?php //Spaceless::end()?>

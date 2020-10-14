@@ -472,7 +472,8 @@ header {
 }
 
 footer {
-    /*position: relative;*/
+    position: relative;
+    z-index: 100;
     height: 140px; /* Высота прижатого футера здесь !!! */
     background: #eee;
     border: 1px solid transparent;
@@ -2552,7 +2553,7 @@ mark{
     display: block;
     padding: 5px;
     text-align: center;
-    background: #0d6aad;
+    /*background: #0d6aad;*/
     border: 0px solid transparent;
     border-radius: 10px;
     text-decoration: none !important;
@@ -2560,6 +2561,18 @@ mark{
     color: #fff;
     width: 150px;
     margin: 0 auto 10px auto;
+}
+
+.viber-bg{
+    background: #774E98;
+}
+
+.watsap-bg{
+    background: #12940A;
+}
+
+.tg-bg{
+   background: #52ADDE;
 }
 
 .msg-btn:hover,.msg-btn:visited{
@@ -2575,6 +2588,10 @@ mark{
     position: absolute;
     top: 10px;
     right: 24px;
+}
+
+.msg-mark{
+    color: lime;
 }
 /**/
 .grecaptcha-badge{

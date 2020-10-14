@@ -171,6 +171,7 @@ class SiteController extends Controller
 
     public function actionLogin()
     {
+        setcookie('rateLimit', Yii::$app->params['rateLimit']); // это чтобы передать в JS количество попыток входа
         $this->layout = 'auth';
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();

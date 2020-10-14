@@ -85,12 +85,11 @@ Modal::end();
         // console.log(check);
 
         const label = document.getElementById('labelText');
-        console.log(label);
+        // console.log(label);
 
         check.addEventListener('click', function () {
             // check.setAttribute('checked', 'true')
-            console.log(check.getAttribute('value'));
+            // console.log(check.getAttribute('value'));
         })
-    }
-
+    };
 </script>
