@@ -156,7 +156,7 @@ window.onload = function () {
             document.querySelector('.msg-img').style.left = '120px';
             $('#msg-block').css({
                 'height': '360px',
-                'background': '#fff'
+                'background': 'url(\'/img/wats-bg.gif\')'
             });
             $('.msg-closed').css('display', 'none');
             showMsg();
