@@ -238,23 +238,22 @@ AppAsset::register($this);
                 <!-- конец основной контент -->
             </div>
             <!--кнопка вверх-->
-            <div id="scroller" title="проскролить вверх">
-                <div class="triangle"></div>
-                <span class="scr_text">вверх</span>
-            </div>
+            <div id="scroller" class="fa fa-chevron-circle-up" title="проскролить вверх"></div>
             <!--/-->
             <!--Окно чата-->
             <div id="msg-block" data-closed="1">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
                 <div id="msg-content">
                     <div class="msg-closed">
-                        &nbsp;&nbsp;&nbsp;<i class="fab fa-viber"></i> <i class="fab fa-whatsapp"></i> <i class="fab fa-telegram-plane"></i>
-                        <span>Начните чат</span>
+                        &nbsp;&nbsp;&nbsp;<i class="fab fa-viber viber"></i> <i class="fab fa-whatsapp wats"></i> <i class="fab fa-telegram-plane tg"></i>
+                        <b>Начните чат</b>
                     </div>
                     <img class="msg-img rounded-circle img-thumbnail" src="/img/msg.png" alt="">
-                    <h3 class="msg-title">Доброго времени суток, меня зовут Александр.</h3>
-                    <span style="display: block;text-align: center;color: #0d6aad">выберите мессенджер и начните чат</span>
-                    <i style="display:block;text-align: right"><span class="msg-mark">v </span><?= date('H:i') ?>&nbsp;&nbsp;</i>
+                    <div class="msg-text">
+                        <div class="text-center">Доброго времени суток, меня зовут Александр.</div>
+                        <div class="text-center text-info">выберите мессенджер и начните чат</div>
+                        <i style="display:block;text-align: right"><span class="fa fa-check text-success"></span><?= date('H:i') ?>&nbsp;&nbsp;</i>
+                    </div>
                     <hr>
                         <a class="msg-btn viber-bg" href="viber://chat?number=<?= Yii::$app->params['tel1_i'] ?>" target="_blank"><i class="fab fa-viber""></i> Viber</a>
                         <a class="msg-btn watsap-bg" href="whatsapp://send?phone=<?= Yii::$app->params['tel1_i'] ?>" target="_blank"><i class="fab fa-whatsapp"></i> Watsapp</a>
@@ -287,6 +286,40 @@ AppAsset::register($this);
     };
 </script>
 <?php $this->endBody() ?>
+<script>
+    $(document).on('pjax:beforeSend', function () {
+        // shtorka.style.display = 'none';
+        // shtorka.classList.add('shtorka-animate'); // анимация в шапке
+        document.body.style.cursor = 'progress';
+        let target = $.pjax.options.container; // контейнер куда грузим AJAX данные
+        let method = $.pjax.options.type;
+        if(target == '#my-modal' && method == 'GET'){ // вызов модального окна(обратный звонок)
+            $('#container').prepend('<div id="overlay"></div>');
+            $('#overlay').show();
+            $('#container_loading').show();
+        }else if(method != 'POST') { // данные в блок #inc (основной контент)
+            scrollTo(0,0);
+            $('#container_loading').show();
+        }
+    });
+
+    $(document).on('pjax:complete', function () {
+        document.body.style.cursor = 'default';
+        $('#overlay').remove();
+        $('#container_loading').hide()
+        let method = $.pjax.options.type;
+        if (method == 'POST' && $.pjax.options.url == '/'){ // очищаем поля формы отправки письма
+            document.forms[0].reset();
+        }
+        // Ratelimiter сработал (ПРЕВЫШЕНО КОЛ-ВО ПОПЫТОК ВХОДА)
+        // Куки сохранял в action site/login
+        $(document).on('pjax:error', function(event, xhr, textStatus, errorThrown, options){
+            if (xhr.status == 429){
+                alert('Количество попыток исчерпано.Не более ' + readCookie('rateLimit') + ' попыток в минуту');
+            }
+        });
+    });
+</script>
 </body>
 </html>
 <?php //Spaceless::end()?>

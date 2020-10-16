@@ -435,7 +435,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => $data['description
 ); */?>
 
     <div class="form-group">
-        <?= Html::submitButton('Отправить', ['class' => 'btn success-button button-anim animated bounceInDown wow', 'data-wow-delay' => '0.1s']) ?>
+        <?= Html::submitButton('Отправить', ['class' => 'btn success-button animated bounceInDown wow', 'data-wow-delay' => '0.1s']) ?>
     </div>
 
 <?php ActiveForm::end(); ?>

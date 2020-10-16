@@ -43,31 +43,43 @@ function menu_fix() {
     const h_mrg = 0; // отступ когда шапка уже не видна
         $(function () {
             let top = $(this).scrollTop(); // сколько проскролено
-            const elem = $('#menu_outer'); // блок меню
-            if ((top + h_mrg) > h_hght) {
-                elem.css({
+            const menu = $('#menu_outer'); // блок меню
+            const resp = $('nav.resp');
+            const ul = $('nav.resp ul');
+            const link = $('.resp a');
+            if ((top + h_mrg) > h_hght) { // включается "скролл-меню"
+                menu.css({
                     'top': h_mrg,
                     'position': 'fixed',
-                    'border-bottom': '2px solid #003333',
-                    'border-radius': '0 0 5px 5px',
-                    'box-shadow': '0 0 20px #777',
-                    'background-color': '#eee',
+                    'background': 'transparent',
                     'z-index': '10'
                 });
-                $('nav.resp ul').css('background-color', '#eee');
-                $('nav.resp ul').css('border', 'none');
+                resp.css({
+                    'border': 'none',
+                    'marginTop': '-20px',
+                });
+                ul.addClass('scrolled');
+                link.css({
+                    'color': '#313A3D',
+                    'borderRight': '1px dotted #e61b05'
+                });
             } else {
-                elem.css({
+                menu.css({
                     'top': 0,
                     'position': 'relative',
-                    'border': '',
-                    'border-radius': '',
-                    'box-shadow': '',
-                    'background-color': '',
+                    'background': '',
                     'z-index': ''
                 });
-                $('nav.resp ul').css('background-color', '');
-                $('nav.resp ul').css('border', '');
+                resp.css({
+                    'background-color': '',
+                    'border': '',
+                    'marginTop': ''
+                });
+                ul.removeClass('scrolled')
+                link.css({
+                    'color': '',
+                    'borderRight': ''
+                });
             }
         });
 }
@@ -103,44 +115,10 @@ window.onload = function () {
     shtorka.classList.add('shtorka-animate');
     mobLeft(); // мобильное меню
     //
-    $(document).on('pjax:beforeSend', function () {
-        // shtorka.style.display = 'none';
-        // shtorka.classList.add('shtorka-animate'); // анимация в шапке
-        document.body.style.cursor = 'progress';
-        let target = $.pjax.options.container; // контейнер куда грузим AJAX данные
-        let method = $.pjax.options.type;
-        if(target == '#my-modal' && method == 'GET'){ // вызов модального окна(обратный звонок)
-            $('#container').prepend('<div id="overlay"></div>');
-            $('#overlay').show();
-            $('#container_loading').show();
-        }else if(method != 'POST') { // данные в блок #inc (основной контент)
-            scrollTo(0,0);
-            $('#container_loading').show();
-        }
-    });
-
-    $(document).on('pjax:complete', function () {
-        document.body.style.cursor = 'default';
-        $('#overlay').remove();
-        $('#container_loading').hide()
-        let method = $.pjax.options.type;
-        if (method == 'POST' && $.pjax.options.url == '/'){ // очищаем поля формы отправки письма
-            document.forms[0].reset();
-        }
-
-        // Ratelimiter сработал (ПРЕВЫШЕНО КОЛ-ВО ПОПЫТОК ВХОДА)
-        // Куки сохранял в action site/login
-        $(document).on('pjax:error', function(event, xhr, textStatus, errorThrown, options){
-            if (xhr.status == 429){
-                alert('Количество попыток исчерпано.Не более ' + readCookie('rateLimit') + ' попыток в минуту');
-            }
-        });
-    });
-    ///
     (function ($) {
         new WOW().init();
     })(jQuery);
-    //
+    // Окно чата/мессенджеров
     let msgBlock = document.getElementById('msg-block');
     let msgContent = document.getElementById('msg-content');
     const al = document.getElementById('container').clientWidth;
@@ -155,8 +133,9 @@ window.onload = function () {
             $('button .close').css('display', 'block');
             document.querySelector('.msg-img').style.left = '120px';
             $('#msg-block').css({
-                'height': '360px',
-                'background': 'url(\'/img/wats-bg.gif\')'
+                'height': '370px',
+                'background': 'url(\'/img/wats-bg.gif\')',
+                'boxShadow': '0 0 30px #999'
             });
             $('.msg-closed').css('display', 'none');
             showMsg();
@@ -169,7 +148,8 @@ window.onload = function () {
             document.querySelector('.msg-img').style.left = '240px';
             $('#msg-block').css({
                 'height': '',
-                'background': ''
+                'background': '',
+                'boxShadow': 'none'
             });
             $('.msg-closed').css('display', 'block');
             msgBlock.setAttribute('data-closed', '1');

@@ -109,8 +109,6 @@ $this->registerMetaTag(['name' => 'description', 'content' => $data['description
     <div id="seo_list">
         <h3 class="header_shadow">SEO продвижение сайта, основные требования к ресурсу:</h3>
         <ul>
-            <li>Сайт сделан не на flash, java script, iframe (возможны AJAX сайты при соблюдении определенных правил)
-            </li>
             <li>Все доступы и права принадлежат владельцу сайта</li>
             <li>Возраст ресурса превышает 1 год</li>
             <li>Сайт находиться в работоспособном состоянии</li>
