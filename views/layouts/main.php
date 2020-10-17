@@ -230,23 +230,24 @@ AppAsset::register($this);
                 </div>
                 <!-- конец левый блок -->
                 <!-- начало основной контент -->
-                <main id="inc">
-                    <div id="inc_loading"></div>
-                    <?php echo $content ?>
-
-                </main>
+                <div class="inc-out">
+                    <main id="inc">
+                        <?php echo $content ?>
+                    </main>
+                        <div id="inc-overlay"></div>
+                </div>
                 <!-- конец основной контент -->
             </div>
             <!--кнопка вверх-->
             <div id="scroller" class="fa fa-chevron-circle-up" title="проскролить вверх"></div>
             <!--/-->
             <!--Окно чата-->
-            <div id="msg-block" data-closed="1">
+            <div id="msg-block" data-closed>
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
                 <div id="msg-content">
                     <div class="msg-closed">
                         &nbsp;&nbsp;&nbsp;<i class="fab fa-viber viber"></i> <i class="fab fa-whatsapp wats"></i> <i class="fab fa-telegram-plane tg"></i>
-                        <b>Начните чат</b>
+                        <b style="position: absolute;left: 130px">Начните чат</b>
                     </div>
                     <img class="msg-img rounded-circle img-thumbnail" src="/img/msg.png" alt="">
                     <div class="msg-text">
@@ -277,49 +278,7 @@ AppAsset::register($this);
     </footer>
     <!--/noindex-->
 </div>
-<script>
-    const screen_w = document.body.clientWidth;
-    const screen_h = document.body.clientHeight;
-    window.onresize = function () {
-        window.screen_w = document.body.clientWidth;
-        window.screen_h = document.body.clientHeight;
-    };
-</script>
 <?php $this->endBody() ?>
-<script>
-    $(document).on('pjax:beforeSend', function () {
-        // shtorka.style.display = 'none';
-        // shtorka.classList.add('shtorka-animate'); // анимация в шапке
-        document.body.style.cursor = 'progress';
-        let target = $.pjax.options.container; // контейнер куда грузим AJAX данные
-        let method = $.pjax.options.type;
-        if(target == '#my-modal' && method == 'GET'){ // вызов модального окна(обратный звонок)
-            $('#container').prepend('<div id="overlay"></div>');
-            $('#overlay').show();
-            $('#container_loading').show();
-        }else if(method != 'POST') { // данные в блок #inc (основной контент)
-            scrollTo(0,0);
-            $('#container_loading').show();
-        }
-    });
-
-    $(document).on('pjax:complete', function () {
-        document.body.style.cursor = 'default';
-        $('#overlay').remove();
-        $('#container_loading').hide()
-        let method = $.pjax.options.type;
-        if (method == 'POST' && $.pjax.options.url == '/'){ // очищаем поля формы отправки письма
-            document.forms[0].reset();
-        }
-        // Ratelimiter сработал (ПРЕВЫШЕНО КОЛ-ВО ПОПЫТОК ВХОДА)
-        // Куки сохранял в action site/login
-        $(document).on('pjax:error', function(event, xhr, textStatus, errorThrown, options){
-            if (xhr.status == 429){
-                alert('Количество попыток исчерпано.Не более ' + readCookie('rateLimit') + ' попыток в минуту');
-            }
-        });
-    });
-</script>
 </body>
 </html>
 <?php //Spaceless::end()?>

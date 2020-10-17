@@ -1,3 +1,10 @@
+const screen_w = document.body.clientWidth;
+const screen_h = document.body.clientHeight;
+window.onresize = function () {
+    window.screen_w = document.body.clientWidth;
+    window.screen_h = document.body.clientHeight;
+};
+
 /*Мобильное левое меню*/
 function mobLeft() {
     const menuBtn = document.querySelector('.mob-menu-button'); //кнопка
@@ -118,41 +125,85 @@ window.onload = function () {
     (function ($) {
         new WOW().init();
     })(jQuery);
+
     // Окно чата/мессенджеров
     let msgBlock = document.getElementById('msg-block');
     let msgContent = document.getElementById('msg-content');
+    let msgImg = document.querySelector('.msg-img');
+    let msgClosed = document.querySelector('.msg-closed');
+
     const al = document.getElementById('container').clientWidth;
     msgBlock.style.right = (screen_w - al)/2 + 'px'; //позиционируем в правый край родителя
-    function showMsg(){ // показ окна чата
+
+    function showMsg(){ // показ окна чата с анимацией
         $('#msg-block').velocity('transition.bounceIn');
     }
-    setTimeout(showMsg, 3000);
+
+    setTimeout(showMsg, 3000); // задерживаем появление свернутого окошка
+
     msgContent.addEventListener('click', function () { // разворачиваем окно чата
-        if(msgBlock.getAttribute('data-closed') == '1') {
+        if(msgBlock.hasAttribute('data-closed')) { // свернуто
+            msgBlock.style.height = '370px';
+            msgBlock.style.background = 'url(/img/wats-bg.gif)';
+            msgBlock.style.boxShadow = '0 0 30px #999';
+            msgImg.style.left = '120px';
+            msgClosed.style.display = 'none';
             msgBlock.removeAttribute('data-closed');
-            $('button .close').css('display', 'block');
-            document.querySelector('.msg-img').style.left = '120px';
-            $('#msg-block').css({
-                'height': '370px',
-                'background': 'url(\'/img/wats-bg.gif\')',
-                'boxShadow': '0 0 30px #999'
-            });
-            $('.msg-closed').css('display', 'none');
             showMsg();
         }
     });
     //
     const msgClose = document.querySelector('#msg-block button');
     msgClose.addEventListener('click', function () { // сворачиваем окно чата
-        if (!msgBlock.getAttribute('data-closed')){ // окно не свернуто
-            document.querySelector('.msg-img').style.left = '240px';
-            $('#msg-block').css({
-                'height': '',
-                'background': '',
-                'boxShadow': 'none'
-            });
-            $('.msg-closed').css('display', 'block');
-            msgBlock.setAttribute('data-closed', '1');
+        if (!msgBlock.hasAttribute('data-closed')){ // окно не свернуто
+                msgImg.style.left = '240px';
+                msgBlock.style.height = '';
+                msgBlock.style.background = '';
+                msgBlock.style.boxShadow = '';
+                msgClosed.style.display = '';
+                msgBlock.setAttribute('data-closed', '');
         }
+    });
+    //
+    $(document).on('pjax:beforeSend', function () {
+        // shtorka.style.display = 'none';
+        // shtorka.classList.add('shtorka-animate'); // анимация в шапке
+        document.body.style.cursor = 'progress';
+        let target = $.pjax.options.container; // контейнер куда грузим AJAX данные
+        let method = $.pjax.options.type;
+        if(target == '#my-modal' && method == 'GET'){ // вызов модального окна(обратный звонок)
+            $('#container').prepend('<div id="overlay"></div>');
+            $('#overlay').show();
+            $('#container_loading').show();
+        }else if(method != 'POST') { // данные в блок #inc (основной контент)
+            const inc = document.querySelector('#inc');
+            const incOverl = document.querySelector('#inc-overlay');
+            incOverl.style.width = inc.clientWidth + 'px';
+            incOverl.style.height = inc.clientHeight + 'px';
+            incOverl.style.left = inc.offsetLeft + 'px';
+            incOverl.style.top = inc.offsetTop + 'px';
+            scrollTo(0,0);
+
+            $('#inc-overlay').css('display', 'block');
+            $('#container_loading').show();
+        }
+    });
+
+    $(document).on('pjax:complete', function () {
+        document.body.style.cursor = 'default';
+        $('#overlay').remove();
+        $('#container_loading').hide();
+        $('#inc-overlay').css('display', 'none');
+        let method = $.pjax.options.type;
+        if (method == 'POST' && $.pjax.options.url == '/'){ // очищаем поля формы отправки письма
+            document.forms[0].reset();
+        }
+        // Ratelimiter сработал (ПРЕВЫШЕНО КОЛ-ВО ПОПЫТОК ВХОДА)
+        // Куки сохранял в action site/login
+        $(document).on('pjax:error', function(event, xhr, textStatus, errorThrown, options){
+            if (xhr.status == 429){
+                alert('Количество попыток исчерпано.Не более ' + readCookie('rateLimit') + ' попыток в минуту');
+            }
+        });
     });
 };

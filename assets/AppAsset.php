@@ -15,12 +15,12 @@ class AppAsset extends AssetBundle
         'fontawesome/css/all.min.css',
     ];
     public $js = [
-        'js/scripts.js',
         'js/indexForm.min.js',
 //        'js/slide.min.js',
         'js/wow.min.js',
         'js/velocity.min.js',
         'js/velocity.ui.min.js',
+        'js/scripts.js',
     ];
     public $depends = [
 //        'yii\web\JQueryAsset',
