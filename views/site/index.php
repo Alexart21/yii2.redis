@@ -300,12 +300,11 @@ $this->registerMetaTag(['name' => 'description', 'content' => $data['description
     <pre>joomla  wordpress drupal     yii2</pre>
 </div>
 <!-- </section> -->
-    <a name="contacts" rel="nofollow"></a>
     <br>
     <br>
     <br>
 <!--noindex-->
-
+    <div id="contacts" class="anchors"></div>
 <div class="h1 text-center">Возникли вопросы ?</div>
 <div class="h2 text-center">Напишите нам и получите исчерпывающую консультацию.</div>
 <br>

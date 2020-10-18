@@ -73,7 +73,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => $data['description
 </article>
 <div class="hr"></div>
 <article>
-    <h2 id="key_seo" class="header_shadow">Продвижение сайта (раскрутка сайта) по ключевым фразам</h2>
+    <h2 id="key_seo" class="header_shadow anchors">Продвижение сайта (раскрутка сайта) по ключевым фразам</h2>
     <p>
         В первую очередь необходимо ответить на несколько важных вопросов:<br>
         Для чего вам нужен сайт ?<br>
@@ -131,7 +131,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => $data['description
 </article>
 <div class="hr"></div>
 <article>
-    <h2 id="context" class="header_shadow">Контекстная реклама</h2>
+    <h2 id="context" class="header_shadow anchors">Контекстная реклама</h2>
     <!-- <h3 class="header_shadow">Контекстная реклама. Что это?</h3> -->
     <p>
         SEO продвижение сайта в топ 10 яндекса может занять от 3 до 6 месяцев в зависимости от ряда

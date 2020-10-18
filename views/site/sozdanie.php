@@ -34,7 +34,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => $data['description
         Если говорить о <b>сайтах для бизнеса</b> то их весьма условно можно разделить на 3 основные категории.<br>
     </p>
     <b>Итак:</b><br>
-    <h2 id="sait_vizitka" class="header_shadow">Сайт визитка</h2>
+    <h2 id="sait_vizitka" class="header_shadow anchors">Сайт визитка</h2>
     <p>
         <img width="250" height="171" class="resp_img no_shadow no_border align-left" src="/img/main_img/vizitka.jpg" alt="сайт визитка" title="сайт визитка">
         Идеальный вариант для старта в интернете. В дальнейшем можно улучшать и развивать возможности сайта и его
@@ -70,7 +70,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => $data['description
         <a href="/#contacts" title="заказать сайт визитку" class="zayavka link-anim"><span class="l3"></span> сделать заявку на сайт визитку</a>
     </p>
     <div class="hr"></div>
-    <h2 id="korporativniy_sait" class="header_shadow">Корпоративный сайт</h2>
+    <h2 id="korporativniy_sait" class="header_shadow anchors">Корпоративный сайт</h2>
     <p>
         <img width="250" height="136" class="resp_img no_border no_shadow align-left" src="/img/main_img/corp.jpg" alt="корпоративный сайт" title="корпоративный сайт">
         Веб-ресурс с множеством задач от повышения престижа организации до
@@ -111,7 +111,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => $data['description
     <br>
     <a href="/#contacts" title="заказать корпоративный сайт" class="zayavka link-anim"><span class="l3"></span> сделать заявку на корпоративный сайт</a>
     <div class="hr"></div>
-    <h2 id="internet_magazin" class="header_shadow">Интернет магазин</h2>
+    <h2 id="internet_magazin" class="header_shadow anchors">Интернет магазин</h2>
     <p>
         <img width="250" height="209" class="resp_img no_border no_shadow align-left" src="/img/main_img/market.jpg" alt="интернет иагазин" title="интернет магазин">
         <strong>Интернет магазин</strong> — наиболее перспективный и развивающийся вид бизнеса в интернете.
