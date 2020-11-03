@@ -12,7 +12,7 @@ $config = [
     'basePath' => dirname(__DIR__),
 //    'bootstrap' => ['log'],
     'defaultRoute' => 'site/index',
-    'language' => 'ru-RU',
+    'language' => 'ru',
     'modules' => [
         'alexadmx' => [ // подключаем модуль админки
             'class' => 'app\modules\alexadmx\Module',
@@ -149,11 +149,11 @@ $config = [
 
 if (YII_ENV_DEV) {
     // configuration adjustments for 'dev' environment
-    /*$config['bootstrap'][] = 'debug';
+    $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
         'allowedIPs' => ['127.0.0.1'] // adjust this to your needs
-    ];*/
+    ];
 
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [

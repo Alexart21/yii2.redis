@@ -113,7 +113,7 @@ class SiteController extends Controller
         }
         /* AJAX вызов страницы (по клику в меню)*/
         if($request->isAjax && $request->isGet){
-            return $this->renderAjax('index', ['data' => $data, 'indexForm' => $indexForm]);
+            return $this->renderPartial('index', compact('data', 'indexForm'));
         }
         /* обычный запрос */
         return $this->render('index', ['data' => $data, 'indexForm' => $indexForm]);

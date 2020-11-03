@@ -1,4 +1,4 @@
-:root{
+:root {
     --logo-color: #e61b05;
     --viber-color: #774E98;
     --watsapp-color: #12940A;
@@ -6,7 +6,7 @@
 }
 
 /* Анкорные метки с учетом шапки */
-.anchors{
+.anchors {
     padding-top: 100px;
     margin-top: -100px;
 }
@@ -70,7 +70,7 @@ h6, .h6 {
     src: url(/fonts/LatoBold.woff);
 }
 
-.company{
+.company {
     font-size: 140%;
     font-weight: bold;
     letter-spacing: 1px;
@@ -108,14 +108,14 @@ textarea {
 /* call btn */
 /* 10 */
 
-.call-btn>a, .call-btn>a:visited{
+.call-btn > a, .call-btn > a:visited {
     display: block;
     height: 100% !important;
     color: #222 !important;
     padding: 4px;
 }
 
-.call-btn>a:hover{
+.call-btn > a:hover {
     color: #fff !important;
 }
 
@@ -134,8 +134,9 @@ textarea {
     /*background: rgba(22,9,240,.3);*/
     /*background: linear-gradient(0deg, rgba(22,9,240,.3) 0%, rgba(49,110,244,.3) 100%);*/
     overflow: hidden;
-    box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5);
+    box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5);
 }
+
 .call-btn:after {
     position: absolute;
     content: " ";
@@ -148,16 +149,19 @@ textarea {
     -webkit-transform: scale(.1);
     transform: scale(.1);
 }
+
 .call-btn:hover {
     color: #fff;
     border: 1px solid #222;
     background: transparent;
 }
+
 .call-btn:hover:after {
     background: #FD9638;
     -webkit-transform: scale(1);
     transform: scale(1);
 }
+
 /**/
 
 body {
@@ -255,7 +259,7 @@ h4 {
 }
 
 mark {
-    background-color: #FFFF99;
+    background-color: rgba(255,255,153,.3);
 }
 
 .mark {
@@ -437,7 +441,7 @@ header {
 #container {
     position: relative !important;
     max-width: 1366px;
-    max-width: 1300px;/* Это для своего монитора */
+    max-width: 1300px; /* Это для своего монитора */
     margin: auto;
 }
 
@@ -577,12 +581,12 @@ header noscript {
     background-color: #fff;
 }
 
-.scrolled{
+.scrolled {
     background: url("/img/menu-bg.png") !important;
     background-repeat: repeat-x;
-    border-right: 1px solid var(--logo-color)!important;
-    border-bottom: 1px solid var(--logo-color)!important;
-    border-left: 1px solid var(--logo-color)!important;
+    border-right: 1px solid var(--logo-color) !important;
+    border-bottom: 1px solid var(--logo-color) !important;
+    border-left: 1px solid var(--logo-color) !important;
 }
 
 #top_menu {
@@ -626,10 +630,6 @@ nav.resp li a {
 
 nav.resp li:last-child a {
     border-right: none;
-}
-
-.a_activ { /*текущая ссылка*/
-    text-shadow: 0 0 1px var(--logo-color) !important;
 }
 
 /*анимация верхнего меню*/
@@ -949,7 +949,7 @@ ul.highlightTextIn li a:before {
     opacity: .95;
 }
 
-#inc-overlay{
+#inc-overlay {
     display: none;
     position: absolute;
     left: 0;
@@ -1505,6 +1505,7 @@ span[itemprop=name] {
 .c3 {
     background-position: 0 24px;
 }
+
 .kontext_img {
     float: left;
 }
@@ -1673,7 +1674,8 @@ code {
     opacity: 1 !important;
     /*text-shadow: 0 .5px var(--logo-color);*/
 }
-button.close{
+
+button.close {
     margin-top: 10px !important;
     margin-right: -5px !important;
     width: 26px !important;
@@ -1682,7 +1684,7 @@ button.close{
     background-repeat: no-repeat;
 }
 
-button.close::first-letter{
+button.close::first-letter {
     visibility: hidden;
 }
 
@@ -2497,17 +2499,17 @@ a.alertm_close {
 }
 
 /**/
-span.fa.fa-ruble-sign
-{
+span.fa.fa-ruble-sign {
     font-size: 110% !important;
     text-indent: 0;
 }
 
-mark{
+mark {
     background-color: rgba(255, 255, 153, .6);
 }
+
 /* блок с иконками мессенджеров*/
-#msg-block{
+#msg-block {
     display: none;
     position: fixed;
     z-index: 100000;
@@ -2524,7 +2526,7 @@ mark{
     box-shadow: 0 0 40px #87ffdb, 0 0 5px #FD9638 inset;
 }
 
-.msg-text{
+.msg-text {
     width: 80%;
     margin: 50px auto 0 auto;
     background: #AAD9C2;
@@ -2533,11 +2535,11 @@ mark{
     box-shadow: 0 0 20px #555;
 }
 
-#msg-content{
+#msg-content {
     margin-top: -20px;
 }
 
-.msg-closed{
+.msg-closed {
     display: block;
     font-size: 26px;
     color: #222;
@@ -2548,18 +2550,18 @@ mark{
     /*line-height: 40px;*/
 }
 
-.msg-closed i{
+.msg-closed i {
     font-size: 34px;
     /*color: lime !important;*/
 }
 
-.msg-img{
+.msg-img {
     position: absolute;
     top: -35px;
     right: 0;
 }
 
-.msg-btn{
+.msg-btn {
     display: block;
     padding: 5px;
     text-align: center;
@@ -2573,50 +2575,51 @@ mark{
     margin: 0 auto 10px auto;
 }
 
-.viber-bg{
+.viber-bg {
     background: var(--viber-color);
 }
 
-.watsap-bg{
+.watsap-bg {
     background: var(--watsapp-color);
 }
 
-.tg-bg{
-   background: var(--tg-color);
+.tg-bg {
+    background: var(--tg-color);
 }
 
-.viber{
+.viber {
     color: var(--viber-color);
 }
 
-.wats{
-   color: var(--watsapp-color);
+.wats {
+    color: var(--watsapp-color);
 }
 
-.tg{
-   color: var(--tg-color);
+.tg {
+    color: var(--tg-color);
 }
 
-.msg-btn:hover,.msg-btn:visited{
+.msg-btn:hover, .msg-btn:visited {
     box-shadow: 4px 4px 10px #999;
     color: #fff !important;
 }
 
-.msg-btn i{
+.msg-btn i {
     font-size: 26px;
 }
 
-#msg-block > button{
+#msg-block > button {
     /*display: none;*/
     position: absolute;
     top: 10px;
     right: 24px;
 }
 
-#msg-block hr{
+#msg-block hr {
     border-bottom: 1px dashed #222;
 }
+
 /**/
-.grecaptcha-badge{
-visibility: hidden;
+.grecaptcha-badge {
+    visibility: hidden;
 }

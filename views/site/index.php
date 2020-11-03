@@ -5,14 +5,12 @@ use yii\widgets\Pjax;
 use yii\widgets\ActiveForm;
 use yii\widgets\MaskedInput;
 
-//$this->title = 'Создание и продвижение сайтов в Чебоксарах';
 header('Last-Modified:' . gmdate("D, d M Y H:i:s \G\M\T", $data['last_mod']));
 $this->title = $data['title'];
-//$this->registerMetaTag(['name' => 'keywords', 'content' => $data[0]['keywords']]);
 $this->registerMetaTag(['name' => 'description', 'content' => $data['description']]);
 ?>
     <script>
-        window.document.title = 'Создание и продвижение сайтов в Чебоксарах';
+        window.document.title = "<?= $data['title'] ?>";
         document.getElementById('top_h').innerText = 'Создание и продвижение сайтов';
     </script>
 <!-- <section> -->
@@ -274,17 +272,16 @@ $this->registerMetaTag(['name' => 'description', 'content' => $data['description
         <h2>Этапы создания сайта можно условно разделить на:</h2>
         <br/>
         <ul>
-            <li class="link-anim">постановку целей</li>
-            <li class="link-anim">дизайн</li>
-            <li class="link-anim">верстку</li>
-            <li class="link-anim">программирование</li>
-            <li class="link-anim">наполнение</li>
-            <li class="link-anim">тестирование</li>
-            <li class="link-anim">запуск</li>
+            <li class="link-anim" data-n="0">постановку целей</li>
+            <li class="link-anim" data-n="1">дизайн</li>
+            <li class="link-anim" data-n="2">верстку</li>
+            <li class="link-anim" data-n="3">программирование</li>
+            <li class="link-anim" data-n="4">наполнение</li>
+            <li class="link-anim" data-n="5">тестирование</li>
+            <li class="link-anim" data-n="6">запуск</li>
         </ul>
     </div>
     <output id="etap_target"></output>
-    <script>eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('w f=["Уяснение задач заказчика, определение целевой аудитории сайта, написание брифа(в народном фольклоре ТЗ).Прототипирование или составление эскиза где определяются расположения элементов страниц.","Определение концепции дизайна.Цветовое и графическое решение будущего сайта, выбор шрифтов и др.","Страницы сайта должны корректно отображаться во всех браузерах.Как правило хорошего тона нынче можно говорить об <a x=\\"y-z\\" A=\\"/B#C\\"><b> адаптивной верстке</b></a> т.е. сайт должен быть хорошо читаем без потери функционала и на смартфонах и на планшетах и на настольных пк, и даже на тех устройствах, которые появятся в будущем.","Программирование идет параллельно с версткой.Постановка сайта \\"на движок\\" выбранный заказчиком(или разработанный нами).Проектирование и наполнение контентом базы данных(если требуется).Можем предложить собственную D которая в отличии от \\"универсальных\\" будет заточена под Ваш конкретный сайт и очень проста в использовании.","Наполнение содержимым.Если сайт будет продвигаться в поисковиках, пишутся грамотные g тексты под поисковые запросы по ключевым словам.","Здесь идет полная проверка работоспособности сайта.Так же тестируется стойкость к E атакам и F инъекциям.","Собственно выкладка на выбранный хостинг.Этот этап может быть сделан уже в процессе верстки.Например когда коммерческий сайт планируеться к g продвижению.Ведь g&G; процесс нескорый и тут время-деньги."];7 c=p.H(\'#f I\');q(7 i=0;i<c.r;i++){c[i].J("K",h)}L h(e){e=e||M;7 d=e.h||e.N;q(7 i=0;i<c.r;i++){j(d==c[i]){d.k.s(\'l\');d.k.t(\'m-o\')}O{7 a=c[i].k;j(a.u(\'l\'))a.t(\'l\');j(!a.u(\'m-o\'))a.s(\'m-o\')}}7 v=d.P.Q;7 n;R(v){8"постановку целей":n=0;9;8"дизайн":n=1;9;8"верстку":n=2;9;8"программирование":n=3;9;8"наполнение":n=4;9;8"тестирование":n=5;9;8"запуск":n=6;9}p.S(\'T\').U=f[n]}',57,57,'|||||||let|case|break|||allLi|obj||etap|SEO|target||if|classList|etap_active|link||anim|document|for|length|add|remove|contains|txt|const|class|portf|call|href|sozdanie|response|CMS|XSS|SQL|mdash|querySelectorAll|li|addEventListener|click|function|event|srcElement|else|firstChild|nodeValue|switch|getElementById|etap_target|innerHTML'.split('|'),0,{}))</script>
     <br/>
 </article>
 <div id="cms">

@@ -2,7 +2,7 @@ const screen_w = document.body.clientWidth;
 const screen_h = document.body.clientHeight;
 window.onresize = function () {
     window.screen_w = document.body.clientWidth;
-    window.screen_h = document.body.clientHeight;ColorHighlighter
+    window.screen_h = document.body.clientHeight;
 };
 
 /*Мобильное левое меню*/
@@ -83,7 +83,7 @@ function menu_fix() {
                 'border': '',
                 'marginTop': ''
             });
-            ul.removeClass('scrolled')
+            ul.removeClass('scrolled');
             link.css({
                 'color': '',
                 'borderRight': ''
@@ -98,7 +98,7 @@ $(window).scroll(function () {
 });
 
 /* Кастомный алерт */
-function alert(content, afterFunction) {
+/*function alert(content, afterFunction) {
     $('<div class="alertm_overlay"></div>').appendTo('body');
     $('<div class="alertm_all"><a href="#" onclick="alert_close(' + afterFunction + '); return false" class="alertm_close">x</a><div class="alertm_wrapper">' + content + '</div><div class="alertm_but" onclick="alert_close(' + afterFunction + '); return false">OK</div></div>').appendTo('body');
     $(".alertm_overlay, .alertm_all").fadeIn("slow");
@@ -108,7 +108,7 @@ function alert(content, afterFunction) {
 function alert_close(afterFunctionClouse) {
     $(".alertm_overlay, .alertm_all").remove();
     afterFunctionClouse;
-}
+}*/
 
 // доставание cookie
 function readCookie(name) {
@@ -120,7 +120,7 @@ function readCookie(name) {
 
 /////////////
 /* Далее в обертке window.onload */
-window.onload = function () {
+window.onload = () => {
     // анимация в шапке
     const shtorka = document.querySelector('.shtorka');
     shtorka.classList.add('shtorka-animate');
@@ -143,7 +143,7 @@ window.onload = function () {
         $('#msg-block').velocity('transition.bounceIn');
     }
 
-    setTimeout(showMsg, 3000); // задерживаем появление свернутого окошка
+    setTimeout(showMsg, 3000); // задерживаем на 3 с.
 
     msgContent.addEventListener('click', () => { // разворачиваем окно чата
         if (msgBlock.hasAttribute('data-closed')) { // свернуто
@@ -170,11 +170,9 @@ window.onload = function () {
     });
     //
     $(document).on('pjax:beforeSend', () => {
-        // shtorka.style.display = 'none';
-        // shtorka.classList.add('shtorka-animate'); // анимация в шапке
         document.body.style.cursor = 'progress';
+        let method = $.pjax.options.type; // (GET или POST)
         let target = $.pjax.options.container; // контейнер куда грузим AJAX данные
-        let method = $.pjax.options.type;
         if (target == '#my-modal' && method == 'GET') { // вызов модального окна(обратный звонок)
             $('#container').prepend('<div id="overlay"></div>');
             $('#overlay').show();
@@ -194,6 +192,10 @@ window.onload = function () {
     });
 
     $(document).on('pjax:complete', () => {
+        let target = $.pjax.options.container; // контейнер куда грузим AJAX данные
+        if (target == '#inc') {
+            linkColor(); // красим активную ссылку
+        }
         document.body.style.cursor = 'default';
         $('#overlay').remove();
         $('#container_loading').hide();
@@ -211,3 +213,45 @@ window.onload = function () {
         });
     });
 };
+
+// окраска активной AJAX ссылки верхнего меню
+function linkColor() {
+    let links = document.querySelectorAll('.resp li a'); // все ссылки верхнего меню
+    let currentLink = window.location.pathname; // нажатая ссылка
+    for (var i = 0; i < links.length; i++) {
+        let y = links[i].pathname;
+        if (y == currentLink && currentLink != '/') {
+            links[i].classList.add('header_shadow');
+        } else {
+            links[i].classList.remove('header_shadow');
+        }
+    }
+}
+
+/* Параграф "этапы создания сайта" на главной странице */
+const etap = [ // массив с описаниями
+    "Уяснение задач заказчика, определение целевой аудитории сайта, написание брифа(в народном фольклоре ТЗ).Прототипирование или составление эскиза где определяются расположения элементов страниц.",
+    "Определение концепции дизайна.Цветовое и графическое решение будущего сайта, выбор шрифтов и др.",
+    "Страницы сайта должны корректно отображаться во всех браузерах.Как правило хорошего тона нынче можно говорить об <a class=\"portf-call\" href=\"/sozdanie#response\"><b> адаптивной верстке</b></a> т.е. сайт должен быть хорошо читаем без потери функционала и на смартфонах и на планшетах и на настольных пк, и даже на тех устройствах, которые появятся в будущем.",
+    "Программирование идет параллельно с версткой.Постановка сайта \"на движок\" выбранный заказчиком(или разработанный нами).Проектирование и наполнение контентом базы данных(если требуется).Можем предложить собственную CMS которая в отличии от \"универсальных\" будет заточена под Ваш конкретный сайт и очень проста в использовании.",
+    "Наполнение содержимым.Если сайт будет продвигаться в поисковиках, пишутся грамотные SEO тексты под поисковые запросы по ключевым словам.",
+    "Здесь идет полная проверка работоспособности сайта.Так же тестируется стойкость к XSS атакам и SQL инъекциям.",
+    "Собственно выкладка на выбранный хостинг.Этот этап может быть сделан уже в процессе верстки.Например когда коммерческий сайт планируеться к SEO продвижению.Ведь SEO&mdash; процесс нескорый и тут время-деньги."
+];
+let selectedLi;
+let etUl = document.querySelector('#etap ul');
+etUl.onclick = (e) => {
+    let li = e.target;
+    if(!li) return;
+    highlight(li);
+};
+
+function highlight(li) {
+    if (selectedLi) { // убрать существующую подсветку, если есть
+        selectedLi.classList.remove('etap_active');
+    }
+    selectedLi = li;
+    selectedLi.classList.add('etap_active'); // подсветить новый li
+    let n = selectedLi.dataset.n;
+    document.getElementById('etap_target').innerHTML = etap[n]; // впендюриваем описание куда надо
+}

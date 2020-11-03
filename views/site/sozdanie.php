@@ -2,7 +2,6 @@
 header('Cache-Control: no-store, no-cache, must-revalidate');
 header('Last-Modified:' . gmdate("D, d M Y H:i:s \G\M\T", $data['last_mod']));
 $this->title = $data['title'];
-//$this->registerMetaTag(['name' => 'keywords', 'content' => $data[0]['keywords']]);
 $this->registerMetaTag(['name' => 'description', 'content' => $data['description']]);
 ?>
 <?php $this->beginBlock('h1'); ?>
@@ -12,9 +11,6 @@ $this->registerMetaTag(['name' => 'description', 'content' => $data['description
     window.document.title = "<?= $data['title'] ?>";
     document.getElementById('top_h').innerText = 'Создание сайтов';
 </script>
-<?php
-//echo $data['page_text'];
-?>
 <img width="250" height="167" class="resp_img" src="/img/main_img/sozdanie.jpg" alt="создание сайтов" title="создание сайтов">
 <article>
     <h2 class="header_shadow">Создание сайтов для бизнеса и не только</h2>

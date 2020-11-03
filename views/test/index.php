@@ -38,3 +38,25 @@ Alert::begin([
 <?php
 Alert::end();
 ?>
+<div><?= date('H') ?></div>
+<?php
+$H = date('H');
+/*switch ($H)
+{
+    case:()
+}*/
+$H = 23;
+
+$H = (int)$H;
+
+if ($H >= 5 && $H <= 9){
+    $msg = 'утра';
+}elseif ($H > 9 && $H <= 17){
+    $msg = 'дня';
+}elseif ($H > 17 && $H < 22){
+    $msg = 'вечера';
+}else{
+    $msg = 'времени суток';
+}
+?>
+<div><?= $msg ?></div>
