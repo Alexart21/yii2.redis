@@ -239,8 +239,8 @@ const etap = [ // массив с описаниями
     "Собственно выкладка на выбранный хостинг.Этот этап может быть сделан уже в процессе верстки.Например когда коммерческий сайт планируеться к SEO продвижению.Ведь SEO&mdash; процесс нескорый и тут время-деньги."
 ];
 let selectedLi;
-let etUl = document.querySelector('#etap ul');
-etUl.onclick = (e) => {
+const etli = document.querySelector('#etap ul');
+etli.onclick = (e) => {
     let li = e.target;
     if(!li) return;
     highlight(li);

@@ -4,6 +4,7 @@ header('Last-Modified:' . gmdate("D, d M Y H:i:s \G\M\T", $data['last_mod']));
 $this->title = $data['title'];
 $this->registerMetaTag(['name' => 'description', 'content' => $data['description']]);
 ?>
+
 <?php $this->beginBlock('h1'); ?>
 Создание сайтов
 <?php $this->endBlock(); ?>
@@ -43,27 +44,27 @@ $this->registerMetaTag(['name' => 'description', 'content' => $data['description
     </p>
     <h3>Заказав у нас сайт визитку вы получите:</h3>
     <ul class="list list_block">
-        <li><span class="l1"></span>&nbsp;&nbsp;5-7 страниц информации на сайте</li>
-        <li><span class="l1"></span>&nbsp;&nbsp;Размещение прайс листов</li>
-        <li><span class="l1"></span>&nbsp;&nbsp;Форму обратной связи и(или) заявки на сайте</li>
-        <li><span class="l1"></span>&nbsp;&nbsp;Схему проезда до вашей организации</li>
-        <li><span class="l1"></span>&nbsp;&nbsp;Регистрацию и покупку домена</li>
-        <li><span class="l1"></span>&nbsp;&nbsp;Регистрацию в поисковых системах Яндекс и Google</li>
-        <li><span class="l1"></span>&nbsp;&nbsp;Валидный <abbr title="англ. HyperText Markup Language, version 5 — язык для структурирования и представления содержимого всемирной паутины">HTML</abbr>
+        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;5-7 страниц информации на сайте</li>
+        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Размещение прайс листов</li>
+        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Форму обратной связи и(или) заявки на сайте</li>
+        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Схему проезда до вашей организации</li>
+        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Регистрацию и покупку домена</li>
+        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Регистрацию в поисковых системах Яндекс и Google</li>
+        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Валидный <abbr title="англ. HyperText Markup Language, version 5 — язык для структурирования и представления содержимого всемирной паутины">HTML</abbr>
             код
         </li>
-        <li><span class="l1"></span>&nbsp;&nbsp;Оптимизированную для <abbr title="англ. search engine optimization — комплекс мер по внутренней и внешней оптимизации, для поднятия позиций сайта в результатах выдачи поисковых систем">SEO</abbr>
+        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Оптимизированную для <abbr title="англ. search engine optimization — комплекс мер по внутренней и внешней оптимизации, для поднятия позиций сайта в результатах выдачи поисковых систем">SEO</abbr>
             структуру страниц
         </li>
-        <li><span class="l1"></span>&nbsp;&nbsp;Установку счетчика посещений</li>
-        <li><span class="l1"></span>&nbsp;&nbsp;Индивидуальный дизайн</li>
+        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Установку счетчика посещений</li>
+        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Индивидуальный дизайн</li>
     </ul>
     <p></p>
     <p>
         Создание сайтов этой категории обычно занимает 5-7 дней после написания брифа
         и утверждения структуры, дизайна.<br>
         <strong>Цена для сайта визитки</strong> от <span class="red">7&#8202;000</span><span class="fa fa-ruble-sign"></span><br>
-        <a href="/#contacts" title="заказать сайт визитку" class="zayavka link-anim"><span class="l3"></span> сделать заявку на сайт визитку</a>
+        <a href="/#contacts" title="заказать сайт визитку" class="zayavka link-anim"><span class="fa fa-send-o no-sh"></span> сделать заявку на сайт визитку</a>
     </p>
     <div class="hr"></div>
     <h2 id="korporativniy_sait" class="header_shadow anchors">Корпоративный сайт</h2>
@@ -89,23 +90,23 @@ $this->registerMetaTag(['name' => 'description', 'content' => $data['description
     </p>
     <h3>В цену включены:</h3>
     <ul class="list list_block">
-        <li><span class="l1"></span>&nbsp;&nbsp;Индивидуальный дизайн</li>
-        <li><span class="l1"></span>&nbsp;&nbsp;До 50 страниц информации</li>
-        <li><span class="l1"></span>&nbsp;&nbsp;Базовая <abbr title="англ. search engine optimization — комплекс мер по внутренней и внешней оптимизации, для поднятия позиций сайта в результатах выдачи поисковых систем">SEO</abbr>
+        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Индивидуальный дизайн</li>
+        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;До 50 страниц информации</li>
+        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Базовая <abbr title="англ. search engine optimization — комплекс мер по внутренней и внешней оптимизации, для поднятия позиций сайта в результатах выдачи поисковых систем">SEO</abbr>
             оптимизация всех страниц
         </li>
-        <li><span class="l1"></span>&nbsp;&nbsp;Каталог товаров и услуг</li>
-        <li><span class="l1"></span>&nbsp;&nbsp;Микроразметка для товаров и контактов</li>
-        <li><span class="l1"></span>&nbsp;&nbsp;Форма обратной связи(заявки)</li>
-        <li><span class="l1"></span>&nbsp;&nbsp;Система управления контентом</li>
-        <li><span class="l1"></span>&nbsp;&nbsp;Новости или блог</li>
-        <li><span class="l1"></span>&nbsp;&nbsp;Регистрация в поисковых системах</li>
-        <li><span class="l1"></span>&nbsp;&nbsp;Счетчик посетителей</li>
-        <li><span class="l1"></span>&nbsp;&nbsp;Настройка систем Яндекс метрика и Google analitics</li>
-        <li><span class="l1"></span>&nbsp;&nbsp;Cопровождение после сдачи в течении 3 месяцев</li>
+        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Каталог товаров и услуг</li>
+        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Микроразметка для товаров и контактов</li>
+        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Форма обратной связи(заявки)</li>
+        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Система управления контентом</li>
+        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Новости или блог</li>
+        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Регистрация в поисковых системах</li>
+        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Счетчик посетителей</li>
+        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Настройка систем Яндекс метрика и Google analitics</li>
+        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Cопровождение после сдачи в течении 3 месяцев</li>
     </ul>
     <br>
-    <a href="/#contacts" title="заказать корпоративный сайт" class="zayavka link-anim"><span class="l3"></span> сделать заявку на корпоративный сайт</a>
+    <a href="/#contacts" title="заказать корпоративный сайт" class="zayavka link-anim"><span class="fa fa-send-o no-sh"></span> сделать заявку на корпоративный сайт</a>
     <div class="hr"></div>
     <h2 id="internet_magazin" class="header_shadow anchors">Интернет магазин</h2>
     <p>
@@ -125,22 +126,22 @@ $this->registerMetaTag(['name' => 'description', 'content' => $data['description
     </p>
     <h3>Цена включает:</h3>
     <ul class="list list_block">
-        <li><span class="l1"></span>&nbsp;&nbsp;Индивидуальный дизайн</li>
-        <li><span class="l1"></span>&nbsp;&nbsp;Внутреннюю оптимизацию всех страниц</li>
-        <li><span class="l1"></span>&nbsp;&nbsp;Наполнение сайта содержимым</li>
-        <li><span class="l1"></span>&nbsp;&nbsp;Поиск по товарам</li>
-        <li><span class="l1"></span>&nbsp;&nbsp;Систему для добавления/удаления товара</li>
-        <li><span class="l1"></span>&nbsp;&nbsp;Корзину покупателя</li>
-        <li><span class="l1"></span>&nbsp;&nbsp;Удобную форму для заказа товара покупателем</li>
-        <li><span class="l1"></span>&nbsp;&nbsp;Продающие <abbr title="англ. search engine optimization — комплекс мер по внутренней и внешней оптимизации, для поднятия позиций сайта в результатах выдачи поисковых систем">SEO</abbr>
+        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Индивидуальный дизайн</li>
+        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Внутреннюю оптимизацию всех страниц</li>
+        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Наполнение сайта содержимым</li>
+        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Поиск по товарам</li>
+        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Систему для добавления/удаления товара</li>
+        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Корзину покупателя</li>
+        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Удобную форму для заказа товара покупателем</li>
+        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Продающие <abbr title="англ. search engine optimization — комплекс мер по внутренней и внешней оптимизации, для поднятия позиций сайта в результатах выдачи поисковых систем">SEO</abbr>
             тексты
         </li>
-        <li><span class="l1"></span>&nbsp;&nbsp;Счетчик посещений</li>
-        <li><span class="l1"></span>&nbsp;&nbsp;Настройку целей в Яндекс метрике</li>
-        <li><span class="l1"></span>&nbsp;&nbsp;Техническое сопровождение сайта в течении 3 месяцев</li>
+        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Счетчик посещений</li>
+        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Настройку целей в Яндекс метрике</li>
+        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Техническое сопровождение сайта в течении 3 месяцев</li>
     </ul>
     <br>
-    <a href="/#contacts" title="заказать разработку интернет магазина" class="zayavka link-anim"><span class="l3"></span> заказать разработку интернет магазина</a>
+    <a href="/#contacts" title="заказать разработку интернет магазина" class="zayavka link-anim"><span class="fa fa-send-o no-sh"></span> заказать разработку интернет магазина</a>
     <div class="hr"></div>
     <p>
         На практике получить привлекательный по дизайну (или как минимум не вызывающий отторжения)

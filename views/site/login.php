@@ -45,9 +45,9 @@ Modal::begin([
         'action' => 'login',
     ]) */ ?>
 
-    <?= $form->field($model, 'rememberMe')->checkbox([
+    <?/*= $form->field($model, 'rememberMe')->checkbox([
         'template' => "<div class=\"squaredTwo\">{input} {label}<span id =\"labelText\">Запомнить на " . Yii::$app->params['rememberMeDay'] . " дней</span></div>\n<div class=\"col-lg-8\">{error}</div>",
-    ]) ?>
+    ]) */?>
     <div class="form-group">
 <!--        <div class="col-lg-offset-1 col-lg-11">-->
             <?= Html::submitButton('Отправить', ['class' => 'btn btn-success', 'name' => 'login-button']) ?>
@@ -80,16 +80,5 @@ Modal::end();
                 inp.setAttribute('type', 'password');
             }
         });
-        // Чекбокс
-        const check = document.querySelector('input[type=checkbox]');
-        // console.log(check);
-
-        const label = document.getElementById('labelText');
-        // console.log(label);
-
-        check.addEventListener('click', function () {
-            // check.setAttribute('checked', 'true')
-            // console.log(check.getAttribute('value'));
-        })
     };
 </script>

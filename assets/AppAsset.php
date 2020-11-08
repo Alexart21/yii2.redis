@@ -13,6 +13,7 @@ class AppAsset extends AssetBundle
   'css/animate.min.css',
 //  'css/font-awesome.css',
         'fontawesome/css/all.min.css',
+        'fontawesome/css/v4-shims.min.css',
     ];
     public $js = [
         'js/indexForm.min.js',

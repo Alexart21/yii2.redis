@@ -12,11 +12,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => $data['description
     window.document.title = "<?= $data['title'] ?>";
     document.getElementById('top_h').innerText = 'Парсинг сайтов';
 </script>
-<?php
-//echo $data['page_text'];
-?>
-<img width="250" height="167" class="resp_img" src="/img/main_img/parsing.jpg" alt="парсинг сайтов"
-     title="парсинг сайтов">
+<img width="250" height="167" class="resp_img" src="/img/main_img/parsing.jpg" alt="парсинг сайтов" title="парсинг сайтов">
 <article>
     <h2 class="header_shadow">Парсинг сайтов</h2>
     <p>
@@ -41,14 +37,14 @@ $this->registerMetaTag(['name' => 'description', 'content' => $data['description
     <p>
         <strong>Достоинства парсинга:</strong>
     <ul>
-        <li><span class="l1"></span>
+        <li><span class="fa fa-check logo"></span>
             Программа парсер быстро и и безошибочно отделит служебную и техническую информацию
             от нужной.
         </li>
-        <li><span class="l1"></span>
+        <li><span class="fa fa-check logo"></span>
             Парсер легко справляется с большими объемами информации.
         </li>
-        <li><span class="l1"></span>
+        <li><span class="fa fa-check logo"></span>
             Минимальное участие человека.Практически весь процесс автоматизирован.
         </li>
     </ul>

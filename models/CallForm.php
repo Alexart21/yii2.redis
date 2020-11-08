@@ -47,7 +47,7 @@ class callForm extends Model
         return [
             'name' => 'Ваше Имя',
             'tel' => 'Номер телефона',
-//            'reCaptcha' => '',
+            'reCaptcha' => '',
         ];
     }
 

@@ -45,6 +45,14 @@ $config = [
                 'database' => 0,
             ]
         ],
+        'session' => [
+            'class' => 'yii\redis\Session',
+            'redis' => [
+                'hostname' => 'localhost',
+                'port' => 6379,
+                'database' => 0,
+            ]
+        ],
         /* Файловый кэш */
         /*'cache' => [
             'class' => 'yii\caching\FileCache',

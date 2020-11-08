@@ -1,3 +1,10 @@
+<?php
+
+use yii\widgets\ActiveForm;
+use app\models\Test;
+use kartik\date\DatePicker;
+?>
+
 <style>
     #logo{
         width: 200px;
@@ -60,3 +67,22 @@ if ($H >= 5 && $H <= 9){
 }
 ?>
 <div><?= $msg ?></div>
+<?php
+$model = new Test();
+$form = ActiveForm::begin();
+?>
+
+<?=$form->field($model, 'from_date')->textInput()
+    ->widget(DatePicker::classname(), [
+        'name' => 'check_issue_date',
+        'value' => date('d-M-Y', strtotime('+2 days')),
+        'options' => ['placeholder' => 'Выберите дату'],
+        'pluginOptions' => [
+            'format' => 'dd-M-yyyy',
+            'todayHighlight' => true
+        ]
+]);?>
+
+<?php
+ActiveForm::end();
+?>
