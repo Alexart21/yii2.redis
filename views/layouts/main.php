@@ -24,7 +24,12 @@ AppAsset::register($this);
     <body>
     <?php $this->beginBody() ?>
     <!-- loader -->
-    <div id="container_loading"><i class="fas fa-spinner fa-pulse"></i></div>
+    <div id="container_loading">
+<!--        <i class="fas fa-bowling-ball fa-spin"></i></i>-->
+<!--        <i class="fas fa-compact-disc fa-spin"></i></i>-->
+<!--        <i class="fas fa-minus-circle fa-spin"></i></i>-->
+        <i class="fab fa-osi fa-spin"></i></i>
+    </div>
     <!-- end loader -->
     <output id="my-modal"></output>
     <div id="container">

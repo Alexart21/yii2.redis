@@ -64,7 +64,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => $data['description
         Создание сайтов этой категории обычно занимает 5-7 дней после написания брифа
         и утверждения структуры, дизайна.<br>
         <strong>Цена для сайта визитки</strong> от <span class="red">7&#8202;000</span><span class="fa fa-ruble-sign"></span><br>
-        <a href="/#contacts" title="заказать сайт визитку" class="zayavka link-anim"><span class="fa fa-send-o no-sh"></span> сделать заявку на сайт визитку</a>
+        <a href="/#contacts" title="заказать сайт визитку" class="zayavka link-anim"><span class="far fa-paper-plane no-sh"></span> сделать заявку на сайт визитку</a>
     </p>
     <div class="hr"></div>
     <h2 id="korporativniy_sait" class="header_shadow anchors">Корпоративный сайт</h2>
@@ -106,7 +106,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => $data['description
         <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Cопровождение после сдачи в течении 3 месяцев</li>
     </ul>
     <br>
-    <a href="/#contacts" title="заказать корпоративный сайт" class="zayavka link-anim"><span class="fa fa-send-o no-sh"></span> сделать заявку на корпоративный сайт</a>
+    <a href="/#contacts" title="заказать корпоративный сайт" class="zayavka link-anim"><span class="far fa-paper-plane no-sh"></span> сделать заявку на корпоративный сайт</a>
     <div class="hr"></div>
     <h2 id="internet_magazin" class="header_shadow anchors">Интернет магазин</h2>
     <p>
@@ -141,7 +141,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => $data['description
         <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Техническое сопровождение сайта в течении 3 месяцев</li>
     </ul>
     <br>
-    <a href="/#contacts" title="заказать разработку интернет магазина" class="zayavka link-anim"><span class="fa fa-send-o no-sh"></span> заказать разработку интернет магазина</a>
+    <a href="/#contacts" title="заказать разработку интернет магазина" class="zayavka link-anim"><span class="far fa-paper-plane no-sh"></span> заказать разработку интернет магазина</a>
     <div class="hr"></div>
     <p>
         На практике получить привлекательный по дизайну (или как минимум не вызывающий отторжения)

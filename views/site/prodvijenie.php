@@ -126,7 +126,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => $data['description
         Стоимость на продвижение сайта по ключевым фразам зависит от многих факторов: <br>
         коммерческой популярности запроса, возраста сайта и др.
     </p>
-    <a href="/#contacts" title="продвижение сайта стоимость" class="zayavka link-anim"><span class="fa fa-send-o no-sh"></span> узнать стоимость продвижения для Вашего сайта</a><br>
+    <a href="/#contacts" title="продвижение сайта стоимость" class="zayavka link-anim"><span class="far fa-paper-plane no-sh"></span> узнать стоимость продвижения для Вашего сайта</a><br>
     <br>
 </article>
 <div class="hr"></div>

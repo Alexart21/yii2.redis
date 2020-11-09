@@ -145,7 +145,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => $data['description
                         <span class="fa fa-ruble-sign"></span>
                     </li>
                 </ul>
-                <a href="/#contacts" title="заказать сайт визитку" class="zayavka link-anim"><span class="fa fa-send-o no-sh"></span> заказать сайт визитку</a>
+                <a href="/#contacts" title="заказать сайт визитку" class="zayavka link-anim"><span class="far fa-paper-plane no-sh"></span> заказать сайт визитку</a>
             </div>
         </div>
         <div id="s2">
@@ -187,7 +187,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => $data['description
                         <span class="fa fa-ruble-sign"></span>
                     </li>
                 </ul>
-                <a href="/#contacts" title="заказать корпоративный сайт" class="zayavka link-anim"><span class="fa fa-send-o no-sh"></span> заказать корпоративный сайт</a>
+                <a href="/#contacts" title="заказать корпоративный сайт" class="zayavka link-anim"><span class="far fa-paper-plane no-sh"></span> заказать корпоративный сайт</a>
             </div>
         </div>
         <div id="s3">
@@ -226,7 +226,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => $data['description
                         <span class="fa fa-ruble-sign"></span>
                     </li>
                 </ul>
-                <a href="/#contacts" title="заказать интернет магазин" class="zayavka link-anim"><span class="fa fa-send-o no-sh"></span> заказать интернет магазин</a>
+                <a href="/#contacts" title="заказать интернет магазин" class="zayavka link-anim"><span class="far fa-paper-plane no-sh"></span> заказать интернет магазин</a>
             </div>
         </div>
     </div>
@@ -373,13 +373,13 @@ $this->registerMetaTag(['name' => 'description', 'content' => $data['description
     ]
 ) */?>
 
-<?= $form->field($indexForm, 'reCaptcha')->widget(
+<?/*= $form->field($indexForm, 'reCaptcha')->widget(
     \himiklab\yii2\recaptcha\ReCaptcha3::className(),
     [
         'siteKey' => '6LfNdr4ZAAAAAIKLdnRzRCWwNM6HyP0qo0nYglbN', // unnecessary is reCaptcha component was set up
         'action' => 'index',
     ]
-); ?>
+); */?>
 
     <div class="form-group">
         <?= Html::submitButton('Отправить', ['class' => 'btn success-button animated bounceInDown wow', 'data-wow-delay' => '0.1s']) ?>

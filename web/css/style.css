@@ -924,10 +924,11 @@ ul.highlightTextIn li a:before {
     display: none;
 }
 
-.fa-pulse {
+.fa-spin, .fa-pulse {
     color: var(--logo-color);
+    /*color: #fff;*/
     font-size: 60px !important;
-    animation: fa-spin 1s infinite linear !important;
+    animation: fa-spin .5s infinite linear !important;
 }
 
 #overlay {
@@ -2398,7 +2399,7 @@ a.alertm_close {
 }
 
 /**/
-span.fa.fa-ruble-sign {
+.fa-ruble-sign {
     font-size: 110% !important;
     text-indent: 0;
 }
@@ -2414,7 +2415,7 @@ mark {
     z-index: 100000;
     bottom: 0;
     right: 0;
-    width: 300px;
+    min-width: 300px;
     height: 40px;
     border: 1px solid #222;
     /*background: rgba(150, 150, 150, .4);*/
@@ -2527,7 +2528,7 @@ mark {
     color: var(--logo-color);
 }
 
-.fa-send-o{
+.fa-paper-plane{
     font-size: 140% !important;
 }
 
