@@ -915,26 +915,19 @@ ul.highlightTextIn li a:before {
 
 /* конец тень снизу верхнего меню */
 /* анимация AJAX загрузки */
-.loading {
-    width: 80px;
-    height: 80px;
-    background: transparent;
-    /*display: none; */
-    /*visibility: hidden;*/
-    /*background: url(/img/loading.jpg) #fff;*/
-    position: absolute;
-    z-index: 10000;
-    /*border: 2px solid #003333;*/
-    /*border-radius: 5px;*/
-    /*box-shadow: 0 0 10px 5px #fff;*/
-}
 
 #container_loading {
     position: absolute;
     z-index: 10000000000;
-    left: calc(100% / 2);
-    top: calc(100% / 2);
+    left: calc(100%/2 - 30px);
+    top: calc(100%/2 - 30px);
     display: none;
+}
+
+.fa-pulse {
+    color: var(--logo-color);
+    font-size: 60px !important;
+    animation: fa-spin 1s infinite linear !important;
 }
 
 #overlay {
@@ -2550,8 +2543,3 @@ abbr{
     font-size: 100%;
 }
 /**/
-.fa-pulse {
-    color: var(--logo-color);
-    font-size: 60px !important;
-    animation: fa-spin 1s infinite linear !important;
-}

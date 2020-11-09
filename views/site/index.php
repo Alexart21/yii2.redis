@@ -373,13 +373,13 @@ $this->registerMetaTag(['name' => 'description', 'content' => $data['description
     ]
 ) */?>
 
-<?/*= $form->field($indexForm, 'reCaptcha')->widget(
+<?= $form->field($indexForm, 'reCaptcha')->widget(
     \himiklab\yii2\recaptcha\ReCaptcha3::className(),
     [
         'siteKey' => '6LfNdr4ZAAAAAIKLdnRzRCWwNM6HyP0qo0nYglbN', // unnecessary is reCaptcha component was set up
         'action' => 'index',
     ]
-); */?>
+); ?>
 
     <div class="form-group">
         <?= Html::submitButton('Отправить', ['class' => 'btn success-button animated bounceInDown wow', 'data-wow-delay' => '0.1s']) ?>
