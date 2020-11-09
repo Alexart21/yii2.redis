@@ -86,3 +86,20 @@ $form = ActiveForm::begin();
 <?php
 ActiveForm::end();
 ?>
+<br>
+<br>
+<br>
+<style>
+    .fa-spin {
+        -webkit-animation: fa-spin .5s infinite linear !important;
+        animation: fa-spin .5s infinite linear !important;
+    }
+</style>
+<div class="fa-3x">
+    <i class="fas fa-spinner fa-spin"></i>
+    <i class="fas fa-circle-notch fa-spin"></i>
+    <i class="fas fa-sync fa-spin"></i>
+    <i class="fas fa-cog fa-spin"></i>
+    <i class="fas fa-spinner fa-pulse"></i>
+    <i class="fas fa-stroopwafel fa-spin"></i>
+</div>

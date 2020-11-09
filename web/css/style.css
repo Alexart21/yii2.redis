@@ -2549,3 +2549,9 @@ pre{
 abbr{
     font-size: 100%;
 }
+/**/
+.fa-pulse {
+    color: var(--logo-color);
+    font-size: 60px !important;
+    animation: fa-spin 1s infinite linear !important;
+}

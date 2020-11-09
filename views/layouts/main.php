@@ -25,7 +25,7 @@ AppAsset::register($this);
     <?php $this->beginBody() ?>
     <!-- SVG loader -->
     <div id="container_loading">
-        <div class="loader loader--style3" title="2">
+        <!--<div class="loader loader--style3" title="2">
             <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg"
                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                  width="80px" height="80px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;"
@@ -41,7 +41,8 @@ AppAsset::register($this);
                         repeatCount="indefinite"/>
   </path>
   </svg>
-        </div>
+        </div>-->
+        <i class="fas fa-spinner fa-pulse"></i>
     </div>
     <!-- end SVG loader -->
     <output id="my-modal"></output>
