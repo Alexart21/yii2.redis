@@ -30,6 +30,6 @@ class HelloController extends Controller
 
     public function actionTest($message = 'test')
     {
-        echo $message . "\n";
+        echo 'Передано ' . $message . "\n";
     }
 }
