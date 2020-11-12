@@ -134,8 +134,7 @@ window.onload = () => {
     let msgBlock = document.getElementById('msg-block'),
         msgContent = document.getElementById('msg-content'),
         msgImg = document.querySelector('.msg-img'),
-        msgClosed = document.querySelector('.msg-closed'),
-        msgMin = msgBlock.hasAttribute('data-closed'); // окошко свернуто
+        msgClosed = document.querySelector('.msg-closed');
 
     const al = document.getElementById('container').clientWidth;
     msgBlock.style.right = (screen_w - al) / 2 + 'px'; //позиционируем в правый край родителя
@@ -143,11 +142,10 @@ window.onload = () => {
     const showMsg = () => { // показ окна чата с анимацией
         $('#msg-block').velocity('transition.bounceIn');
         msgBlock.style.display = 'block';
-
     }
     /* Всплывающая подсказка над чатом */
     const showTooltip = () => {
-        if(msgBlock.hasAttribute('data-closed')){ // только при свернутом окошке
+        if(msgBlock.hasAttribute('data-closed') && !readCookie('msg')){ // только при свернутом окошке и нету куки (не заходил больше часа или сколько там)
             let promise = document.querySelector('audio').play();
             if (promise !== undefined) {
                 promise.then(_ => {
@@ -157,6 +155,7 @@ window.onload = () => {
                 });
             }
             $('[data-toggle="tooltip"]').tooltip('show');
+            document.cookie = "msg=1;max-age=3600"; // куку на час(в течении этого времени больше не будет всплывающих подсказок)
         }
     };
     //
