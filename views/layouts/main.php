@@ -25,9 +25,6 @@ AppAsset::register($this);
     <?php $this->beginBody() ?>
     <!-- loader -->
     <div id="container_loading">
-<!--        <i class="fas fa-bowling-ball fa-spin"></i></i>-->
-<!--        <i class="fas fa-compact-disc fa-spin"></i></i>-->
-<!--        <i class="fas fa-minus-circle fa-spin"></i></i>-->
         <i class="fab fa-osi fa-spin"></i></i>
     </div>
     <!-- end loader -->
@@ -118,7 +115,7 @@ AppAsset::register($this);
 
                                 ]);
                                 ?>
-                                <div class="call-btn button-anim"
+                                <div class="call-btn"
                                      title="заказать обратный звонок">
                                     <a rel="nofollow" class="call" href="/call">обратный звонок</a>
                                 </div>
@@ -245,18 +242,19 @@ AppAsset::register($this);
                 <!--кнопка вверх-->
                 <div id="scroller" class="fa fa-chevron-circle-up" title="проскролить вверх"></div>
                 <!--/-->
+                <audio preload="auto" src="/audio/zvuk-icq.mp3"></audio>
                 <!--Окно чата-->
-                <div id="msg-block" data-closed>
+                <div id="msg-block" data-closed data-toggle="tooltip" data-trigger="manual" title="<?= hello() ?>,я Александр.Чем могу помочь ?">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
                     <div id="msg-content">
-                        <div class="msg-closed">
+                        <div class="msg-closed button-anim">
                             &nbsp;&nbsp;&nbsp;<i class="fab fa-viber viber"></i> <i class="fab fa-whatsapp wats"></i> <i
                                     class="fab fa-telegram-plane tg"></i>
                             <b style="position: absolute;left: 130px">Начните чат</b>
                         </div>
                         <img class="msg-img rounded-circle img-thumbnail" src="/img/msg.png" alt="">
                         <div class="msg-text">
-                            <div class="text-center"><?= hello() ?>, меня зовут Александр.</div>
+                            <div class="text-center"><?= hello() ?>,я Александр.</div>
                             <div class="text-center text-info">выберите мессенджер и начните чат</div>
                             <i style="display:block;text-align: right"><span
                                         class="fa fa-check text-success"></span><?= date('H:i') ?>&nbsp;&nbsp;</i>

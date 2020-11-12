@@ -95,11 +95,51 @@ ActiveForm::end();
         animation: fa-spin .5s infinite linear !important;
     }
 </style>
-<div class="fa-3x">
+<!--<div class="fa-3x">
     <i class="fas fa-spinner fa-spin"></i>
     <i class="fas fa-circle-notch fa-spin"></i>
     <i class="fas fa-sync fa-spin"></i>
     <i class="fas fa-cog fa-spin"></i>
     <i class="fas fa-spinner fa-pulse"></i>
     <i class="fas fa-stroopwafel fa-spin"></i>
+</div>-->
+<style>
+    .tooltip{
+        /*display: none;*/
+        margin-bottom: 5px;
+
+
+    }
+    .tooltip-inner{
+        color: #222;
+        background-color: #eee !important;
+        border: 1px solid red;
+        border-color: red !important;
+    }
+
+    .arrow::before{
+        border-top-color: red !important;
+    }
+</style>
+<div id="block" data-toggle="tooltip" data-trigger="manual" title="hjhjhjh" style="background: lime;width: 100px;height: 100px;color:red;float: right">
+    #block
 </div>
+
+<script>
+
+    const showTooltip = () => {
+        $('[data-toggle="tooltip"]').tooltip('show');
+    }
+    const hideTooltip = () => {
+        document.querySelector('.tooltip').remove();
+    }
+    ///
+    window.onload = () => {
+        $('[data-toggle="tooltip"]').tooltip('show');
+        setTimeout(showTooltip, 4000)
+        // setTimeout(hideTooltip, 7000)
+        /*document.querySelector('#block').addEventListener('mouseover', () => {
+            hideTooltip();
+        });*/
+    }
+</script>

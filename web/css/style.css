@@ -780,6 +780,9 @@ ul.highlightTextIn li a:before {
 }
 
 @media all and (max-width: 930px), all and (max-device-width: 930px) {
+    #msg-block{
+        width: auto;
+    }
     /* мобильное меню вкл. при этой ширине */
     #center div {
         left: 15px;
@@ -2235,12 +2238,13 @@ button.close {
     position: absolute;
     content: '';
     display: inline-block;
-    top: -180px;
-    left: 0;
+    /*top: -180px;*/
+    /*left: 0;*/
+    /*top: 0;*/
     width: 30px;
-    height: 100%;
+    height:30px;
     background-color: #fff;
-    animation: shiny-btn1 3s ease-in-out infinite;
+    animation: shiny-btn1 5s ease-in-out infinite;
 }
 
 @-webkit-keyframes shiny-btn1 {
@@ -2415,7 +2419,7 @@ mark {
     z-index: 100000;
     bottom: 0;
     right: 0;
-    min-width: 300px;
+    width: 300px;
     height: 40px;
     border: 1px solid #222;
     /*background: rgba(150, 150, 150, .4);*/
@@ -2440,6 +2444,8 @@ mark {
 }
 
 .msg-closed {
+    overflow: hidden;
+    position: relative;
     display: block;
     font-size: 26px;
     color: #222;
@@ -2517,6 +2523,25 @@ mark {
 
 #msg-block hr {
     border-bottom: 1px dashed #222;
+}
+
+/* всплывающая подсказка над чатом */
+.tooltip{
+    z-index: 100001 !important;
+}
+
+.tooltip-inner{
+    font-size: 18px;
+    color: #222;
+    font-weight: bold;
+    letter-spacing: 1px;
+    background-color: #fff !important;
+    border: 1px solid #222;
+    box-shadow: 0 0 8px inset var(--logo-color);
+}
+
+.arrow::before{
+    border-top-color: #222 !important;
 }
 
 /**/

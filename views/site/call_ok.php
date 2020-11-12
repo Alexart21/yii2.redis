@@ -3,7 +3,7 @@ echo $success, $res;
 ?>
 <script>
     // через 4 сек удаляем сообщение
-    var timerId = setInterval(function() {
+    const timerId = setInterval(function() {
         $('#callback').modal('hide');
     }, 4000);
 

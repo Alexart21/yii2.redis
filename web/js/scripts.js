@@ -134,17 +134,45 @@ window.onload = () => {
     let msgBlock = document.getElementById('msg-block'),
         msgContent = document.getElementById('msg-content'),
         msgImg = document.querySelector('.msg-img'),
-        msgClosed = document.querySelector('.msg-closed');
+        msgClosed = document.querySelector('.msg-closed'),
+        msgMin = msgBlock.hasAttribute('data-closed'); // окошко свернуто
 
     const al = document.getElementById('container').clientWidth;
     msgBlock.style.right = (screen_w - al) / 2 + 'px'; //позиционируем в правый край родителя
 
-    function showMsg() { // показ окна чата с анимацией
+    const showMsg = () => { // показ окна чата с анимацией
         $('#msg-block').velocity('transition.bounceIn');
+        msgBlock.style.display = 'block';
+
     }
-
-    setTimeout(showMsg, 3000); // задерживаем на 3 с.
-
+    /* Всплывающая подсказка над чатом */
+    const showTooltip = () => {
+        if(msgBlock.hasAttribute('data-closed')){ // только при свернутом окошке
+            let promise = document.querySelector('audio').play();
+            if (promise !== undefined) {
+                promise.then(_ => {
+                    console.log('play!');
+                }).catch(err => {
+                    console.log(err.message);
+                });
+            }
+            $('[data-toggle="tooltip"]').tooltip('show');
+        }
+    };
+    //
+    const rmTooltip = () => { // прибиваем
+        let tltp = document.querySelector('.tooltip');
+        if(tltp){
+            tltp.remove();
+        }
+    };
+    //
+    setTimeout(showMsg, 3000); // задержки
+    setTimeout(showTooltip, 6000);
+    setTimeout(rmTooltip, 14000);
+    msgBlock.addEventListener('mouseover', () => { // по наведению мыши тож прибиваем
+        rmTooltip();
+    });
     msgContent.addEventListener('click', () => { // разворачиваем окно чата
         if (msgBlock.hasAttribute('data-closed')) { // свернуто
             msgBlock.style.height = '370px';
