@@ -159,7 +159,7 @@ window.onload = () => {
         }
     };
     //
-    const rmTooltip = () => { // прибиваем
+    const rmTooltip = () => { // убиваем tooltip
         let tltp = document.querySelector('.tooltip');
         if(tltp){
             tltp.remove();

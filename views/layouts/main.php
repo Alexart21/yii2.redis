@@ -117,7 +117,7 @@ AppAsset::register($this);
                                 ?>
                                 <div class="call-btn"
                                      title="заказать обратный звонок">
-                                    <a rel="nofollow" class="call" href="/call">обратный звонок</a>
+                                    <a rel="nofollow" class="call pulse-button" href="/call">обратный звонок</a>
                                 </div>
                                 <?php Pjax::end(); ?>
                             </div>
