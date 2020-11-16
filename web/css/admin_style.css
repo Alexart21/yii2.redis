@@ -342,3 +342,11 @@ a.alertm_close {
 .grid-view tr{
     /*background: #ddd !important;*/
 }
+/**/
+.tooltip-inner{
+    font-size: 16px;
+    color: #222 !important;
+    background-color: #fff !important;
+    border: 1px solid #222;
+    box-shadow: 0 0 4px inset #e61b05;
+}

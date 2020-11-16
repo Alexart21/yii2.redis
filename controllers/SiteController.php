@@ -3,8 +3,8 @@
 namespace app\controllers;
 
 use app\models\IndexForm;
-use app\models\User;
-use yii\helpers\Html;
+//use app\models\User;
+//use yii\helpers\Html;
 use app\models\Content;
 use app\models\LoginForm;
 use app\models\CallForm;
@@ -14,7 +14,7 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
-use yii\web\View;
+//use yii\web\View;
 
 class SiteController extends Controller
 {

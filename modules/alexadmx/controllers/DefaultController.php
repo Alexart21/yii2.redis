@@ -113,7 +113,7 @@ class DefaultController extends AppAlexadmxController
     public function actionClear()
     {
         if (Yii::$app->request->isAjax) {
-            require_once __DIR__ . '/../views/inc/dirArr.php'; // здесь массив с очищаемыми папками
+            $dirArr = require_once __DIR__ . '/../views/inc/dirArr.php'; // здесь массив с очищаемыми папками
             $fileCount = $dirCount = $errCount = 0; // счетчики
             $clearSize = 0; // сколько удалено(освобождено байт)
             foreach ($dirArr as $dirPath) {
@@ -147,7 +147,7 @@ class DefaultController extends AppAlexadmxController
                 }
             }
             $header = '<h3>Очистка папок</h3>';
-            return $this->renderPartial('modal', compact('fileCount', 'dirCount', 'errCount', 'header', 'clearSize'));
+            return $this->renderPartial('modal', compact('fileCount', 'dirCount', 'errCount', 'header', 'clearSize', 'dirArr'));
         }
     }
 

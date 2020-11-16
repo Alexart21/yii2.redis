@@ -1,8 +1,9 @@
 <?php
 
 use yii\widgets\ActiveForm;
-use app\models\Test;
 use kartik\date\DatePicker;
+use yii\helpers\Html;
+use yii\widgets\Pjax;
 ?>
 
 <style>
@@ -45,101 +46,43 @@ Alert::begin([
 <?php
 Alert::end();
 ?>
-<div><?= date('H') ?></div>
+<?php Pjax::begin() ?>
+<?php if(Yii::$app->session->hasFlash('success')): ?>
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <?= Yii::$app->session->getFlash('success') ?>
+    </div>
+<?php endif; ?>
+
 <?php
-$H = date('H');
-/*switch ($H)
-{
-    case:()
-}*/
-$H = 23;
-
-$H = (int)$H;
-
-if ($H >= 5 && $H <= 9){
-    $msg = 'утра';
-}elseif ($H > 9 && $H <= 17){
-    $msg = 'дня';
-}elseif ($H > 17 && $H < 22){
-    $msg = 'вечера';
-}else{
-    $msg = 'времени суток';
-}
+$form = ActiveForm::begin([
+        'options' => [
+                'enctype' => 'multipart/form-data',
+                'data-pjax' => true,
+        ]
+]);
 ?>
-<div><?= $msg ?></div>
-<?php
-$model = new Test();
-$form = ActiveForm::begin();
-?>
-
-<?=$form->field($model, 'from_date')->textInput()
+<fieldset>
+<?=$form->field($model, 'date')->textInput()
     ->widget(DatePicker::classname(), [
         'name' => 'check_issue_date',
         'value' => date('d-M-Y', strtotime('+2 days')),
         'options' => ['placeholder' => 'Выберите дату'],
         'pluginOptions' => [
-            'format' => 'dd-M-yyyy',
+            'format' => 'd-M-yyyy',
             'todayHighlight' => true
         ]
 ]);?>
-
+    <?=$form->field($model,'audioFile')->fileInput()  ?>
+</fieldset>
+    <?= Html::submitButton('жду звонка!', ['class' => 'btn btn-success']) ?>
 <?php
 ActiveForm::end();
 ?>
+<?php Pjax::end() ?>
 <br>
-<br>
-<br>
-<style>
-    .fa-spin {
-        -webkit-animation: fa-spin .5s infinite linear !important;
-        animation: fa-spin .5s infinite linear !important;
-    }
-</style>
-<!--<div class="fa-3x">
-    <i class="fas fa-spinner fa-spin"></i>
-    <i class="fas fa-circle-notch fa-spin"></i>
-    <i class="fas fa-sync fa-spin"></i>
-    <i class="fas fa-cog fa-spin"></i>
-    <i class="fas fa-spinner fa-pulse"></i>
-    <i class="fas fa-stroopwafel fa-spin"></i>
-</div>-->
-<style>
-    .tooltip{
-        /*display: none;*/
-        margin-bottom: 5px;
-
-
-    }
-    .tooltip-inner{
-        color: #222;
-        background-color: #eee !important;
-        border: 1px solid red;
-        border-color: red !important;
-    }
-
-    .arrow::before{
-        border-top-color: red !important;
-    }
-</style>
-<div id="block" data-toggle="tooltip" data-trigger="manual" title="hjhjhjh" style="background: lime;width: 100px;height: 100px;color:red;float: right">
-    #block
+<div class="d-flex bg-secondary">
+    <div class="p-2 bg-info">Flex item 1</div>
+    <div class="p-2 bg-warning">Flex item 2</div>
+    <div class="p-2 bg-primary">Flex item 3</div>
 </div>
-
-<script>
-
-    const showTooltip = () => {
-        $('[data-toggle="tooltip"]').tooltip('show');
-    }
-    const hideTooltip = () => {
-        document.querySelector('.tooltip').remove();
-    }
-    ///
-    window.onload = () => {
-        $('[data-toggle="tooltip"]').tooltip('show');
-        setTimeout(showTooltip, 4000)
-        // setTimeout(hideTooltip, 7000)
-        /*document.querySelector('#block').addEventListener('mouseover', () => {
-            hideTooltip();
-        });*/
-    }
-</script>

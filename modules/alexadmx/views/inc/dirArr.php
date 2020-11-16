@@ -1,5 +1,5 @@
 <?php
-$dirArr = [
+return [
     'runtime/cache/',
     'runtime/logs/',
     'runtime/debug/',
