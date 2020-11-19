@@ -210,7 +210,7 @@ window.onload = () => {
             console.log(document.querySelector('#inc').clientWidth);
             let incW = document.querySelector('#inc').clientWidth;
             let mainW = document.querySelector('#main').clientWidth;
-            container_loading.style.left = (screen_w -incW) + incW/2  - 30  + 'px';
+            container_loading.style.left = (screen_w -incW/2 - mainW/2) + incW/2  - 30  + 'px';
             const inc = document.querySelector('#inc');
             const incOverl = document.querySelector('#inc-overlay');
             incOverl.style.width = inc.clientWidth + 'px';

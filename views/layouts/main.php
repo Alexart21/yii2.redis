@@ -283,8 +283,8 @@ AppAsset::register($this);
             тел. <b
                     class="corpid"><?= Yii::$app->params['tel1'] ?></b><br/>
             <strong>Создание и продвижение сайтов в Чебоксарах</strong><br/>
-            <span>Ваши персональные данные могут быть использованы только в соответстввии с ФЗ №152 <a
-                        style="position: relative;z-index: 100" href="/politic">о персональных данных.</a></span>
+            <span>Ваши персональные данные могут обрабатывается только в соответствии с
+                        <a href="/politic" style="position: relative;z-index: 100">ФЗ «О персональных данных» № 152-ФЗ</a></span>
             <br><small style="position: relative;z-index: 100">Этот сайт защищен Google reCAPTCHA в соответствии с
                 <a href="https://policies.google.com/privacy">политикой конфиденциальности</a> и
                 <a href="https://policies.google.com/terms">условиями применения</a>.

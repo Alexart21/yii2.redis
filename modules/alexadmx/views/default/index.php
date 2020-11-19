@@ -30,8 +30,15 @@ $this->title = 'Административная панель';
         endforeach;
         ?>
     </ol>
-    <code>Массив с путями к очищаемым папкам: alexadmx/views/inc/dirArr.php</code>
 </div>
+<?php
+$d = dirname(__DIR__, 1);
+$d = str_replace('\\', '/', $d);
+?>
+    <code>Массив с путями к очищаемым папкам: <?= $d ?>/inc/dirArr.php</code>
+</div>
+<br>
+<a href="mailto:iskander.m.211@gmail.com">GHGHGH</a>
 <script>
     $('[data-toggle="tooltip"]').tooltip();
 </script>
