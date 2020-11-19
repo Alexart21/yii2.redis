@@ -14,12 +14,12 @@ class AdminLteAsset extends AssetBundle
     public $sourcePath = '@vendor/almasaeed2010/adminlte/dist';
     public $css = [
         'css/AdminLTE.min.css',
-//        'css/glyphicons.css', //  !!!! подключал "вручную" в layout
-//        'css/admin_style.css', // !!!!   подключал "вручную" в layout
+//        'css/glyphicons.css', //  !!!! подключал "вручную" в layout/main
+//        'css/admin_style.css', // !!!!   подключал "вручную" в layout/main
     ];
     public $js = [
         'js/adminlte.min.js',
-//        'js/admin_script.js', // !!!!   подключал "вручную" в layout
+//        'js/admin_script.js', // !!!!   подключал "вручную" в layout/main
     ];
     public $depends = [
         'rmrevin\yii\fontawesome\AssetBundle',

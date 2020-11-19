@@ -16,12 +16,13 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed201
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
+        <link rel="icon" type="image/png" href="/icons/64x64.png" />
         <link rel="stylesheet" href="/css/admin_style.css">
         <link rel="stylesheet" href="/css/glyphicons.css">
         <script src="/js/admin_script.js"></script>
         <?php $this->head() ?>
     </head>
-    <body class="hold-transition skin-blue sidebar-mini">
+    <body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
     <?php $this->beginBody() ?>
     <!--LOADER-->
     <div id="loader">

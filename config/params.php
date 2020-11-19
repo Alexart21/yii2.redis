@@ -1,6 +1,6 @@
 <?php
 return [
-    'siteUrl' =>'site.ru',
+    'siteUrl' =>'l917678y.beget.tech',
     'company' => 'Alex-art21',
     'email' => 'mail@site.ru',
     'tel1' => '+7(987) 668-04-84',

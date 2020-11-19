@@ -16,10 +16,15 @@ AppAsset::register($this);
         <meta charset="<?= Yii::$app->charset ?>">
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
-        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+        <meta name="referrer" content="origin" />
+        <link rel="canonical" href="https://<?= Yii::$app->params['siteUrl'] ?>" />
+        <link rel="icon" type="image/png" href="/icons/64x64.png" />
+        <link rel="manifest" href="/manifest.json" />
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <meta name="HandheldFriendly" content="true">
+        <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+        <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+        <meta name="keywords" content="">
         <?php $this->head() ?>
     <body>
     <?php $this->beginBody() ?>

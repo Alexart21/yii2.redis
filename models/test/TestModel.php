@@ -10,12 +10,13 @@ class TestModel extends Model
 {
     public $date;
     public $audioFile;
+    public $test;
 
     public function rules()
     {
         return [
             ['date', 'required'],
-            [['audioFile'], 'file',  'skipOnEmpty' => false,  'extensions' => ['mp3', 'ogg']],
+            [['audioFile'], 'file', 'extensions' => ['mp3', 'ogg']],
         ];
     }
 
@@ -23,6 +24,7 @@ class TestModel extends Model
     {
         return [
             'date' => 'Выберите дату',
+            'test' => 'Test',
         ];
     }
 

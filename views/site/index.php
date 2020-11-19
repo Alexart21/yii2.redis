@@ -7,7 +7,8 @@ use yii\widgets\MaskedInput;
 
 header('Last-Modified:' . gmdate("D, d M Y H:i:s \G\M\T", $data['last_mod']));
 $this->title = $data['title'];
-$this->registerMetaTag(['name' => 'description', 'content' => $data['description']]);
+$desc = $data['description'] ? $data['description'] : '';
+$this->registerMetaTag(['name' => 'description', 'content' => $desc]);
 ?>
     <script>
         window.document.title = "<?= $data['title'] ?>";
@@ -15,7 +16,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => $data['description
     </script>
 <!-- <section> -->
 <article>
-    <img width="250" height="179" class="resp_img" src="/img/main_img/web2.jpg" alt="веб дизайн" title="веб дизайн">
+    <img width="250" height="179" class="resp_img polygon1" src="/img/main_img/web2.jpg" alt="веб дизайн" title="веб дизайн">
     <h2 class="header_shadow">Алекс-арт21 — создание только эффективных сайтов</h2>
     <p>
         У нас сформирован профессиональный коллектив из дизайнеров, web-разработчиков, <abbr

@@ -3,7 +3,7 @@
     <section class="sidebar">
 
         <!-- Sidebar user panel -->
-                <img id="logo" src="/web/img/main_img/logo.png">
+                <img id="logo" src="/web/img/main_img/logo.png" class="logo-displ">
         <hr style="color: #fff">
         <?= dmstr\widgets\Menu::widget(
             [

@@ -24,7 +24,7 @@ use dmstr\widgets\Alert;
 </div>
 
 <footer class="main-footer">
-    <strong class="company">Alex-art21</strong><sup>&copy;</sup> web developer group 2009&mdash;<?= date('Y') ?> тел. <strong
+    <strong class="company"><?= Yii::$app->params['company'] ?></strong><sup>&copy;</sup> web developer group 2009&mdash;<?= date('Y') ?> тел. <strong
             class="corpid"><?= Yii::$app->params['tel1'] ?></strong><br/>
     <strong>Создание и продвижение сайтов в Чебоксарах</strong><br/>
 </footer>

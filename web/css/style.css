@@ -490,6 +490,14 @@ header {
     margin: 0 1em 1em 0;
 }
 
+.img-outs{
+    width: 250px;
+    height: 171px;
+    shape-outside: url('/img/main_img/vizitka.png');
+    shape-margin: 1em;
+    border-radius: 0;
+}
+
 footer {
     position: relative;
     z-index: 100;

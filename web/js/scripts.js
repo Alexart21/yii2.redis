@@ -155,7 +155,7 @@ window.onload = () => {
                 });
             }
             $('[data-toggle="tooltip"]').tooltip('show');
-            document.cookie = "msg=1;max-age=3600"; // куку на час(в течении этого времени больше не будет всплывающих подсказок)
+            document.cookie = "msg=1;max-age=3600;path=/"; // куку на час(в течении этого времени больше не будет всплывающих подсказок)
         }
     };
     //
@@ -205,6 +205,12 @@ window.onload = () => {
             $('#overlay').show();
             $('#container_loading').show();
         } else if (method != 'POST') { // данные в блок #inc (основной контент)
+            console.log(screen_w);
+            console.log(document.querySelector('#main').clientWidth);
+            console.log(document.querySelector('#inc').clientWidth);
+            let incW = document.querySelector('#inc').clientWidth;
+            let mainW = document.querySelector('#main').clientWidth;
+            container_loading.style.left = (screen_w -incW) + incW/2  - 30  + 'px';
             const inc = document.querySelector('#inc');
             const incOverl = document.querySelector('#inc-overlay');
             incOverl.style.width = inc.clientWidth + 'px';

@@ -2,7 +2,8 @@
 header('Cache-Control: no-store, no-cache, must-revalidate');
 header('Last-Modified:' . gmdate("D, d M Y H:i:s \G\M\T", $data['last_mod']));
 $this->title = $data['title'];
-$this->registerMetaTag(['name' => 'description', 'content' => $data['description']]);
+$desc = $data['description'] ? $data['description'] : '';
+$this->registerMetaTag(['name' => 'description', 'content' => $desc]);
 ?>
 
 <?php $this->beginBlock('h1'); ?>
@@ -12,7 +13,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => $data['description
     window.document.title = "<?= $data['title'] ?>";
     document.getElementById('top_h').innerText = 'Создание сайтов';
 </script>
-<img width="250" height="167" class="resp_img" src="/img/main_img/sozdanie.jpg" alt="создание сайтов" title="создание сайтов">
+<img width="250" height="167" class="resp_img no_shadow no_border align-left img-outs" src="/img/main_img/sozdanie.png" alt="создание сайтов" title="создание сайтов">
 <article>
     <h2 class="header_shadow">Создание сайтов для бизнеса и не только</h2>
     <p>
@@ -33,7 +34,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => $data['description
     <b>Итак:</b><br>
     <h2 id="sait_vizitka" class="header_shadow anchors">Сайт визитка</h2>
     <p>
-        <img width="250" height="171" class="resp_img no_shadow no_border align-left" src="/img/main_img/vizitka.jpg" alt="сайт визитка" title="сайт визитка">
+        <img width="250" height="171" class="resp_img no_shadow no_border align-left img-outs" src="/img/main_img/vizitka.png" alt="сайт визитка" title="сайт визитка">
         Идеальный вариант для старта в интернете. В дальнейшем можно улучшать и развивать возможности сайта и его
         наполнение.<br>
         <strong>Сайт визитка</strong> — веб-ресурс, основное предназначение которого быстро и в яркой,
@@ -69,7 +70,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => $data['description
     <div class="hr"></div>
     <h2 id="korporativniy_sait" class="header_shadow anchors">Корпоративный сайт</h2>
     <p>
-        <img width="250" height="136" class="resp_img no_border no_shadow align-left" src="/img/main_img/corp.jpg" alt="корпоративный сайт" title="корпоративный сайт">
+        <img width="250" height="136" class="resp_img no_border no_shadow align-left img-outs" src="/img/main_img/corp.png" alt="корпоративный сайт" title="корпоративный сайт">
         Веб-ресурс с множеством задач от повышения престижа организации до
         продвижения товаров.
         Создании сайтов этой категории требует индивидуального подхода и по цене ощутимо выше чем для простых сайтов.

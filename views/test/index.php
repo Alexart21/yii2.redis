@@ -58,7 +58,7 @@ Alert::end();
 $form = ActiveForm::begin([
         'options' => [
                 'enctype' => 'multipart/form-data',
-                'data-pjax' => true,
+//                'data-pjax' => true,
         ]
 ]);
 ?>
@@ -74,6 +74,7 @@ $form = ActiveForm::begin([
         ]
 ]);?>
     <?=$form->field($model,'audioFile')->fileInput()  ?>
+    <?=$form->field($model,'test')->textInput()  ?>
 </fieldset>
     <?= Html::submitButton('жду звонка!', ['class' => 'btn btn-success']) ?>
 <?php
@@ -81,8 +82,3 @@ ActiveForm::end();
 ?>
 <?php Pjax::end() ?>
 <br>
-<div class="d-flex bg-secondary">
-    <div class="p-2 bg-info">Flex item 1</div>
-    <div class="p-2 bg-warning">Flex item 2</div>
-    <div class="p-2 bg-primary">Flex item 3</div>
-</div>

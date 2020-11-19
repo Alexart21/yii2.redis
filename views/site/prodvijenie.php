@@ -2,8 +2,8 @@
 header('Cache-Control: no-store, no-cache, must-revalidate');
 header('Last-Modified:' . gmdate("D, d M Y H:i:s \G\M\T", $data['last_mod']));
 $this->title = $data['title'];
-//$this->registerMetaTag(['name' => 'keywords', 'content' => $data[0]['keywords']]);
-$this->registerMetaTag(['name' => 'description', 'content' => $data['description']]);
+$desc = $data['description'] ? $data['description'] : '';
+$this->registerMetaTag(['name' => 'description', 'content' => $desc]);
 ?>
 
 <?php $this->beginBlock('h1'); ?>
