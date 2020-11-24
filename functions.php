@@ -40,9 +40,9 @@ function hello()
     $H = (int)date('H');
     if ($H >= 5 && $H <= 9) {
         $msg = 'Доброе утро';
-    } elseif ($H > 9 && $H <= 17) {
+    } elseif ($H > 9 && $H <= 15) {
         $msg = 'Добрый день';
-    } elseif ($H > 17 && $H < 22) {
+    } elseif ($H > 15 && $H < 22) {
         $msg = 'Добрый вечер';
     } else {
         $msg = 'Доброго времени суток';

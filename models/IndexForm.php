@@ -12,7 +12,7 @@ class IndexForm extends Model
     public $email;
     public $tel;
     public $text;
-//    public $reCaptcha;
+//    dist $reCaptcha;
 
     public function rules()
     {

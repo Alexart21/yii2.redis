@@ -19,7 +19,7 @@ $item->is_read = '1';
 $item->save();
 ?>
 <div class="callback-view">
-
+    <br>
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>

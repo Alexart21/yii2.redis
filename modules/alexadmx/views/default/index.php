@@ -38,7 +38,6 @@ $d = str_replace('\\', '/', $d);
     <code>Массив с путями к очищаемым папкам: <?= $d ?>/inc/dirArr.php</code>
 </div>
 <br>
-<a href="mailto:iskander.m.211@gmail.com">GHGHGH</a>
 <script>
     $('[data-toggle="tooltip"]').tooltip();
 </script>

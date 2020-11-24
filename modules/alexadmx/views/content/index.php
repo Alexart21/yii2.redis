@@ -12,7 +12,7 @@ $this->title = 'Contents';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="content-index">
-
+    <br>
     <h3>Содержимое таблицы <?= Html::encode($this->title) ?></h3>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 

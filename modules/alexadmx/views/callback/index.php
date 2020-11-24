@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     }
 </style>
 <div class="callback-index">
-
+    <br>
     <h1><?= Html::encode($this->title) ?></h1>
     <a class="btn btn-danger" style="" href="/alexadmx/callback/del_all">Удалить все</a>
     <?php

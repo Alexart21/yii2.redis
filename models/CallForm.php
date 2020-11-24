@@ -16,7 +16,7 @@ class callForm extends Model
 {
     public $name;
     public $tel;
-//    public $reCaptcha;
+//    dist $reCaptcha;
 
     public function rules()
     {

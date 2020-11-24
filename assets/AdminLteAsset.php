@@ -12,6 +12,9 @@ use yii\base\Exception;
 class AdminLteAsset extends AssetBundle
 {
     public $sourcePath = '@vendor/almasaeed2010/adminlte/dist';
+//    public $basePath = '@webroot';
+//    public $baseUrl = '@web';
+
     public $css = [
         'css/AdminLTE.min.css',
 //        'css/glyphicons.css', //  !!!! подключал "вручную" в layout/main
@@ -34,11 +37,9 @@ class AdminLteAsset extends AssetBundle
      * @var string|bool Choose skin color, eg. `'skin-blue'` or set `false` to disable skin loading
      * @see https://almsaeedstudio.com/themes/AdminLTE/documentation/index.html#layout
      */
-    public $skin = '_all-skins';
+    public $skin = 'skin-blue';
 
-    /**
-     * @inheritdoc
-     */
+
     public function init()
     {
         // Append skin color file if specified

@@ -15,7 +15,7 @@ use yii\web\NotFoundHttpException;
 class PostController extends AppAlexadmxController
 {
 
-    /*public function behaviors()
+    /*dist function behaviors()
     {
         return [
             'verbs' => [

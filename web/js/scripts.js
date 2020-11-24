@@ -166,9 +166,15 @@ window.onload = () => {
         }
     };
     //
-    setTimeout(showMsg, 3000); // задержки
-    setTimeout(showTooltip, 6000);
-    setTimeout(rmTooltip, 14000);
+    const rmMsgAnim = () => { // нефиг всю дорогу мерцать
+        const bar = document.querySelector('.msg-closed').classList;
+        bar.remove('button-anim');
+    };
+    // несколько задержек
+    setTimeout(showMsg, 3000); //  показываем блок с чатом
+    setTimeout(showTooltip, 6000); // показываем всплывающую подсказку/приглашение
+    setTimeout(rmTooltip, 14000); // скрываем подсказку
+    setTimeout(rmMsgAnim, 30000); // выключаем анимацию
     msgBlock.addEventListener('mouseover', () => { // по наведению мыши тож прибиваем
         rmTooltip();
     });
@@ -205,20 +211,30 @@ window.onload = () => {
             $('#overlay').show();
             $('#container_loading').show();
         } else if (method != 'POST') { // данные в блок #inc (основной контент)
-            console.log(screen_w);
-            console.log(document.querySelector('#main').clientWidth);
-            console.log(document.querySelector('#inc').clientWidth);
-            let incW = document.querySelector('#inc').clientWidth;
-            let mainW = document.querySelector('#main').clientWidth;
-            container_loading.style.left = (screen_w -incW/2 - mainW/2) + incW/2  - 30  + 'px';
             const inc = document.querySelector('#inc');
+            const mainW = document.querySelector('#main').clientWidth;
+            const incW = inc.clientWidth;
+            const l = document.querySelector('#inc').offsetLeft;
+            const scrB = () => { // узнаем ширину скроллбара
+                // создадим элемент с прокруткой
+                let div = document.createElement('div');
+                div.style.overflowY = 'scroll';
+                div.style.width = '50px';
+                div.style.height = '50px';
+                document.body.append(div);
+                let scrollWidth = div.offsetWidth - div.clientWidth;
+                div.remove();
+                scrollWidth = scrollWidth ? scrollWidth : 0;
+                return scrollWidth;
+            };
+            // console.log(scrB());
+            container_loading.style.left = (screen_w - mainW)/2 + l + incW/2 -30 - scrB() + 'px';
             const incOverl = document.querySelector('#inc-overlay');
             incOverl.style.width = inc.clientWidth + 'px';
             incOverl.style.height = inc.clientHeight + 'px';
             incOverl.style.left = inc.offsetLeft + 'px';
             incOverl.style.top = inc.offsetTop + 'px';
             scrollTo(0, 0);
-
             $('#inc-overlay').css('display', 'block');
             $('#container_loading').show();
         }
@@ -232,6 +248,7 @@ window.onload = () => {
         document.body.style.cursor = 'default';
         $('#overlay').remove();
         $('#container_loading').hide();
+        container_loading.style.left = '';
         $('#inc-overlay').css('display', 'none');
         let method = $.pjax.options.type;
         if (method == 'POST' && $.pjax.options.url == '/') { // очищаем поля формы отправки письма

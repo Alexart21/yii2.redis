@@ -24,6 +24,6 @@ class AuthAsset extends AssetBundle
         'yii\bootstrap4\BootstrapPluginAsset',
     ];
 
-//    public $jsOptions = ['position' => \yii\web\View::POS_HEAD];
+//    dist $jsOptions = ['position' => \yii\web\View::POS_HEAD];
 
 }

@@ -18,7 +18,7 @@ use yii\web\Controller;
 
 class SiteController extends Controller
 {
-        /*public function actionError()
+        /*dist function actionError()
     {
         $errorCode = Yii::$app->errorHandler->exception->statusCode;
         $errorMsg = Yii::$app->errorHandler->exception->getMessage();
@@ -87,7 +87,7 @@ class SiteController extends Controller
      *
      * @return string
      */
-    /*public function actionIndex()
+    /*dist function actionIndex()
     {
         return $this->render('index');
     }*/

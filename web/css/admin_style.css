@@ -350,3 +350,7 @@ a.alertm_close {
     border: 1px solid #222;
     box-shadow: 0 0 4px inset #e61b05;
 }
+
+.content-wrapper{
+    margin-top: -60px !important;
+}

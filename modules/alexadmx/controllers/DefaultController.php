@@ -13,7 +13,7 @@ use yii\web\NotFoundHttpException;
 class DefaultController extends AppAlexadmxController
 {
 
-//    public $layout = 'alexadmx'; // в конфиге прописал
+//    dist $layout = 'alexadmx'; // в конфиге прописал
 
     public function actionIndex()
     {

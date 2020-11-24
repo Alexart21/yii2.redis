@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     }
 </style>
 <div class="post-index">
-
+    <br>
     <h1><?= Html::encode($this->title) ?></h1>
     <a class="btn btn-danger" href="/alexadmx/post/del_all">Удалить все</a>
     <?php

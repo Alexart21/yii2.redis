@@ -247,7 +247,10 @@ AppAsset::register($this);
                 <!--кнопка вверх-->
                 <div id="scroller" class="fa fa-chevron-circle-up" title="проскролить вверх"></div>
                 <!--/-->
-                <audio preload="auto" src="/audio/zvuk-icq.mp3"></audio>
+                <audio preload="auto">
+                    <source src="/audio/buben.mp3" type="audio/mpeg">
+                    <source src="/audio/buben.ogg" type="audio/ogg">
+                </audio>
                 <!--Окно чата-->
                 <div id="msg-block" data-closed data-toggle="tooltip" data-trigger="manual" title="<?= hello() ?>,я Александр.Чем могу помочь ?">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>

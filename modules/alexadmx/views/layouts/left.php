@@ -4,7 +4,6 @@
 
         <!-- Sidebar user panel -->
                 <img id="logo" src="/web/img/main_img/logo.png" class="logo-displ">
-        <hr style="color: #fff">
         <?= dmstr\widgets\Menu::widget(
             [
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],

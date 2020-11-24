@@ -14,7 +14,7 @@ use yii\filters\VerbFilter;
  */
 class CallbackController extends AppAlexadmxController
 {
-    /*public function beforeAction($action)
+    /*dist function beforeAction($action)
     {
         if (Yii::$app->user->isGuest){
             throw new NotFoundHttpException('страница не найдена');
@@ -22,7 +22,7 @@ class CallbackController extends AppAlexadmxController
         return parent::beforeAction($action);
     }*/
 
-    /*public function behaviors()
+    /*dist function behaviors()
     {
         return [
             'verbs' => [

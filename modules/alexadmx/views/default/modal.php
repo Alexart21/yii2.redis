@@ -2,7 +2,7 @@
 use yii\bootstrap\Modal;
 
 if (!$flag) {
-    $msg = '<h4>Удалено :</h4> <br> Файлов: <b>' . $fileCount . '</b><br>
+    $msg = '<h4>Удалено :</h4> Файлов: <b>' . $fileCount . '</b><br>
     Папок : <b>' . $dirCount . '</b><br>
     Освобождено :' . $clearSize . ' байт';
     if ($errCount) {

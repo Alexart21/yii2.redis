@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' 
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="content-update">
-
+    <br>
     <h3 style="display: inline"><?= Html::encode($this->title) ?></h3>
     &nbsp;&nbsp;&nbsp;Перейти в режим <b style="font-size: 120%"><a href="<?= Url::to('') . '&contenteditable=1' ?>">contenteditable</a></b>
 
