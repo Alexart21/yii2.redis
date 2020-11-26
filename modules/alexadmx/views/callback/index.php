@@ -8,6 +8,8 @@ use yii\helpers\Html;
 
 $this->title = 'Заявки на обратный звонок';
 $this->params['breadcrumbs'][] = $this->title;
+
+$session = Yii::$app->session;
 ?>
 <style>
     .glyphicon.glyphicon-pencil{
@@ -17,9 +19,14 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="callback-index">
     <br>
     <h1><?= Html::encode($this->title) ?></h1>
+    <?php
+    if (!empty($session->get('allCallCount'))) :
+    ?>
     <a class="btn btn-danger" style="" href="/alexadmx/callback/del_all">Удалить все</a>
     <?php
-    $session = Yii::$app->session;
+    endif;
+    ?>
+    <?php
     if (!empty($session->get('newCallCount'))) :
         ?>
      <a href="/alexadmx/callback/zvonoklabel" class="btn btn-dark">Пометить все прочитанными</a>

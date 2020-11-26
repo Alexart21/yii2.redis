@@ -264,8 +264,7 @@ AppAsset::register($this);
                         <div class="msg-text">
                             <div class="text-center"><?= hello() ?>,я Александр.</div>
                             <div class="text-center text-info">выберите мессенджер и начните чат</div>
-                            <i style="display:block;text-align: right"><span
-                                        class="fa fa-check text-success"></span><?= date('H:i') ?>&nbsp;&nbsp;</i>
+                            <i style="display:block;text-align: right"><span class="fa fa-check"></span><?= date('H:i') ?>&nbsp;&nbsp;</i>
                         </div>
                         <hr>
                         <a class="msg-btn viber-bg" href="viber://chat?number=<?= Yii::$app->params['tel1_i'] ?>"

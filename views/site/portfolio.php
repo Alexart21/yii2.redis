@@ -20,7 +20,7 @@ $portfArr = [
 ?>
 <script>
     window.document.title = "<?= $data['title'] ?>";
-    document.getElementById('top_h').innerText = 'Alex-art21';
+    document.getElementById('top_h').innerText = 'Разработка сайтов';
 </script>
 <div class="h2 header_shadow text-center">Наши работы</div><br/>
 <div id="portf" class="min_height">

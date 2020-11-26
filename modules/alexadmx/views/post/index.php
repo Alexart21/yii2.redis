@@ -8,6 +8,8 @@ use yii\grid\GridView;
 
 $this->title = 'Входящие письма';
 $this->params['breadcrumbs'][] = $this->title;
+
+$session = Yii::$app->session;
 ?>
 <style>
     .glyphicon.glyphicon-pencil {
@@ -17,9 +19,14 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="post-index">
     <br>
     <h1><?= Html::encode($this->title) ?></h1>
+    <?php
+    if (!empty($session->get('allPostCount'))) :
+    ?>
     <a class="btn btn-danger" href="/alexadmx/post/del_all">Удалить все</a>
     <?php
-    $session = Yii::$app->session;
+    endif;
+    ?>
+    <?php
     if (!empty($session->get('newPostCount'))) :
     ?>
     <a href="/alexadmx/post/postlabel" class="btn btn-dark">Пометить все прочитанными</a>

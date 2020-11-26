@@ -341,7 +341,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => $desc]);
 <div class="field email-box animated bounceInDown wow"  data-wow-delay="0.7s">
     <?= $form->field($indexForm, 'email')->textInput([
             'required' => true,
-        'tabindex' => 2,
+            'tabindex' => 2,
     ]); ?>
 </div>
 
@@ -350,8 +350,8 @@ $this->registerMetaTag(['name' => 'description', 'content' => $desc]);
         ->widget(MaskedInput::className(), [
             'mask' => '+7 (999) - 999 - 99 - 99',
             'options' => [
-                    'required' => true,
-                'tabindex' => 3,
+//                    'required' => true,
+                    'tabindex' => 3,
             ],
         ]);
     ?>
@@ -387,5 +387,15 @@ $this->registerMetaTag(['name' => 'description', 'content' => $desc]);
     </div>
 
 <?php ActiveForm::end(); ?>
-
 <?php Pjax::end(); ?>
+<script>
+    /* Фиксируем "шторки" в контактной форме при фокусе */
+        document.getElementById('index-form').addEventListener('focusin', (e) => {
+            let el = e.target;
+            let lbl = e.target.previousElementSibling; //<label>
+            if (el.tagName != 'BUTTON'){
+                // console.log(el);
+                lbl.classList.add('fill');
+            }
+        });
+</script>

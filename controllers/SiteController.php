@@ -108,12 +108,12 @@ class SiteController extends Controller
                 $res = $msg->dbSave($indexForm);
                 $res = $res ? 'DB_OK!' : 'DB_ERR!';
 
-                return $this->renderPartial('mail_ok', compact('success', 'res', 'name'));
+                return $this->renderAjax('mail_ok', compact('success', 'res', 'name'));
             }
         }
         /* AJAX вызов страницы (по клику в меню)*/
         if($request->isAjax && $request->isGet){
-            return $this->renderPartial('index', compact('data', 'indexForm'));
+            return $this->renderAjax('index', compact('data', 'indexForm'));
         }
         /* обычный запрос */
         return $this->render('index', ['data' => $data, 'indexForm' => $indexForm]);
@@ -124,7 +124,7 @@ class SiteController extends Controller
         $data = $model->getContent();
         /* AJAX запрос */
         if(Yii::$app->request->isAjax){
-            return $this->renderPartial('sozdanie', compact('data'));
+            return $this->renderAjax('sozdanie', compact('data'));
         }
         /* обычный запрос */
         return $this->render('sozdanie', compact('data'));
@@ -135,7 +135,7 @@ class SiteController extends Controller
         $data = $model->getContent();
         /* AJAX запрос */
         if(Yii::$app->request->isAjax){
-            return $this->renderPartial('prodvijenie', compact('data'));
+            return $this->renderAjax('prodvijenie', compact('data'));
         }
         /* обычный запрос */
         return $this->render('prodvijenie', compact('data'));
@@ -146,7 +146,7 @@ class SiteController extends Controller
         $data = $model->getContent();
         /* AJAX запрос */
         if(Yii::$app->request->isAjax){
-            return $this->renderPartial('parsing', compact('data'));
+            return $this->renderAjax('parsing', compact('data'));
         }
         /* обычный запрос */
         return $this->render('parsing', compact('data'));
@@ -157,7 +157,7 @@ class SiteController extends Controller
         $data = $model->getContent();
         /* AJAX запрос */
         if(Yii::$app->request->isAjax){
-            return $this->renderPartial('portfolio', compact('data'));
+            return $this->renderAjax('portfolio', compact('data'));
         }
         /* обычный запрос */
         return $this->render('portfolio', compact('data'));
@@ -217,7 +217,7 @@ class SiteController extends Controller
                 $call = new Callback();
                 $res = $call->dbSend($formModel);
                 // выводим модальное окно об успехе/ошибке
-                return $this->renderPartial('call_ok', compact('success', 'res'));
+                return $this->renderAjax('call_ok', compact('success', 'res'));
             }
             // модальное окно с формой
             return $this->renderAjax('call', compact('formModel'));

@@ -13,7 +13,11 @@ $this->registerMetaTag(['name' => 'description', 'content' => $desc]);
     window.document.title = "<?= $data['title'] ?>";
     document.getElementById('top_h').innerText = 'Создание сайтов';
 </script>
-<img width="250" height="167" class="resp_img no_shadow no_border align-left img-outs" src="/img/main_img/sozdanie.png" alt="создание сайтов" title="создание сайтов">
+<figure class="position-relative">
+    <img width="250" height="167" class="resp_img no_shadow no_border align-left img-outs"
+         src="/img/main_img/sozdanie.png" alt="создание сайтов" title="создание сайтов">
+<span class="fab fa-html5"></span>
+</figure>
 <article>
     <h2 class="header_shadow">Создание сайтов для бизнеса и не только</h2>
     <p>
@@ -34,7 +38,8 @@ $this->registerMetaTag(['name' => 'description', 'content' => $desc]);
     <b>Итак:</b><br>
     <h2 id="sait_vizitka" class="header_shadow anchors">Сайт визитка</h2>
     <p>
-        <img width="250" height="171" class="resp_img no_shadow no_border align-left img-outs" src="/img/main_img/vizitka.png" alt="сайт визитка" title="сайт визитка">
+        <img width="250" height="171" class="resp_img no_shadow no_border align-left img-outs"
+             src="/img/main_img/vizitka.png" alt="сайт визитка" title="сайт визитка">
         Идеальный вариант для старта в интернете. В дальнейшем можно улучшать и развивать возможности сайта и его
         наполнение.<br>
         <strong>Сайт визитка</strong> — веб-ресурс, основное предназначение которого быстро и в яркой,
@@ -51,10 +56,12 @@ $this->registerMetaTag(['name' => 'description', 'content' => $desc]);
         <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Схему проезда до вашей организации</li>
         <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Регистрацию и покупку домена</li>
         <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Регистрацию в поисковых системах Яндекс и Google</li>
-        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Валидный <abbr title="англ. HyperText Markup Language, version 5 — язык для структурирования и представления содержимого всемирной паутины">HTML</abbr>
+        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Валидный <abbr
+                    title="англ. HyperText Markup Language, version 5 — язык для структурирования и представления содержимого всемирной паутины">HTML</abbr>
             код
         </li>
-        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Оптимизированную для <abbr title="англ. search engine optimization — комплекс мер по внутренней и внешней оптимизации, для поднятия позиций сайта в результатах выдачи поисковых систем">SEO</abbr>
+        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Оптимизированную для <abbr
+                    title="англ. search engine optimization — комплекс мер по внутренней и внешней оптимизации, для поднятия позиций сайта в результатах выдачи поисковых систем">SEO</abbr>
             структуру страниц
         </li>
         <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Установку счетчика посещений</li>
@@ -64,13 +71,16 @@ $this->registerMetaTag(['name' => 'description', 'content' => $desc]);
     <p>
         Создание сайтов этой категории обычно занимает 5-7 дней после написания брифа
         и утверждения структуры, дизайна.<br>
-        <strong>Цена для сайта визитки</strong> от <span class="red">7&#8202;000</span><span class="fa fa-ruble-sign"></span><br>
-        <a href="/#contacts" title="заказать сайт визитку" class="zayavka link-anim"><span class="far fa-paper-plane no-sh"></span> сделать заявку на сайт визитку</a>
+        <strong>Цена для сайта визитки</strong> от <span class="red">7&#8202;000</span><span
+                class="fa fa-ruble-sign"></span><br>
+        <a href="/#contacts" title="заказать сайт визитку" class="zayavka link-anim"><span
+                    class="far fa-paper-plane no-sh"></span> сделать заявку на сайт визитку</a>
     </p>
     <div class="hr"></div>
     <h2 id="korporativniy_sait" class="header_shadow anchors">Корпоративный сайт</h2>
     <p>
-        <img width="250" height="136" class="resp_img no_border no_shadow align-left img-outs" src="/img/main_img/corp.png" alt="корпоративный сайт" title="корпоративный сайт">
+        <img width="250" height="136" class="resp_img no_border no_shadow align-left img-outs"
+             src="/img/main_img/corp.png" alt="корпоративный сайт" title="корпоративный сайт">
         Веб-ресурс с множеством задач от повышения престижа организации до
         продвижения товаров.
         Создании сайтов этой категории требует индивидуального подхода и по цене ощутимо выше чем для простых сайтов.
@@ -87,13 +97,15 @@ $this->registerMetaTag(['name' => 'description', 'content' => $desc]);
         что "универсальные" cms достаточно сложны в использовании для неподготовленного человека и поэтому
         мы готовы написать для Вас систему управления контентом под Ваш конкретный сайт где внесение изменений
         будет не сложнее, чем например поменять фото в соцсетях :).<br>
-        <strong>Цена для корпоративного сайта</strong> от <span class="red">12&#8202;000</span><span class="fa fa-ruble-sign"></span><br>
+        <strong>Цена для корпоративного сайта</strong> от <span class="red">12&#8202;000</span><span
+                class="fa fa-ruble-sign"></span><br>
     </p>
     <h3>В цену включены:</h3>
     <ul class="list list_block">
         <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Индивидуальный дизайн</li>
         <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;До 50 страниц информации</li>
-        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Базовая <abbr title="англ. search engine optimization — комплекс мер по внутренней и внешней оптимизации, для поднятия позиций сайта в результатах выдачи поисковых систем">SEO</abbr>
+        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Базовая <abbr
+                    title="англ. search engine optimization — комплекс мер по внутренней и внешней оптимизации, для поднятия позиций сайта в результатах выдачи поисковых систем">SEO</abbr>
             оптимизация всех страниц
         </li>
         <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Каталог товаров и услуг</li>
@@ -107,11 +119,13 @@ $this->registerMetaTag(['name' => 'description', 'content' => $desc]);
         <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Cопровождение после сдачи в течении 3 месяцев</li>
     </ul>
     <br>
-    <a href="/#contacts" title="заказать корпоративный сайт" class="zayavka link-anim"><span class="far fa-paper-plane no-sh"></span> сделать заявку на корпоративный сайт</a>
+    <a href="/#contacts" title="заказать корпоративный сайт" class="zayavka link-anim"><span
+                class="far fa-paper-plane no-sh"></span> сделать заявку на корпоративный сайт</a>
     <div class="hr"></div>
     <h2 id="internet_magazin" class="header_shadow anchors">Интернет магазин</h2>
     <p>
-        <img width="250" height="209" class="resp_img no_border no_shadow align-left" src="/img/main_img/market.jpg" alt="интернет иагазин" title="интернет магазин">
+        <img width="250" height="209" class="resp_img no_border no_shadow align-left" src="/img/main_img/market.jpg"
+             alt="интернет иагазин" title="интернет магазин">
         <strong>Интернет магазин</strong> — наиболее перспективный и развивающийся вид бизнеса в интернете.
         Создание сайтов такого уровня имеет свои особенности. Это обязательное наличие системы для
         добавления и удаления товара, каталога товаров, корзины покупателя, быстрого поиска товаров, удобной формы для
@@ -123,7 +137,8 @@ $this->registerMetaTag(['name' => 'description', 'content' => $desc]);
         создания интернет магазина зависит от таких факторов: объема каталога товаров, интеграции с
         платежными системами, интеграции сайта с системой 1С, наличия авторизации пользователей и др.
         Сроки исполнения для <strong>интернет магазина</strong> от трех недель.
-        <strong>Цена для интернет магазина</strong> от <span class="red">20&#8202;000</span><span class="fa fa-ruble-sign"></span><br>
+        <strong>Цена для интернет магазина</strong> от <span class="red">20&#8202;000</span><span
+                class="fa fa-ruble-sign"></span><br>
     </p>
     <h3>Цена включает:</h3>
     <ul class="list list_block">
@@ -134,7 +149,8 @@ $this->registerMetaTag(['name' => 'description', 'content' => $desc]);
         <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Систему для добавления/удаления товара</li>
         <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Корзину покупателя</li>
         <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Удобную форму для заказа товара покупателем</li>
-        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Продающие <abbr title="англ. search engine optimization — комплекс мер по внутренней и внешней оптимизации, для поднятия позиций сайта в результатах выдачи поисковых систем">SEO</abbr>
+        <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Продающие <abbr
+                    title="англ. search engine optimization — комплекс мер по внутренней и внешней оптимизации, для поднятия позиций сайта в результатах выдачи поисковых систем">SEO</abbr>
             тексты
         </li>
         <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Счетчик посещений</li>
@@ -142,7 +158,8 @@ $this->registerMetaTag(['name' => 'description', 'content' => $desc]);
         <li><span class="fa fa-check logo"></span>&nbsp;&nbsp;Техническое сопровождение сайта в течении 3 месяцев</li>
     </ul>
     <br>
-    <a href="/#contacts" title="заказать разработку интернет магазина" class="zayavka link-anim"><span class="far fa-paper-plane no-sh"></span> заказать разработку интернет магазина</a>
+    <a href="/#contacts" title="заказать разработку интернет магазина" class="zayavka link-anim"><span
+                class="far fa-paper-plane no-sh"></span> заказать разработку интернет магазина</a>
     <div class="hr"></div>
     <p>
         На практике получить привлекательный по дизайну (или как минимум не вызывающий отторжения)
@@ -155,7 +172,8 @@ $this->registerMetaTag(['name' => 'description', 'content' => $desc]);
         многоступенчатую работу в заранее оговоренные сроки.
     </p>
     <div>
-        <img width="250" height="208" class="resp_img no_border no_shadow align-left" src="/img/main_img/response.jpg" alt="адаптивная верстка" title="адаптивная верстка">
+        <img width="250" height="208" class="resp_img no_border no_shadow align-left" src="/img/main_img/response.jpg"
+             alt="адаптивная верстка" title="адаптивная верстка">
         <h2 id="response" class="header_shadow">Создание сайтов с адаптивным дизайном</h2>
         <p>
             <strong>Адаптивная верстка</strong> или <strong>адаптивный дизайн</strong> (респонсивный дизайн, отзывчивый

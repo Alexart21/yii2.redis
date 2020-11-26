@@ -75,6 +75,7 @@ button:hover{
     /*background: lime !important;*/
     border: none !important;
     width: 420px !important;
+    margin: 0 auto;
 }
 
 .modal-header{

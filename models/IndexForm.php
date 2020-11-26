@@ -12,12 +12,12 @@ class IndexForm extends Model
     public $email;
     public $tel;
     public $text;
-//    dist $reCaptcha;
+//    public $reCaptcha;
 
     public function rules()
     {
         return [
-            [['name', 'email', 'tel', 'text'], 'required', 'message' => 'заполните это поле !'],
+            [['name', 'email',  'text'], 'required', 'message' => 'заполните это поле !'],
             ['email', 'email'],
             ['name', 'string', 'length' => [3, 30]],
             ['tel', 'string', 'length' => [11, 30]],
@@ -50,11 +50,11 @@ class IndexForm extends Model
         /* Отправка почты */
         $name = mb_ucfirst(clr_get($this->name));
         $email = clr_get($this->email);
-        $tel = clr_get($this->tel);
+        $tel = $this->tel ?  '<br>Тел: ' . clr_get($this->tel) . '<br>' : null;
         $text = clr_get($this->text);
 
         $subject = 'Письмо с сайта Alex-art';
-        $body = 'Вам пишет <b style="font-size: 120%;text-shadow: 0 1px 0 #e61b05">' . $name . '</b><br>' . clr_get($email) . '<br>Tel: ' . $tel . '<br><br><div style="font-style: italic">' . nl2br(clr_get($text)) . '</div>' .
+        $body = 'Вам пишет <b style="font-size: 120%;text-shadow: 0 1px 0 #e61b05">' . $name . '</b><br>' . $email .  $tel . '<br><br><div style="font-style: italic">' . nl2br(clr_get($text)) . '</div>' .
             '<br><br>Сообщение отправлено с сайта <b>https:' . Yii::$app->params['siteUrl'] . '</b>';
 
         $success = Yii::$app->mailer->compose()

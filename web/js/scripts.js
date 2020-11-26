@@ -1,5 +1,10 @@
 const screen_w = document.body.clientWidth;
 const screen_h = document.body.clientHeight;
+/*let scrollHeight = Math.max( // полная высота с прокручиваемой частью
+    document.body.scrollHeight, document.documentElement.scrollHeight,
+    document.body.offsetHeight, document.documentElement.offsetHeight,
+    document.body.clientHeight, document.documentElement.clientHeight
+);*/
 window.onresize = function () {
     window.screen_w = document.body.clientWidth;
     window.screen_h = document.body.clientHeight;
@@ -142,7 +147,7 @@ window.onload = () => {
     const showMsg = () => { // показ окна чата с анимацией
         $('#msg-block').velocity('transition.bounceIn');
         msgBlock.style.display = 'block';
-    }
+    };
     /* Всплывающая подсказка над чатом */
     const showTooltip = () => {
         if(msgBlock.hasAttribute('data-closed') && !readCookie('msg')){ // только при свернутом окошке и нету куки (не заходил больше часа или сколько там)
@@ -204,12 +209,16 @@ window.onload = () => {
     //
     $(document).on('pjax:beforeSend', () => {
         document.body.style.cursor = 'progress';
+        $('#container_loading').show();
         let method = $.pjax.options.type; // (GET или POST)
         let target = $.pjax.options.container; // контейнер куда грузим AJAX данные
+        if(method == 'POST' && $.pjax.options.url == '/'){ // отправка формы с главной
+            container_loading.style.top = window.pageYOffset + screen_h/2 - 30 + 'px';
+        }
         if (target == '#my-modal' && method == 'GET') { // вызов модального окна(обратный звонок)
             $('#container').prepend('<div id="overlay"></div>');
             $('#overlay').show();
-            $('#container_loading').show();
+            // $('#container_loading').show();
         } else if (method != 'POST') { // данные в блок #inc (основной контент)
             const inc = document.querySelector('#inc');
             const mainW = document.querySelector('#main').clientWidth;
@@ -227,7 +236,6 @@ window.onload = () => {
                 scrollWidth = scrollWidth ? scrollWidth : 0;
                 return scrollWidth;
             };
-            // console.log(scrB());
             container_loading.style.left = (screen_w - mainW)/2 + l + incW/2 -30 - scrB() + 'px';
             const incOverl = document.querySelector('#inc-overlay');
             incOverl.style.width = inc.clientWidth + 'px';
@@ -236,7 +244,6 @@ window.onload = () => {
             incOverl.style.top = inc.offsetTop + 'px';
             scrollTo(0, 0);
             $('#inc-overlay').css('display', 'block');
-            $('#container_loading').show();
         }
     });
 
@@ -249,20 +256,33 @@ window.onload = () => {
         $('#overlay').remove();
         $('#container_loading').hide();
         container_loading.style.left = '';
+        container_loading.style.top = '';
         $('#inc-overlay').css('display', 'none');
         let method = $.pjax.options.type;
         if (method == 'POST' && $.pjax.options.url == '/') { // очищаем поля формы отправки письма
             document.forms[0].reset();
+            $('#index-form label').removeClass('fill')
         }
         // Ratelimiter сработал (ПРЕВЫШЕНО КОЛ-ВО ПОПЫТОК ВХОДА)
         // Куки сохранял в action site/login
         $(document).on('pjax:error', (event, xhr, textStatus, errorThrown, options) => {
+            $('#container_loading').hide();
             if (xhr.status == 429) {
                 alert('Количество попыток исчерпано.Не более ' + readCookie('rateLimit') + ' попыток в минуту');
             }
         });
     });
+   /* Фиксируем "шторки" в контактной форме при фокусе */
+    /*document.getElementById('index-form').addEventListener('focusin', (e) => {
+        let el = e.target;
+        let lbl = e.target.previousElementSibling; //<label>
+        if (el.tagName != 'BUTTON'){
+            console.log(el);
+            lbl.classList.add('fill');
+        }
+    });*/
 };
+/* конец обертка onload */
 
 // окраска активной AJAX ссылки верхнего меню
 function linkColor() {

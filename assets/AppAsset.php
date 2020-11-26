@@ -14,7 +14,7 @@ class AppAsset extends AssetBundle
         'fontawesome/css/all.min.css',
     ];
     public $js = [
-        'js/indexForm.min.js',
+//        'js/indexForm.min.js',
 //        'js/slide.min.js',
         'js/wow.min.js',
         'js/velocity.min.js',
