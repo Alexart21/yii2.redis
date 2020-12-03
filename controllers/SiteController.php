@@ -87,10 +87,6 @@ class SiteController extends Controller
      *
      * @return string
      */
-    /*dist function actionIndex()
-    {
-        return $this->render('index');
-    }*/
     public function actionIndex()
     {
         $model = new Content();
@@ -101,14 +97,12 @@ class SiteController extends Controller
         /* Отправка сообщения и запись в БД */
         if ($request->isAjax && $request->isPost){
             if($indexForm->load($request->post()) && $indexForm->validate()){
-                $name = mb_ucfirst(clr_get($indexForm->name));
                 $success = $indexForm->mailSend(); // отправка email
 
-                $msg = new Post(); // звпись в БД
-                $res = $msg->dbSave($indexForm);
-                $res = $res ? 'DB_OK!' : 'DB_ERR!';
+                $msg = new Post();
+                $res = $msg->dbSave($indexForm); // звпись в БД
 
-                return $this->renderAjax('mail_ok', compact('success', 'res', 'name'));
+                return $this->renderAjax('mail_ok', compact('success', 'res'));
             }
         }
         /* AJAX вызов страницы (по клику в меню)*/
@@ -210,10 +204,9 @@ class SiteController extends Controller
         if ($request->isAjax) {
             $formModel = new CallForm();
 
-            if ($formModel->load($request->post()) && $formModel->validate()) { // Форма отправлена
-                $success = $formModel->callSend();
-
+            if ($formModel->load($request->post()) && $formModel->validate()) { // Форма отправлен
                 // Отправка email и запись в БД
+                $success = $formModel->callSend();
                 $call = new Callback();
                 $res = $call->dbSend($formModel);
                 // выводим модальное окно об успехе/ошибке

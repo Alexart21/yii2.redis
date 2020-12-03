@@ -65,7 +65,7 @@ class IndexForm extends Model
             ->setHtmlBody($body)
             ->send();
 
-        return $success;
+        return $success ? $name : false;
     }
 
 }

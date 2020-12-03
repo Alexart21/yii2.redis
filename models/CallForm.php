@@ -47,14 +47,13 @@ class callForm extends Model
         return [
             'name' => 'Ваше Имя',
             'tel' => 'Номер телефона',
-            'reCaptcha' => '',
+//            'reCaptcha' => '',
         ];
     }
 
 
     public function callSend()
     {
-//        debug($this->tel);die;
         $subject = 'Просьба перезвонить';
         $name = clr_get(mb_ucfirst($this->name));
         $tel = clr_get($this->tel);
@@ -71,9 +70,7 @@ class callForm extends Model
             ->send();
 
         if ($success) {
-            if ($this->validate()) {
                 return('<h3 style="color:green">Спасибо, ' . $name . ', Мы Вам обязательно перезвоним</h3>');
-            }
         } else
             return('<h3 style="color:red">Ошибка !</h3>');
     }

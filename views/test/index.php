@@ -76,7 +76,7 @@ $form = ActiveForm::begin([
     <?=$form->field($model,'audioFile')->fileInput()  ?>
     <?=$form->field($model,'test')->textInput()  ?>
 </fieldset>
-    <?= Html::submitButton('жду звонка!', ['class' => 'btn btn-success']) ?>
+    <?= Html::submitButton('Отправить', ['class' => 'btn btn-success']) ?>
 <?php
 ActiveForm::end();
 ?>

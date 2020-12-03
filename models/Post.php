@@ -68,6 +68,6 @@ class Post extends \yii\db\ActiveRecord
         $this->body = $text;
 
         $res = $this->save();
-        return $res;
+        return  $res ? 'DB_OK!' : 'DB_ERR!';
     }
 }

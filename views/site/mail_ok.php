@@ -2,7 +2,7 @@
 use yii\bootstrap4\Modal;
 
 if ($success) {
-    $msg = '<h3 style="color:green;text-align: center">Спасибо,'. $name .'  мы с Вами обязательно свяжемся!</h3>';
+    $msg = '<h3 style="color:green;text-align: center">Спасибо,'. $success .'  мы с Вами обязательно свяжемся!</h3>';
 } else{
     $msg = '<h3 style="color:red;text-align: center">Произошла ошибка!Попробуйте еще раз или свяжитесь другим способом.</h3>';
 }
