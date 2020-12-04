@@ -877,7 +877,34 @@ ul.highlightTextIn li a:before {
         font-size: 12px;
         text-shadow: none;
     }
+/* виджет мессенджеров */
+    #msg-block{
+        width: 80% !important;
+        max-width: 500px;
+    }
 
+    #msg-content > div.msg-text{
+        font-size: 180% !important;
+    }
+
+    .msg-closed-text{
+        display: block;
+        /*left: 180px;*/
+        font-size: 140% !important;
+        margin-top: -60px !important;
+    }
+
+    .tooltip-inner{
+        font-size: 180% !important;
+    }
+
+    .msg-btn{
+        letter-spacing: 2px;
+    }
+
+    .viber-bg{
+        /*margin-top: -30px !important;*/
+    }
 }
 
 @media all and (max-width: 671px), all and (max-device-width: 671px) {
@@ -2030,7 +2057,7 @@ mark {
     bottom: 0;
     right: 0;
     width: 300px;
-    height: 40px;
+    height: 50px;
     border: 1px solid #222;
     /*background: rgba(150, 150, 150, .4);*/
     background: #f4fcff;
@@ -2038,6 +2065,10 @@ mark {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     box-shadow: 0 0 40px #87ffdb, 0 0 5px var(--btn-color) inset;
+}
+
+.msg-opened{
+    height: 350px !important;
 }
 
 .msg-text {
@@ -2066,6 +2097,11 @@ mark {
     /*line-height: 40px;*/
 }
 
+.msg-closed-text{
+    position: absolute;
+    left: 130px
+}
+
 .msg-closed i {
     font-size: 34px;
     /*color: lime !important;*/
@@ -2085,9 +2121,10 @@ mark {
     border: 0px solid transparent;
     border-radius: 10px;
     text-decoration: none !important;
-    font-size: 26px;
+    font-size: 30px;
     color: #fff;
-    width: 150px;
+    width: 80%;
+    min-width: 160px;
     margin: 0 auto 10px auto;
 }
 
@@ -2207,3 +2244,9 @@ abbr{
     font-size: 200%;
     color: var(--logo-color);
 }
+/* табля скартинками фреймворков */
+.ftab td, .ftab th{
+    text-align: center;
+    width: 80px;
+}
+/**/
