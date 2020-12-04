@@ -185,10 +185,11 @@ window.onload = () => {
     });
     msgContent.addEventListener('click', () => { // разворачиваем окно чата
         if (msgBlock.hasAttribute('data-closed')) { // свернуто
-            msgBlock.style.height = '370px';
+            // msgBlock.style.height = '370px';
+            msgBlock.classList.add('msg-opened');
             msgBlock.style.background = 'url(/img/wats-bg.gif)';
             msgBlock.style.boxShadow = '0 0 30px #999';
-            msgImg.style.left = '120px';
+            msgImg.style.left = 'calc(50% - 30px)';
             msgClosed.style.display = 'none';
             msgBlock.removeAttribute('data-closed');
             showMsg();
@@ -198,8 +199,9 @@ window.onload = () => {
     const msgClose = document.querySelector('#msg-block button');
     msgClose.addEventListener('click', () => { // сворачиваем окно чата
         if (!msgBlock.hasAttribute('data-closed')) { // окно не свернуто
-            msgImg.style.left = '240px';
-            msgBlock.style.height = '';
+            msgImg.style.left = '';
+            // msgBlock.style.height = '';
+            msgBlock.classList.remove('msg-opened');
             msgBlock.style.background = '';
             msgBlock.style.boxShadow = '';
             msgClosed.style.display = '';

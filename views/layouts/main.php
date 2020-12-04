@@ -259,7 +259,7 @@ AppAsset::register($this);
                         <div class="msg-closed button-anim">
                             &nbsp;&nbsp;&nbsp;<i class="fab fa-viber viber"></i> <i class="fab fa-whatsapp wats"></i> <i
                                     class="fab fa-telegram-plane tg"></i>
-                            <b style="position: absolute;left: 130px">Начните чат</b>
+                            <b  class="msg-closed-text">Начните чат</b>
                         </div>
                         <img class="msg-img rounded-circle img-thumbnail" src="/img/msg.png" alt="">
                         <div class="msg-text">
