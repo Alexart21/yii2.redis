@@ -19,6 +19,7 @@ AppAsset::register($this);
         <meta name="referrer" content="origin" />
         <link rel="canonical" href="https://<?= Yii::$app->params['siteUrl'] ?>" />
         <link rel="icon" type="image/png" href="/icons/64x64.png" />
+        <meta name="msapplication-config" content="/browserconfig.xml" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <meta name="HandheldFriendly" content="true">
