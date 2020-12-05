@@ -61,6 +61,7 @@ $form = ActiveForm::begin([
 //                'data-pjax' => true,
         ]
 ]);
+//var_dump($form);die;
 ?>
 <fieldset>
 <?=$form->field($model, 'date')->textInput()
