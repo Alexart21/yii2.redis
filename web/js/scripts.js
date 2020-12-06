@@ -102,19 +102,6 @@ $(window).scroll(function () {
     menu_fix(); // фиксация верхнего меню
 });
 
-/* Кастомный алерт */
-/*function alert(content, afterFunction) {
-    $('<div class="alertm_overlay"></div>').appendTo('body');
-    $('<div class="alertm_all"><a href="#" onclick="alert_close(' + afterFunction + '); return false" class="alertm_close">x</a><div class="alertm_wrapper">' + content + '</div><div class="alertm_but" onclick="alert_close(' + afterFunction + '); return false">OK</div></div>').appendTo('body');
-    $(".alertm_overlay, .alertm_all").fadeIn("slow");
-    $('.alertm_all').css('margin-top', (-1) * ($('.alertm_all').height()) + 'px');
-}
-
-function alert_close(afterFunctionClouse) {
-    $(".alertm_overlay, .alertm_all").remove();
-    afterFunctionClouse;
-}*/
-
 // доставание cookie
 function readCookie(name) {
     const matches = document.cookie.match(new RegExp(
@@ -129,6 +116,7 @@ window.onload = () => {
     // анимация в шапке
     const shtorka = document.querySelector('.shtorka');
     shtorka.classList.add('shtorka-animate');
+
     mobLeft(); // мобильное меню
     //
     (function ($) {
@@ -199,7 +187,7 @@ window.onload = () => {
     const msgClose = document.querySelector('#msg-block button');
     msgClose.addEventListener('click', () => { // сворачиваем окно чата
         if (!msgBlock.hasAttribute('data-closed')) { // окно не свернуто
-            msgImg.style.left = '';
+            msgImg.style.left = '240px';
             // msgBlock.style.height = '';
             msgBlock.classList.remove('msg-opened');
             msgBlock.style.background = '';

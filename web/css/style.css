@@ -372,8 +372,7 @@ header {
 
 .shtorka-animate {
     width: 0;
-    -webkit-transition: width 1s linear 0.2s;
-    transition: width 1s linear 0.2s;
+    transition: width linear 0.4s;
 }
 
 #right {
@@ -1397,20 +1396,6 @@ button.close {
     cursor: pointer;
     opacity: 1 !important;
 }
-
-/*.close:hover {
-    color: #000;
-    transform: rotateZ(-90deg);
-    transition: transform .3s ease;
-}*/
-
-
-
-
-
-
-
-
 /* Новое мобильное меню */
 
 .mob-menu-col {
@@ -1467,7 +1452,6 @@ button.close {
     top: 0;
     z-index: 10000 !important;
     width: 235px;
-    overflow-y: auto;
     padding-top: 2em;
     list-style: none;
     border-right: 2px solid #003333;
@@ -1933,109 +1917,11 @@ button.close {
     margin: 0 auto;
 }
 
-/* New loader */
-/*
-  Set the color of the icon
-*/
-
 /**/
 .politic {
     font-size: 70%;
 }
 
-/* Кастомный алерт */
-.alertm_overlay {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    left: 0px;
-    top: 0px;
-    z-index: 99998;
-    background: rgba(51, 51, 51, 0.82);
-    display: none;
-}
-
-.alertm_all {
-    font-family: Arial;
-    width: 396px;
-    padding: 29px 43px;
-    border-radius: .25rem;
-    background: #fff;
-    position: fixed;
-    left: 50%;
-    margin-left: -241px;
-    top: 50%;
-    z-index: 99999;
-}
-
-.alertm_all a {
-    -webkit-transition: all .2s ease-in-out;
-    -o-transition: all .2s ease-in-out;
-    transition: all .2s ease-in-out;
-    text-decoration: none;
-    color: #0275d8;
-}
-
-.alertm_all a:hover {
-    color: #222;
-}
-
-.alertm_h1 {
-    color: #0275d8;
-    font-size: 19px;
-    margin-bottom: 15px;
-}
-
-.alertm_text {
-    font-size: 16px;
-    line-height: 23px;
-}
-
-.alertm_wrapper {
-}
-
-.alertm_but {
-    display: inline-block;
-    font-weight: 400;
-    line-height: 1.25;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    border: 1px solid transparent;
-    padding: .5rem 2rem;
-    font-size: 1rem;
-    border-radius: .25rem;
-    -webkit-transition: all .2s ease-in-out;
-    -o-transition: all .2s ease-in-out;
-    transition: all .2s ease-in-out;
-    color: #fff;
-    background-color: #0275d8;
-    border-color: #0275d8;
-    display: block;
-    margin-top: 25px;
-    cursor: pointer;
-}
-
-.alertm_but:hover {
-    color: #fff;
-    background-color: #025aa5;
-    border-color: #01549b;
-}
-
-a.alertm_close {
-    color: red;
-    text-decoration: none;
-    position: absolute;
-    right: 7px;
-    top: 0px;
-    font-size: 25px;
-}
-
-/**/
 .fa-ruble-sign {
     font-size: 110% !important;
     text-indent: 0;

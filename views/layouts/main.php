@@ -137,7 +137,7 @@ AppAsset::register($this);
 					</span>
 				</span>
                             </div>
-                            <output id="shtorka" class="shtorka gradient3"></output>
+                            <output class="shtorka gradient3"></output>
                         </div>
                         <!--noindex-->
                         <noscript>
