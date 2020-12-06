@@ -1937,10 +1937,6 @@ button.close {
 /*
   Set the color of the icon
 */
-svg path,
-svg rect {
-    fill: var(--logo-color);
-}
 
 /**/
 .politic {
