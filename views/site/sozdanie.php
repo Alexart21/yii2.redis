@@ -14,7 +14,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => $desc]);
     document.getElementById('top_h').innerText = 'Создание сайтов';
 </script>
 <figure class="position-relative">
-    <img width="250" height="167" class="resp_img no_shadow no_border align-left img-outs"
+    <img width="250" height="167" class="resp_img no_shadow no_border align-left img-outs1"
          src="/img/main_img/sozdanie.png" alt="создание сайтов" title="создание сайтов">
 <span class="fab fa-html5"></span>
 <span class="fab fa-css3"></span>
@@ -40,7 +40,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => $desc]);
     <b>Итак:</b><br>
     <h2 id="sait_vizitka" class="header_shadow anchors">Сайт визитка</h2>
     <p>
-        <img width="250" height="171" class="resp_img no_shadow no_border align-left img-outs"
+        <img width="250" height="171" class="resp_img no_shadow no_border align-left img-outs2"
              src="/img/main_img/vizitka.png" alt="сайт визитка" title="сайт визитка">
         Идеальный вариант для старта в интернете. В дальнейшем можно улучшать и развивать возможности сайта и его
         наполнение.<br>
@@ -81,7 +81,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => $desc]);
     <div class="hr"></div>
     <h2 id="korporativniy_sait" class="header_shadow anchors">Корпоративный сайт</h2>
     <p>
-        <img width="250" height="136" class="resp_img no_border no_shadow align-left img-outs"
+        <img width="250" height="136" class="resp_img no_border no_shadow align-left img-outs3"
              src="/img/main_img/corp.png" alt="корпоративный сайт" title="корпоративный сайт">
         Веб-ресурс с множеством задач от повышения престижа организации до
         продвижения товаров.
@@ -174,7 +174,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => $desc]);
         многоступенчатую работу в заранее оговоренные сроки.
     </p>
     <div>
-        <img width="250" height="208" class="resp_img no_border no_shadow align-left" src="/img/main_img/response.jpg"
+        <img width="250" height="208" class="resp_img no_border no_shadow align-left img-outs4" src="/img/main_img/response.png"
              alt="адаптивная верстка" title="адаптивная верстка">
         <h2 id="response" class="header_shadow">Создание сайтов с адаптивным дизайном</h2>
         <p>

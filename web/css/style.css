@@ -488,8 +488,16 @@ header {
     box-shadow: 0 0 10px #ddd;
     margin: 0 1em 1em 0;
 }
+/* обтекание картинок  */
+.img-outs1{
+    width: 250px;
+    height: 167px;
+    shape-outside: url('/img/main_img/sozdanie.png');
+    shape-margin: 1em;
+    border-radius: 0;
+}
 
-.img-outs{
+.img-outs2{
     width: 250px;
     height: 171px;
     shape-outside: url('/img/main_img/vizitka.png');
@@ -497,6 +505,22 @@ header {
     border-radius: 0;
 }
 
+.img-outs3{
+    width: 250px;
+    height: 136px;
+    shape-outside: url('/img/main_img/corp.png');
+    shape-margin: 1em;
+    border-radius: 0;
+}
+
+.img-outs4{
+    width: 250px;
+    height: 208px;
+    shape-outside: url('/img/main_img/response.png');
+    shape-margin: 1em;
+    border-radius: 0;
+}
+/**/
 footer {
     position: relative;
     z-index: 100;
