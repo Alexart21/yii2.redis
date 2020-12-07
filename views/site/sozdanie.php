@@ -17,6 +17,8 @@ $this->registerMetaTag(['name' => 'description', 'content' => $desc]);
     <img width="250" height="167" class="resp_img no_shadow no_border align-left img-outs"
          src="/img/main_img/sozdanie.png" alt="создание сайтов" title="создание сайтов">
 <span class="fab fa-html5"></span>
+<span class="fab fa-css3"></span>
+<span class="fab fa-js"></span>
 </figure>
 <article>
     <h2 class="header_shadow">Создание сайтов для бизнеса и не только</h2>

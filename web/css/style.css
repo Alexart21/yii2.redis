@@ -2084,6 +2084,7 @@ mark {
 
 .fa-paper-plane{
     font-size: 140% !important;
+    color: var(--logo-color);
 }
 
 .no-sh{
@@ -2124,7 +2125,23 @@ abbr{
     left: 0;
     top: 150px;
     font-size: 200%;
-    color: var(--logo-color);
+    color: #DC4D25;
+}
+
+.fa-css3{
+    position: absolute;
+    left: 30px;
+    top: 150px;
+    font-size: 200%;
+    color: #254BDD;
+}
+
+.fa-js{
+    position: absolute;
+    left: 66px;
+    top: 150px;
+    font-size: 200%;
+    color: #F7DF1E;
 }
 /* табля скартинками фреймворков */
 .ftab td, .ftab th{
