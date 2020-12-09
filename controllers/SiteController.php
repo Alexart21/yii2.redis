@@ -102,12 +102,12 @@ class SiteController extends Controller
                 $msg = new Post();
                 $res = $msg->dbSave($indexForm); // звпись в БД
 
-                return $this->renderAjax('mail_ok', compact('success', 'res'));
+                return $this->renderPartial('mail_ok', compact('success', 'res'));
             }
         }
         /* AJAX вызов страницы (по клику в меню)*/
         if($request->isAjax && $request->isGet){
-            return $this->renderAjax('index', compact('data', 'indexForm'));
+            return $this->renderPartial('index', compact('data', 'indexForm'));
         }
         /* обычный запрос */
         return $this->render('index', ['data' => $data, 'indexForm' => $indexForm]);
@@ -118,7 +118,7 @@ class SiteController extends Controller
         $data = $model->getContent();
         /* AJAX запрос */
         if(Yii::$app->request->isAjax){
-            return $this->renderAjax('sozdanie', compact('data'));
+            return $this->renderPartial('sozdanie', compact('data'));
         }
         /* обычный запрос */
         return $this->render('sozdanie', compact('data'));
@@ -129,7 +129,7 @@ class SiteController extends Controller
         $data = $model->getContent();
         /* AJAX запрос */
         if(Yii::$app->request->isAjax){
-            return $this->renderAjax('prodvijenie', compact('data'));
+            return $this->renderPartial('prodvijenie', compact('data'));
         }
         /* обычный запрос */
         return $this->render('prodvijenie', compact('data'));
@@ -140,7 +140,7 @@ class SiteController extends Controller
         $data = $model->getContent();
         /* AJAX запрос */
         if(Yii::$app->request->isAjax){
-            return $this->renderAjax('parsing', compact('data'));
+            return $this->renderPartial('parsing', compact('data'));
         }
         /* обычный запрос */
         return $this->render('parsing', compact('data'));
@@ -151,7 +151,7 @@ class SiteController extends Controller
         $data = $model->getContent();
         /* AJAX запрос */
         if(Yii::$app->request->isAjax){
-            return $this->renderAjax('portfolio', compact('data'));
+            return $this->renderPartial('portfolio', compact('data'));
         }
         /* обычный запрос */
         return $this->render('portfolio', compact('data'));
