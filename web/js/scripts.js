@@ -134,7 +134,7 @@ window.onload = () => {
 
     const showMsg = () => { // показ окна чата с анимацией
         $('#msg-block').velocity('transition.bounceIn');
-        msgBlock.style.display = 'block';
+        // msgBlock.style.display = 'block';
     };
     /* Всплывающая подсказка над чатом */
     const showTooltip = () => {
