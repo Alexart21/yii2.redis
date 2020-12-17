@@ -17,6 +17,7 @@ class AdminLteAsset extends AssetBundle
 
     public $css = [
         'css/AdminLTE.min.css',
+//        'fontawesome/css/all.min.css',
 //        'css/glyphicons.css', //  !!!! подключал "вручную" в layout/main
 //        'css/admin_style.css', // !!!!   подключал "вручную" в layout/main
     ];

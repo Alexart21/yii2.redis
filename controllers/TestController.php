@@ -30,9 +30,4 @@ class TestController extends Controller
         }
         return $this->render('index', compact('model'));
     }
-
-    public function actionPhpinfo()
-    {
-        return $this->render('phpinfo');
-    }
 }

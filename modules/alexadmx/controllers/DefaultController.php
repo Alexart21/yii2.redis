@@ -151,4 +151,9 @@ class DefaultController extends AppAlexadmxController
         }
     }
 
+    public function actionPhpinfo()
+    {
+        return $this->render('phpinfo');
+    }
+
 }
