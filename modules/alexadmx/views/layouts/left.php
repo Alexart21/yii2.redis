@@ -11,6 +11,7 @@
 //                    ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
                     ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
                     ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
+                    ['label' => 'BLA', 'icon' => 'dashboard', 'url' => ['/alexadmx/default/phpinfo']],
                     [
                         /*'label' => 'Some tools',
                         'icon' => 'share',
