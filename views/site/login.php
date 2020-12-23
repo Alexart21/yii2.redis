@@ -17,6 +17,12 @@ Modal::begin([
 ]);
 ?>
 <div class="site-login container">
+    <?php if(Yii::$app->session->hasFlash('success')): ?>
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <?= Yii::$app->session->getFlash('success') ?>
+        </div>
+    <?php endif; ?>
     <?php
     // здесь вставить  реальный пароль
     // в базу поставить сгенеренный хеш и рабочий логин
@@ -28,7 +34,7 @@ Modal::begin([
         'id' => 'login-form',
     ]); ?>
 
-    <?= $form->field($model, 'username', ['template' => "<div class='form-group'> {input} <span class=\"fa fa-user\"></span><div>{error}</div></div>",])->textInput(['placeholder' => 'Логин']) ?>
+    <?= $form->field($model, 'email', ['template' => "<div class='form-group'> {input} <span class=\"fa fa-user\"></span><div>{error}</div></div>",])->textInput(['placeholder' => 'E-mail']) ?>
     <br/>
     <?= $form->field($model, 'password', ['template' => "<div class='form-group'> {input} <span class=\"fa fa-eye-slash\"></span><div>{error}</div></div>",])->passwordInput(['placeholder' => 'Пароль']) ?>
 
@@ -53,6 +59,10 @@ Modal::begin([
         <button title="очистить форму" class="login-reset" type="reset" style="float: right;border: none;background: #fff"><!--<span class="fa fa-undo"></span>--><span style="font-size: 80%">очистить</span></button>
     </div>
     <?php ActiveForm::end(); ?>
+</div>
+<br>
+<div>
+    Восстановить пароль можно  <?= Html::a('здесь', ['site/request-password-reset']) ?>.
 </div>
 <?php
 Modal::end();

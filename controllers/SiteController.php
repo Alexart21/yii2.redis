@@ -14,19 +14,22 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
-//use yii\web\View;
+use app\models\PasswordResetRequestForm;
+use app\models\ResetPasswordForm;
+use yii\web\BadRequestHttpException;
+use yii\base\InvalidValueException;
 
 class SiteController extends Controller
 {
-        /*dist function actionError()
-    {
-        $errorCode = Yii::$app->errorHandler->exception->statusCode;
-        $errorMsg = Yii::$app->errorHandler->exception->getMessage();
-            if ($errorCode == 404) {
-                $this->layout = 'error';
-               return $this->render('_404', ['errorMsg' => $errorMsg]);
-            }
-    }*/
+    /*dist function actionError()
+{
+    $errorCode = Yii::$app->errorHandler->exception->statusCode;
+    $errorMsg = Yii::$app->errorHandler->exception->getMessage();
+        if ($errorCode == 404) {
+            $this->layout = 'error';
+           return $this->render('_404', ['errorMsg' => $errorMsg]);
+        }
+}*/
     /**
      * @inheritdoc
      */
@@ -95,8 +98,8 @@ class SiteController extends Controller
 
         $request = Yii::$app->request;
         /* Отправка сообщения и запись в БД */
-        if ($request->isAjax && $request->isPost){
-            if($indexForm->load($request->post()) && $indexForm->validate()){
+        if ($request->isAjax && $request->isPost) {
+            if ($indexForm->load($request->post()) && $indexForm->validate()) {
                 $success = $indexForm->mailSend(); // отправка email
 
                 $msg = new Post();
@@ -106,51 +109,55 @@ class SiteController extends Controller
             }
         }
         /* AJAX вызов страницы (по клику в меню)*/
-        if($request->isAjax && $request->isGet){
+        if ($request->isAjax && $request->isGet) {
             return $this->renderPartial('index', compact('data', 'indexForm'));
         }
         /* обычный запрос */
         return $this->render('index', ['data' => $data, 'indexForm' => $indexForm]);
     }
 
-    public function actionSozdanie() {
+    public function actionSozdanie()
+    {
         $model = new Content();
         $data = $model->getContent();
         /* AJAX запрос */
-        if(Yii::$app->request->isAjax){
+        if (Yii::$app->request->isAjax) {
             return $this->renderPartial('sozdanie', compact('data'));
         }
         /* обычный запрос */
         return $this->render('sozdanie', compact('data'));
     }
 
-    public function actionProdvijenie() {
+    public function actionProdvijenie()
+    {
         $model = new Content();
         $data = $model->getContent();
         /* AJAX запрос */
-        if(Yii::$app->request->isAjax){
+        if (Yii::$app->request->isAjax) {
             return $this->renderPartial('prodvijenie', compact('data'));
         }
         /* обычный запрос */
         return $this->render('prodvijenie', compact('data'));
     }
 
-    public function actionParsing() {
+    public function actionParsing()
+    {
         $model = new Content();
         $data = $model->getContent();
         /* AJAX запрос */
-        if(Yii::$app->request->isAjax){
+        if (Yii::$app->request->isAjax) {
             return $this->renderPartial('parsing', compact('data'));
         }
         /* обычный запрос */
         return $this->render('parsing', compact('data'));
     }
 
-    public function actionPortfolio() {
+    public function actionPortfolio()
+    {
         $model = new Content();
         $data = $model->getContent();
         /* AJAX запрос */
-        if(Yii::$app->request->isAjax){
+        if (Yii::$app->request->isAjax) {
             return $this->renderPartial('portfolio', compact('data'));
         }
         /* обычный запрос */
@@ -194,7 +201,7 @@ class SiteController extends Controller
 
     public function actionPolitic()
     {
-       return $this->renderFile(__DIR__ . '/../views/site/politic.php');
+        return $this->renderFile(__DIR__ . '/../views/site/politic.php');
     }
 
     /* Виджет обратного звонка */
@@ -215,5 +222,67 @@ class SiteController extends Controller
             // модальное окно с формой
             return $this->renderAjax('call', compact('formModel'));
         }
+    }
+
+    /* Сброс пароля */
+
+    /**
+     * Requests password reset.
+     *
+     * @return mixed
+     */
+    public function actionRequestPasswordReset()
+    {
+        $this->layout = 'auth';
+        $model = new PasswordResetRequestForm();
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($model->sendEmail()) {
+                Yii::$app->session->setFlash('success', 'На указанный email выслана ссылка для сброса пароля');
+            } else {
+                Yii::$app->session->setFlash('error', 'Произошла ошибка.');
+            }
+            return $this->refresh();
+        }
+
+        return $this->render('passwordResetRequestForm', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Resets password.
+     *
+     * @param string $token
+     * @return mixed
+     * @throws BadRequestHttpException
+     */
+    public function actionResetPassword($token)
+    {
+        $this->layout = 'auth';
+
+        try {
+            $model = new ResetPasswordForm($token);
+        } catch (InvalidParamException $e) {
+            throw new BadRequestHttpException($e->getMessage());
+        }
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+//            die('HERE');
+            if ($model->resetPassword()) {
+                Yii::$app->session->setFlash('success', 'Новый пароль установлен');
+                return $this->redirect('/alexadmx');
+            } else {
+                Yii::$app->session->setFlash('error', 'Произошла ошибка !');
+                return $this->refresh();
+            }
+
+        }
+
+        return $this->render('resetPasswordForm', [
+            'model' => $model,
+        ]);
+
+
     }
 }

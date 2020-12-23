@@ -3,6 +3,8 @@ return [
     'siteUrl' =>'l917678y.beget.tech',
     'company' => 'Alex-art21',
     'email' => 'mail@site.ru',
+    'adminEmail' => 'admin@devreadwrite.com',
+    'supportEmail' => 'robot@devreadwrite.com',
     'tel1' => '+7(987) 668-04-84',
     'tel1_min' => '+79876680484',
     'tel1_i' => '79876680484',
@@ -15,4 +17,5 @@ return [
     */
     'rememberMeSec' => 2592000, // запомнить в секундах
     'rememberMeDay' => 30, // то же в сутках(показать пользователю)
+    'user.passwordResetTokenExpire' => 36000,
 ];

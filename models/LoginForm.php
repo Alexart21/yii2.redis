@@ -13,7 +13,7 @@ use yii\base\Model;
  */
 class LoginForm extends Model
 {
-    public $username;
+    public $email;
     public $password;
     public $rememberMe = false;
 //    public $reCaptcha;
@@ -27,8 +27,8 @@ class LoginForm extends Model
     {
         return [
             // username and password are both required
-            [['username', 'password'], 'required', 'message' => 'заполните это поле !'],
-            ['username', 'string', 'length' => [3, 50]],
+            [['email', 'password'], 'required', 'message' => 'заполните это поле !'],
+            ['email', 'email'],
             ['password', 'string', 'length' => [6, 200]],
             // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
@@ -53,7 +53,7 @@ class LoginForm extends Model
     public function attributeLabels()
     {
         return [
-            'username' => 'Логин',
+            'email' => 'Ваш E-mail',
             'password' => 'Пароль',
             'rememberMe' => '',
 //            'verifyCode' => 'Введите код',
@@ -105,7 +105,7 @@ class LoginForm extends Model
     public function getUser()
     {
         if ($this->_user === false) {
-            $this->_user = User::findByUsername($this->username);
+            $this->_user = User::findByEmail($this->email);
         }
 
         return $this->_user;
