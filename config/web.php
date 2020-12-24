@@ -131,7 +131,7 @@ $config = [
             'enableStrictParsing' => false,
             'rules' => [
                 // слева Url справа controller/action
-                '<action:(index|sozdanie|prodvijenie|parsing|portfolio|about|contacts|login|logout|mail_ok|politic|modal|call|call_ok|reset)>' => 'site/<action>',
+                '<action:(index|sozdanie|prodvijenie|parsing|portfolio|about|contacts|login|logout|mail_ok|politic|modal|call|call_ok|signup)>' => 'site/<action>',
             ],
         ],
 

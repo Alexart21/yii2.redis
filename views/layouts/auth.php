@@ -21,12 +21,7 @@ AuthAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+<!--<img src="/img/main_img/logo.png" style="position: absolute;opacity: .5;z-index: -10"></img>-->
 <br>
 <br>
     <?= $content ?>

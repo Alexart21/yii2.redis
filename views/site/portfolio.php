@@ -14,7 +14,7 @@ $portfArr = [
     [
         'name' => 'Соло мебель',
         'title' => 'Сайт фирмы Соло мебель',
-        'url' => 'www.s-solo.ru',
+        'url' => 'r98766na.beget.tech',
     ],
 ];
 ?>

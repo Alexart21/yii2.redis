@@ -64,7 +64,7 @@ class ResetPasswordForm extends Model
     {
         return [
             'password' => '',
-            'password_repeat' => ''
+            'password_repeat' => '',
         ];
     }
 

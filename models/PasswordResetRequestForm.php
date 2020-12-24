@@ -58,12 +58,7 @@ class PasswordResetRequestForm extends Model
         $body = 'Перенйдите по ссылке ' . Html::a(Html::encode($resetLink), $resetLink);
         $body .= '<br>Ссылка действительна в течении ' . Yii::$app->params['user.passwordResetTokenExpire']/60 . 'минут';
 
-        return Yii::$app
-            ->mailer
-            ->compose(
-               /* ['html' => 'passwordResetToken-html'],
-                ['user' => $user]*/
-            )
+        return Yii::$app->mailer->compose()
             ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'])
             ->setTo($this->email)
             ->setSubject('Password reset for ' . Yii::$app->name)

@@ -292,6 +292,16 @@ AppAsset::register($this);
                 <a href="https://policies.google.com/privacy">политикой конфиденциальности</a> и
                 <a href="https://policies.google.com/terms">условиями применения</a>.
             </small>
+            <br>
+            <a href="/signup">регистрация</a>
+            &nbsp;&nbsp;&nbsp;<a href="/login">войти</a>
+            <?php
+                if(!Yii::$app->user->getIsGuest()) :
+            ?>
+            &nbsp;&nbsp;&nbsp;<a href="/logout" data-method="post">выход</a>
+            <?php
+               endif;
+            ?>
         </footer>
         <!--/noindex-->
     </div>

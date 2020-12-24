@@ -17,5 +17,6 @@ return [
     */
     'rememberMeSec' => 2592000, // запомнить в секундах
     'rememberMeDay' => 30, // то же в сутках(показать пользователю)
-    'user.passwordResetTokenExpire' => 36000,
+    'user.passwordResetTokenExpire' => 3600, // время действия ссылки на сброс пароля
+    'user.registerTokenExpire' => 3600*24, // время действия ссылки на подтверждение
 ];

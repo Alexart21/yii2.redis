@@ -1,20 +1,12 @@
 body{
     position: relative;
     font-family: Arial;
-}
-
-/*body::before{
-    content: "";
     background: url("/img/main_img/logo.png");
     background-repeat: no-repeat;
-    opacity: 0.5;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    position: absolute;
-    z-index: 1000;
-}*/
+    /*opacity: 0.5;*/
+    /*top: 0;*/
+    /*left: 0;*/
+}
 
 /*
 .help-block{
@@ -28,6 +20,7 @@ body{
 }
 
 .site-login{
+    background: #fff;
     font-size: 18px;
     font-weight: bold;
     padding: 2em 2em 0 2em;

@@ -11,9 +11,11 @@ use app\models\CallForm;
 use app\models\Callback;
 use app\models\Post;
 use app\models\User;
+use app\models\SignupForm;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use yii\helpers\Html;
 use yii\web\Controller;
 use app\models\PasswordResetRequestForm;
 use app\models\ResetPasswordForm;
@@ -173,20 +175,60 @@ class SiteController extends Controller
 
     public function actionLogin()
     {
-        setcookie('rateLimit', Yii::$app->params['rateLimit']); // это чтобы передать в JS количество попыток входа
-        $this->layout = 'auth';
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
 
+        setcookie('rateLimit', Yii::$app->params['rateLimit']); // это чтобы передать в JS количество попыток входа
+        $this->layout = 'auth';
+
         $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            if(User::isUserAdmin(Yii::$app->user->identity->username)){ // для админа
-                return $this->redirect('/alexadmx');
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $user = User::findOne(['email' => $model->email]);
+            if($user->status == 10){ // статус 10 для подтвердивших регистрацию
+                $model->login();
+                if(User::isUserAdmin(Yii::$app->user->identity->username)){ // для админа
+                    return $this->redirect('/alexadmx');
+                }
+                return $this->goBack();
+            }elseif($user->status == 1){
+               throw new BadRequestHttpException('Пользователь с таким email не прошел подтверждение регистрации.Воспользуйтесь ссылкой отправленной Вам на email');
             }
-            return $this->goBack();
         }
         return $this->render('login', [
+            'model' => $model,
+        ]);
+    }
+
+
+    /* Регистрация пользователя */
+    public function actionSignup($token = null, $id = null)
+    {
+        if($token && $id){ // пришли по ссылке для подтверждения регистрации
+            $id = (int)$id;
+            $token = Html::encode($token);
+            $user = User::findOne(['id' => $id, 'register_token' => Html::encode($token)]);
+            if($user){
+                $user->status = 10;
+                $user->save();
+                Yii::$app->getUser()->login($user);
+                return $this->goHome();
+            }
+        }
+
+        $this->layout = 'auth';
+        $model = new SignupForm();
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($user = $model->signupRequest()) {
+                Yii::$app->session->setFlash('success', 'На указанный email выслана ссылка для подтверждения регистрации');
+            }else{
+                Yii::$app->session->setFlash('error', 'Произошла ошибка.');
+            }
+            return $this->refresh();
+        }
+
+        return $this->render('signup', [
             'model' => $model,
         ]);
     }
@@ -288,5 +330,10 @@ class SiteController extends Controller
         ]);
 
 
+    }
+
+    public function registerComplete($token)
+    {
+        die($token);
     }
 }

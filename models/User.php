@@ -15,6 +15,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     }
 
     const STATUS_DELETED = 0;
+    const STATUS_REQUEST = 1; // заявка на регистрацию
     const STATUS_ACTIVE = 10;
     const ROLE_USER = 10;
     const ROLE_ADMIN = 20;
@@ -30,7 +31,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     {
         return [
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
-            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_REQUEST, self::STATUS_DELETED]],
             ['role', 'in', 'range' => [self::ROLE_USER, self::ROLE_ADMIN]],
         ];
     }
@@ -40,7 +41,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
      */
     public static function findIdentity($id)
     {
-        return static::findOne($id);
+        return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
     }
 
     /**
@@ -189,4 +190,5 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
             return false;
         }
     }
+
 }

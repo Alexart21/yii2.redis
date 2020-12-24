@@ -3,15 +3,11 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Установка пароля';
+$this->title = 'Регистрация';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<br>
-<br>
-<br>
-<br>
-<div class="site-login container" style="max-width: 600px">
-    <h2><?= Html::encode($this->title) ?></h2>
+<div  class="site-login container" style="max-width: 600px">
+    <h1><?= Html::encode($this->title) ?></h1>
     <?php if(Yii::$app->session->hasFlash('success')): ?>
         <div class="alert alert-success alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -26,11 +22,13 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     <?php endif; ?>
 
-            <?php $form = ActiveForm::begin(['id' => 'reset-password-form']); ?>
-            <?= $form->field($model, 'password')->passwordInput(['autofocus' => true, 'placeholder' => 'новый пароль']) ?>
-            <?= $form->field($model, 'password_repeat')->passwordInput(['placeholder' => 'еще раз']) ?>
+            <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
+            <?= $form->field($model, 'username')->textInput(['autofocus' => true, 'placeholder' => 'Имя'])->label(false) ?>
+            <?= $form->field($model, 'email')->textInput(['placeholder' => 'email'])->label(false) ?>
+            <?= $form->field($model, 'password')->passwordInput(['placeholder' => 'пароль'])->label(false) ?>
+            <?= $form->field($model, 'password_repeat')->passwordInput(['placeholder' => 'пароль еще раз'])->label(false) ?>
             <div class="form-group">
-                <?= Html::submitButton('Сохранить', ['class' => 'btn btn-primary']) ?>
+                <?= Html::submitButton('Зарегистрироваться', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
             </div>
             <?php ActiveForm::end(); ?>
 
