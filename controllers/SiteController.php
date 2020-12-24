@@ -10,6 +10,7 @@ use app\models\LoginForm;
 use app\models\CallForm;
 use app\models\Callback;
 use app\models\Post;
+use app\models\User;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -180,6 +181,9 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            if(User::isUserAdmin(Yii::$app->user->identity->username)){ // для админа
+                return $this->redirect('/alexadmx');
+            }
             return $this->goBack();
         }
         return $this->render('login', [
@@ -271,7 +275,7 @@ class SiteController extends Controller
 //            die('HERE');
             if ($model->resetPassword()) {
                 Yii::$app->session->setFlash('success', 'Новый пароль установлен');
-                return $this->redirect('/alexadmx');
+                return $this->redirect('/login');
             } else {
                 Yii::$app->session->setFlash('error', 'Произошла ошибка !');
                 return $this->refresh();

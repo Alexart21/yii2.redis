@@ -7,6 +7,7 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use app\modules\alexadmx\models\Msg;
+use app\models\User;
 //use yii\web\ForbiddenHttpException;
 //use yii\filters\VerbFilter;
 
@@ -20,7 +21,10 @@ class AppAlexadmxController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'roles' => ['@'], // для авторизованных (в нашем сл. для админа)
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return User::isUserAdmin(Yii::$app->user->identity->username);
+                        }
                     ],
                 ],
             ],

@@ -3,7 +3,7 @@ use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 use yii\bootstrap4\Modal;
 
-$this->title = 'Вход в админку';
+$this->title = 'Вход';
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
 <?php

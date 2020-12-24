@@ -29,6 +29,9 @@ $config = [
         ],*/
     ],
     'components' => [
+        /*'authManager' => [
+            'class' => 'yii\rbac\PhpManager',
+        ],*/
         'view' => [
             'theme' => [
                 'pathMap' => [
