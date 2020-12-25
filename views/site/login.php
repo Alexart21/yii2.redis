@@ -34,7 +34,7 @@ Modal::begin([
         'id' => 'login-form',
     ]); ?>
 
-    <?= $form->field($model, 'email', ['template' => "<div class='form-group'> {input} <span class=\"fa fa-user\"></span><div>{error}</div></div>",])->textInput(['placeholder' => 'E-mail']) ?>
+    <?= $form->field($model, 'login_or_email', ['template' => "<div class='form-group'> {input} <span class=\"fa fa-user\"></span><div>{error}</div></div>",])->textInput(['placeholder' => 'Имя или E-mail']) ?>
     <br/>
     <?= $form->field($model, 'password', ['template' => "<div class='form-group'> {input} <span class=\"fa fa-eye-slash\"></span><div>{error}</div></div>",])->passwordInput(['placeholder' => 'Пароль']) ?>
 
@@ -51,18 +51,19 @@ Modal::begin([
         'action' => 'login',
     ]) */ ?>
 
-    <?= $form->field($model, 'rememberMe')->checkbox([
+    <?= $form->field($model, 'rememberMe')->checkbox(['checked' => true,
         'template' => "<div class=\"squaredTwo\">{input} {label}<span id =\"labelText\">Запомнить на " . Yii::$app->params['rememberMeDay'] . " дней</span></div>\n<div class=\"col-lg-8\">{error}</div>",
     ]) ?>
     <div class="form-group">
             <?= Html::submitButton('Отправить', ['class' => 'btn btn-success', 'name' => 'login-button']) ?>
-        <button title="очистить форму" class="login-reset" type="reset" style="float: right;border: none;background: #fff"><!--<span class="fa fa-undo"></span>--><span style="font-size: 80%">очистить</span></button>
+<!--        <button title="очистить форму" class="login-reset" type="reset" style="float: right;border: none;background: #fff"><span style="font-size: 80%">очистить</span></button>-->
     </div>
     <?php ActiveForm::end(); ?>
 </div>
 <br>
+<br>
 <div>
-    Восстановить пароль можно  <?= Html::a('здесь', ['site/request-password-reset']) ?>.
+    <b>Забыли пароль? Тогда Вам  <?= Html::a('сюда', ['site/request-password-reset']) ?>.</b>
 </div>
 <?php
 Modal::end();

@@ -55,7 +55,7 @@ class PasswordResetRequestForm extends Model
         }
 
         $resetLink = Yii::$app->urlManager->createAbsoluteUrl(['site/reset-password', 'token' => $user->password_reset_token]);
-        $body = 'Перенйдите по ссылке ' . Html::a(Html::encode($resetLink), $resetLink);
+        $body = 'Вы запрашивали сброс пароля. Перенйдите по ссылке ' . Html::a(Html::encode($resetLink), $resetLink, ['target' => '_blank']);
         $body .= '<br>Ссылка действительна в течении ' . Yii::$app->params['user.passwordResetTokenExpire']/60 . 'минут';
 
         return Yii::$app->mailer->compose()

@@ -52,9 +52,9 @@ class ResetPasswordForm extends Model
     public function rules()
     {
         return [
-            ['password', 'required'],
-            ['password', 'string', 'min' => 6],
-            ['password_repeat', 'required'],
+            [['password', 'password_repeat'], 'required'],
+            [['password', 'password_repeat'], 'trim'],
+            [['password', 'password_repeat'], 'string', 'min' => 6],
             ['password_repeat', 'compare', 'compareAttribute'=>'password', 'message'=>"Пароли не совпадают !" ],
 
         ];
@@ -63,8 +63,8 @@ class ResetPasswordForm extends Model
     public function attributeLabels()
     {
         return [
-            'password' => '',
-            'password_repeat' => '',
+            'password' => 'новый пароль',
+            'password_repeat' => 'повторите пароль',
         ];
     }
 
@@ -75,10 +75,7 @@ class ResetPasswordForm extends Model
      */
     public function resetPassword()
     {
-//        var_dump($this->_user);
-
         $user = $this->_user;
-//        die($this->password);
         $user->setPassword($this->password);
         $user->removePasswordResetToken();
         return $user->save(false);

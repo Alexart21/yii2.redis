@@ -293,15 +293,25 @@ AppAsset::register($this);
                 <a href="https://policies.google.com/terms">условиями применения</a>.
             </small>
             <br>
-            <a href="/signup">регистрация</a>
-            &nbsp;&nbsp;&nbsp;<a href="/login">войти</a>
+            <div class="text-center">
             <?php
-                if(!Yii::$app->user->getIsGuest()) :
+                if(Yii::$app->user->getIsGuest()) :
             ?>
-            &nbsp;&nbsp;&nbsp;<a href="/logout" data-method="post">выход</a>
+            <b style="font-size: 110%">Гость</b>&nbsp;&nbsp;&nbsp;
+            <a href="/signup">регистрация</a>&nbsp;&nbsp;
+            <a href="/login">войти</a>
+
             <?php
-               endif;
+                else:
             ?>
+
+            <b style="font-size: 110%"><?= Yii::$app->user->identity->username ?></b>&nbsp;&nbsp;&nbsp;
+            <a href="/logout" data-method="post">выход</a>
+
+            <?php
+              endif;
+            ?>
+            </div>
         </footer>
         <!--/noindex-->
     </div>

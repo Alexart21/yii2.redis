@@ -23,18 +23,14 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            ['username', 'trim'],
-            ['username', 'required'],
+            [['username', 'email', 'password', 'password_repeat'], 'required'],
+            [['username', 'email', 'password', 'password_repeat'], 'trim'],
             ['username', 'unique', 'targetClass' => '\app\models\User', 'message' => 'Такое имя уже существует.Введите другое'],
-            ['username', 'string', 'min' => 2, 'max' => 255],
-            ['email', 'trim'],
-            ['email', 'required'],
+            ['username', 'string', 'min' => 3, 'max' => 100],
             ['email', 'email'],
-            ['email', 'string', 'max' => 255],
+            ['email', 'string', 'max' => 100],
             ['email', 'unique', 'targetClass' => '\app\models\User', 'message' => 'Такой email уже существует.Введите другой'],
-            ['password', 'required'],
-            ['password', 'string', 'min' => 6],
-            ['password_repeat', 'required'],
+            ['password', 'string', 'min' => 6, 'max' => 255],
             ['password_repeat', 'compare', 'compareAttribute'=>'password', 'message'=>"Пароли не совпадают !" ],
 
         ];
@@ -50,15 +46,15 @@ class SignupForm extends Model
         ];
     }
 
-    public function sendEmail($user)
+    public function sendEmail($user, $model)
     {
         if (!$user) {
             return false;
         }
 
             $link = Yii::$app->urlManager->createAbsoluteUrl(['site/signup', 'id' =>  $user->id, 'token' => $user->register_token]);
-            $body = 'Для подтверждения регистрации перенйдите по ссылке ' . Html::a(Html::encode($link), $link);
-            $body .= '<br>Ссылка действительна в течении ' . Yii::$app->params['user.registerTokenExpire'] / 60 / 24 . 'часов';
+            $body =  'Вы зарегистрировались на сайте '. Yii::$app->name .' под именем <b style="font-size: 120%">' . $user->username . '</b>. Ваш пароль: <b style="font-size: 120%">' . $model->password . '</b><br> Для подтверждения регистрации перенйдите по ссылке ' . Html::a(Html::encode($link), $link, ['target' => '_blank']);
+            $body .= '<br>Ссылка действительна в течении ' . Yii::$app->params['user.registerTokenExpire'] /3600 . 'часа';
 
         return Yii::$app->mailer->compose()
             ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'])
@@ -68,27 +64,6 @@ class SignupForm extends Model
             ->send();
     }
 
-    /**
-     * Signs user up.
-     *
-     * @return User|null the saved model or null if saving fails
-     */
-    public function signup()
-    {
-
-        if (!$this->validate()) {
-            return null;
-        }
-
-        $user = new User();
-        $user->username = $this->username;
-        $user->email = $this->email;
-        $user->status = 1;
-        $user->register_token = time() . '_' . Yii::$app->security->generateRandomString(30);
-        $user->setPassword($this->password);
-        $user->generateAuthKey();
-        return $user->save() ? $user : null;
-    }
 
     /* Заносим в базу как юзера с неподтвержденной регистрацией */
     public function signupRequest()
@@ -97,11 +72,18 @@ class SignupForm extends Model
         $user->username = $this->username;
         $user->email = $this->email;
         $user->status = 1;
-        $user->register_token = time() . '_' . Yii::$app->security->generateRandomString(30);
+        $user->register_token = Yii::$app->security->generateRandomString(30) . '_' . time();;
         $user->setPassword($this->password);
         $user->generateAuthKey();
         $save = $user->save();
-        return $save && self::sendEmail($user);
+        return $save && self::sendEmail($user, $this);
+    }
+
+    public static function isValidToken($token)
+    {
+        $timestamp = (int) substr($token, strrpos($token, '_') + 1);
+        $expire = Yii::$app->params['user.registerTokenExpire'];
+        return $timestamp + $expire >= time();
     }
 
 }

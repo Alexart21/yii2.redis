@@ -184,7 +184,7 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $user = User::findOne(['email' => $model->email]);
+            $user = User::findByUsernameOrEmail($model->login_or_email); // проверяем по имени либо email
             if($user->status == 10){ // статус 10 для подтвердивших регистрацию
                 $model->login();
                 if(User::isUserAdmin(Yii::$app->user->identity->username)){ // для админа
@@ -202,16 +202,24 @@ class SiteController extends Controller
 
 
     /* Регистрация пользователя */
-    public function actionSignup($token = null, $id = null)
+    public function actionSignup($id = null, $token = null)
     {
-        if($token && $id){ // пришли по ссылке для подтверждения регистрации
+        if($id && $token){ // пришли по ссылке для подтверждения регистрации
+
             $id = (int)$id;
             $token = Html::encode($token);
+            if(!SignupForm::isValidToken($token)){
+                throw new BadRequestHttpException('Недействительный токен');
+            }
             $user = User::findOne(['id' => $id, 'register_token' => Html::encode($token)]);
+            if(!$user){
+                throw new BadRequestHttpException('Не найден пользователь, попробуйте пройти регистрацию повторно');
+            }
             if($user){
-                $user->status = 10;
+                $user->status = 10; // метим в базе как прошедшего подтверждение регистрации
+                $user->register_token = null;
                 $user->save();
-                Yii::$app->getUser()->login($user);
+                Yii::$app->getUser()->login($user, Yii::$app->params['rememberMeSec']); // запоминаем по умолчанию
                 return $this->goHome();
             }
         }

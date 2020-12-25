@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\models\User;
 use Yii;
 use yii\base\Model;
 
@@ -13,9 +14,9 @@ use yii\base\Model;
  */
 class LoginForm extends Model
 {
-    public $email;
+    public $login_or_email;
     public $password;
-    public $rememberMe = false;
+    public $rememberMe = true;
 //    public $reCaptcha;
 
     private $_user = false;
@@ -26,16 +27,12 @@ class LoginForm extends Model
     public function rules()
     {
         return [
-            // username and password are both required
-            [['email', 'password'], 'required', 'message' => 'заполните это поле !'],
-            ['email', 'email'],
-            ['password', 'string', 'length' => [6, 200]],
-            // rememberMe must be a boolean value
+            [['login_or_email', 'password'], 'required', 'message' => 'заполните это поле !'],
+            [['login_or_email', 'password'], 'trim'],
+            ['login_or_email',  'string', 'length' => [3, 100]],
+            ['password', 'string', 'length' => [6, 100]],
             ['rememberMe', 'boolean'],
-            // password is validated by validatePassword()
             ['password', 'validatePassword'],
-            // verifyCode needs to be entered correctly
-//            ['verifyCode', 'captcha'],
             //reCaptcha v2
             /*[['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::className(),
                 'secret' => '6LftVL4ZAAAAAOY8dZHmrKkRnX1Di43yH0DIq34Z', // unnecessary if reСaptcha is already configured
@@ -53,10 +50,10 @@ class LoginForm extends Model
     public function attributeLabels()
     {
         return [
-            'email' => 'Ваш E-mail',
+//            'email' => 'Ваш E-mail',
+            'login_or_email' => 'Ваше имя или E-mail',
             'password' => 'Пароль',
             'rememberMe' => '',
-//            'verifyCode' => 'Введите код',
 //            'reCaptcha' => '',
         ];
     }
@@ -72,7 +69,6 @@ class LoginForm extends Model
     {
         if (!$this->hasErrors()) {
             $user = $this->getUser();
-
             if (!$user || !$user->validatePassword($this->password)) {
                 $this->addError($attribute, 'Неверные логин/пароль');
             }
@@ -105,7 +101,7 @@ class LoginForm extends Model
     public function getUser()
     {
         if ($this->_user === false) {
-            $this->_user = User::findByEmail($this->email);
+            $this->_user = User::findByUsernameOrEmail($this->login_or_email);
         }
 
         return $this->_user;

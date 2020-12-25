@@ -27,11 +27,34 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php endif; ?>
 
             <?php $form = ActiveForm::begin(['id' => 'reset-password-form']); ?>
-            <?= $form->field($model, 'password')->passwordInput(['autofocus' => true, 'placeholder' => 'новый пароль']) ?>
-            <?= $form->field($model, 'password_repeat')->passwordInput(['placeholder' => 'еще раз']) ?>
+            <?= $form->field($model, 'password', ['template' => "<div class='form-group'> {input} <span class=\"fa fa-eye-slash\"></span><div>{error}</div></div>",])->passwordInput(['autofocus' => true, 'placeholder' => 'новый пароль'])->label(false) ?>
+            <?= $form->field($model, 'password_repeat', ['template' => "<div class='form-group'> {input} <span class=\"fa fa-eye-slash\"></span><div>{error}</div></div>",])->passwordInput(['placeholder' => 'повторите пароль'])->label(false) ?>
             <div class="form-group">
                 <?= Html::submitButton('Сохранить', ['class' => 'btn btn-primary']) ?>
             </div>
             <?php ActiveForm::end(); ?>
 
 </div>
+<script>
+    window.onload = function(){
+        // Переключение видимости символов пароля и иконки
+        const icon = document.querySelectorAll('.fa');
+        let inp = [];
+        // console.log(icon);
+        for(let i=0; i<icon.length; i++){
+            icon[i].addEventListener('click', (e)=>{
+                inp[i] = icon[i].previousElementSibling;
+                if (icon[i].classList.contains('fa-eye-slash')) {
+                    icon[i].classList.remove('fa-eye-slash');
+                    icon[i].classList.add('fa-eye');
+                    inp[i].setAttribute('type', 'text');
+                } else {
+                    icon[i].classList.remove('fa-eye');
+                    icon[i].classList.add('fa-eye-slash');
+                    inp[i].setAttribute('type', 'password');
+                }
+            });
+        }
+
+    };
+</script>

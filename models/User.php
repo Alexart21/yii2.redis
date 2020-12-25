@@ -15,7 +15,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     }
 
     const STATUS_DELETED = 0;
-    const STATUS_REQUEST = 1; // заявка на регистрацию
+    const STATUS_REQUEST = 1; // пользователь не прошедший подтверждение регистрации
     const STATUS_ACTIVE = 10;
     const ROLE_USER = 10;
     const ROLE_ADMIN = 20;
@@ -64,15 +64,8 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
      * @param string $username
      * @return static|null
      */
-    public static function findByUsername($username)
+    /*public static function findByUsername($username)
     {
-        /*foreach (self::$users as $user) {
-            if (strcasecmp($user['username'], $username) === 0) {
-                return new static($user);
-            }
-        }
-
-        return null;*/
         return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
     }
 
@@ -80,6 +73,12 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     public static function findByEmail($email)
     {
         return static::findOne(['email' => $email, 'status' => self::STATUS_ACTIVE]);
+    }*/
+
+    public static function findByUsernameOrEmail($string)
+    {
+        $sql = 'SELECT * FROM USER WHERE (username=:string and status=:status) or (email=:string and status=:status)';
+        return static::findBySql($sql, [':string' => $string, ':status' => self::STATUS_ACTIVE])->one();
     }
 
     /**
@@ -114,8 +113,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
      */
     public function validatePassword($password)
     {
-//        return $this->password === $password;
-        return \Yii::$app->security->validatePassword($password, $this->password_hash);
+        return Yii::$app->security->validatePassword($password, $this->password_hash);
     }
 
     /**
@@ -130,7 +128,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
 
     public function generateAuthKey()
     {
-        $this->auth_key = \Yii::$app->security->generateRandomString();
+        $this->auth_key = Yii::$app->security->generateRandomString();
     }
 
 
@@ -138,19 +136,9 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     /* Добавлено для восстановления пароля */
     public static function findByPasswordResetToken($token)
     {
-//        die('HERE');
-//        var_dump(static::isPasswordResetTokenValid($token));
-//        die;
         if (!static::isPasswordResetTokenValid($token)) {
             return null;
         }
-        /*$x = static::findOne([
-            'password_reset_token' => $token,
-            'status' => self::STATUS_ACTIVE,
-        ]);
-
-        var_dump($x);
-        die;*/
 
         return static::findOne([
             'password_reset_token' => $token,
@@ -173,7 +161,6 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     public function generatePasswordResetToken()
     {
         $this->password_reset_token = Yii::$app->security->generateRandomString(30) . '_' . time();
-//        $this->password_reset_token = 'bla-bla' . '_' . time();
     }
 
     public function removePasswordResetToken()
