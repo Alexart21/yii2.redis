@@ -17,6 +17,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed201
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
         <link rel="icon" type="image/png" href="/icons/64x64.png" />
+        <link rel="stylesheet" href="/fontawesome/css/all.min.css">
         <link rel="stylesheet" href="/css/admin_style.css">
         <link rel="stylesheet" href="/css/glyphicons.css">
         <script src="/js/admin_script.js"></script>

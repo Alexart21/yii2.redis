@@ -21,21 +21,26 @@ $allCallCount = $session->get('allCallCount');
         <!-- Sidebar toggle button
         Отсебятина
         -->
+        <style>
+            .sidebar-toggle:before{
+                content: none !important;
+            }
+        </style>
         <a href="#" id="left-togle" class="sidebar-toggle" data-toggle="push-menu" role="button">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+            <i class="fa fa-align-justify"></i>
         </a>
         <!---->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto py-4 py-md-0">
                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                    <a title="на сайт" class="nav-link" href="/"><i class="fa fa-home" style="font-size: 30px;color: #fff"></i></a>
+                </li>
+                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                     <a class="nav-link" href="/alexadmx">главная</a>
                 </li>
                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                     <a class="nav-link" href="/alexadmx/post" data-toggle="tooltip" title="Непрочитанных : <?= $newPostCount ?> Всего : <?= $allPostCount ?>">
-                        <i class="fa fa-envelope-o" style="font-size: 30px"></i>
+                        <i class="fa fa-envelope" style="font-size: 30px"></i>
                         <?php
                         $p = empty($newPostCount) ? null : $newPostCount;
                         ?>
@@ -55,7 +60,7 @@ $allCallCount = $session->get('allCallCount');
                     <h4 class="nav-link" style="background: #fff;height: 100%"><?= $user ?></h4>
                 </li>
                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                    <a class="nav-link" href="/logout" data-method="post">выйти</a>
+                    <a class="nav-link" href="/user/logout" data-method="post">выйти</a>
                 </li>
             </ul>
         </div>

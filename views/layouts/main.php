@@ -299,7 +299,7 @@ AppAsset::register($this);
             ?>
             <b style="font-size: 110%">Гость</b>&nbsp;&nbsp;&nbsp;
             <a href="/signup">регистрация</a>&nbsp;&nbsp;
-            <a href="/login">войти</a>
+            <a href="/login">вход</a>
 
             <?php
                 else:
@@ -316,7 +316,7 @@ AppAsset::register($this);
         <!--/noindex-->
     </div>
     <?php $this->endBody() ?>
-    <script type="application/javascript" src="//cdn.callbackhunter.com/cbh.js?hunter_code=d82e7609836e952210721f77d740e85b" charset="UTF-8" async="true"></script>
+<!--    <script type="application/javascript" src="//cdn.callbackhunter.com/cbh.js?hunter_code=d82e7609836e952210721f77d740e85b" charset="UTF-8" async="true"></script>-->
     </body>
     </html>
 <?php //Spaceless::end()?>

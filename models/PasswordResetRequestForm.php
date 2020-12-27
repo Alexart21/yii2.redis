@@ -12,6 +12,7 @@ use yii\helpers\Html;
 class PasswordResetRequestForm extends Model
 {
     public $email;
+//  public $reCaptcha;
 
     /**
      * @inheritdoc
@@ -27,6 +28,25 @@ class PasswordResetRequestForm extends Model
                 'filter' => ['status' => User::STATUS_ACTIVE],
                 'message' => 'Не найден пользователь с таким email'
             ],
+            //reCaptcha v2
+            /*[['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::className(),
+                'secret' => '6LftVL4ZAAAAAOY8dZHmrKkRnX1Di43yH0DIq34Z', // unnecessary if reСaptcha is already configured
+                'uncheckedMessage' => 'Подтвердите, что вы не робот'],*/
+
+            //reCaptcha v3
+            /* [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator3::className(),
+                 'secret' => '6LfNdr4ZAAAAAA-JNIMCWXlx_eeYv-JxJzJpdPdz', // unnecessary if reСaptcha is already configured
+                 'threshold' => 0.5,
+                 'action' => 'request-password-reset',
+             ],*/
+        ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'email' => '',
+//            'reCaptcha' => '',
         ];
     }
 
@@ -54,8 +74,8 @@ class PasswordResetRequestForm extends Model
             }
         }
 
-        $resetLink = Yii::$app->urlManager->createAbsoluteUrl(['site/reset-password', 'token' => $user->password_reset_token]);
-        $body = 'Вы запрашивали сброс пароля. Перенйдите по ссылке ' . Html::a(Html::encode($resetLink), $resetLink, ['target' => '_blank']);
+        $resetLink = Yii::$app->urlManager->createAbsoluteUrl(['user/reset-password', 'token' => $user->password_reset_token]);
+        $body = 'Вы запрашивали сброс пароля. Перейдите по ссылке ' . Html::a(Html::encode($resetLink), $resetLink, ['target' => '_blank']);
         $body .= '<br>Ссылка действительна в течении ' . Yii::$app->params['user.passwordResetTokenExpire']/60 . 'минут';
 
         return Yii::$app->mailer->compose()

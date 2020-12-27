@@ -15,13 +15,11 @@ $this->title = 'Административная панель';
     <h3><a href="/alexadmx/post">Входящие письма</a></h3>
     <h3><a href="/alexadmx/callback">Заказы обратных звонков</a></h3>
     <br>
-    <a class="btn btn-primary" href="/alexadmx/default/phpinfo">PHPINFO</a>
-
-    <br>
     <?php
     $dirArr = require_once __DIR__ . '/../inc/dirArr.php';
     ?>
     <hr>
+    <a class="btn btn-primary" href="/alexadmx/default/phpinfo">PHPINFO</a>
     <a class="btn btn-warning pjax" data-toggle="tooltip" title="Очистка временных папок(Рекомендуется перед бэкапом)" href="/alexadmx/default/clear">Очистка</a>
     <ol style="float: bottom">
         Очищаются папки:

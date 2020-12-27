@@ -27,6 +27,20 @@ $this->title = 'Сброс пароля';
     ]); ?>
     <h3>Укажите Ваш email для сброса пароля</h3>
     <?= $form->field($model, 'email')->textInput(['placeholder' => 'E-mail'])->label(false) ?>
+
+    <?/*= $form->field($model, 'reCaptcha')->widget(
+                \himiklab\yii2\recaptcha\ReCaptcha2::className(),
+                [
+                    'siteKey' => '6LftVL4ZAAAAAPQq_Sj_9_6Cyguka6qMJpDJRyWs', // unnecessary is reCaptcha component was set up
+                ]
+            )  */?>
+
+    <? /*= \himiklab\yii2\recaptcha\ReCaptcha3::widget([
+                'name' => 'reCaptcha',
+                'siteKey' => '6LfNdr4ZAAAAAIKLdnRzRCWwNM6HyP0qo0nYglbN', // unnecessary is reCaptcha component was set up
+                'action' => 'login',
+            ]) */ ?>
+
     <br/>
 
 

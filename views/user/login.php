@@ -58,12 +58,13 @@ Modal::begin([
             <?= Html::submitButton('Отправить', ['class' => 'btn btn-success', 'name' => 'login-button']) ?>
 <!--        <button title="очистить форму" class="login-reset" type="reset" style="float: right;border: none;background: #fff"><span style="font-size: 80%">очистить</span></button>-->
     </div>
+    <a href="/signup" style="display: block;float: right">зарегистрироваться</a>
     <?php ActiveForm::end(); ?>
 </div>
 <br>
 <br>
 <div>
-    <b>Забыли пароль? Тогда Вам  <?= Html::a('сюда', ['site/request-password-reset']) ?>.</b>
+    <b>Забыли пароль? Тогда Вам  <?= Html::a('сюда', ['user/request-password-reset']) ?>.</b>
 </div>
 <?php
 Modal::end();

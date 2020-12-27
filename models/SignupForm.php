@@ -16,6 +16,7 @@ class SignupForm extends Model
     public $email;
     public $password;
     public $password_repeat;
+//    public $reCaptcha;
 
     /**
      * @inheritdoc
@@ -32,7 +33,17 @@ class SignupForm extends Model
             ['email', 'unique', 'targetClass' => '\app\models\User', 'message' => 'Такой email уже существует.Введите другой'],
             ['password', 'string', 'min' => 6, 'max' => 255],
             ['password_repeat', 'compare', 'compareAttribute'=>'password', 'message'=>"Пароли не совпадают !" ],
+            //reCaptcha v2
+            /*[['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::className(),
+                'secret' => '6LftVL4ZAAAAAOY8dZHmrKkRnX1Di43yH0DIq34Z', // unnecessary if reСaptcha is already configured
+                'uncheckedMessage' => 'Подтвердите, что вы не робот'],*/
 
+            //reCaptcha v3
+            /* [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator3::className(),
+                 'secret' => '6LfNdr4ZAAAAAA-JNIMCWXlx_eeYv-JxJzJpdPdz', // unnecessary if reСaptcha is already configured
+                 'threshold' => 0.5,
+                 'action' => 'signup',
+             ],*/
         ];
     }
 
@@ -43,6 +54,7 @@ class SignupForm extends Model
             'email' => 'email',
             'password' => 'пароль',
             'password_repeat' => 'пароль еще раз',
+//            'reCaptcha' => '',
         ];
     }
 
@@ -52,7 +64,7 @@ class SignupForm extends Model
             return false;
         }
 
-            $link = Yii::$app->urlManager->createAbsoluteUrl(['site/signup', 'id' =>  $user->id, 'token' => $user->register_token]);
+            $link = Yii::$app->urlManager->createAbsoluteUrl(['user/signup', 'id' =>  $user->id, 'token' => $user->register_token]);
             $body =  'Вы зарегистрировались на сайте '. Yii::$app->name .' под именем <b style="font-size: 120%">' . $user->username . '</b>. Ваш пароль: <b style="font-size: 120%">' . $model->password . '</b><br> Для подтверждения регистрации перенйдите по ссылке ' . Html::a(Html::encode($link), $link, ['target' => '_blank']);
             $body .= '<br>Ссылка действительна в течении ' . Yii::$app->params['user.registerTokenExpire'] /3600 . 'часа';
 

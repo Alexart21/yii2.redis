@@ -153,7 +153,7 @@ class DefaultController extends AppAlexadmxController
 
     public function actionPhpinfo()
     {
-        return $this->render('phpinfo');
+        return $this->renderFile( __DIR__ .'/../views/default/phpinfo.php');
     }
 
 }

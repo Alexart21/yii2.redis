@@ -26,7 +26,7 @@ class AdminLteAsset extends AssetBundle
 //        'js/admin_script.js', // !!!!   подключал "вручную" в layout/main
     ];
     public $depends = [
-        'rmrevin\yii\fontawesome\AssetBundle',
+//        'rmrevin\yii\fontawesome\AssetBundle',
         'yii\web\YiiAsset',
 //        'yii\bootstrap\BootstrapAsset',
         'yii\bootstrap4\BootstrapPluginAsset',
