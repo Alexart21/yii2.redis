@@ -41,7 +41,7 @@ AppAsset::register($this);
         <?php if(Yii::$app->session->hasFlash('success')): ?>
             <?php
             Modal::begin([
-                'title' => '<span class=".h2">Вам выслано письмо</span>',
+//                'title' => '<span class=".h2">Вам выслано письмо</span>',
                 'id' => 'success-modal',
             ]);
             echo '<h2 class="text-success">' . Yii::$app->session->getFlash('success') . '</h2>';

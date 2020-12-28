@@ -77,8 +77,15 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
 
     public static function findByUsernameOrEmail($string)
     {
-        $sql = 'SELECT * FROM USER WHERE (username=:string and status=:status) or (email=:string and status=:status)';
-        return static::findBySql($sql, [':string' => $string, ':status' => self::STATUS_ACTIVE])->one();
+        /*$sql = 'SELECT * FROM USER WHERE (username=:string and status=:status) or (email=:string and status=:status)';
+          return static::findBySql($sql, [':string' => $string, ':status' => self::STATUS_ACTIVE])->one();
+        */
+        $sql = 'SELECT * FROM USER WHERE username=:string or email=:string';
+        return static::findBySql($sql, [':string' => $string])->one();
+    }
+
+    public function isStatusActive(){
+        return $this->status == self::STATUS_ACTIVE;
     }
 
     /**

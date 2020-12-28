@@ -81,7 +81,7 @@ class SignupForm extends Model
     }
 
 
-    /* Заносим в базу как юзера с неподтвержденной регистрацией */
+    /* Заносим в базу как юзера с неподтвержденной регистрацией и оправляем письмо */
     public function signupRequest()
     {
         $user = new User();

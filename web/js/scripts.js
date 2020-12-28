@@ -117,6 +117,9 @@ window.onload = () => {
     const mailInfo = document.querySelector('#success-modal');
     if(mailInfo) {
         $('#success-modal').modal();
+        /*setTimeout(function() {
+            $('#success-modal').modal('hide');
+        }, 4000);*/
     }
     // анимация в шапке
     const shtorka = document.querySelector('.shtorka');

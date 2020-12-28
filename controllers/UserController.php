@@ -91,15 +91,19 @@ class UserController  extends Controller
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $user = User::findByUsernameOrEmail($model->login_or_email); // проверяем по имени либо email
-            if($user->status == 10){ // статус 10 для подтвердивших регистрацию
-                $model->login();
-                if(User::isUserAdmin(Yii::$app->user->identity->username)){ // для админа
-                    return $this->redirect('/alexadmx');
+            //
+            if($user) {
+                if ($user->isStatusActive()) { // статус 10 для активных
+                    $model->login();
+                    if (User::isUserAdmin(Yii::$app->user->identity->username)) { // для админа
+                        return $this->redirect('/alexadmx');
+                    }
+                    return $this->goBack();
+                } else {
+                    throw new BadRequestHttpException('Пользователь с таким email не прошел подтверждение регистрации.Воспользуйтесь ссылкой отправленной Вам на email или свяжитесь с администратором.');
                 }
-                return $this->goBack();
-            }elseif($user->status == 1){
-                throw new BadRequestHttpException('Пользователь с таким email не прошел подтверждение регистрации.Воспользуйтесь ссылкой отправленной Вам на email');
             }
+            //
         }
         return $this->render('login', [
             'model' => $model,
@@ -117,36 +121,35 @@ class UserController  extends Controller
             if(!SignupForm::isValidToken($token)){
                 throw new BadRequestHttpException('Недействительный токен');
             }
+
             $user = User::findOne(['id' => $id, 'register_token' => $token]);
             if(!$user){
                 throw new BadRequestHttpException('Не найден пользователь, попробуйте пройти регистрацию повторно');
             }
-            if($user){
-                $user->status = 10; // метим в базе как прошедшего подтверждение регистрации
-                $user->register_token = null;
-                $res = $user->save();
-                if ($res) {
-                    Yii::$app->session->setFlash('success', 'Вы успешно прошли регистрацию! Введите данные для входа.');
-                }else{
-                    Yii::$app->session->setFlash('error', 'Произошла ошибка.');
-                }
-                return $this->redirect('/login');
+
+            $user->status = 10; // метим в базе как прошедшего подтверждение регистрации
+            $user->register_token = null;
+            if ($user->save()) {
+                Yii::$app->session->setFlash('success', 'Вы успешно прошли регистрацию! Введите данные для входа.');
+            }else{
+                Yii::$app->session->setFlash('error', 'Произошла ошибка.');
+            }
+            return $this->redirect('/login');
 
                 /* Вариант с автоматическим входом */
                /* Yii::$app->getUser()->login($user, Yii::$app->params['rememberMeSec']); // запоминаем по умолчанию
                 return $this->goHome();*/
-            }
         }
-
+        //
         $this->layout = 'auth';
         $model = new SignupForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($user = $model->signupRequest()) {
+            if ($model->signupRequest()) { // занесли в базу и отправили пимьмо заявителю
                 Yii::$app->session->setFlash('success', 'Перейдите по ссылке, высланной Вам на E-mail для подтверждения регистрации');
                 return $this->redirect('/');
             }else{
-                Yii::$app->session->setFlash('error', 'Произошла ошибка.');
+                Yii::$app->session->setFlash('error', 'Во время выполнения запроса произошла ошибка!');
                 return $this->refresh();
             }
         }
@@ -168,13 +171,7 @@ class UserController  extends Controller
         return $this->goHome();
     }
 
-    /* Сброс пароля */
-
-    /**
-     * Requests password reset.
-     *
-     * @return mixed
-     */
+    /* Запрос на сброс пароля */
     public function actionRequestPasswordReset()
     {
         $this->layout = 'auth';
@@ -185,7 +182,7 @@ class UserController  extends Controller
                 Yii::$app->session->setFlash('success', 'Пройдите по ссылке, высланной Вам на E-mail для сброса пароля');
                 return $this->redirect('/');
             } else {
-                Yii::$app->session->setFlash('error', 'Произошла ошибка.');
+                Yii::$app->session->setFlash('error', 'Произошла ошибка.Повторите попытку или свяжитесь с администратором.');
                 return $this->refresh();
             }
 
@@ -203,15 +200,15 @@ class UserController  extends Controller
      * @return mixed
      * @throws BadRequestHttpException
      */
-    /* Сюда попадаем только по ссылке */
+    /* Сюда попадаем только по ссылке высланной на email*/
     public function actionResetPassword($token)
     {
+        /* Вся валидация токена в конструкторе модели ResetPasswordForm */
         try {
             $model = new ResetPasswordForm($token);
         }catch(InvalidValueException $e){
             new BadRequestHttpException($e->getMessage());
         }
-
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $res = $model->resetPassword(); // Имя пользователя сюда возвращается при успехе
@@ -219,7 +216,7 @@ class UserController  extends Controller
                 Yii::$app->session->setFlash('success', 'Новый пароль установлен для пользователя ' . Html::encode($res));
                 return $this->redirect('/login');
             } else {
-                Yii::$app->session->setFlash('error', 'Произошла ошибка !');
+                Yii::$app->session->setFlash('error', 'Во время выполнения запроса произошла ошибка!');
                 return $this->refresh();
             }
         }
