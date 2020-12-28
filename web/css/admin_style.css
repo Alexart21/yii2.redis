@@ -354,3 +354,11 @@ a.alertm_close {
 .content-wrapper{
     margin-top: -60px !important;
 }
+
+.has-error{
+    color: red !important;
+}
+
+.help-block{
+    color: red !important;
+}

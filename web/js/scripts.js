@@ -113,6 +113,11 @@ function readCookie(name) {
 /////////////
 /* Далее в обертке window.onload */
 window.onload = () => {
+    // модалка с оповещением что выслано письмо
+    const mailInfo = document.querySelector('#success-modal');
+    if(mailInfo) {
+        $('#success-modal').modal();
+    }
     // анимация в шапке
     const shtorka = document.querySelector('.shtorka');
     shtorka.classList.add('shtorka-animate');

@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     <?php endif; ?>
 
-            <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
+            <?php $form = ActiveForm::begin(['id' => 'form-signup',]); ?>
             <?= $form->field($model, 'username')->textInput(['autofocus' => true, 'placeholder' => 'Имя'])->label(false) ?>
             <?= $form->field($model, 'email')->textInput(['placeholder' => 'email'])->label(false) ?>
             <?= $form->field($model, 'password', ['template' => "<div class='form-group'> {input} <span class=\"fa fa-eye-slash\"></span><div>{error}</div></div>",])->passwordInput(['placeholder' => 'пароль'])->label(false) ?>
@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <? /*= \himiklab\yii2\recaptcha\ReCaptcha3::widget([
                 'name' => 'reCaptcha',
                 'siteKey' => '6LfNdr4ZAAAAAIKLdnRzRCWwNM6HyP0qo0nYglbN', // unnecessary is reCaptcha component was set up
-                'action' => 'login',
+                'action' => 'signup',
             ]) */ ?>
 
             <div class="form-group">

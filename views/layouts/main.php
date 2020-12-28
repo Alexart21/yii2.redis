@@ -3,6 +3,7 @@
 use app\assets\AppAsset;
 use yii\helpers\Html;
 use yii\widgets\Pjax;
+use yii\bootstrap4\Modal;
 
 //use yii\widgets\Spaceless;
 
@@ -36,9 +37,19 @@ AppAsset::register($this);
     <!-- end loader -->
     <output id="my-modal"></output>
     <div id="container">
-        <!--noindex-->
-        <!--<div class="vetka"></div>-->
-        <!--/noindex-->
+        <!--Flash-->
+        <?php if(Yii::$app->session->hasFlash('success')): ?>
+            <?php
+            Modal::begin([
+                'title' => '<span class=".h2">Вам выслано письмо</span>',
+                'id' => 'success-modal',
+            ]);
+            echo '<h2 class="text-success">' . Yii::$app->session->getFlash('success') . '</h2>';
+            Modal::end();
+            ?>
+        <!-- "Запуск" модалки в scripts.js -->
+        <?php endif; ?>
+        <!--end Flash-->
         <!--noindex-->
         <nav class="mob-menu-list">
             <strong class="mob-menu-header" title="создание сайтов">Создание сайтов</strong>
@@ -303,11 +314,8 @@ AppAsset::register($this);
 
             <?php
                 else:
-            ?>
-
-            <b style="font-size: 110%"><?= Yii::$app->user->identity->username ?></b>&nbsp;&nbsp;&nbsp;
-            <a href="/logout" data-method="post">выход</a>
-
+            ?>&nbsp;&nbsp;&nbsp;
+            <a href="/logout" data-method="post">выход</a>(<b style="font-size: 110%"><?= Yii::$app->user->identity->username ?></b>)
             <?php
               endif;
             ?>

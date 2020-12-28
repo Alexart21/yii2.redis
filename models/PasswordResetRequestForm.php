@@ -45,7 +45,7 @@ class PasswordResetRequestForm extends Model
     public function attributeLabels()
     {
         return [
-            'email' => '',
+            'email' => 'E-mail',
 //            'reCaptcha' => '',
         ];
     }
@@ -74,15 +74,15 @@ class PasswordResetRequestForm extends Model
             }
         }
 
-        $resetLink = Yii::$app->urlManager->createAbsoluteUrl(['user/reset-password', 'token' => $user->password_reset_token]);
-        $body = 'Вы запрашивали сброс пароля. Перейдите по ссылке ' . Html::a(Html::encode($resetLink), $resetLink, ['target' => '_blank']);
-        $body .= '<br>Ссылка действительна в течении ' . Yii::$app->params['user.passwordResetTokenExpire']/60 . 'минут';
-
-        return Yii::$app->mailer->compose()
-            ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'])
+        return Yii::$app->mailer->compose(
+            ['html' => 'pass-reset-html',
+//                'text' => 'pass-reset-text',
+            ],
+            ['user' => $user],
+        )
+            ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name])
             ->setTo($this->email)
-            ->setSubject('Password reset for ' . Yii::$app->name)
-            ->setHtmlBody($body)
+            ->setSubject('Смена пароля на сайте ' . Yii::$app->name)
             ->send();
     }
 

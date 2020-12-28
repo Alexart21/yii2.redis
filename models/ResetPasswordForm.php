@@ -4,6 +4,7 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\base\InvalidParamException;
+use yii\web\BadRequestHttpException;
 
 /**
  * Password reset form
@@ -29,19 +30,13 @@ class ResetPasswordForm extends Model
      */
     public function __construct($token, $config = [])
     {
-//        die('dsds');
         if (empty($token) || !is_string($token)) {
-            throw new InvalidParamException('Password reset token cannot be blank.');
+            throw new BadRequestHttpException('Пустой токен !');
         }
-//        var_dump(User::findByPasswordResetToken($token));
-//        var_dump($token);
-//        die;
         $this->_user = User::findByPasswordResetToken($token);
 
-//        var_dump($this->_user);die;
-
         if (!$this->_user) {
-            throw new InvalidParamException('Wrong password reset token...');
+            throw new BadRequestHttpException('Неверный токен !');
         }
 
         parent::__construct($config);
@@ -90,7 +85,8 @@ class ResetPasswordForm extends Model
         $user = $this->_user;
         $user->setPassword($this->password);
         $user->removePasswordResetToken();
-        return $user->save(false);
+        $save = $user->save(false);
+        return $save ? $user->username : null; // имя пригодиться
     }
 
 }

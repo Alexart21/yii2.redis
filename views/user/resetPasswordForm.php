@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <? /*= \himiklab\yii2\recaptcha\ReCaptcha3::widget([
                         'name' => 'reCaptcha',
                         'siteKey' => '6LfNdr4ZAAAAAIKLdnRzRCWwNM6HyP0qo0nYglbN', // unnecessary is reCaptcha component was set up
-                        'action' => 'login',
+                        'action' => 'reset-password',
             ]) */ ?>
 
             <div class="form-group">

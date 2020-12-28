@@ -64,15 +64,19 @@ class SignupForm extends Model
             return false;
         }
 
-            $link = Yii::$app->urlManager->createAbsoluteUrl(['user/signup', 'id' =>  $user->id, 'token' => $user->register_token]);
-            $body =  'Вы зарегистрировались на сайте '. Yii::$app->name .' под именем <b style="font-size: 120%">' . $user->username . '</b>. Ваш пароль: <b style="font-size: 120%">' . $model->password . '</b><br> Для подтверждения регистрации перенйдите по ссылке ' . Html::a(Html::encode($link), $link, ['target' => '_blank']);
-            $body .= '<br>Ссылка действительна в течении ' . Yii::$app->params['user.registerTokenExpire'] /3600 . 'часа';
-
-        return Yii::$app->mailer->compose()
-            ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'])
+        return Yii::$app->mailer->compose(
+            [
+                'html' => 'signUp-html',
+//                'text' => 'signUp-text',
+            ],
+            [
+                'user' => $user,
+                'password' => $model->password,
+            ],
+        )
+            ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name])
             ->setTo($user->email)
             ->setSubject('Подтверждение регистрации ' . Yii::$app->name)
-            ->setHtmlBody($body)
             ->send();
     }
 
