@@ -14,6 +14,7 @@ $this->title = 'Административная панель';
 <!--    --><?php //endif; ?>
     <h3><a href="/alexadmx/post">Входящие письма</a></h3>
     <h3><a href="/alexadmx/callback">Заказы обратных звонков</a></h3>
+    <h3><a href="/alexadmx/user">Все пользователи</a></h3>
     <br>
     <?php
     $dirArr = require_once __DIR__ . '/../inc/dirArr.php';

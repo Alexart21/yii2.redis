@@ -14,20 +14,6 @@ use yii\web\NotFoundHttpException;
  */
 class PostController extends AppAlexadmxController
 {
-
-    /*dist function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }*/
-
-
     /**
      * Lists all Post models.
      * @return mixed
