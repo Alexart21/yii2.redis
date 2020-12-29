@@ -2,10 +2,12 @@
 
 namespace app\modules\alexadmx\controllers;
 
+use app\modules\alexadmx\models\UnregisterUserSearch;
 use Yii;
 use app\models\User;
 use app\modules\alexadmx\models\SetPassForm;
 use app\modules\alexadmx\models\UserSearch;
+use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -110,8 +112,23 @@ class UserController extends AppAlexadmxController
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
 
+    public function actionUpdateStatus($id)
+    {
+        $id = (int)$id;
+        $user = User::findOne(['id' => $id]);
+        $user->status = User::STATUS_ACTIVE;
+        if ($user->save()) {
+            Yii::$app->session->setFlash('success', 'Для ' . $user->username . ' установлен статус STATUS_ACTIVE=' . User::STATUS_ACTIVE);
+        }else{
+            Yii::$app->session->setFlash('error', 'Произошла ошибка при запросе.');
+        }
+        return $this->redirect('/alexadmx/user/unregister?UserSearch[status]=1');
+    }
+
+    /* Установка пароля */
     public function actionSetpass($id)
     {
+        $id = (int)$id;
         // не путайся 2 модели тут
         $user = User::findOne(['id' => $id]);
         $model = new SetPassForm();
@@ -119,14 +136,25 @@ class UserController extends AppAlexadmxController
         if ($model->load(Yii::$app->request->post()) && $model->validate()){
             $user->setPassword($model->password);
             if ($user->save()) {
-                Yii::$app->session->setFlash('success', 'Изменен пароль для ' . $user->username);
+                Yii::$app->session->setFlash('success', 'Установлен пароль для ' . $user->username);
             }else{
                 Yii::$app->session->setFlash('error', 'Произошла ошибка при запросе.');
             }
 
-            return $this->redirect('/alexadmx/user');
+            return $this->redirect('/alexadmx/user/view?id=' . $user->id);
         }
 
         return $this->render('setpass', compact('user', 'model'));
+    }
+
+    /* Пользователи не подтвердившие регистрацию */
+    public function actionUnregister()
+    {
+        $searchModel = new UserSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        return $this->render('unregister', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 }

@@ -65,6 +65,7 @@ button:hover{
     display: inline-block !important;
    margin-left: -35px !important;
     color: #e61b05;
+    cursor: pointer;
 }
 
 ::placeholder{

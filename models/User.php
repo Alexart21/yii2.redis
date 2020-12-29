@@ -7,6 +7,22 @@ use yii\behaviors\TimestampBehavior;
 use Yii;
 //use yii\filters\RateLimitInterface;
 
+/**
+ * This is the model class for table "user".
+ *
+ * @property string $id
+ * @property string $username
+ * @property string $email
+ * @property int $role
+ * @property string $password_hash
+ * @property string $auth_key
+ * @property string $register_token
+ * @property string $password_reset_token
+ * @property int $status
+ * @property int $created_at
+ * @property int $updated_at
+ */
+
 class User extends ActiveRecord implements \yii\web\IdentityInterface
 {
     public static function tableName()
@@ -33,6 +49,15 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_REQUEST, self::STATUS_DELETED]],
             ['role', 'in', 'range' => [self::ROLE_USER, self::ROLE_ADMIN]],
+
+            [['username', 'email'], 'required'],
+            [['role', 'status', 'created_at', 'updated_at'], 'integer'],
+            [['register_token', 'password_reset_token'], 'string'],
+            [['username'], 'string', 'max' => 30],
+            [['email', 'password_hash', 'auth_key'], 'string', 'max' => 255],
+
+            ['email', 'unique', 'message' => 'Такой email уже существует.'],
+            ['username', 'unique', 'message' => 'Такое имя уже существует.'],
         ];
     }
 

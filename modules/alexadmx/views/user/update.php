@@ -5,8 +5,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\User */
 
-$this->title = Yii::t('app', 'Update User: {name}', [
-    'name' => $model->id,
+$this->title = Yii::t('app', 'Редактирование для: "{name}" id:{id}', [
+    'name' => $model->username,
+    'id' => $model->id,
 ]);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Users'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
@@ -19,5 +20,5 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
-
+<h4 class="text-info">Пароль, если необходимо, устанавливается отдельно => <a href="/alexadmx/user/setpass?id=<?= $model->id ?>" class="text-danger">/alexadmx/user/setpass?id=<?= $model->id ?></a></h4>
 </div>

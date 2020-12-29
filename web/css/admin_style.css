@@ -362,3 +362,42 @@ a.alertm_close {
 .help-block{
     color: red !important;
 }
+
+
+
+.role-table th, .role-table td{
+    max-width: 400px;
+    border: 1px solid #222;
+    padding: .5em;
+    text-align: center;
+}
+
+.pass input, .user-form input{
+    display: inline-block;
+   width: 300px !important;
+}
+
+.fa-eye-slash, .fa-eye{
+    /*display: inline !important;*/
+    /*display: inline-block !important;*/
+    margin-left: -35px !important;
+    color: #e61b05;
+    cursor: pointer;
+}
+
+::placeholder{
+    font-weight: bold;
+}
+
+.breadcrumb{
+    font-weight: bold !important;
+    letter-spacing: 1px !important;
+}
+
+.breadcrumb>.active{
+    font-weight: normal;
+}
+
+.underline{
+    text-decoration: underline;
+}
