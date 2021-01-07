@@ -30,11 +30,12 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
         return 'user';
     }
 
-    const STATUS_DELETED = 0;
+    const STATUS_DELETED = 0; // помечен удаленным
     const STATUS_REQUEST = 1; // пользователь не прошедший подтверждение регистрации
-    const STATUS_ACTIVE = 10;
-    const ROLE_USER = 10;
-    const ROLE_ADMIN = 20;
+    const STATUS_ACTIVE = 10; // активный
+    const ROLE_USER = 10; // статус пользователя
+    const ROLE_ADMIN = 20; // статус админа
+    const ADMIN_ID = 1; // админ только один и с таким id
 
     public function behaviors()
     {
@@ -53,9 +54,8 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
             [['username', 'email'], 'required'],
             [['role', 'status', 'created_at', 'updated_at'], 'integer'],
             [['register_token', 'password_reset_token'], 'string'],
-            [['username'], 'string', 'max' => 30],
+            [['username'], 'string', 'length' => [3, 100]],
             [['email', 'password_hash', 'auth_key'], 'string', 'max' => 255],
-
             ['email', 'unique', 'message' => 'Такой email уже существует.'],
             ['username', 'unique', 'message' => 'Такое имя уже существует.'],
         ];
@@ -102,11 +102,9 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
 
     public static function findByUsernameOrEmail($string)
     {
-        /*$sql = 'SELECT * FROM USER WHERE (username=:string and status=:status) or (email=:string and status=:status)';
-          return static::findBySql($sql, [':string' => $string, ':status' => self::STATUS_ACTIVE])->one();
-        */
-        $sql = 'SELECT * FROM USER WHERE username=:string or email=:string';
-        return static::findBySql($sql, [':string' => $string])->one();
+       /*$sql = 'SELECT * FROM USER WHERE username=:string or email=:string';
+       return static::findBySql($sql, [':string' => $string])->one();*/
+      return static::find()->Where(['username' => $string])->orWhere(['email' => $string])->one();
     }
 
     public function isStatusActive(){
@@ -200,14 +198,10 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
         $this->password_reset_token = null;
     }
 
+    /* Проверка на админа */
     public static function isUserAdmin($username)
     {
-        if (static::findOne(['username' => $username, 'role' => self::ROLE_ADMIN]))
-        {
-            return true;
-        } else {
-            return false;
-        }
+        return (bool)static::findOne(['username' => $username, 'role' => self::ROLE_ADMIN, 'id' => self::ADMIN_ID]);
     }
 
 }

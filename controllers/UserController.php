@@ -14,6 +14,7 @@ use yii\helpers\Html;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use Yii;
+use yii\web\MethodNotAllowedHttpException;
 
 
 class UserController  extends Controller
@@ -82,6 +83,8 @@ class UserController  extends Controller
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
+            Yii::$app->session->setFlash('success', '<h2 style="color: green">Вы уже залогинены как ' . Yii::$app->user->identity->username);
+
             return $this->goHome();
         }
 
@@ -127,14 +130,15 @@ class UserController  extends Controller
                 throw new BadRequestHttpException('Не найден пользователь, попробуйте пройти регистрацию повторно');
             }
 
-            $user->status = 10; // метим в базе как прошедшего подтверждение регистрации
+            $user->status = User::STATUS_ACTIVE; // метим в базе как прошедшего подтверждение регистрации
             $user->register_token = null;
             if ($user->save()) {
                 Yii::$app->session->setFlash('success', 'Вы успешно прошли регистрацию! Введите данные для входа.');
+                return $this->redirect('/login');
             }else{
                 Yii::$app->session->setFlash('error', 'Произошла ошибка.');
+                return $this->redirect('/signup');
             }
-            return $this->redirect('/login');
 
                 /* Вариант с автоматическим входом */
                /* Yii::$app->getUser()->login($user, Yii::$app->params['rememberMeSec']); // запоминаем по умолчанию
@@ -178,6 +182,10 @@ class UserController  extends Controller
         $model = new PasswordResetRequestForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($model->email == Yii::$app->params['adminEmail']){
+                throw new MethodNotAllowedHttpException('Вы не можете изменить пароль администратора таким способом !!!');
+            }
+
             if ($model->sendEmail()) {
                 Yii::$app->session->setFlash('success', 'Пройдите по ссылке, высланной Вам на E-mail для сброса пароля');
                 return $this->redirect('/');

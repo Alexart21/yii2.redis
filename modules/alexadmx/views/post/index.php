@@ -66,7 +66,7 @@ $session = Yii::$app->session;
             td[i].style.background = '#7eff91';
             td[i].style.cursor = 'pointer';
             let t = td[i];
-            td[i].addEventListener('click', function () {
+            td[i].addEventListener('click', function () { // по клику делаем прочитанным
                 read(id, 'post', tr, t);
             });
         }

@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use Yii;
 use yii\base\Model;
 use yii\web\BadRequestHttpException;
 
@@ -38,6 +39,11 @@ class ResetPasswordForm extends Model
             throw new BadRequestHttpException('Неверный токен !');
         }
 
+        // еще одна перестраховка
+        if ($this->_user->email == Yii::$app->params['adminEmail']){
+            throw new BadRequestHttpException('Вы не можете изменить пароль администратора таким способом.');
+        }
+
         parent::__construct($config);
     }
 
@@ -49,7 +55,7 @@ class ResetPasswordForm extends Model
         return [
             [['password', 'password_repeat'], 'required'],
             [['password', 'password_repeat'], 'trim'],
-            [['password', 'password_repeat'], 'string', 'min' => 6],
+            [['password', 'password_repeat'], 'string', 'length' => [6, 100]],
             ['password_repeat', 'compare', 'compareAttribute'=>'password', 'message'=>"Пароли не совпадают !" ],
             //reCaptcha v2
             /*[['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::className(),

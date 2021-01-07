@@ -27,11 +27,11 @@ class SignupForm extends Model
             [['username', 'email', 'password', 'password_repeat'], 'required'],
             [['username', 'email', 'password', 'password_repeat'], 'trim'],
             ['username', 'unique', 'targetClass' => '\app\models\User', 'message' => 'Такое имя уже существует.Введите другое'],
-            ['username', 'string', 'min' => 3, 'max' => 100],
+            ['username', 'string', 'length' => [3, 100]],
             ['email', 'email'],
             ['email', 'string', 'max' => 100],
             ['email', 'unique', 'targetClass' => '\app\models\User', 'message' => 'Такой email уже существует.Введите другой'],
-            ['password', 'string', 'min' => 6, 'max' => 255],
+            ['password', 'string', 'length' => [6, 100]],
             ['password_repeat', 'compare', 'compareAttribute'=>'password', 'message'=>"Пароли не совпадают !" ],
             //reCaptcha v2
             /*[['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::className(),

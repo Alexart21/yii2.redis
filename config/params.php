@@ -3,8 +3,8 @@ return [
     'siteUrl' =>'l917678y.beget.tech',
     'company' => 'Alex-art21',
     'email' => 'mail@site.ru',
-    'adminEmail' => 'admin@devreadwrite.com',
-    'supportEmail' => 'robot@devreadwrite.com',
+    'adminEmail' => 'aa@aa.aa', // критично, должно совпадать с тем что в базе
+    'supportEmail' => 'robot@site.com',
     'tel1' => '+7(987) 668-04-84',
     'tel1_min' => '+79876680484',
     'tel1_i' => '79876680484',

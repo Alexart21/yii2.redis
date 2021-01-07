@@ -6,7 +6,7 @@ use app\models\User;
 /* @var $searchModel app\modules\alexadmx\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Пользователи не подтвердившие регистрацию');
+$this->title = Yii::t('app', 'Пользователи помеченные как удаленные');
 
 //$model = $dataProvider->getModels(); // пока не понял откуда приходит $model
 //var_dump($model);
@@ -21,11 +21,11 @@ $this->title = Yii::t('app', 'Пользователи не подтвердив
 <h3><?= Html::encode($this->title) ?></h3>
 <?php
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Users'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = 'unregister';
+$this->params['breadcrumbs'][] = 'deleted';
 ?>
 
-<a href="/alexadmx/user/all-in-active?status=<?= User::STATUS_REQUEST ?>" class="btn btn-success">Всех активными</a>
-<a href="/alexadmx/user/delete-all-bad-users?status=<?= User::STATUS_REQUEST ?>" class="btn btn-danger del-alert" data-confirm="Это действие нельзя отменить.Продолжить ?">Удалить всех безвозвратно</a>
+<a href="/alexadmx/user/all-in-active?status=<?= User::STATUS_DELETED ?>" class="btn btn-success">Всех активными</a>
+<a href="/alexadmx/user/delete-all-bad-users?status=<?= User::STATUS_DELETED ?>" class="btn btn-danger" data-confirm="Это действие нельзя отменить.Продолжить ?">Удалить всех безвозвратно</a>
 
 <?= GridView::widget([
     'dataProvider' => $dataProvider,

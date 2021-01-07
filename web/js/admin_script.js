@@ -40,10 +40,12 @@ function form_call(content, id) {
 // анимация загрузки
 function loading() {
     document.body.style.cursor = 'progress';
+    loader.style.visibility = 'visible';
 }
 // стоп анимации
 function loading_stop() {
     document.body.style.cursor = "";
+    loader.style.visibility = '';
 }
 
 function msg_count(table) {
@@ -70,7 +72,7 @@ function read(id, table, tr, td) {
             td.style.cursor = '';
             td.innerText = '1';
             // console.log(td);
-            alert(res);
+            // alert(res);
         },
         error: function (xhr, str) {
             alert('Возникла ошибка: ' + xhr.responseText);
@@ -84,3 +86,10 @@ function read(id, table, tr, td) {
         }
     });
 }
+///
+window.onload = ()=>{
+  /* $('.del-alert').on('click', function () {
+       const msg = 'Точо безвозврато удалить !';
+        alert();
+   })*/
+};

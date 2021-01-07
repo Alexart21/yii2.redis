@@ -4,7 +4,9 @@ use yii\helpers\Html;
 use yii\bootstrap4\Modal;
 
 $this->title = 'Вход';
-//$this->params['breadcrumbs'][] = $this->title;
+// Здесь пароль меняй (в поле password_hash)
+//echo Yii::$app->getSecurity()->generatePasswordHash('password');
+//die;
 ?>
 <?php
 Modal::begin([
@@ -51,7 +53,7 @@ Modal::begin([
         'action' => 'login',
     ]) */ ?>
 
-    <?= $form->field($model, 'rememberMe')->checkbox(['checked' => true,
+    <?= $form->field($model, 'rememberMe')->checkbox([
         'template' => "<div class=\"squaredTwo\">{input} {label}<span id =\"labelText\">Запомнить на " . Yii::$app->params['rememberMeDay'] . " дней</span></div>\n<div class=\"col-lg-8\">{error}</div>",
     ]) ?>
     <div class="form-group">

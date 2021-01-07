@@ -23,6 +23,7 @@ class PasswordResetRequestForm extends Model
             ['email', 'trim'],
             ['email', 'required'],
             ['email', 'email'],
+            ['email', 'string', 'max' => 100],
             ['email', 'exist',
                 'targetClass' => '\app\models\User',
                 'filter' => ['status' => User::STATUS_ACTIVE],

@@ -19,13 +19,13 @@ use yii\widgets\ActiveForm;
                 </tr>
                 <tr>
                     <th>значение</th>
-                    <th>10</th>
                     <th>20</th>
+                    <th>10</th>
                 </tr>
                 <tr>
                     <th>привелегии</th>
-                    <td>пользователь</td>
                     <td>администратор</td>
+                    <td>пользователь</td>
                 </tr>
             </table>
         </td>
@@ -33,15 +33,17 @@ use yii\widgets\ActiveForm;
         <td>
             <table class="role-table">
                 <tr>
-                    <th colspan="2"><h4 class="text-center">Поле "status"</h4></th>
+                    <th colspan="3"><h4 class="text-center">Поле "status"</h4></th>
                 </tr>
                 <tr>
                     <th>10</th>
                     <th>1</th>
+                    <th>0</th>
                 </tr>
                 <tr>
                     <td>активный</td>
                     <td>не прошел подтверждение регистрации</td>
+                    <td>Помечен удаленным</td>
                 </tr>
             </table>
         </td>
