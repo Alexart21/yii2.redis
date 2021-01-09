@@ -125,7 +125,10 @@ $allCallCount = $session->get('allCallCount');
         <aside class="main-sidebar">
             <section class="sidebar">
                 <img id="logo" src="/web/img/main_img/logo.png" class="logo-displ">
-                <a href="/alexadmx/default/phpinfo" title="phpinfo"><span class="fab fa-php" style="color: #fff;font-size: 26px"></span></a>
+                <br>
+                <a href="/alexadmx/post" title="письма"><span class="fa fa-envelope"></span></a>
+                <a href="/alexadmx/callback" title="заказы обратных звонков"><span class="fa fa-phone"></span></a>
+                <a href="/alexadmx/default/phpinfo" title="phpinfo"><span class="fab fa-php"></span></a>
             </section>
         </aside>
         <!-- END LEFT-SIDEBAR -->
@@ -334,7 +337,16 @@ $allCallCount = $session->get('allCallCount');
             logo.classList.toggle('logo-displ');
         }
         ////
-        // $('[data-toggle="tooltip"]').tooltip();
+        const alrt = document.querySelector('.alert');
+        // console.log(alrt);
+        if(alrt){
+            setTimeout(function() {
+                alrt.remove();
+            }, 4000);
+            /*setTimeout(function() {
+                $('.alert').modal('hide');
+            }, 4000);*/
+        }
     </script>
     </body>
     </html>
