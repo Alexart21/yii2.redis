@@ -33,14 +33,14 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     const STATUS_DELETED = 0; // помечен удаленным
     const STATUS_REQUEST = 1; // пользователь не прошедший подтверждение регистрации
     const STATUS_ACTIVE = 10; // активный
-    const ROLE_USER = 10; // статус пользователя
-    const ROLE_ADMIN = 20; // статус админа
+    const ROLE_USER = 10; // права пользователя
+    const ROLE_ADMIN = 20; // права админа
     const ADMIN_ID = 1; // админ только один и с таким id
 
     public function behaviors()
     {
         return [
-            TimestampBehavior::className(),
+            TimestampBehavior::class,
         ];
     }
 
@@ -103,12 +103,22 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     public static function findByUsernameOrEmail($string)
     {
        /*$sql = 'SELECT * FROM USER WHERE username=:string or email=:string';
-       return static::findBySql($sql, [':string' => $string])->one();*/
+       return static::findBySql($sql, [':string' => $string])->one();
+       */
+      /* $res = static::find()->Where(['username' => $string])->orWhere(['email' => $string])->one();
+       debug($res->behaviors);
+       die;*/
       return static::find()->Where(['username' => $string])->orWhere(['email' => $string])->one();
     }
 
+    /* Проверка на статус активного пользователя */
     public function isStatusActive(){
         return $this->status == self::STATUS_ACTIVE;
+    }
+
+    /* Проверка на статус удаленного пользователя */
+    public function isStatusDeleted(){
+        return $this->status == self::STATUS_DELETED;
     }
 
     /**

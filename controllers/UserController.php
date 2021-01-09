@@ -7,6 +7,7 @@ use app\models\PasswordResetRequestForm;
 use app\models\ResetPasswordForm;
 use app\models\SignupForm;
 use app\models\User;
+use http\Url;
 use yii\base\InvalidValueException;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -102,8 +103,10 @@ class UserController  extends Controller
                         return $this->redirect('/alexadmx');
                     }
                     return $this->goBack();
-                } else {
-                    throw new BadRequestHttpException('Пользователь с таким email не прошел подтверждение регистрации.Воспользуйтесь ссылкой отправленной Вам на email или свяжитесь с администратором.');
+                }elseif ($user->isStatusDeleted()){
+                    throw new MethodNotAllowedHttpException('Такой пользователь удален. Вы можете связаться с администратором сайта.');
+                }else{
+                    throw new MethodNotAllowedHttpException('Такой пользователь не прошел подтверждение регистрации.Воспользуйтесь ссылкой отправленной Вам на email или свяжитесь с администратором.');
                 }
             }
             //

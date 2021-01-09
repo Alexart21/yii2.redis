@@ -1,5 +1,4 @@
 <?php
-
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use mihaildev\ckeditor\CKEditor;
@@ -7,12 +6,13 @@ use mihaildev\elfinder\ElFinder;
 use yii\helpers\Url;
 
 mihaildev\elfinder\Assets::noConflict($this);
-
-/* @var $this yii\web\View */
-/* @var $model app\modules\alexadmx\models\Content */
-/* @var $form yii\widgets\ActiveForm */
 ?>
-
+<style>
+    label.control-label{
+        font-size: 140%;
+        font-weight: bold;
+    }
+</style>
 <div class="content-form">
 
     <?php $form = ActiveForm::begin(); ?>

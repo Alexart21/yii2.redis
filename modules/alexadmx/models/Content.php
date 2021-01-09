@@ -49,8 +49,8 @@ class Content extends \yii\db\ActiveRecord
             'page' => 'Страница(поле page)',
             'page_text' => 'Содержимое страницы(поле page_text)',
             'title' => 'Title',
-            'description' => 'Мета тег Description',
-            'last_mod' => 'Unix TimeStamp для заголовка LastModified',
+            'description' => 'Description',
+            'last_mod' => 'TimeStamp для заголовка LastModified',
         ];
     }
 }

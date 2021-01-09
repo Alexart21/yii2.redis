@@ -47,7 +47,10 @@ $session = Yii::$app->session;
             'tel',
             'date',
             'is_read',
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view} {delete}',
+            ],
         ],
     ]); ?>
 </div>

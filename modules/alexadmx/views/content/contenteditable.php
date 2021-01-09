@@ -6,11 +6,3 @@
     <?= $model['page_text'] ?>
 </div>
 <button id="edit_but" class="but_gr">Отправить</button>
-<script>
-    $('#edit_but').on('click', function () {
-        var page_text = {
-            page_text: $('.contenteditable').html()
-        };
-        form_call(page_text, <?= $model['id'] ?>);
-    });
-</script>

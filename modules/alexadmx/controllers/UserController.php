@@ -211,7 +211,9 @@ class UserController extends AppAlexadmxController
                 Yii::$app->session->setFlash('error', 'Произошла ошибка при запросе.');
             }
 
-            return $this->redirect('/alexadmx/user/view?id=' . $user->id);
+            return $this->redirect('/alexadmx/user');
+//            return $this->redirect(Yii::$app->request->referrer);
+
         }
 
         return $this->render('setpass', compact('user', 'model'));

@@ -2,13 +2,13 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\widgets\Breadcrumbs;
+//use yii\bootstrap4\Alert;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\User */
 
 $this->title = 'Пользователь "' . $model->username . '" id:' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Users'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <style>
@@ -16,6 +16,18 @@ $this->params['breadcrumbs'][] = $this->title;
         margin-top: 80px;
     }
 </style>
+<br>
+<?php
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Users'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
+//$this->params['breadcrumbs']['homeLink'] = ['label' => 'Главная', 'url' => '/alexadmx/'];
+?>
+<div>
+    <?/*= Breadcrumbs::widget([
+        'homeLink' => ['label' => 'Главная', 'url' => '/alexadmx/'],
+        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+    ]) */?>
+</div>
 <div class="user-view">
 
     <h1><?= Html::encode($this->title) ?></h1>

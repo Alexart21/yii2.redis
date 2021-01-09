@@ -401,3 +401,23 @@ a.alertm_close {
 .underline{
     text-decoration: underline;
 }
+
+/**/
+td a span.fa-eye{
+    color: blue !important;
+    display: block !important;
+    margin-left: 0 !important;
+    margin-bottom: 15px !important;
+}
+
+td a span.fa-pen{
+    color: green !important;
+    display: block !important;
+    margin-bottom: 15px !important;
+}
+
+td a span.fa-window-close{
+    color: red !important;
+    display: block !important;
+}
+/**/

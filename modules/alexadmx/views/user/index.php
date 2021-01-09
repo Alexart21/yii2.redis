@@ -108,7 +108,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+                /*'template' => '<div class="grid-icons">
+                                    <a href="/alexadmx/user/view?id=' . $this->id . '"><span class="fa fa-eye"></span></a>
+                                    <a href=""><span class="fa fa-pen"></span></a>
+                                    <a href=""><span class="fa fa-window-close"></span></a>
+                               </div>',*/
+             ],
         ],
     ]); ?>
 </div>
