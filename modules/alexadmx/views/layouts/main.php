@@ -134,18 +134,13 @@ $allCallCount = $session->get('allCallCount');
         <!-- END LEFT-SIDEBAR -->
         <!-- START CONTENT -->
         <div class="content-wrapper">
-            <section class="content-header">
-
-
-                <?=
-                Breadcrumbs::widget(
-                    [
-                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                    ]
-                ) ?>
-            </section>
-
             <section class="content">
+                <section class="content-header">
+                    <?= Breadcrumbs::widget([
+                        'homeLink' => ['label' => 'Главная', 'url' => '/alexadmx/'],
+                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                    ]) ?>
+                </section>
                 <?= Alert::widget() ?>
                 <div id="main-content">
                     <?= $content ?>

@@ -13,6 +13,7 @@ class AdminLteAsset extends AssetBundle
         'css/AdminLTE.min.css',
         'css/admin-skin-blue.min.css',
         'fontawesome/css/all.min.css',
+        'css/glyphicons.css',
         'css/admin_style.css',
     ];
     public $js = [

@@ -11,6 +11,7 @@ use Yii;
  * @property string $name
  * @property string $tel
  * @property string $date
+ * @property string $is_read
  */
 class Callback extends \yii\db\ActiveRecord
 {
@@ -20,6 +21,11 @@ class Callback extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 'callback';
+    }
+
+    public static function primaryKey()
+    {
+        return 'id';
     }
 
     /**
@@ -32,6 +38,8 @@ class Callback extends \yii\db\ActiveRecord
             [['date'], 'safe'],
             [['name'], 'string', 'max' => 100],
             [['tel'], 'string', 'max' => 30],
+            ['is_read', 'safe'],
+            ['is_read', 'in', 'range' => [0, 1]],
         ];
     }
 
@@ -45,6 +53,7 @@ class Callback extends \yii\db\ActiveRecord
             'name' => 'Имя',
             'tel' => 'Тел.',
             'date' => 'Дата',
+            'is_read' => 'статус',
         ];
     }
 

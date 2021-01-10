@@ -30,6 +30,11 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
         return 'user';
     }
 
+    public static function primaryKey()
+    {
+        return 'id';
+    }
+
     const STATUS_DELETED = 0; // помечен удаленным
     const STATUS_REQUEST = 1; // пользователь не прошедший подтверждение регистрации
     const STATUS_ACTIVE = 10; // активный

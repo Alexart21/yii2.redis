@@ -16,6 +16,8 @@ use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use Yii;
 use yii\web\MethodNotAllowedHttpException;
+use yii\widgets\ActiveForm;
+use yii\web\Response;
 
 
 class UserController  extends Controller
@@ -40,7 +42,7 @@ class UserController  extends Controller
                     'logout' => ['post'],
                 ],
             ],
-            'rateLimiter' => [
+            /*'rateLimiter' => [
                 // сторонняя фича. Пишется в кэш.Бд не трогается.
                 'class' => \ethercreative\ratelimiter\RateLimiter::className(),
 //                'only' => ['login'],
@@ -57,7 +59,7 @@ class UserController  extends Controller
                 // Whether to return HTTP headers containing the current rate limiting information
                 'enableRateLimitHeaders' => false,
                 'errorMessage' => 'Лимит запросов исчерпан. Не более ' . Yii::$app->params['rateLimit'] . ' попыток в минуту',
-            ],
+            ],*/
         ];
     }
 
@@ -89,7 +91,7 @@ class UserController  extends Controller
             return $this->goHome();
         }
 
-        setcookie('rateLimit', Yii::$app->params['rateLimit']); // это чтобы передать в JS количество попыток входа
+        setcookie('rateLimit', Yii::$app->params['rateLimit'], 0, '', '', false, true); // это чтобы передать в JS количество попыток входа
         $this->layout = 'auth';
 
         $model = new LoginForm();
@@ -151,6 +153,15 @@ class UserController  extends Controller
         $this->layout = 'auth';
         $model = new SignupForm();
 
+        // AJAX валидация ( только для полей usename && email)
+        if (Yii::$app->request->isAjax) {
+            if($model->load(Yii::$app->request->post())) {
+                Yii::$app->response->format = Response::FORMAT_JSON;
+                return ActiveForm::validate($model);
+            }
+        }
+
+        // обычная отправка формы
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->signupRequest()) { // занесли в базу и отправили пимьмо заявителю
                 Yii::$app->session->setFlash('success', 'Перейдите по ссылке, высланной Вам на E-mail для подтверждения регистрации');

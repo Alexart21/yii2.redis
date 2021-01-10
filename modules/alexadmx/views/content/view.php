@@ -31,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'page',
             'title',
+            'title_seo',
             'description',
             'last_mod',
             'page_text:ntext',

@@ -26,6 +26,7 @@ mihaildev\elfinder\Assets::noConflict($this);
 
             <?= $form->field($model, 'page')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'title_seo')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'description')->textarea(['rows' => 5]) ?>
             <?= $form->field($model, 'last_mod')->textInput(['maxlength' => true, 'value' => time()])
                 ->label('Last Modified') ?>

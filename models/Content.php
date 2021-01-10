@@ -15,6 +15,11 @@ class Content extends ActiveRecord
         return 'content';
     }
 
+    public static function primaryKey()
+    {
+        return 'id';
+    }
+
     /**
      * @inheritdoc
      */
@@ -64,7 +69,7 @@ class Content extends ActiveRecord
         $data = ActiveRecord::findBySql($sql)->asArray()->all();
         $data = $data[0];*/
 
-//        debug($data);die;
+//        debug($data['title_seo']);die;
 
         // set cache
         // 86400 - сутки

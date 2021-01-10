@@ -1,9 +1,18 @@
 <?php
 header('Cache-Control: no-store, no-cache, must-revalidate');
 header('Last-Modified:' . gmdate("D, d M Y H:i:s \G\M\T", $data['last_mod']));
-$this->title = $data['title'];
+
+$title_seo = $data['title_seo'] ? $data['title_seo'] : $data['title']; // в тег title
+$title = $data['title']; // в заголовок h1
+
+$this->title = $title_seo;
 $desc = $data['description'] ? $data['description'] : '';
 $this->registerMetaTag(['name' => 'description', 'content' => $desc]);
+
+// В шаблон в тег h1
+$this->beginBlock('h1');
+echo $title;
+$this->endBlock('h1');
 
 $portfArr = [
     [
@@ -18,9 +27,10 @@ $portfArr = [
     ],
 ];
 ?>
+<!-- JS для AJAX переходов по ссылкам -->
 <script>
-    window.document.title = "<?= $data['title'] ?>";
-    document.getElementById('top_h').innerText = 'Разработка сайтов';
+    window.document.title = "<?= $title_seo ?>";
+    document.getElementById('top_h').innerText = '<?= $title ?>';
 </script>
 <div class="h2 header_shadow text-center">Наши работы</div><br/>
 <div id="portf" class="min_height">

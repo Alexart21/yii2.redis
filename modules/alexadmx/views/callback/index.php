@@ -46,7 +46,20 @@ $session = Yii::$app->session;
             'name',
             'tel',
             'date',
-            'is_read',
+            [
+                'attribute' => 'is_read',
+                'format' => 'raw',
+                'value' => function($model)
+                {
+                    if($model->is_read == 0){
+                        $btn = '<b style="color:green;font-size: 110%">новое</b>';
+                    }else{
+                        $btn = '<span style="color:grey">обработано</span>';
+                    }
+
+                    return $btn;
+                }
+            ],
             [
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{view} {delete}',
@@ -54,43 +67,3 @@ $session = Yii::$app->session;
         ],
     ]); ?>
 </div>
-<script>
-    let td = document.getElementsByTagName('td');
-    for (i = 0; i < td.length; i++){
-        if (td[i].innerText == '0'){
-            let id = td[i].parentNode.firstChild.nextSibling.textContent;
-            let tr = td[i].parentElement;
-            tr.style.background = '#fff';
-            tr.style.border = '2px solid #00ff00';
-            // tr.style.cursor = 'pointer';
-            /*tr.addEventListener('click', function () {
-                window.location.replace('/alexadmx/callback/view?id=' + id);
-            });*/
-            //
-            td[i].style.background = '#7eff91';
-            td[i].style.cursor = 'pointer';
-            let t = td[i];
-            td[i].addEventListener('click', function () {
-                read(id, 'callback', tr, t);
-            });
-        }
-    }
-    // хрень чтобы добавить значок "лупы" в поле input
-    const xx = document.querySelectorAll('input');
-    for (let i=0; i<xx.length; i++){
-        xx[i].parentNode.style.position = 'relative';
-        let s = document.createElement('span');
-        s.setAttribute('class', 'fa fa-search');
-        s.style.position = 'absolute';
-        s.style.right = '20px';
-        s.style.top = '22px';
-        xx[i].parentNode.appendChild(s);
-        //
-        xx[i].addEventListener('mouseover', function () {
-            s.style.visibility = 'hidden';
-        });
-        xx[i].addEventListener('mouseout', function () {
-            s.style.visibility = 'visible';
-        });
-    }
-</script>

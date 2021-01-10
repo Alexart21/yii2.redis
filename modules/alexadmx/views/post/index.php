@@ -43,9 +43,34 @@ $session = Yii::$app->session;
             'name',
             'email:email',
             'tel',
-            'body:ntext',
+            [
+                'attribute' => 'body',
+                'format' => 'raw',
+                'value' => function($model)
+                {
+                    if (strlen($model->body) > 50){
+                        $res = substr($model->body, 0, 50) . ' ...<br>' . '<a class="btn btn-secondary" href="/alexadmx/post/view?id=' . $model->id . '">читать дальше</a>';
+                    }else{
+                        $res = $model->body;
+                    }
+                    return $res;
+                }
+            ],
             'date',
-            'is_read',
+            [
+               'attribute' => 'is_read',
+                'format' => 'raw',
+                'value' => function($model)
+                {
+                    if($model->is_read == 0){
+                        $btn = '<b style="color:green">новое</b>';
+                    }else{
+                        $btn = '<span style="color:grey">обработано</span>';
+                    }
+
+                    return $btn;
+                }
+            ],
             [
                'class' => 'yii\grid\ActionColumn',
                 'template' => '{view} {delete}',
@@ -55,17 +80,13 @@ $session = Yii::$app->session;
 </div>
 <script>
     // выделяем цветом непрочитанные письма и делаем кликабельными
-    let td = document.getElementsByTagName('td');
+    /*let td = document.getElementsByTagName('td');
     for (i = 0; i < td.length; i++){
         if (td[i].innerText == '0'){
             let id = td[i].parentNode.firstChild.nextSibling.textContent;
             let tr = td[i].parentElement;
             tr.style.background = '#fff';
             tr.style.border = '2px solid #00ff00';
-            // tr.style.cursor = 'pointer';
-            /*tr.addEventListener('click', function () {
-                window.location.replace('/alexadmx/post/view?id=' + id);
-            });*/
             td[i].style.background = '#7eff91';
             td[i].style.cursor = 'pointer';
             let t = td[i];
@@ -73,9 +94,9 @@ $session = Yii::$app->session;
                 read(id, 'post', tr, t);
             });
         }
-    }
+    }*/
     // хрень чтобы добавить значок "лупы" в поле input
-    const xx = document.querySelectorAll('input');
+    /*const xx = document.querySelectorAll('input');
     for (let i=0; i<xx.length; i++){
         xx[i].parentNode.style.position = 'relative';
         let s = document.createElement('span');
@@ -91,5 +112,5 @@ $session = Yii::$app->session;
         xx[i].addEventListener('mouseout', function () {
             s.style.visibility = 'visible';
         });
-    }
+    }*/
 </script>

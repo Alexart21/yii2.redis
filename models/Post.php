@@ -13,6 +13,7 @@ use Yii;
  * @property string $tel
  * @property string $body
  * @property string $date
+ * @property string $is_read;
  */
 class Post extends \yii\db\ActiveRecord
 {
@@ -24,6 +25,11 @@ class Post extends \yii\db\ActiveRecord
         return 'post';
     }
 
+    public static function primaryKey()
+    {
+        return 'id';
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -31,11 +37,13 @@ class Post extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'email',  'body'], 'required'],
-            [['body'], 'string'],
-            [['date'], 'safe'],
-            [['name'], 'string', 'max' => 100],
-            [['email'], 'string', 'max' => 255],
-            [['tel'], 'string', 'max' => 30],
+            ['body', 'string'],
+            ['date', 'safe'],
+            ['name', 'string', 'max' => 100],
+            ['email', 'string', 'max' => 255],
+            ['tel', 'string', 'max' => 30],
+            ['is_read', 'safe'],
+            ['is_read', 'in', 'range' => [0, 1]],
         ];
     }
 
@@ -51,6 +59,7 @@ class Post extends \yii\db\ActiveRecord
             'tel' => 'Teл.',
             'body' => 'Текст',
             'date' => 'Дата',
+            'is_read' => 'статус',
         ];
     }
 

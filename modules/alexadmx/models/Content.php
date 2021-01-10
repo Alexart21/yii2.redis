@@ -11,6 +11,7 @@ use Yii;
  * @property string $page
  * @property string $page_text
  * @property string $title
+ * @property string $title_seo
  * @property string $description
  * @property integer $last_mod
  */
@@ -34,7 +35,7 @@ class Content extends \yii\db\ActiveRecord
             [['page_text'], 'string'],
             [['last_mod'], 'integer'],
             [['page'], 'string', 'max' => 50],
-            [['title', 'description'], 'string', 'max' => 500],
+            [['title', 'title_seo', 'description'], 'string', 'max' => 500],
             [['page'], 'unique'],
         ];
     }
@@ -49,6 +50,7 @@ class Content extends \yii\db\ActiveRecord
             'page' => 'Страница(поле page)',
             'page_text' => 'Содержимое страницы(поле page_text)',
             'title' => 'Title',
+            'title_seo' => 'Title_seo',
             'description' => 'Description',
             'last_mod' => 'TimeStamp для заголовка LastModified',
         ];
