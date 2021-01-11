@@ -16,7 +16,7 @@ class SignupForm extends Model
     public $email;
     public $password;
     public $password_repeat;
-//    public $reCaptcha;
+    public $reCaptcha;
 
     /**
      * @inheritdoc
@@ -34,9 +34,9 @@ class SignupForm extends Model
             ['password', 'string', 'length' => [6, 100]],
             ['password_repeat', 'compare', 'compareAttribute'=>'password', 'message'=>"Пароли не совпадают !" ],
             //reCaptcha v2
-            /*[['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::className(),
-                'secret' => '6LftVL4ZAAAAAOY8dZHmrKkRnX1Di43yH0DIq34Z', // unnecessary if reСaptcha is already configured
-                'uncheckedMessage' => 'Подтвердите, что вы не робот'],*/
+            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::className(),
+                'secret' => '6LfRBQEaAAAAAMVJTPl6A3vWbpjzSuXdRUnQLm39', // unnecessary if reСaptcha is already configured
+                'uncheckedMessage' => 'Подтвердите, что вы не робот'],
 
             //reCaptcha v3
             /* [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator3::className(),
@@ -54,7 +54,7 @@ class SignupForm extends Model
             'email' => 'email',
             'password' => 'пароль',
             'password_repeat' => 'пароль еще раз',
-//            'reCaptcha' => '',
+            'reCaptcha' => '',
         ];
     }
 

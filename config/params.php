@@ -1,6 +1,11 @@
 <?php
 return [
-    'siteUrl' =>'l917678y.beget.tech',
+    /* Тестовая отправка письма */
+    'gmail_email' => 'iskander.m.211@gmail.com', // куда
+    'bk_email' => 'alexart21@bk.ru', // куда
+    'sender_email' => 'mail@houme21.ru', // от кого
+    /**/
+    'siteUrl' =>'alexart.houme21.ru',
     'company' => 'Alex-art21',
     'email' => 'mail@site.ru',
     'adminEmail' => 'aa@aa.aa', // критично, должно совпадать с тем что в базе

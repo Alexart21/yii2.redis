@@ -12,7 +12,7 @@ use yii\helpers\Html;
 class PasswordResetRequestForm extends Model
 {
     public $email;
-//  public $reCaptcha;
+  public $reCaptcha;
 
     /**
      * @inheritdoc
@@ -30,9 +30,9 @@ class PasswordResetRequestForm extends Model
                 'message' => 'Не найден пользователь с таким email'
             ],
             //reCaptcha v2
-            /*[['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::className(),
-                'secret' => '6LftVL4ZAAAAAOY8dZHmrKkRnX1Di43yH0DIq34Z', // unnecessary if reСaptcha is already configured
-                'uncheckedMessage' => 'Подтвердите, что вы не робот'],*/
+            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::className(),
+                'secret' => '6LfRBQEaAAAAAMVJTPl6A3vWbpjzSuXdRUnQLm39', // unnecessary if reСaptcha is already configured
+                'uncheckedMessage' => 'Подтвердите, что вы не робот'],
 
             //reCaptcha v3
             /* [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator3::className(),
@@ -47,7 +47,7 @@ class PasswordResetRequestForm extends Model
     {
         return [
             'email' => 'E-mail',
-//            'reCaptcha' => '',
+            'reCaptcha' => '',
         ];
     }
 

@@ -37,11 +37,7 @@
     "yiisoft/yii2-bootstrap4": "~2.0.6",
     "ethercreative/yii2-ip-ratelimiter": "1.*",
     "himiklab/yii2-recaptcha-widget" : "*",
-    "dmstr/yii2-adminlte-asset": "^2.1",
-    "kartik-v/yii2-widget-datepicker": "@dev",
-    "aki/yii2-bot-telegram": "*",
-    "yiimaker/yii2-social-share": "~2.3",
-    "dektrium/yii2-user": "^0.9.14"
+    "kartik-v/yii2-widget-datepicker": "@dev"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.0.0",

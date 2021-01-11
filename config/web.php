@@ -106,12 +106,12 @@ $config = [
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
-//            'useFileTransport' => true, // локалка
-            'useFileTransport' => false, // на боевом поставить false
+            'useFileTransport' => true, // локалка
+//            'useFileTransport' => false, // на боевом поставить false
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
-                'host' => 'smtp.gmail.com',
-                'username' => 'iskander.m.211@gmail.com',
+                'host' => 'smtp.mail.ru',
+                'username' => 'alexart21@bk.ru',
                 'password' => 'Cbyuekzhyjcnm_211',
                 'port' => '465',
                 'encryption' => 'ssl',
@@ -142,12 +142,12 @@ $config = [
             ],
         ],
 
-        'reCaptcha' => [
+        'reCaptcha' => [ // for houme21.ru
             'class' => 'himiklab\yii2\recaptcha\ReCaptchaConfig',
-            'siteKeyV2' => '6LcFcbsZAAAAALP2l0KCjvTUD-X2dyPcEGPcXaq7',
-            'secretV2' => '6LcFcbsZAAAAAH50xeZ92H2_CsdSD_lIP81ftj6T',
-            'siteKeyV3' => '6LfNdr4ZAAAAAIKLdnRzRCWwNM6HyP0qo0nYglbN',
-            'secretV3' => '6LfNdr4ZAAAAAA-JNIMCWXlx_eeYv-JxJzJpdPdz',
+            'siteKeyV2' => '6LfRBQEaAAAAAEqEbZSrlYH0sQz5Q-bX58GHPNjL',
+            'secretV2' => '6LfRBQEaAAAAAMVJTPl6A3vWbpjzSuXdRUnQLm39',
+            'siteKeyV3' => '6LeUsCgaAAAAAHPBfAVWB1DwCTxSpYEqWDe87Xml',
+            'secretV3' => '6LeUsCgaAAAAAEYBnXCQbjIazyhkSsXPdFxw7mKk',
         ],
     ],
     'controllerMap' => [

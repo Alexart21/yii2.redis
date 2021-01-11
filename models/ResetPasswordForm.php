@@ -14,7 +14,7 @@ class ResetPasswordForm extends Model
 
     public $password;
     public $password_repeat;
-//    public $reCaptcha;
+    public $reCaptcha;
 
     /**
      * @var \app\models\User
@@ -58,9 +58,9 @@ class ResetPasswordForm extends Model
             [['password', 'password_repeat'], 'string', 'length' => [6, 100]],
             ['password_repeat', 'compare', 'compareAttribute'=>'password', 'message'=>"Пароли не совпадают !" ],
             //reCaptcha v2
-            /*[['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::className(),
-                'secret' => '6LftVL4ZAAAAAOY8dZHmrKkRnX1Di43yH0DIq34Z', // unnecessary if reСaptcha is already configured
-                'uncheckedMessage' => 'Подтвердите, что вы не робот'],*/
+            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::class,
+                'secret' => '6LfRBQEaAAAAAMVJTPl6A3vWbpjzSuXdRUnQLm39', // unnecessary if reСaptcha is already configured
+                'uncheckedMessage' => 'Подтвердите, что вы не робот'],
 
             //reCaptcha v3
             /* [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator3::className(),

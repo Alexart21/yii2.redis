@@ -31,12 +31,12 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= $form->field($model, 'password', ['template' => "<div class='form-group'> {input} <span class=\"fa fa-eye-slash\"></span><div>{error}</div></div>",])->passwordInput(['placeholder' => 'пароль'])->label(false) ?>
             <?= $form->field($model, 'password_repeat', ['template' => "<div class='form-group'> {input} <span class=\"fa fa-eye-slash\"></span><div>{error}</div></div>",])->passwordInput(['placeholder' => 'пароль еще раз'])->label(false) ?>
 
-            <?/*= $form->field($model, 'reCaptcha')->widget(
-                \himiklab\yii2\recaptcha\ReCaptcha2::className(),
+            <?= $form->field($model, 'reCaptcha')->widget(
+                \himiklab\yii2\recaptcha\ReCaptcha2::class,
                 [
-                    'siteKey' => '6LftVL4ZAAAAAPQq_Sj_9_6Cyguka6qMJpDJRyWs', // unnecessary is reCaptcha component was set up
+                    'siteKey' => '6LfRBQEaAAAAAEqEbZSrlYH0sQz5Q-bX58GHPNjL', // unnecessary is reCaptcha component was set up
                 ]
-            )  */?>
+            )  ?>
 
             <? /*= \himiklab\yii2\recaptcha\ReCaptcha3::widget([
                 'name' => 'reCaptcha',

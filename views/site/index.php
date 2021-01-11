@@ -394,17 +394,17 @@ $this->endBlock('h1');
 <?/*= $form->field($indexForm, 'reCaptcha')->widget(
     \himiklab\yii2\recaptcha\ReCaptcha2::className(),
     [
-        'siteKey' => '6LftVL4ZAAAAAPQq_Sj_9_6Cyguka6qMJpDJRyWs', // unnecessary is reCaptcha component was set up
+        'siteKey' => '6LfRBQEaAAAAAEqEbZSrlYH0sQz5Q-bX58GHPNjL', // unnecessary is reCaptcha component was set up
     ]
 ) */?>
 
-<?/*= $form->field($indexForm, 'reCaptcha')->widget(
-    \himiklab\yii2\recaptcha\ReCaptcha3::className(),
+<?= $form->field($indexForm, 'reCaptcha')->widget(
+    \himiklab\yii2\recaptcha\ReCaptcha3::class,
     [
-        'siteKey' => '6LfNdr4ZAAAAAIKLdnRzRCWwNM6HyP0qo0nYglbN', // unnecessary is reCaptcha component was set up
+        'siteKey' => '6LeUsCgaAAAAAHPBfAVWB1DwCTxSpYEqWDe87Xml', // unnecessary is reCaptcha component was set up
         'action' => 'index',
     ]
-); */?>
+); ?>
 
     <div class="form-group">
         <?= Html::submitButton('Отправить', ['class' => 'btn success-button animated bounceInDown wow', 'data-wow-delay' => '0.1s']) ?>
