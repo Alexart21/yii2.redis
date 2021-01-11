@@ -42,7 +42,7 @@ class UserController  extends Controller
                     'logout' => ['post'],
                 ],
             ],
-            /*'rateLimiter' => [
+            'rateLimiter' => [
                 // сторонняя фича. Пишется в кэш.Бд не трогается.
                 'class' => \ethercreative\ratelimiter\RateLimiter::className(),
 //                'only' => ['login'],
@@ -59,7 +59,7 @@ class UserController  extends Controller
                 // Whether to return HTTP headers containing the current rate limiting information
                 'enableRateLimitHeaders' => false,
                 'errorMessage' => 'Лимит запросов исчерпан. Не более ' . Yii::$app->params['rateLimit'] . ' попыток в минуту',
-            ],*/
+            ],
         ];
     }
 

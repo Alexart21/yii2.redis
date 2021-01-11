@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Handles the data insertion for table `{{%content}}`.
  */
-class m201031_121242_insert_data_into_content extends Migration
+class m210111_082530_insert_data_into_content extends Migration
 {
     /**
      * @inheritdoc
@@ -13,9 +13,8 @@ class m201031_121242_insert_data_into_content extends Migration
     public function safeUp()
     {
         
-$this->batchInsert('{{%content}}', ['id','page','page_text','title','description','last_mod'], [
-			['1','index','
-    <article>
+$this->batchInsert('{{%content}}', ['id','page','page_text','title','title_seo','description','last_mod'], [
+			['1','index','        <article>
     <img width=\"250\" height=\"179\" class=\"resp_img\" src=\"/img/main_img/web2.jpg\" alt=\"веб дизайн\" title=\"веб дизайн\">
     <h2 class=\"header_shadow\">Алекс-арт21 — создание только эффективных сайтов</h2>
     <p>
@@ -352,7 +351,7 @@ $this->batchInsert('{{%content}}', ['id','page','page_text','title','description
 <!--noindex-->
 
 <div class=\"h1 text-center\">Возникли вопросы ?</div>
-<div class=\"h2 text-center\">Напишите нам и получите исчерпывающую консультацию.</div>','Создание и продвижение сайтов в Чебоксарах','','1603955951'],
+<div class=\"h2 text-center\">Напишите нам и получите исчерпывающую консультацию.</div>','Создание и продвижение сайтов в Чебоксарах','Создание сайтов под ключ в Чебоксарах','','1610290231'],
 			['2','sozdanie','
         <img width=\"250\" height=\"167\" class=\"resp_img\" src=\"/img/main_img/sozdanie.jpg\" alt=\"создание сайтов\" title=\"создание сайтов\">
 <article>
@@ -520,7 +519,7 @@ $this->batchInsert('{{%content}}', ['id','page','page_text','title','description
             так и по редизайну существующих сайтов с учетом адаптивности.
         </p>
     </div>
-</article>','Создание сайтов В Чебоксарах','','1603955941'],
+</article>','Создание сайтов В Чебоксарах','Создание сайтов любой сложности и назначения В Чебоксарах','','1610290235'],
 			['3','prodvijenie','
         
     <article>
@@ -715,8 +714,9 @@ $this->batchInsert('{{%content}}', ['id','page','page_text','title','description
         прекращения <abbr title=\"англ. search engine optimization — комплекс мер по внутренней и внешней оптимизации, для поднятия позиций сайта в результатах выдачи поисковых систем\">SEO</abbr> продвижения висел в топе еще 2 года.<br> Поэтому наша рекомендация — применяйте
         и <b>продвижение сайта</b> и <b>контекстную рекламу!</b>
     </p>
-</article>','Продвижение сайтов в Чебоксарах','','1603956053'],
-			['4','portfolio','test4','Создание и продвижение сайтов от Alex-art21','','1603956004'],
+</article>','Продвижение сайтов в Чебоксарах','Продвижение в поисковых системах и раскрутка в сети в Чебоксарах','','1610290184'],
+			['4','portfolio','
+    test','Создание и продвижение сайтов от Alex-art21','','','1610290150'],
 			['5','parsing','<img width=\"250\" height=\"167\" class=\"resp_img\" src=\"/img/main_img/parsing.jpg\" alt=\"парсинг сайтов\"
      title=\"парсинг сайтов\">
 <article>
@@ -771,7 +771,7 @@ $this->batchInsert('{{%content}}', ['id','page','page_text','title','description
         парсинг любых сайтов в том числе и сайтов с авторизацией и соцсетей.<br>
         Полученные данные предоставим в любом удобном для Вас формате(CSV,XLS,или дамп базы данных).
     </p>
-</article>','Парсинг сайтов В Чебоксарах','','1603956054']]);
+</article>','Парсинг сайтов в Чебоксарах','','','1610290230']]);
     }
 
     /**

@@ -44,26 +44,26 @@ $config = [
             ],
         ],
         /* Redis кэш */
-        'cache' => [
+        /*'cache' => [
             'class' => 'yii\redis\Cache',
             'redis' => [
                 'hostname' => 'localhost',
                 'port' => 6379,
                 'database' => 0,
             ]
-        ],
-        'session' => [
+        ],*/
+        /*'session' => [
             'class' => 'yii\redis\Session',
             'redis' => [
                 'hostname' => 'localhost',
                 'port' => 6379,
                 'database' => 0,
             ]
-        ],
-        /* Файловый кэш */
-        /*'cache' => [
-            'class' => 'yii\caching\FileCache',
         ],*/
+        /* Файловый кэш */
+        'cache' => [
+            'class' => 'yii\caching\FileCache',
+        ],
         'view' => [
             'class' => '\rmrevin\yii\minify\View',
             'enableMinify' => !YII_DEBUG,
@@ -106,16 +106,18 @@ $config = [
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
-            'useFileTransport' => true, // локалка
-//            'useFileTransport' => false, // на боевом поставить false
+//            'useFileTransport' => true, // локалка
+            'useFileTransport' => false, // на боевом поставить false
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
-                'host' => 'mail.' . Yii::$app->params['siteUrl'],
-                'username' => 'mail' .  Yii::$app->params['siteUrl'],
-                'password' => 'password',
+                'host' => 'smtp.gmail.com',
+                'username' => 'iskander.m.211@gmail.com',
+                'password' => 'Cbyuekzhyjcnm_211',
                 'port' => '465',
                 'encryption' => 'ssl',
+//                'streamOptions' => [ 'ssl' => [ 'allow_self_signed' => true, 'verify_peer' => false, 'verify_peer_name' => false, ], ],
             ],
+
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
