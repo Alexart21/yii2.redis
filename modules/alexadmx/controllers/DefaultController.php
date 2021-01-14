@@ -156,4 +156,16 @@ class DefaultController extends AppAlexadmxController
         return $this->renderFile( __DIR__ .'/../views/default/phpinfo.php');
     }
 
+    /* Очиска таблицы чата */
+    public function actionChatClear()
+    {
+        if (Yii::$app->request->isAjax) {
+            $header = '<h3>Очистка чата</h3>';
+            $res = Yii::$app->db->createCommand()->truncateTable('chat')->execute();
+            $flag = true;
+            $result = $res == 0 ? true : false;
+            return $this->renderPartial('modal', compact('result', 'flag', 'header'));
+        }
+    }
+
 }

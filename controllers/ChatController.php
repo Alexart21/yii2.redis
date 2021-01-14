@@ -24,10 +24,13 @@ class ChatController extends Controller
 
         $msgs = Chat::getMessages();
         $res = '';
-        foreach ($msgs as $item){
-            $res  .= nl2br('<span class="msg-line"><b style="color:' . $item->color .  '">' . $item->name . '</b> : ' . $item->text . '</span><br>');
+        if(!empty($msgs)) {
+            foreach ($msgs as $item) {
+                $res .= nl2br('<span class="msg-line"><b style="color:' . $item->color . '">' . $item->name . '</b> : ' . $item->text . '</span><br>');
+            }
+        }else{
+            $res = nl2br('<span class="msg-line"><b>ADMIN</b> : Можете начать чат!</span><br>');
         }
-
         $msg = new Chat();
         $chatForm = new ChatForm();
         $request = Yii::$app->request;
