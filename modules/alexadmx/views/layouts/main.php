@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\Pjax;
 use yii\widgets\Breadcrumbs;
-use dmstr\widgets\Alert;
+use yii\bootstrap4\Alert;
 use app\assets\AdminLteAsset;
 
 AdminLteAsset::register($this);

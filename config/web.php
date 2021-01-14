@@ -22,6 +22,9 @@ $config = [
             'class' => 'app\modules\alexadmx\Module',
             'layout' => 'main'
         ],
+        'simplechat' => [
+            'class' => 'bubasuma\simplechat\Module',
+        ],
         /*'yii2images' => [
             'class' => 'rico\yii2images\Module',
             //be sure, that permissions ok
@@ -161,6 +164,8 @@ $config = [
                 'name' => 'Global'
             ],
         ],
+        /* chat */
+        'server' => \jakharbek\chat\api\ChatController::class,
     ],
     'params' => $params,
 ];

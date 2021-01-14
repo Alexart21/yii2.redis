@@ -83,3 +83,4 @@ ActiveForm::end();
 ?>
 <?php Pjax::end() ?>
 <br>
+<hr>

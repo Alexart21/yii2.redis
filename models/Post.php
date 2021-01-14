@@ -25,10 +25,10 @@ class Post extends \yii\db\ActiveRecord
         return 'post';
     }
 
-    public static function primaryKey()
+    /*public static function primaryKey()
     {
         return 'id';
-    }
+    }*/
 
     /**
      * {@inheritdoc}

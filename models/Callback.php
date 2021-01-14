@@ -23,10 +23,10 @@ class Callback extends \yii\db\ActiveRecord
         return 'callback';
     }
 
-    public static function primaryKey()
+    /*public static function primaryKey()
     {
         return 'id';
-    }
+    }*/
 
     /**
      * {@inheritdoc}

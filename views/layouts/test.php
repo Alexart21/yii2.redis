@@ -20,6 +20,29 @@ TestAsset::register($this);
 <?php $this->beginBody() ?>
     <?= $content ?>
 <?php $this->endBody() ?>
+<script>
+    $(document).on('pjax:beforeSend', () => {
+        document.body.style.cursor = 'progress';
+    });
+
+    $(document).on('pjax:complete', () => {
+        document.body.style.cursor = 'default';
+        let method = $.pjax.options.type;
+        if(method == 'POST'){
+            document.getElementById('msg').value = ''; //
+        }
+        $('#msgs-content').scrollTop($('#msgs-content')[0].scrollHeight);
+    });
+    //
+    function updateList() {
+        $.pjax.defaults.timeout = false;
+        $.pjax.reload({
+            method: 'get',
+            container: '#msgs-content'
+        });
+    }
+    setInterval(updateList, 5000);
+</script>
 </body>
 </html>
 <?php $this->endPage() ?>

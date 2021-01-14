@@ -30,4 +30,9 @@ class TestController extends Controller
         }
         return $this->render('index', compact('model'));
     }
+
+    public function actionChat()
+    {
+        return $this->render('chat',);
+    }
 }
