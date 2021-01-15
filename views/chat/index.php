@@ -4,6 +4,15 @@ use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 ?>
 <style>
+    #msgs-content{
+        width: 300px;
+        height: 400px;
+        border: 1px solid blue;
+        overflow-y: auto;
+    }
+
+
+
     .control-label[for=msg]::after {
         content: '';
     }
@@ -11,13 +20,20 @@ use yii\helpers\Html;
     #chatform-name{
         font-weight: bold;
     }
+
+    .ip{
+        font-size: 70%;
+        font-weight: lighter;
+    }
+
+    .msg-line b{
+        font-size: 120%;
+    }
 </style>
 <div>
-    <div id="msgsDialog">
-        <div id="msgs-content" style="width: 300px;height: 100px;border: 1px solid blue;overflow-y: scroll">
+        <div id="msgs-content">
             <?= $res ?>
         </div>
-    </div>
     <br>
     <br>
     <?php Pjax::begin([
@@ -48,7 +64,6 @@ use yii\helpers\Html;
         'placeholder' => 'Type here...',
         'required' => true,
     ]) ?>
-
     <div class="form-group">
         <?= Html::submitButton('Отправить', ['id' => 'sub', 'class' => 'btn']) ?>
     </div>
@@ -66,6 +81,5 @@ use yii\helpers\Html;
             document.getElementById('sub').click();
         }
     };
-
 </script>
 

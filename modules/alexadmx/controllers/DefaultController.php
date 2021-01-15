@@ -160,6 +160,10 @@ class DefaultController extends AppAlexadmxController
     public function actionChatClear()
     {
         if (Yii::$app->request->isAjax) {
+            $session = Yii::$app->session;
+            $session->remove('user_name');
+            $session->remove('user_color');
+
             $header = '<h3>Очистка чата</h3>';
             $res = Yii::$app->db->createCommand()->truncateTable('chat')->execute();
             $flag = true;
