@@ -15,7 +15,9 @@ class ChatForm extends Model
     public function rules()
     {
         return [
-            [['name', 'text'], 'required'],
+            [['name', 'text'], 'required', 'message' => 'это обязательное поле'],
+            ['name', 'string', 'max' => 30],
+            ['text', 'string', 'max' => 1024],
         ];
     }
 

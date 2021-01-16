@@ -170,6 +170,7 @@ class DefaultController extends AppAlexadmxController
             $result = $res == 0 ? true : false;
             return $this->renderPartial('modal', compact('result', 'flag', 'header'));
         }
+        return $this->redirect(Yii::$app->request->referrer);
     }
 
 }

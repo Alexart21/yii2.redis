@@ -11,6 +11,7 @@ use Yii;
  * @property int $id
  * @property string $name
  * @property string $text
+ * @property int $ip
  * @property string $created_at
  * @property string $color
  */
@@ -50,6 +51,7 @@ class Chat extends \yii\db\ActiveRecord
             [['color'], 'string', 'max' => 7],
             [['created_at'], 'safe'],
             [['name'], 'string', 'max' => 100],
+            [['ip'], 'string', 'max' => 20],
         ];
     }
 

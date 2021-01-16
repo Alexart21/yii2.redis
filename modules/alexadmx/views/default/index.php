@@ -40,4 +40,5 @@ $d = str_replace('\\', '/', $d);
     <code>Массив с путями к очищаемым папкам: <?= $d ?>/inc/dirArr.php</code>
 </div>
 <hr>
+<h3><a href="/alexadmx/chat">Чат-сохраненные</a></h3>
 <a href="/alexadmx/default/chat-clear" class="btn btn-warning pjax">Очистить чат</a>

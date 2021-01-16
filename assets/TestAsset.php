@@ -16,6 +16,7 @@ class TestAsset extends AssetBundle
 //        'fontawesome/css/brands.min.css',
     ];
     public $js = [
+        'js/chat.js'
     ];
     public $depends = [
 //        'yii\web\JQueryAsset',

@@ -20,9 +20,11 @@ class ChatController extends Controller
 
         $name = $session->get('user_name');
         $color = $session->get('user_color');
+        /*if($name && $color){
+            setcookie('user_color', $color);
+            setcookie('user_name', $name);
+        }*/
         $ip = Yii::$app->request->userIP;
-
-//        setcookie('user_color', $color);
 
         $msgs = Chat::getMessages();
         $res = '';
@@ -31,7 +33,7 @@ class ChatController extends Controller
                 $res .= nl2br('<span class="msg-line"><span class="ip">' . $ip . '_</span><b style="color:' . $item->color . '">' . $item->name . '</b> : ' . $item->text . '</span><br>');
             }
         }else{
-            $res = nl2br('<span class="msg-line"><b>ADMIN</b> : Можете начать чат!</span><br>');
+            $res = '<span class="msg-line"><b>ADMIN</b> : Можете начать чат!</span><br>';
         }
         $msg = new Chat();
         $chatForm = new ChatForm();
@@ -39,20 +41,20 @@ class ChatController extends Controller
 
         if ($request->isAjax){
             if($chatForm->load($request->post()) && $chatForm->validate()){
-                if((empty($name)  || empty($color)) || ($name != $chatForm->name)){ // пусто или пользователь сменил имя
+                if((!$name  || !$color) || ($name != $chatForm->name)){ // пусто или пользователь сменил имя
                     $name = $chatForm->name;
                     $color = self::rndColor();
                     $session->set('user_name', $name);
                     $session->set('user_color', $color);
+                    setcookie('user_color', $color);
+                    setcookie('user_name', $name);
                 }
 
                 $msg->name = $name;
                 $msg->text = $chatForm->text;
+                $msg->ip = $ip;
                 $msg->color = $color;
                 $msg->save();
-
-                setcookie('user_color', $color);
-                setcookie('user_name', $name);
 
                 $nextMsg = nl2br('<span class="msg-line"><span class="ip">' . $ip . '_</span><b style="color:' . $color . '">' . $name . '</b> : ' . $msg->text . '</span><br>');
                 $res .= $nextMsg ;
@@ -63,7 +65,7 @@ class ChatController extends Controller
 
         }
 
-        return $this->render('index', compact('chatForm', 'res', 'name', 'color'));
+        return $this->render('index', compact('chatForm', 'res', 'name'));
     }
 
     public static function rndColor()
