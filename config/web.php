@@ -115,7 +115,7 @@ $config = [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.mail.ru',
                 'username' => 'alexart21@bk.ru',
-                'password' => 'Cbyuekzhyjcnm_211',
+                'password' => '',
                 'port' => '465',
                 'encryption' => 'ssl',
 //                'streamOptions' => [ 'ssl' => [ 'allow_self_signed' => true, 'verify_peer' => false, 'verify_peer_name' => false, ], ],

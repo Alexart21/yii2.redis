@@ -156,7 +156,7 @@ $this->endBlock('h1');
                         <span class="fa fa-ruble-sign"></span>
                     </li>
                 </ul>
-                <a href="/#contacts" title="заказать сайт визитку" class="zayavka link-anim"><span class="far fa-paper-plane no-sh"></span> заказать сайт визитку</a>
+                <a href="/#contacts" title="заказать сайт визитку" class="zayavka link-anim"><span class="fab fa-telegram-plane no-sh"></span> заказать сайт визитку</a>
             </div>
         </div>
         <div id="s2">
@@ -198,7 +198,7 @@ $this->endBlock('h1');
                         <span class="fa fa-ruble-sign"></span>
                     </li>
                 </ul>
-                <a href="/#contacts" title="заказать корпоративный сайт" class="zayavka link-anim"><span class="far fa-paper-plane no-sh"></span> заказать корпоративный сайт</a>
+                <a href="/#contacts" title="заказать корпоративный сайт" class="zayavka link-anim"><span class="fab fa-telegram-plane no-sh"></span> заказать корпоративный сайт</a>
             </div>
         </div>
         <div id="s3">
@@ -237,7 +237,7 @@ $this->endBlock('h1');
                         <span class="fa fa-ruble-sign"></span>
                     </li>
                 </ul>
-                <a href="/#contacts" title="заказать интернет магазин" class="zayavka link-anim"><span class="far fa-paper-plane no-sh"></span> заказать интернет магазин</a>
+                <a href="/#contacts" title="заказать интернет магазин" class="zayavka link-anim"><span class="fab fa-telegram-plane no-sh"></span> заказать интернет магазин</a>
             </div>
         </div>
     </div>

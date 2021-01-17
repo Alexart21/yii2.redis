@@ -2106,9 +2106,9 @@ mark {
     color: var(--logo-color);
 }
 
-.fa-paper-plane{
+.fa-telegram-plane{
     font-size: 140% !important;
-    color: var(--logo-color);
+    /*color: var(--logo-color);*/
 }
 
 .no-sh{

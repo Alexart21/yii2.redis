@@ -82,7 +82,7 @@ $this->endBlock('h1');
         <strong>Цена для сайта визитки</strong> от <span class="red">7&#8202;000</span><span
                 class="fa fa-ruble-sign"></span><br>
         <a href="/#contacts" title="заказать сайт визитку" class="zayavka link-anim"><span
-                    class="far fa-paper-plane no-sh"></span> сделать заявку на сайт визитку</a>
+                    class="fab fa-telegram-plane no-sh"></span> сделать заявку на сайт визитку</a>
     </p>
     <div class="hr"></div>
     <h2 id="korporativniy_sait" class="header_shadow anchors">Корпоративный сайт</h2>
@@ -128,7 +128,7 @@ $this->endBlock('h1');
     </ul>
     <br>
     <a href="/#contacts" title="заказать корпоративный сайт" class="zayavka link-anim"><span
-                class="far fa-paper-plane no-sh"></span> сделать заявку на корпоративный сайт</a>
+                class="fab fa-telegram-plane no-sh"></span> сделать заявку на корпоративный сайт</a>
     <div class="hr"></div>
     <h2 id="internet_magazin" class="header_shadow anchors">Интернет магазин</h2>
     <p>
@@ -167,7 +167,7 @@ $this->endBlock('h1');
     </ul>
     <br>
     <a href="/#contacts" title="заказать разработку интернет магазина" class="zayavka link-anim"><span
-                class="far fa-paper-plane no-sh"></span> заказать разработку интернет магазина</a>
+                class="fab fa-telegram-plane no-sh"></span> заказать разработку интернет магазина</a>
     <div class="hr"></div>
     <p>
         На практике получить привлекательный по дизайну (или как минимум не вызывающий отторжения)
