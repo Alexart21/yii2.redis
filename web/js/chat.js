@@ -38,7 +38,6 @@ function sound(){
 }
 ////////
 let msgs = document.getElementById('msgs-content');
-
 $(document).on('pjax:start', () => {
     // document.body.style.cursor = 'progress';
     let beforeMsgsCount = msgs.childNodes.length;

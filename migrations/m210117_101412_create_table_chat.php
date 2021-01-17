@@ -17,7 +17,7 @@ class m210117_101412_create_table_chat extends Migration
             'id' => $this->primaryKey()->notNull(),
             'name' => $this->string(40)->notNull(),
             'text' => $this->string(1024)->notNull(),
-            'ip' => $this->string(20),
+            'ip' => $this->string(50),
             'created_at' => $this->timestamp()->notNull()->defaultValue(CURRENT_TIMESTAMP),
             'color' => $this->string(7),
 

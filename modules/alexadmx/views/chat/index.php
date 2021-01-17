@@ -38,14 +38,16 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
     <?php Pjax::end(); ?>
-    <iframe id="chatFrame" style="display: none;position: absolute;top:80px;right:0;width: 300px;height: 600px;float: right" src="/chat" frameborder="0"></iframe>
+    <iframe id="chatFrame" src="" style="display: none;position: absolute;top:80px;right:0;width: 300px;height: 600px;float: right" frameborder="0"></iframe>
 </div>
 <script>
     chatBtn.addEventListener('click', () => {
         if(chatFrame.style.display == 'none') {
             chatFrame.style.display = 'block';
+            chatFrame.src = '/chat'
         }else {
             chatFrame.style.display = 'none';
+            chatFrame.src = ''
         }
     })
 </script>
