@@ -14,30 +14,6 @@ use yii\filters\VerbFilter;
  */
 class CallbackController extends AppAlexadmxController
 {
-    /*dist function beforeAction($action)
-    {
-        if (Yii::$app->user->isGuest){
-            throw new NotFoundHttpException('страница не найдена');
-        }
-        return parent::beforeAction($action);
-    }*/
-
-    /*dist function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }*/
-
-    /**
-     * Lists all Callback models.
-     * @return mixed
-     */
     public function actionIndex()
     {
         $searchModel = new CallbackSearch();

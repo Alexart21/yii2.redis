@@ -82,7 +82,9 @@ use yii\helpers\Html;
         ],
     ]);
     ?>
+
     <?= $form->field($chatForm, 'name')->textInput(['value' => $name, 'autofocus' => true, 'placeholder' => 'Имя', 'tabindex' => 1])->label(null) ?>
+
     <div style="position: relative">
         <button form="chat-form" id="chatBtn" type="submit" class="fab fa-telegram-plane"></button>
     </div>
@@ -92,19 +94,12 @@ use yii\helpers\Html;
         'required' => true,
         'tabindex' => 2,
     ])->label('Отправка Ctrl + Enter') ?>
+
+    <label for="soundCheck">звук</label>
+    <input id="soundCheck" type="checkbox" checked>
+
     <?php ActiveForm::end(); ?>
     <!-- submit button впихнул выше -->
     <?php Pjax::end(); ?>
 </div>
-<script>
-    // let f = document.querySelector('#chat-form')
-    // let name = document.querySelector('input');
-    let text = document.querySelector('textarea');
-
-    text.onkeydown = function( e ) {
-        if ( e.keyCode === 13 && e.ctrlKey ){
-            chatBtn.click();
-        }
-    };
-</script>
 

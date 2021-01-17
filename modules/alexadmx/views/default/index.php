@@ -22,16 +22,6 @@ $this->title = 'Административная панель';
     <hr>
     <a class="btn btn-primary" href="/alexadmx/default/phpinfo">PHPINFO</a>
     <a class="btn btn-warning pjax" data-toggle="tooltip" title="Очистка временных папок(Рекомендуется перед бэкапом)" href="/alexadmx/default/clear">Очистка</a>
-    <ol style="float: bottom">
-        Очищаются папки:
-        <?php
-        foreach ($dirArr as $item) :
-        ?>
-        <li><?= $item ?></li>
-        <?php
-        endforeach;
-        ?>
-    </ol>
 </div>
 <?php
 $d = dirname(__DIR__, 1);

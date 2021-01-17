@@ -12,27 +12,8 @@ use yii\filters\VerbFilter;
 /**
  * ChatController implements the CRUD actions for Chat model.
  */
-class ChatController extends Controller
+class ChatController extends AppAlexadmxController
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-
-    /**
-     * Lists all Chat models.
-     * @return mixed
-     */
     public function actionIndex()
     {
         $searchModel = new ChatSearch();

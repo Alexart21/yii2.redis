@@ -46,7 +46,7 @@ mihaildev\elfinder\Assets::noConflict($this);
             <?= $form->field($model, 'description')->textarea(['rows' => 5]) ?>
             <?= $form->field($model, 'last_mod')->textInput(['maxlength' => true, 'value' => time()])
                 ->label('Last Modified') ?>
-            <?= $form->field($model, 'page_text')->widget(CKEditor::className(), [
+            <?= $form->field($model, 'page_text')->widget(CKEditor::class, [
                 'editorOptions' => ElFinder::ckeditorOptions('elfinder', [])
             ]); ?>
 
@@ -60,7 +60,7 @@ mihaildev\elfinder\Assets::noConflict($this);
         <?= $form->field($model, 'description')->textarea(['rows' => 5]) ?>
         <?= $form->field($model, 'last_mod')->textInput(['maxlength' => true, 'value' => time()])
             ->label('Last Modified') ?>
-        <?= $form->field($model, 'page_text')->widget(CKEditor::className(), [
+        <?= $form->field($model, 'page_text')->widget(CKEditor::class, [
             'editorOptions' => ElFinder::ckeditorOptions('elfinder', [])
         ]); ?>
 
