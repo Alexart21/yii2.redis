@@ -57,6 +57,11 @@ class ChatController extends Controller
                 $msg->save();
 
                 $nextMsg = nl2br('<span class="msg-line"><span class="ip">' . $ip . '_</span><b style="color:' . $color . '">' . $name . '</b> : ' . $msg->text . '</span><br>');
+                // отображение ссылок
+                $nextMsg = preg_replace_callback( "\x07((?:[a-z]+://(?:www\\.)?)[_.+!*'(),/:@~=?&$%a-z0-9\\-]+)\x07iu", function ($matches) {
+                    return '<a href="' . ( mb_strpos( $matches[1], "://" ) === false ? "http://" : "" ) . $matches[1] . '" target="_blank">' . $matches[1] . '</a>';
+                }, $nextMsg );
+                //
                 $res .= $nextMsg ;
                 die($res);
             }else{ // таймер setInterval сработал

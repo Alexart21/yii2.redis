@@ -70,4 +70,4 @@ text.onkeydown = function( e ) {
 };
 
 updateUserColor();
-setInterval(updateList, 5000);
+// setInterval(updateList, 5000);
