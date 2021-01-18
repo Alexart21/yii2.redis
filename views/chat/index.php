@@ -5,13 +5,36 @@ use yii\helpers\Html;
 ?>
 <style>
     #msgs-content{
+        display: flex;
+        flex-direction: column-reverse;
         position: relative;
-        width: 300px;
-        height: 400px;
+        width: 400px;
+        height: 600px;
         padding: 1em;
         border: 1px solid blue;
         overflow-y: auto;
         margin-bottom: -20px;
+    }
+
+    .msg-line{
+        position: relative;
+        background: #eee;
+        padding: .5em;
+        border: 1px solid transparent;
+        border-radius: 5px;
+        margin-bottom: 40px;
+    }
+
+    .full-name{
+        display: block;
+        padding: 0 .5em;
+        position: absolute;
+        left: 0;
+        top: -30px;
+        background: #eee;
+        border: 0 solid transparent;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
     }
 
     #chatform-name, #msg{
@@ -47,16 +70,26 @@ use yii\helpers\Html;
     }
 
     .msg-line b{
-        font-size: 120%;
+        font-size: 140% !important;
     }
 
     button.fa-telegram-plane{
-        font-size: 40px;
+        font-size: 40px !important;
         background: transparent;
         display: block;
         position: absolute;
         bottom: -50px;
         left: 260px;
+    }
+
+    .dt{
+        display: block;
+        text-align:right;
+        font-size: 70%;
+    }
+
+    .dateOnly{
+        font-size: 100% !important;
     }
 </style>
 <div style="position: relative;">
@@ -97,6 +130,9 @@ use yii\helpers\Html;
 
     <label for="soundCheck">звук</label>
     <input id="soundCheck" type="checkbox" checked>
+
+    <label for="dateCheck">Показывать время без даты</label>
+    <input id="dateCheck" type="checkbox" checked>
 
     <?php ActiveForm::end(); ?>
     <!-- submit button впихнул выше -->

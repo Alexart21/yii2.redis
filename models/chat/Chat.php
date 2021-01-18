@@ -17,7 +17,7 @@ use Yii;
  */
 class Chat extends \yii\db\ActiveRecord
 {
-    const MSG_LIMIT = 200;
+    const MSG_LIMIT = 200; // кол-во выводимых записей
 
     /**
      * {@inheritdoc}
@@ -46,7 +46,6 @@ class Chat extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'text'], 'required'],
-//            [['name'], 'unique'],
             [['text'], 'string'],
             [['color'], 'string', 'max' => 7],
             [['created_at'], 'safe'],
@@ -71,6 +70,6 @@ class Chat extends \yii\db\ActiveRecord
 
     public static function getMessages()
     {
-        return static::find()->limit(self::MSG_LIMIT)->all();
+        return static::find()->orderBy('id DESC')->limit(self::MSG_LIMIT)->all();
     }
 }

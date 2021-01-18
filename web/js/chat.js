@@ -1,3 +1,4 @@
+/* Список функций */
 // доставание cookie
 function readCookie(name) {
     const matches = document.cookie.match(new RegExp(
@@ -36,7 +37,37 @@ function sound(){
         console.log( "can't play sounds. " + e.message );
     }
 }
-////////
+/* Отправка по CTrl + Enter */
+let text = document.querySelector('#msg');
+text.onkeydown = function( e ) {
+    if ( e.keyCode === 13 && e.ctrlKey ){
+        chatBtn.click();
+    }
+};
+/* Оборачивание ссылок в тег a */
+$.fn.replaceUrl = function(){
+    var regexp = /((ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?)/gi;
+    this.each(function(){
+        $(this).html(
+            $(this).html().replace(regexp,'<a href="$1" target="_blank">$1</a>'));
+    });
+    return $(this);
+};
+/* Вывод только времени без даты */
+function echoTime(selector){
+    let flag = document.getElementById('dateCheck').checked;
+    let dt = document.querySelectorAll(selector);
+    if(flag){
+        dt.forEach(function (item) {
+            let dateOnly = item.innerText.slice(0, 11);
+            let timeOnly = item.innerText.slice(11);
+            item.innerHTML = '<span class="fa fa-check" style="font-size: 90%;color: green"></span><span class="dateOnly" style="display: none">' + dateOnly + '</span>' + timeOnly;
+        });
+    }
+}
+//
+/* конец Список функций */
+
 let msgs = document.getElementById('msgs-content');
 $(document).on('pjax:start', () => {
     // document.body.style.cursor = 'progress';
@@ -59,15 +90,22 @@ $(document).on('pjax:complete', () => {
         }
     }
     $('#msgs-content').scrollTop($('#msgs-content')[0].scrollHeight);
+    $('.msg-body').replaceUrl();
+    echoTime('.dt');
 });
 
-/* Отправка по CTrl + Enter */
-let text = document.querySelector('#msg');
-text.onkeydown = function( e ) {
-    if ( e.keyCode === 13 && e.ctrlKey ){
-        chatBtn.click();
-    }
-};
-
 updateUserColor();
+$('#msgs-content').scrollTop($('#msgs-content')[0].scrollHeight);
+$('.msg-body').replaceUrl();
+echoTime('.dt');
 // setInterval(updateList, 5000);
+
+// переключение формата даты/времени
+dateCheck.addEventListener('click', ()=>{
+    let flag = document.querySelector('.dateOnly').style.display;
+    if(flag == 'none'){
+        $('.dateOnly').css('display', 'inline');
+    }else{
+        $('.dateOnly').css('display', 'none');
+    }
+});

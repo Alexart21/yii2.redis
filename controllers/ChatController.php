@@ -25,12 +25,13 @@ class ChatController extends Controller
             setcookie('user_name', $name);
         }*/
         $ip = Yii::$app->request->userIP;
+        $id = substr(sha1($ip), 0, 6);
 
         $msgs = Chat::getMessages();
         $res = '';
         if(!empty($msgs)) {
             foreach ($msgs as $item) {
-                $res .= nl2br('<span class="msg-line"><span class="ip">' . $ip . '_</span><b style="color:' . $item->color . '">' . $item->name . '</b> : ' . $item->text . '</span><br>');
+                $res .= nl2br('<p class="msg-line"><span class="full-name"><span class="ip">' . $id . '_</span><b style="color:' . $item->color . '">' . $item->name . '</b></span><span class="msg-body">' . $item->text . '</span><br><span class="dt">' . $item->created_at . '</span></p>');
             }
         }else{
             $res = '<span class="msg-line"><b>ADMIN</b> : Можете начать чат!</span><br>';
@@ -56,13 +57,8 @@ class ChatController extends Controller
                 $msg->color = $color;
                 $msg->save();
 
-                $nextMsg = nl2br('<span class="msg-line"><span class="ip">' . $ip . '_</span><b style="color:' . $color . '">' . $name . '</b> : ' . $msg->text . '</span><br>');
-                // отображение ссылок
-                $nextMsg = preg_replace_callback( "\x07((?:[a-z]+://(?:www\\.)?)[_.+!*'(),/:@~=?&$%a-z0-9\\-]+)\x07iu", function ($matches) {
-                    return '<a href="' . ( mb_strpos( $matches[1], "://" ) === false ? "http://" : "" ) . $matches[1] . '" target="_blank">' . $matches[1] . '</a>';
-                }, $nextMsg );
-                //
-                $res .= $nextMsg ;
+                $nextMsg = nl2br('<p class="msg-line"><span class="full-name"><span class="ip">' . $id . '_</span><b style="color:' . $color . '">' . $name . '</b></span><span class="msg-body">' . $msg->text . '</span><br><div class="dt">' . $msg->created_at . '</div></p>');
+                $res = $nextMsg . $res;
                 die($res);
             }else{ // таймер setInterval сработал
                die($res);
