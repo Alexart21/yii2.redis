@@ -9,7 +9,7 @@ use yii\helpers\Html;
         flex-direction: column-reverse;
         position: relative;
         width: 400px;
-        height: 600px;
+        height: 400px;
         padding: 1em;
         border: 1px solid blue;
         overflow-y: auto;
@@ -82,6 +82,11 @@ use yii\helpers\Html;
         left: 260px;
     }
 
+    button.fa-telegram-plane:active, button.fa-telegram-plane:visited{
+        border: none !important;
+        outline: none !important;
+    }
+
     .dt{
         display: block;
         text-align:right;
@@ -90,6 +95,7 @@ use yii\helpers\Html;
 
     .dateOnly{
         font-size: 100% !important;
+        /*color: hsl(60,100%,50%);*/
     }
 </style>
 <div style="position: relative;">
@@ -138,4 +144,3 @@ use yii\helpers\Html;
     <!-- submit button впихнул выше -->
     <?php Pjax::end(); ?>
 </div>
-

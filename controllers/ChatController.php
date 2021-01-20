@@ -20,18 +20,15 @@ class ChatController extends Controller
 
         $name = $session->get('user_name');
         $color = $session->get('user_color');
-        /*if($name && $color){
-            setcookie('user_color', $color);
-            setcookie('user_name', $name);
-        }*/
         $ip = Yii::$app->request->userIP;
-        $id = substr(sha1($ip), 0, 6);
+        $id = substr(crc32($ip), 0, 8);
+//        $id = substr(sha1($ip), 0, 6);
 
         $msgs = Chat::getMessages();
         $res = '';
         if(!empty($msgs)) {
             foreach ($msgs as $item) {
-                $res .= nl2br('<p class="msg-line"><span class="full-name"><span class="ip">' . $id . '_</span><b style="color:' . $item->color . '">' . $item->name . '</b></span><span class="msg-body">' . $item->text . '</span><br><span class="dt">' . $item->created_at . '</span></p>');
+                $res .= nl2br('<p class="msg-line"><span class="full-name"><span class="ip">' . $id . '_</span><b style="border-bottom: 2px solid hsl(' . $item->color . ',100%,50%)">' . $item->name . '</b></span><span class="msg-body">' . $item->text . '</span><br><span class="dt">' . $item->created_at . '</span></p>');
             }
         }else{
             $res = '<span class="msg-line"><b>ADMIN</b> : Можете начать чат!</span><br>';
@@ -57,7 +54,7 @@ class ChatController extends Controller
                 $msg->color = $color;
                 $msg->save();
 
-                $nextMsg = nl2br('<p class="msg-line"><span class="full-name"><span class="ip">' . $id . '_</span><b style="color:' . $color . '">' . $name . '</b></span><span class="msg-body">' . $msg->text . '</span><br><div class="dt">' . $msg->created_at . '</div></p>');
+                $nextMsg = nl2br('<p class="msg-line"><span class="full-name"><span class="ip">' . $id . '_</span><b style="border-bottom: 2px solid hsl(' . $color . ',100%,50%)">' . $name . '</b></span><span class="msg-body">' . $msg->text . '</span></p>');
                 $res = $nextMsg . $res;
                 die($res);
             }else{ // таймер setInterval сработал
@@ -71,6 +68,7 @@ class ChatController extends Controller
 
     public static function rndColor()
     {
-        return '#' . dechex(rand(0,10000000));;
+        // return '#' . dechex(rand(0,10000000));;
+        return (string)rand(0, 359);
     }
 }

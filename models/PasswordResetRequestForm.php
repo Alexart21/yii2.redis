@@ -12,7 +12,7 @@ use yii\helpers\Html;
 class PasswordResetRequestForm extends Model
 {
     public $email;
-  public $reCaptcha;
+    public $reCaptcha;
 
     /**
      * @inheritdoc

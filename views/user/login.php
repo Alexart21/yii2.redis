@@ -40,12 +40,12 @@ Modal::begin([
     <br/>
     <?= $form->field($model, 'password', ['template' => "<div class='form-group'> {input} <span class=\"fa fa-eye-slash\"></span><div>{error}</div></div>",])->passwordInput(['placeholder' => 'Пароль']) ?>
 
-    <?/*= $form->field($model, 'reCaptcha')->widget(
+    <?= $form->field($model, 'reCaptcha')->widget(
         \himiklab\yii2\recaptcha\ReCaptcha2::class,
         [
             'siteKey' => '6LfRBQEaAAAAAEqEbZSrlYH0sQz5Q-bX58GHPNjL', // unnecessary is reCaptcha component was set up
         ]
-    )  */?>
+    )  ?>
 
     <? /*= \himiklab\yii2\recaptcha\ReCaptcha3::widget([
         'name' => 'reCaptcha',

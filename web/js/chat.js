@@ -17,6 +17,7 @@ function updateList() {
 ///
 function updateUserColor() {
     let clr = decodeURIComponent(readCookie('user_color'));
+    clr = 'hsl(' + clr + ',100%,50%)';
     if(clr){
         let inp = document.getElementById('chatform-name');
         inp.style.color = clr;

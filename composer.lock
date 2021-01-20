@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1757dce6eac18d885e1e55fe35698c8a",
+    "content-hash": "e88cb5c77c6160ad95527e6f70cbb7eb",
     "packages": [
         {
             "name": "abeautifulsite/simpleimage",
@@ -1661,50 +1661,6 @@
                 }
             ],
             "time": "2020-10-23T14:02:19+00:00"
-        },
-        {
-            "name": "tangniyuqi/yii2-emoji",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/tangniyuqi/yii2-emoji.git",
-                "reference": "febb01f4c68963a2389b070eaa8aab59936737e4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/tangniyuqi/yii2-emoji/zipball/febb01f4c68963a2389b070eaa8aab59936737e4",
-                "reference": "febb01f4c68963a2389b070eaa8aab59936737e4",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0",
-                "yiisoft/yii2": "*"
-            },
-            "type": "yii2-extension",
-            "autoload": {
-                "psr-4": {
-                    "tangniyuqi\\emoji\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD 3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "tangniyuqi",
-                    "email": "tangniyuqi@163.com",
-                    "homepage": "http://www.noooya.com/"
-                }
-            ],
-            "description": "The emoji extension for the Yii framework",
-            "homepage": "https://github.com/tangniyuqi/yii2-emoji",
-            "keywords": [
-                "emoji",
-                "extension",
-                "yii2"
-            ],
-            "time": "2017-05-24T08:55:31+00:00"
         },
         {
             "name": "tmukherjee13/yii2-reverse-migration",
