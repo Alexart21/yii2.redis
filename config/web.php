@@ -1,12 +1,15 @@
 <?php
 /* Критичные данные не сливаем на GitHub храним отдельно !!! */
-$my_config = parse_ini_file(__DIR__ . '/../../config/config.ini');
+$my_config = parse_ini_file(__DIR__ . '/../../secret/config.ini');
 
 $params = require(__DIR__ . '/params.php');
 
 /* Сливаем секреты с обычными данными */
+/* В этом файле доступ к секретам через $my_config[]
+    в других частях приложения через Yii::$app->params
+ */
 $params = array_merge($params, $my_config);
-//var_dump(Yii::$app->params['clientId']);die;
+var_dump($my_config);die;
 $config = [
     /* Сайт на техобслуживании */
     /*'catchAll' => [
