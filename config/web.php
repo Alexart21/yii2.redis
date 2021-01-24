@@ -36,16 +36,20 @@ $config = [
         ],*/
     ],
     'components' => [
+        'authClientCollection' => [
+            'class' => 'yii\authclient\Collection',
+            'clients' => [
+                'google' => [
+                    'class' => 'yii\authclient\clients\Google',
+                    'clientId' => '809251919207-oame2045asjmti0u82709bgisueia1n9.apps.googleusercontent.com',
+                    'clientSecret' => 'mYsSiSzCDbonifoeg5vnv928',
+                ],
+            ],
+
+        ],
         /*'authManager' => [
             'class' => 'yii\rbac\PhpManager',
         ],*/
-        'view' => [
-            'theme' => [
-                'pathMap' => [
-                    '@app/views' => '@vendor/dmstr/yii2-adminlte-asset/example-views/yiisoft/yii2-app'
-                ],
-            ],
-        ],
         /* Redis кэш */
         /*'cache' => [
             'class' => 'yii\redis\Cache',

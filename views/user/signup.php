@@ -26,6 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'id' => 'form-signup',
                 ]);
             ?>
+
             <?= $form->field($model, 'username', ['enableAjaxValidation' => true])->textInput(['autofocus' => true, 'placeholder' => 'Имя'])->label(false) ?>
             <?= $form->field($model, 'email', ['enableAjaxValidation' => true])->textInput(['placeholder' => 'email'])->label(false) ?>
             <?= $form->field($model, 'password', ['template' => "<div class='form-group'> {input} <span class=\"fa fa-eye-slash\"></span><div>{error}</div></div>",])->passwordInput(['placeholder' => 'пароль'])->label(false) ?>
@@ -48,7 +49,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= Html::submitButton('Зарегистрироваться', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
             </div>
             <?php ActiveForm::end(); ?>
-
+<h2>Войти через</h2>
+    <?= yii\authclient\widgets\AuthChoice::widget([
+        'baseAuthUrl' => ['site/auth'],
+        'popupMode' => false,
+    ]);
+    ?>
 </div>
 <script>
     window.onload = function(){

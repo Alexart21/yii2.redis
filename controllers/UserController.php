@@ -18,6 +18,7 @@ use Yii;
 use yii\web\MethodNotAllowedHttpException;
 use yii\widgets\ActiveForm;
 use yii\web\Response;
+use app\models\Auth;
 
 
 class UserController  extends Controller
@@ -26,7 +27,7 @@ class UserController  extends Controller
     {
         return [
             'access' => [
-                'class' => AccessControl::className(),
+                'class' => AccessControl::class,
                 'only' => ['logout'],
                 'rules' => [
                     [
@@ -37,14 +38,14 @@ class UserController  extends Controller
                 ],
             ],
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'logout' => ['post'],
                 ],
             ],
             'rateLimiter' => [
                 // сторонняя фича. Пишется в кэш.Бд не трогается.
-                'class' => \ethercreative\ratelimiter\RateLimiter::className(),
+                'class' => \ethercreative\ratelimiter\RateLimiter::class,
 //                'only' => ['login'],
 //                'only' => ['login', 'signup', 'requestPasswordReset', 'passwordReset'],
                 // The maximum number of all'ow'ed requests
@@ -71,6 +72,8 @@ class UserController  extends Controller
             ],
         ];
     }
+
+
 
     public function actionIndex()
     {
