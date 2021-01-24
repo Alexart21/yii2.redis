@@ -9,7 +9,7 @@ $params = require(__DIR__ . '/params.php');
     в других частях приложения через Yii::$app->params
  */
 $params = array_merge($params, $my_config);
-var_dump($my_config);die;
+//var_dump($my_config);die;
 $config = [
     /* Сайт на техобслуживании */
     /*'catchAll' => [
