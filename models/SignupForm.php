@@ -34,8 +34,8 @@ class SignupForm extends Model
             ['password', 'string', 'length' => [6, 100]],
             ['password_repeat', 'compare', 'compareAttribute'=>'password', 'message'=>"Пароли не совпадают !" ],
             //reCaptcha v2
-            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::className(),
-                'secret' => '6LfRBQEaAAAAAMVJTPl6A3vWbpjzSuXdRUnQLm39', // unnecessary if reСaptcha is already configured
+            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::class,
+                'secret' => $my_config['secretV2'], // unnecessary if reСaptcha is already configured
                 'uncheckedMessage' => 'Подтвердите, что вы не робот'],
 
             //reCaptcha v3

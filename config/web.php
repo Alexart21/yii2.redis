@@ -151,10 +151,10 @@ $config = [
 
         'reCaptcha' => [ // for houme21.ru
             'class' => 'himiklab\yii2\recaptcha\ReCaptchaConfig',
-            'siteKeyV2' => '6LfRBQEaAAAAAEqEbZSrlYH0sQz5Q-bX58GHPNjL',
-            'secretV2' => '6LfRBQEaAAAAAMVJTPl6A3vWbpjzSuXdRUnQLm39',
-            'siteKeyV3' => '6LeUsCgaAAAAAHPBfAVWB1DwCTxSpYEqWDe87Xml',
-            'secretV3' => '6LeUsCgaAAAAAEYBnXCQbjIazyhkSsXPdFxw7mKk',
+            'siteKeyV2' => $my_config['siteKeyV2'],
+            'secretV2' => $my_config['secretV2'],
+            'siteKeyV3' => $my_config['siteKeyV3'],
+            'secretV3' => $my_config['secretV3'],
         ],
     ],
     'controllerMap' => [

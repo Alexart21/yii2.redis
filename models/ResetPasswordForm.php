@@ -59,7 +59,7 @@ class ResetPasswordForm extends Model
             ['password_repeat', 'compare', 'compareAttribute'=>'password', 'message'=>"Пароли не совпадают !" ],
             //reCaptcha v2
             [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::class,
-                'secret' => '6LfRBQEaAAAAAMVJTPl6A3vWbpjzSuXdRUnQLm39', // unnecessary if reСaptcha is already configured
+                'secret' => $my_config['secretV2'], // unnecessary if reСaptcha is already configured
                 'uncheckedMessage' => 'Подтвердите, что вы не робот'],
 
             //reCaptcha v3

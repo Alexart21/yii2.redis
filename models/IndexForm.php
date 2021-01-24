@@ -23,12 +23,12 @@ class IndexForm extends Model
             ['name', 'string', 'length' => [3, 30]],
             ['tel', 'string', 'length' => [11, 30]],
             ['text', 'string', 'length' => [3, 2000]],
-            /*[['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::className(),
+            /*[['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::class,
                 'secret' => '6LfRBQEaAAAAAMVJTPl6A3vWbpjzSuXdRUnQLm39', // unnecessary if reСaptcha is already configured
                 'uncheckedMessage' => 'Подтвердите, что вы не робот'],*/
 
             [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator3::class,
-                'secret' => '6LeUsCgaAAAAAEYBnXCQbjIazyhkSsXPdFxw7mKk', // unnecessary if reСaptcha is already configured
+                'secret' => $my_config['secretV3'], // unnecessary if reСaptcha is already configured
                 'threshold' => 0.5,
                 'action' => 'index',
             ],
