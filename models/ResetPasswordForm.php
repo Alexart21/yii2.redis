@@ -59,12 +59,12 @@ class ResetPasswordForm extends Model
             ['password_repeat', 'compare', 'compareAttribute'=>'password', 'message'=>"Пароли не совпадают !" ],
             //reCaptcha v2
             [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::class,
-                'secret' => $my_config['secretV2'], // unnecessary if reСaptcha is already configured
+                'secret' => Yii::$app->params['secretV2'], // unnecessary if reСaptcha is already configured
                 'uncheckedMessage' => 'Подтвердите, что вы не робот'],
 
             //reCaptcha v3
             /* [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator3::className(),
-                 'secret' => '6LfNdr4ZAAAAAA-JNIMCWXlx_eeYv-JxJzJpdPdz', // unnecessary if reСaptcha is already configured
+                 'secret' => Yii::$app->params['secretV3'], // unnecessary if reСaptcha is already configured
                  'threshold' => 0.5,
                  'action' => 'reset-password',
              ],*/

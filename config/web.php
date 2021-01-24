@@ -1,7 +1,12 @@
 <?php
+/* Критичные данные не сливаем на GitHub храним отдельно !!! */
+$my_config = parse_ini_file(__DIR__ . '/../../config/config.ini');
 
 $params = require(__DIR__ . '/params.php');
 
+/* Сливаем секреты с обычными данными */
+$params = array_merge($params, $my_config);
+//var_dump(Yii::$app->params['clientId']);die;
 $config = [
     /* Сайт на техобслуживании */
     /*'catchAll' => [
@@ -41,8 +46,8 @@ $config = [
             'clients' => [
                 'google' => [
                     'class' => 'yii\authclient\clients\Google',
-                    'clientId' => '809251919207-oame2045asjmti0u82709bgisueia1n9.apps.googleusercontent.com',
-                    'clientSecret' => 'mYsSiSzCDbonifoeg5vnv928',
+                    'clientId' => $my_config['clientId'],
+                    'clientSecret' => $my_config['clientSecret'],
                 ],
             ],
 
@@ -168,8 +173,6 @@ $config = [
                 'name' => 'Global'
             ],
         ],
-        /* chat */
-        'server' => \jakharbek\chat\api\ChatController::class,
     ],
     'params' => $params,
 ];

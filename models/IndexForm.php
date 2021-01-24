@@ -24,11 +24,11 @@ class IndexForm extends Model
             ['tel', 'string', 'length' => [11, 30]],
             ['text', 'string', 'length' => [3, 2000]],
             /*[['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::class,
-                'secret' => '6LfRBQEaAAAAAMVJTPl6A3vWbpjzSuXdRUnQLm39', // unnecessary if reСaptcha is already configured
+                'secret' => Yii::$app->params['secretV2'], // unnecessary if reСaptcha is already configured
                 'uncheckedMessage' => 'Подтвердите, что вы не робот'],*/
 
             [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator3::class,
-                'secret' => $my_config['secretV3'], // unnecessary if reСaptcha is already configured
+                'secret' => Yii::$app->params['secretV3'], // unnecessary if reСaptcha is already configured
                 'threshold' => 0.5,
                 'action' => 'index',
             ],
