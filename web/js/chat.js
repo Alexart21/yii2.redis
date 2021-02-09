@@ -20,9 +20,11 @@ function updateUserColor() {
     clr = 'hsl(' + clr + ',100%,50%)';
     if(clr){
         let inp = document.getElementById('chatform-name');
+        let msgBlock = document.querySelector('.msg-line');
         inp.style.color = clr;
         inp.setAttribute('style', '-webkit-text-fill-color:'  + clr + ' !important');
         chatBtn.style.color = clr;
+        msgBlock.style.border = '1px solid ' + clr;
     }
 }
 ///

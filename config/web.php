@@ -1,5 +1,8 @@
 <?php
 /* Критичные данные не сливаем на GitHub храним отдельно !!! */
+
+use app\models\User;
+
 $my_config = parse_ini_file(__DIR__ . '/../../secret/config.ini');
 
 $params = require(__DIR__ . '/params.php');
@@ -29,9 +32,6 @@ $config = [
         'alexadmx' => [ // подключаем модуль админки
             'class' => 'app\modules\alexadmx\Module',
             'layout' => 'main'
-        ],
-        'simplechat' => [
-            'class' => 'bubasuma\simplechat\Module',
         ],
         /*'yii2images' => [
             'class' => 'rico\yii2images\Module',

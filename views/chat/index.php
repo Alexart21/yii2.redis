@@ -30,11 +30,13 @@ use yii\helpers\Html;
         padding: 0 .5em;
         position: absolute;
         left: 0;
-        top: -30px;
-        background: #eee;
-        border: 0 solid transparent;
+        top: -36px;
+        /*background: #eee;
+        border-top: 1px solid red;
+        border-left: 1px solid red;
+        border-right: 1px solid red;
         border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
+        border-top-right-radius: 5px;*/
     }
 
     #chatform-name, #msg{

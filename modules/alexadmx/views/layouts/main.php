@@ -100,7 +100,7 @@ $allCallCount = $session->get('allCallCount');
                             <h4 class="nav-link" style="background: #fff;height: 100%"><?= $user ?></h4>
                         </li>
                         <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                            <a class="nav-link" href="/user/logout" data-method="post">выйти</a>
+                            <a class="nav-link" href="/user/logout" data-method="post"><span title="выйти" class="fa fa-external-link-alt"></span></a>
                         </li>
                     </ul>
                 </div>

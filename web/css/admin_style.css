@@ -426,3 +426,9 @@ td a span.fa-window-close{
     font-size: 30px;
     margin: 0 0 20px 8px;
 }
+
+.fa-external-link-alt{
+    transform: scale(1.8) rotateZ(45deg);
+    margin-top: 10px;
+    margin-left: -10px;
+}

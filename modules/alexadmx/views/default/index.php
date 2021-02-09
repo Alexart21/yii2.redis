@@ -32,3 +32,5 @@ $d = str_replace('\\', '/', $d);
 <hr>
 <h3><a href="/alexadmx/chat">Чат-сохраненные</a></h3>
 <a href="/alexadmx/default/chat-clear" class="btn btn-warning pjax">Очистить чат</a>
+<hr>
+<h3><a href="/alexadmx/db">БД</a></h3>

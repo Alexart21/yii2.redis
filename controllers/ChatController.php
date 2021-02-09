@@ -28,7 +28,7 @@ class ChatController extends Controller
         $res = '';
         if(!empty($msgs)) {
             foreach ($msgs as $item) {
-                $res .= nl2br('<p class="msg-line"><span class="full-name"><span class="ip">' . $id . '_</span><b style="border-bottom: 2px solid hsl(' . $item->color . ',100%,50%)">' . $item->name . '</b></span><span class="msg-body">' . $item->text . '</span><br><span class="dt">' . $item->created_at . '</span></p>');
+                $res .= nl2br('<p class="msg-line" style="border: 1px solid hsl(' . $item->color . ',100%,50%)"><span class="full-name"><span class="ip">' . $id . '_</span><b style="border-bottom: 2px solid hsl(' . $item->color . ',100%,50%)">' . $item->name . '</b></span><span class="msg-body">' . $item->text . '</span><br><span class="dt">' . $item->created_at . '</span></p>');
             }
         }else{
             $res = '<span class="msg-line"><b>ADMIN</b> : Можете начать чат!</span><br>';

@@ -56,14 +56,6 @@ AdminAsset::register($this);
         </div>
     </div>
     <?php $this->endBody() ?>
-    <script>
-        $(document).on('pjax:beforeSend', function () {
-            document.body.style.cursor = 'progress';
-        });
-        $(document).on('pjax:complete', function () {
-            document.body.style.cursor = 'default';
-        });
-    </script>
     </body>
     </html>
 <?php $this->endPage() ?>
