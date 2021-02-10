@@ -63,6 +63,8 @@ $config = [
             'directories' => [
                 'img' => '@app/web/img',
             ],
+            // не будет автоудаления
+            'expireTime' => null,
             // бэкап БД реализовал по другому
             'db' => false,
         ],

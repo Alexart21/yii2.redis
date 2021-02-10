@@ -13,10 +13,10 @@ class FileBackup extends Model
     public function getFiles($files)
     {
         //кол-во файлов сохраняем для использования в виджете
-        Yii::$app->params['count_db'] = count($files);
+        Yii::$app->params['count_archive'] = count($files);
         $arr = [];
-        foreach ($files as $key => $file) {
-            $arr[] = array('file' => $file);
+        foreach ($files as $file) {
+            $arr[] = ['file' => $file];
         }
         $dataProvider = new \yii\data\ArrayDataProvider([
             'allModels' => $arr,

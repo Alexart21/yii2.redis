@@ -28,7 +28,7 @@ class SignupForm extends Model
             [['username', 'email', 'password', 'password_repeat'], 'required'],
             [['username', 'email', 'password', 'password_repeat'], 'trim'],
             ['username', 'unique', 'targetClass' => '\app\models\User', 'message' => 'Такое имя уже существует.Введите другое'],
-            ['username', 'string', 'length' => [3, 100]],
+            ['username', 'string', 'length' => [2, 100]],
             ['email', 'email'],
             ['email', 'string', 'max' => 100],
             ['email', 'unique', 'targetClass' => '\app\models\User', 'message' => 'Такой email уже существует.Введите другой'],

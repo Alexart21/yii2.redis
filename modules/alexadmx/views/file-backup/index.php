@@ -19,16 +19,25 @@ $this->params['breadcrumbs'][] = $this->title;
     <br>
     <p>
         <?= Html::a('Создать архив', ['create'], ['class' => 'btn btn-success']) ?>
+        <?php
+        if (Yii::$app->params['count_archive'] > 1) :
+        ?>
+        <?= Html::a('Удалить все', ['delete-all'], ['class' => 'btn btn-danger']) ?>
+        <?php
+        endif;
+        ?>
         <br>
-
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
             'columns' => [
                 ['class' => 'yii\grid\SerialColumn'],
                 [
                     'attribute' => 'file',
-                    'format' => 'text',
-                    'label' => 'Путь к архиву',
+                    'format' => 'raw',
+                    'value' => function($data){
+                        return basename($data['file']);
+                    },
+                    'label' => 'Файл с архивом',
                 ],
                 [
                     'format' => 'raw',
@@ -38,9 +47,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 [
                     'format' => 'raw',
-                    //кнопку удаления выводим только если >1 дампа БД
+                    //кнопку удаления выводим только если >1 архива
                     'value' => function ($data, $id) {
+                        if (Yii::$app->params['count_archive'] > 1) {
                             return Html::a('Удалить', \yii\helpers\Url::to(['file-backup/delete', 'path' => $data['file']]), ['title' => 'Удалить', 'class' => 'btn btn-danger']);
+                        } else return false;
                     }
                 ],
             ],

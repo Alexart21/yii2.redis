@@ -13,8 +13,9 @@ class DbBackup extends Model
         //кол-во файлов сохраняем для использования в виджете
         Yii::$app->params['count_db'] = count($files);
         $arr = [];
-        foreach ($files as $key => $file) {
-            $arr[] = array('dump' => $file);
+        $arr = [];
+        foreach ($files as $dump) {
+            $arr[] = ['dump' => $dump];
         }
         $dataProvider = new \yii\data\ArrayDataProvider([
             'allModels' => $arr,

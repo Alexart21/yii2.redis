@@ -1,4 +1,6 @@
 <?php
+use yii\helpers\FileHelper;
+
 $this->title = 'Административная панель';
 ?>
 
@@ -16,19 +18,15 @@ $this->title = 'Административная панель';
     <h3><a href="/alexadmx/post">Входящие письма</a></h3>
     <h3><a href="/alexadmx/callback">Заказы обратных звонков</a></h3>
     <h3><a href="/alexadmx/user">Все пользователи</a></h3>
+    <a class="btn btn-warning pjax" data-toggle="tooltip" title="Очистка временных папок(Рекомендуется перед бэкапом)" href="/alexadmx/default/clear">Удалить временные файлы</a>
     <br>
     <?php
-    $dirArr = require_once __DIR__ . '/../inc/dirArr.php';
+    $d = dirname(__DIR__);
+    $d = str_replace('\\', '/', $d);
     ?>
+    <code>Массив с путями к очищаемым папкам: <?= $d ?>/inc/dirArr.php</code>
     <hr>
     <a class="btn btn-primary" href="/alexadmx/default/phpinfo">PHPINFO</a>
-    <a class="btn btn-warning pjax" data-toggle="tooltip" title="Очистка временных папок(Рекомендуется перед бэкапом)" href="/alexadmx/default/clear">Очистка</a>
-</div>
-<?php
-$d = dirname(__DIR__, 1);
-$d = str_replace('\\', '/', $d);
-?>
-    <code>Массив с путями к очищаемым папкам: <?= $d ?>/inc/dirArr.php</code>
 </div>
 <hr>
 <h3>Мини чат</h3>
@@ -36,5 +34,5 @@ $d = str_replace('\\', '/', $d);
 <a href="/alexadmx/default/chat-clear" class="btn btn-warning pjax">Очистить чат</a>
 <hr>
 <h3>Резервное копирование</h3>
-<a href="/alexadmx/file-backup" class="btn btn-success">Резервные копии файлов</a>
-<a href="/alexadmx/db-backup" class="btn btn-success">Сохраненные дампы БД</a>
+<a href="/alexadmx/file-backup" class="btn btn-info">Резервные копии файлов</a>
+<a href="/alexadmx/db-backup" class="btn btn-info">Сохраненные дампы БД</a>

@@ -16,6 +16,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <br>
     <p>
         <?= Html::a('Создать дамп БД (экспорт)', ['export'], ['class' => 'btn btn-success']) ?>
+        <?php
+        if (Yii::$app->params['count_db'] > 1) :
+        ?>
+        <?= Html::a('Удалить все', ['delete-all'], ['class' => 'btn btn-danger']) ?>
+        <?php
+        endif;
+        ?>
         <br>
 
         <?= GridView::widget([
@@ -24,12 +31,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 ['class' => 'yii\grid\SerialColumn'],
                 [
                     'attribute' => 'dump',
-                    'format' => 'text',
-                    'label' => 'Путь к дампу БД',
+                    'format' => 'raw',
+                    'value' => function($data){
+                        return basename($data['dump']);
+                    },
+                    'label' => 'Файл с дампом БД',
                 ],
                 [
                     'format' => 'raw',
-                    'value' => function ($data, $id) {
+                    'value' => function ($data) {
                         return Html::a('Импортировать в БД', \yii\helpers\Url::to(['db-backup/import', 'path' => $data['dump']]), ['title' => 'Импортировать', 'class' => 'btn btn-primary']);
                     }
                 ],

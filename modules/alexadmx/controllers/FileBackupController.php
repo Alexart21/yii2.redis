@@ -45,4 +45,15 @@ class FileBackupController extends AppAlexadmxController
         $model = new FileBackup();
         $model->delete($path);
     }
+
+    public function actionDeleteAll()
+    {
+        $path = FileHelper::normalizePath(Yii::$app->backup->backupsFolder);
+        $arr = FileHelper::findFiles($path, ['only' => ['*.tar'], 'recursive' => FALSE]);
+//        var_dump($arr);die;
+        foreach ($arr as $file){
+            unlink($file);
+        }
+        return Yii::$app->response->redirect(['alexadmx/file-backup/index']);
+    }
 }

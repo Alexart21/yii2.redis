@@ -50,6 +50,17 @@ class DbBackupController extends AppAlexadmxController
         $model->delete($path);
     }
 
+    public function actionDeleteAll()
+    {
+        $path = FileHelper::normalizePath(Yii::$app->backup->backupsFolder);
+        $arr = FileHelper::findFiles($path, ['only' => ['*.sql'], 'recursive' => FALSE]);
+//        var_dump($arr);die;
+        foreach ($arr as $file){
+            unlink($file);
+        }
+        return Yii::$app->response->redirect(['alexadmx/db-backup/index']);
+    }
+
     public function actionDownload($path)
     {
         if (file_exists($path)) {

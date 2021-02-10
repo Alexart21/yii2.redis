@@ -141,7 +141,27 @@ $allCallCount = $session->get('allCallCount');
                         'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                     ]) ?>
                 </section>
-                <?= Alert::widget() ?>
+                <!-- Flash сообщения -->
+                <?php if (Yii::$app->session->hasFlash('success')): ?>
+                    <br>
+                    <?= Alert::widget([
+                        'options' => [
+                            'class' => 'alert-info'
+                        ],
+                        'body' => Yii::$app->session->getFlash('success'),
+                    ]) ?>
+                <?php endif; ?>
+
+                <?php if (Yii::$app->session->hasFlash('error')): ?>
+                    <br>
+                    <?= Alert::widget([
+                        'options' => [
+                            'class' => 'alert-danger'
+                        ],
+                        'body' => Yii::$app->session->getFlash('error'),
+                    ]) ?>
+                <?php endif; ?>
+                <!-- Конец Flash сообщения -->
                 <div id="main-content">
                     <?= $content ?>
                 </div>
@@ -338,9 +358,6 @@ $allCallCount = $session->get('allCallCount');
             setTimeout(function() {
                 alrt.remove();
             }, 4000);
-            /*setTimeout(function() {
-                $('.alert').modal('hide');
-            }, 4000);*/
         }
     </script>
     </body>
