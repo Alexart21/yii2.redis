@@ -60,8 +60,8 @@ class IndexForm extends Model
 
         $success = Yii::$app->mailer->compose()
             ->setTo(Yii::$app->params['bk_email'])
-//            ->setFrom([Yii::$app->params['sender_email'] => Yii::$app->params['siteUrl']])
-            ->setFrom(['mail@alexart.houme21.ru' => 'alexart.houme21.ru'])
+            ->setFrom([Yii::$app->params['sender_email'] => Yii::$app->params['siteUrl']])
+//            ->setFrom(['mail@alexart.houme21.ru' => 'alexart.houme21.ru'])
 //            ->setReplyTo([$email => $name])
             ->setSubject($subject)
             ->setHtmlBody($body)
