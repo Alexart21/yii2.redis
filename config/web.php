@@ -55,6 +55,17 @@ $config = [
             ],
 
         ],
+        'backup' => [
+            'class' => 'demi\backup\Component',
+            // The directory for storing backups files
+            'backupsFolder' => dirname(dirname(__DIR__)) . '/backups', // <project-root>/backups
+            // Directories that will be added to db-backup
+            'directories' => [
+                'img' => '@app/web/img',
+            ],
+            // бэкап БД реализовал по другому
+            'db' => false,
+        ],
         /*'authManager' => [
             'class' => 'yii\rbac\PhpManager',
         ],*/

@@ -8,6 +8,7 @@ $this->title = 'Административная панель';
         <a class="btn btn-warning pjax" data-toggle="tooltip" title="очистка кэша" href="/alexadmx/default/cache">очистить кэш</a>&nbsp;
     <a class="btn btn-success pjax" data-toggle="tooltip" title="Установка заголовка LastModified в текущие дату/время" href="/alexadmx/default/last">Last Modified</a>&nbsp;
     <a class="btn btn-success pjax" data-toggle="tooltip" title="Перегенерация файла Sitemap.xml" href="/alexadmx/default/sitemap">Sitemap</a>&nbsp;
+    (очистка кэша,установка заголовка LastModified в текущее время,перегенерация sitemap.xml)
     <br>
 <!--    --><?php //if ($user === Yii::$app->params['admin_alex']) : ?>
         <h3><a href="/alexadmx/content">Содержимое основных страниц</a> (таблица Content)</h3>
@@ -30,7 +31,10 @@ $d = str_replace('\\', '/', $d);
     <code>Массив с путями к очищаемым папкам: <?= $d ?>/inc/dirArr.php</code>
 </div>
 <hr>
-<h3><a href="/alexadmx/chat">Чат-сохраненные</a></h3>
+<h3>Мини чат</h3>
+<a href="/alexadmx/chat" class="btn btn-info">Чат-сохраненные</a>
 <a href="/alexadmx/default/chat-clear" class="btn btn-warning pjax">Очистить чат</a>
 <hr>
-<h3><a href="/alexadmx/db">БД</a></h3>
+<h3>Резервное копирование</h3>
+<a href="/alexadmx/file-backup" class="btn btn-success">Резервные копии файлов</a>
+<a href="/alexadmx/db-backup" class="btn btn-success">Сохраненные дампы БД</a>

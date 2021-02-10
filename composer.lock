@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "80078350c7246353b8c7fa5fa073a1f6",
+    "content-hash": "106aa6d895a3cd9f93ac6d2daafcade1",
     "packages": [
         {
             "name": "abeautifulsite/simpleimage",
@@ -289,6 +289,51 @@
                 "yii2-images"
             ],
             "time": "2018-07-04T12:53:06+00:00"
+        },
+        {
+            "name": "demi/backup",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/demisang/yii2-backup.git",
+                "reference": "904d5f2dce8fc65f18936cf6b544148bda386a74"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/demisang/yii2-backup/zipball/904d5f2dce8fc65f18936cf6b544148bda386a74",
+                "reference": "904d5f2dce8fc65f18936cf6b544148bda386a74",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "demi\\backup\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Ivan Orlov",
+                    "email": "gnasimed@gmail.com",
+                    "homepage": "https://orlov.io/",
+                    "role": "Creator"
+                }
+            ],
+            "description": "Basic Yii2 site backup methods",
+            "homepage": "https://github.com/demisang/yii2-backup#readme",
+            "keywords": [
+                "backup",
+                "dump",
+                "yii2"
+            ],
+            "time": "2020-07-09T00:56:34+00:00"
         },
         {
             "name": "ethercreative/yii2-ip-ratelimiter",

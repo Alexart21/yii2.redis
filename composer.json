@@ -37,7 +37,8 @@
     "ethercreative/yii2-ip-ratelimiter": "1.*",
     "himiklab/yii2-recaptcha-widget" : "*",
     "kartik-v/yii2-widget-datepicker": "@dev",
-    "yiisoft/yii2-authclient": "*"
+    "yiisoft/yii2-authclient": "*",
+    "demi/backup": "~1.0"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.0.0",

@@ -6,7 +6,7 @@ use Yii;
 use yii\base\Model;
 use yii\helpers\FileHelper;
 
-class Db extends Model
+class DbBackup extends Model
 {
     public function getFiles($files)
     {
@@ -43,7 +43,7 @@ class Db extends Model
         } else {
             Yii::$app->session->setFlash('error', 'Указанный путь не существует.');
         }
-        return Yii::$app->response->redirect(['alexadmx/db/index']);
+        return Yii::$app->response->redirect(['alexadmx/db-backup/index']);
     }
 
     public function export($path = null)
@@ -53,14 +53,14 @@ class Db extends Model
             if (is_dir($path)) {
                 if (!is_writable($path)) {
                     Yii::$app->session->setFlash('error', 'Дирректория не доступна для записи.');
-                    return Yii::$app->response->redirect(['alexadmx/db/index']);
+                    return Yii::$app->response->redirect(['alexadmx/db-backup/index']);
                 }
                 $fileName = 'dump_' . date('d-m-Y_H-i-s') . '.sql';
                 $filePath = $path . DIRECTORY_SEPARATOR . $fileName;
                 $db = Yii::$app->getDb();
                 if (!$db) {
                     Yii::$app->session->setFlash('error', 'Нет подключения к базе данных.');
-                    return Yii::$app->response->redirect(['alexadmx/db/index']);
+                    return Yii::$app->response->redirect(['alexadmx/db-backup/index']);
                 }
                 //Экранируем скобку которая есть в пароле
                 $db->password = str_replace("(", "\(", $db->password);
@@ -72,7 +72,7 @@ class Db extends Model
         } else {
             Yii::$app->session->setFlash('error', 'Указанный путь не существует.');
         }
-        return Yii::$app->response->redirect(['alexadmx/db/index']);
+        return Yii::$app->response->redirect(['alexadmx/db-backup/index']);
     }
 
     //Возвращает название хоста (например localhost)
@@ -94,6 +94,6 @@ class Db extends Model
         } else {
             Yii::$app->session->setFlash('error', 'Указанный путь не существует.');
         }
-        return Yii::$app->response->redirect(['alexadmx/db/index']);
+        return Yii::$app->response->redirect(['alexadmx/db-backup/index']);
     }
 }
