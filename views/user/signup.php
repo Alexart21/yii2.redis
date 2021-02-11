@@ -27,8 +27,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]);
             ?>
 
-            <?= $form->field($model, 'username', ['enableAjaxValidation' => true])->textInput(['autofocus' => true, 'placeholder' => 'Имя'])->label(false) ?>
-            <?= $form->field($model, 'email', ['enableAjaxValidation' => true])->textInput(['placeholder' => 'email'])->label(false) ?>
+            <?= $form->field($model, 'username')->textInput(['autofocus' => true, 'placeholder' => 'Имя'])->label(false) ?>
+            <?= $form->field($model, 'email')->textInput(['placeholder' => 'email'])->label(false) ?>
             <?= $form->field($model, 'password', ['template' => "<div class='form-group'> {input} <span class=\"fa fa-eye-slash\"></span><div>{error}</div></div>",])->passwordInput(['placeholder' => 'пароль'])->label(false) ?>
             <?= $form->field($model, 'password_repeat', ['template' => "<div class='form-group'> {input} <span class=\"fa fa-eye-slash\"></span><div>{error}</div></div>",])->passwordInput(['placeholder' => 'пароль еще раз'])->label(false) ?>
 

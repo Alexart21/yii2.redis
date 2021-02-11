@@ -32,6 +32,7 @@ class SiteController extends Controller
 
     public function onAuthSuccess($client)
     {
+//        die($classname = substr(strrchr(get_class($client), "\\"), 1));
         $attributes = $client->getUserAttributes();
 
         /* @var $auth Auth */
@@ -39,7 +40,6 @@ class SiteController extends Controller
             'source' => $client->getId(),
             'source_id' => $attributes['id'],
         ])->one();
-
         if (Yii::$app->user->isGuest) {
             if ($auth) { // авторизация
                 $user = $auth->user;
@@ -50,13 +50,29 @@ class SiteController extends Controller
                         Yii::t('app', "Пользователь с такой электронной почтой как в {client} уже существует, но с ним не связан. Для начала войдите на сайт использую электронную почту, для того, что бы связать её.", ['client' => $client->getTitle()]),
                     ]);
                 } else {
+                    /* Так чудовищно имя класса без namespase вытащил
+                    поскольку разнится там то name то login
+                     */
+                    $classname = substr(strrchr(get_class($client), "\\"), 1);
+//                    die($classname);
                     $password = Yii::$app->security->generateRandomString(6);
-                    $user = new User([
-                        'username' => $attributes['login'],
-                        'email' => $attributes['email'],
-                        'password_hash' => $password,
-                        'status' => 10,
-                    ]);
+                    if($classname == 'Google') {
+                        $user = new User([
+                            'username' => $attributes['name'],
+                            'email' => $attributes['email'],
+                            'password_hash' => $password,
+                            'status' => 10,
+                        ]);
+                    }elseif ($classname == 'Yandex'){
+//                        var_dump($attributes['login']);die;
+                        $user = new User([
+                            'username' => $attributes['login'], // у яндекса login видишь ли
+                            'email' => $attributes['login'] . '@yandex.ru', // вот такая дичь
+                            'password_hash' => $password,
+                            'status' => 10,
+                        ]);
+                    }
+//                    var_dump($user);die;
                     $user->generateAuthKey();
                     $user->generatePasswordResetToken();
                     $transaction = $user->getDb()->beginTransaction();

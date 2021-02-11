@@ -51,8 +51,14 @@ $config = [
             'clients' => [
                 'google' => [
                     'class' => 'yii\authclient\clients\Google',
-                    'clientId' => $my_config['clientId'],
-                    'clientSecret' => $my_config['clientSecret'],
+                    'clientId' => $my_config['G_clientId'],
+                    'clientSecret' => $my_config['G_clientSecret'],
+//                    'returnUrl' => 'https://alexart.houme21.ru/site/auth?authclient=google',
+                ],
+                'yandex' => [
+                    'class' => 'yii\authclient\clients\Yandex',
+                    'clientId' => $my_config['Y_clientId'],
+                    'clientSecret' => $my_config['Y_clientSecret'],
                 ],
             ],
 
