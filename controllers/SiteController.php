@@ -32,9 +32,7 @@ class SiteController extends Controller
 
     public function onAuthSuccess($client)
     {
-//        die($classname = substr(strrchr(get_class($client), "\\"), 1));
         $attributes = $client->getUserAttributes();
-
         /* @var $auth Auth */
         $auth = Auth::find()->where([
             'source' => $client->getId(),
@@ -53,10 +51,11 @@ class SiteController extends Controller
                     /* Так чудовищно имя класса без namespase вытащил
                     поскольку разнится там то name то login
                      */
+//                    var_dump($attributes);die;
                     $classname = substr(strrchr(get_class($client), "\\"), 1);
-//                    die($classname);
+//                    var_dump($classname);die;
                     $password = Yii::$app->security->generateRandomString(6);
-                    if($classname == 'Google') {
+                    if($classname == 'Google' || $classname == 'GitHub') {
                         $user = new User([
                             'username' => $attributes['name'],
                             'email' => $attributes['email'],
@@ -64,15 +63,23 @@ class SiteController extends Controller
                             'status' => 10,
                         ]);
                     }elseif ($classname == 'Yandex'){
-//                        var_dump($attributes['login']);die;
                         $user = new User([
                             'username' => $attributes['login'], // у яндекса login видишь ли
                             'email' => $attributes['login'] . '@yandex.ru', // вот такая дичь
                             'password_hash' => $password,
                             'status' => 10,
                         ]);
+                    }elseif ($classname == 'VKontakte'){
+                        if(!$attributes['email']){
+                            die('Вы не разрешили показывать Ваш email! Повторите попытку');
+                        }
+                        $user = new User([
+                            'username' => $attributes['first_name'] . ' ' . $attributes['last_name'],
+                            'email' => $attributes['email'],
+                            'password_hash' => $password,
+                            'status' => 10,
+                        ]);
                     }
-//                    var_dump($user);die;
                     $user->generateAuthKey();
                     $user->generatePasswordResetToken();
                     $transaction = $user->getDb()->beginTransaction();

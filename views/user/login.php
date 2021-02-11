@@ -59,14 +59,17 @@ Modal::begin([
     <div class="form-group">
             <?= Html::submitButton('Отправить', ['class' => 'btn btn-success', 'name' => 'login-button']) ?>
 <!--        <button title="очистить форму" class="login-reset" type="reset" style="float: right;border: none;background: #fff"><span style="font-size: 80%">очистить</span></button>-->
+        <?= Html::a('Забыли пароль?', ['user/request-password-reset'], ['style' => 'display:block;text-align:right']) ?>
     </div>
-    <a href="/signup" style="display: block;float: right">зарегистрироваться</a>
+
+    <a href="/signup" style="display: block;text-align: right">зарегистрироваться</a>
     <?php ActiveForm::end(); ?>
-</div>
-<br>
-<br>
-<div>
-    <b>Забыли пароль? Тогда Вам  <?= Html::a('сюда', ['user/request-password-reset']) ?>.</b>
+    <h2>Войти через</h2>
+    <?= yii\authclient\widgets\AuthChoice::widget([
+        'baseAuthUrl' => ['site/auth'],
+        'popupMode' => false,
+    ]);
+    ?>
 </div>
 <?php
 Modal::end();

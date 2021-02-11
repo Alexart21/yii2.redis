@@ -60,6 +60,17 @@ $config = [
                     'clientId' => $my_config['Y_clientId'],
                     'clientSecret' => $my_config['Y_clientSecret'],
                 ],
+                'github' => [
+                    'class' => 'yii\authclient\clients\GitHub',
+                    'clientId' => $my_config['Git_clientId'],
+                    'clientSecret' => $my_config['Git_clientSecret'],
+                ],
+                'vkontakte' => [
+                    'class' => 'yii\authclient\clients\VKontakte',
+                    'clientId' => $my_config['VK_clientId'],
+                    'clientSecret' => $my_config['VK_clientSecret'],
+                    'scope' => ['email'],
+                ],
             ],
 
         ],

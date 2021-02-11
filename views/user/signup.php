@@ -45,9 +45,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'action' => 'signup',
             ]) */ ?>
 
-            <div class="form-group">
+<!--            <div class="form-group">-->
                 <?= Html::submitButton('Зарегистрироваться', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
-            </div>
+<!--            </div>-->
             <?php ActiveForm::end(); ?>
 <h2>Войти через</h2>
     <?= yii\authclient\widgets\AuthChoice::widget([
