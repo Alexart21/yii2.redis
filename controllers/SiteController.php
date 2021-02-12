@@ -33,6 +33,7 @@ class SiteController extends Controller
     public function onAuthSuccess($client)
     {
         $attributes = $client->getUserAttributes();
+//        var_dump($attributes);die;
         /* @var $auth Auth */
         $auth = Auth::find()->where([
             'source' => $client->getId(),
@@ -44,37 +45,45 @@ class SiteController extends Controller
                 Yii::$app->user->login($user);
             } else { // регистрация
                 if (isset($attributes['email']) && User::find()->where(['email' => $attributes['email']])->exists()) {
-                    Yii::$app->getSession()->setFlash('error', [
+                    die("<h4 style='color: red'>Пользователь с такой электронной почтой как в {$client->getTitle()} уже существует, но с ним не связан. Для начала войдите на сайт использую электронную почту, для того, что бы связать её.</h4>");
+                    /*Yii::$app->getSession()->setFlash('error', [
                         Yii::t('app', "Пользователь с такой электронной почтой как в {client} уже существует, но с ним не связан. Для начала войдите на сайт использую электронную почту, для того, что бы связать её.", ['client' => $client->getTitle()]),
-                    ]);
+                    ]);*/
                 } else {
                     /* Так чудовищно имя класса без namespase вытащил
                     поскольку разнится там то name то login
                      */
 //                    var_dump($attributes);die;
-                    $classname = substr(strrchr(get_class($client), "\\"), 1);
-//                    var_dump($classname);die;
+                    $authClient = $client->getTitle();
+//                    var_dump($authClient);die;
                     $password = Yii::$app->security->generateRandomString(6);
-                    if($classname == 'Google' || $classname == 'GitHub') {
+                    if($authClient == 'Google' || $authClient == 'GitHub') {
                         $user = new User([
                             'username' => $attributes['name'],
                             'email' => $attributes['email'],
                             'password_hash' => $password,
                             'status' => 10,
                         ]);
-                    }elseif ($classname == 'Yandex'){
+                    }elseif ($authClient == 'Yandex'){
                         $user = new User([
                             'username' => $attributes['login'], // у яндекса login видишь ли
                             'email' => $attributes['login'] . '@yandex.ru', // вот такая дичь
                             'password_hash' => $password,
                             'status' => 10,
                         ]);
-                    }elseif ($classname == 'VKontakte'){
+                    }elseif ($authClient == 'VKontakte'){
                         if(!$attributes['email']){
-                            die('Вы не разрешили показывать Ваш email! Повторите попытку');
+                            die('<h4 style="color: red">Вы не разрешили показывать Ваш email! Подтвердите эту возможность.</h4>');
                         }
                         $user = new User([
-                            'username' => $attributes['first_name'] . ' ' . $attributes['last_name'],
+                            'username' => trim($attributes['first_name'] . ' ' . $attributes['last_name']),
+                            'email' => $attributes['email'],
+                            'password_hash' => $password,
+                            'status' => 10,
+                        ]);
+                    }elseif ($authClient == 'MailRu'){
+                        $user = new User([
+                            'username' => $attributes['nick'],
                             'email' => $attributes['email'],
                             'password_hash' => $password,
                             'status' => 10,

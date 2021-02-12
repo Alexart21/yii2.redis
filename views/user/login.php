@@ -62,7 +62,7 @@ Modal::begin([
         <?= Html::a('Забыли пароль?', ['user/request-password-reset'], ['style' => 'display:block;text-align:right']) ?>
     </div>
 
-    <a href="/signup" style="display: block;text-align: right">зарегистрироваться</a>
+    <a href="/signup" style="display: block;text-align: right">Регистрация</a>
     <?php ActiveForm::end(); ?>
     <h2>Войти через</h2>
     <?= yii\authclient\widgets\AuthChoice::widget([
@@ -76,6 +76,11 @@ Modal::end();
 ?>
 <script>
     window.onload = function(){
+        /* Пришлось так покрасить значок однокласников */
+        /*const ok = document.querySelector('.odnoklassniki').classList;
+        ok.add('fab');
+        ok.add('fa-odnoklassniki-square');*/
+        //
         $('#login').modal();
         $('.modal-content').velocity('transition.bounceIn');
         // Переключение видимости символов пароля и иконки

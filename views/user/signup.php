@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ]) */ ?>
 
 <!--            <div class="form-group">-->
-                <?= Html::submitButton('Зарегистрироваться', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+                <?= Html::submitButton('Отправить', ['class' => 'btn btn-primary', 'name' => 'signup-button', 'style' => 'margin-top:-50px']) ?>
 <!--            </div>-->
             <?php ActiveForm::end(); ?>
 <h2>Войти через</h2>
@@ -58,6 +58,10 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 <script>
     window.onload = function(){
+        /* Пришлось так покрасить значок однокласников */
+        /*const ok = document.querySelector('.odnoklassniki').classList;
+        ok.add('fab');
+        ok.add('fa-odnoklassniki-square');*/
         // Переключение видимости символов пароля и иконки
         const icon = document.querySelectorAll('.fa');
         let inp = [];

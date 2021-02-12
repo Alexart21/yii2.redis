@@ -38,7 +38,8 @@
     "himiklab/yii2-recaptcha-widget" : "*",
     "kartik-v/yii2-widget-datepicker": "@dev",
     "yiisoft/yii2-authclient": "*",
-    "demi/backup": "~1.0"
+    "demi/backup": "~1.0",
+    "isudakoff/yii2-mailru-authclient": "*"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.0.0",

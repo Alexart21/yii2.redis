@@ -60,6 +60,11 @@ $config = [
                     'clientId' => $my_config['Y_clientId'],
                     'clientSecret' => $my_config['Y_clientSecret'],
                 ],
+                'mailru' => [
+                    'class' => 'isudakoff\authclient\MailRu',
+                    'clientId' => $my_config['MailRu_clientId'],
+                    'clientSecret' => $my_config['MailRu_clientSecret'],
+                ],
                 'github' => [
                     'class' => 'yii\authclient\clients\GitHub',
                     'clientId' => $my_config['Git_clientId'],

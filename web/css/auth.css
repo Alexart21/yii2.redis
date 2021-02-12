@@ -134,3 +134,9 @@ button:hover{
     top: 2px;
 }
 /* end .squaredOne */
+/* Однокласники */
+.mailru{
+    background-image: url('/img/mailruicon.png');
+    background-size: cover;
+    /*transform: scale(0.5);*/
+}

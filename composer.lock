@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "106aa6d895a3cd9f93ac6d2daafcade1",
+    "content-hash": "4ca16fefc10bcbd354621fa40cdec4a1",
     "packages": [
         {
             "name": "abeautifulsite/simpleimage",
@@ -60,7 +60,7 @@
             "version": "v3.4.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/twbs/bootstrap.git",
+                "url": "git@github.com:twbs/bootstrap.git",
                 "reference": "68b0d231a13201eb14acd3dc84e51543d16e5f7e"
             },
             "dist": {
@@ -719,6 +719,49 @@
                 "watermark"
             ],
             "time": "2019-11-02T09:15:47+00:00"
+        },
+        {
+            "name": "isudakoff/yii2-mailru-authclient",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/isudakoff/yii2-mailru-authclient.git",
+                "reference": "818fb83c620f9a4b2ba6d2a6e40cfd9fc68981c0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/isudakoff/yii2-mailru-authclient/zipball/818fb83c620f9a4b2ba6d2a6e40cfd9fc68981c0",
+                "reference": "818fb83c620f9a4b2ba6d2a6e40cfd9fc68981c0",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2-authclient": "~2.0@dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "isudakoff\\authclient\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ilya Sudakov",
+                    "email": "isudakoff@gmail.com"
+                }
+            ],
+            "description": "MailRu extension for using via yii2-authclient",
+            "homepage": "http://github.com/isudakoff/yii2-mailru-authclient",
+            "keywords": [
+                "authclient",
+                "mailru",
+                "oauth",
+                "yii2"
+            ],
+            "time": "2017-08-25T08:44:06+00:00"
         },
         {
             "name": "kartik-v/yii2-krajee-base",
