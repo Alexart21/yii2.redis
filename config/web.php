@@ -65,16 +65,16 @@ $config = [
                     'clientId' => $my_config['MailRu_clientId'],
                     'clientSecret' => $my_config['MailRu_clientSecret'],
                 ],
-                'github' => [
-                    'class' => 'yii\authclient\clients\GitHub',
-                    'clientId' => $my_config['Git_clientId'],
-                    'clientSecret' => $my_config['Git_clientSecret'],
-                ],
                 'vkontakte' => [
                     'class' => 'yii\authclient\clients\VKontakte',
                     'clientId' => $my_config['VK_clientId'],
                     'clientSecret' => $my_config['VK_clientSecret'],
                     'scope' => ['email'],
+                ],
+                'github' => [
+                    'class' => 'yii\authclient\clients\GitHub',
+                    'clientId' => $my_config['Git_clientId'],
+                    'clientSecret' => $my_config['Git_clientSecret'],
                 ],
             ],
 
@@ -158,8 +158,8 @@ $config = [
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
-//            'useFileTransport' => true, // локалка
-            'useFileTransport' => false, // на боевом поставить false
+            'useFileTransport' => true, // локалка
+//            'useFileTransport' => false, // на боевом поставить false
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.mail.ru',

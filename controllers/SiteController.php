@@ -50,9 +50,6 @@ class SiteController extends Controller
                         Yii::t('app', "Пользователь с такой электронной почтой как в {client} уже существует, но с ним не связан. Для начала войдите на сайт использую электронную почту, для того, что бы связать её.", ['client' => $client->getTitle()]),
                     ]);*/
                 } else {
-                    /* Так чудовищно имя класса без namespase вытащил
-                    поскольку разнится там то name то login
-                     */
 //                    var_dump($attributes);die;
                     $authClient = $client->getTitle();
 //                    var_dump($authClient);die;

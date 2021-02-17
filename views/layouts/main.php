@@ -8,6 +8,17 @@ use yii\bootstrap4\Modal;
 //use yii\widgets\Spaceless;
 
 AppAsset::register($this);
+
+header('X-Frame-Options: sameorigin');
+header('X-Content-Type-Options: nosniff');
+header('X-XSS-Protection: 1;mode=block');
+header('Content-Security-Policy: default-src \'self\' \'unsafe-inline\' \'unsafe-eval\'; img-src \'self\' data:; style-src \'unsafe-inline\' \'unsafe-eval\' \'self\'; script-src \'self\' *.google.com www.gstatic.com \'unsafe-inline\' \'unsafe-eval\'; frame-src *.google.com gstatic.com');
+header('Permissions-Policy:
+    geolocation=(\'none\'),
+    camera=(\'none\'),
+    microphone=(\'none\')');
+header('Referrer-Policy: origin-when-cross-origin');
+header('Strict-Transport-Security: max-age=31536000');
 ?>
 <?php $this->beginPage() ?>
 <?php //Spaceless::begin(); // удаляет пробелы между HTML тегами?>
@@ -24,8 +35,13 @@ AppAsset::register($this);
         <link rel="manifest" href="/manifest.json" />
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <meta name="HandheldFriendly" content="true">
-        <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+        <!--<meta http-equiv="X-Content-Type-Options" content="nosniff" />
         <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+        <meta http-equiv="Content-Security-Policy" content="" />
+        <meta http-equiv="Permissions Policy" content="geolocation 'none'" />
+        <meta http-equiv="Referrer-Policy" content="origin-when-cross-origin" />
+        <meta http-equiv="Strict-Transport-Security" content="max-age=86400" />-->
+<!--        <meta http-equiv="X-Frame-Options" content="sameorigin" />-->
         <meta name="keywords" content="">
         <?php $this->head() ?>
     <body>
