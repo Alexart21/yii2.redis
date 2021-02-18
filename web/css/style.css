@@ -1771,7 +1771,7 @@ button.close {
     position: absolute;
     top: 0;
     left: 0;
-    background: #313A3D;
+    background: rgba(0,51,51,.8);
     color: var(--btn-color);
     width: 100%;
     padding: 18px;
@@ -1838,14 +1838,14 @@ button.close {
 
 #index-form .field:hover label {
      width: 18%;
-     background: #313A3D;
+     background: #003333;
      color: white;
  }
 
 
 .fill{
     width: 18% !important;
-    background: #313A3D !important;
+    background:#003333 !important;
     color: white !important;
 }
 
