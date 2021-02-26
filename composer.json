@@ -39,7 +39,8 @@
     "kartik-v/yii2-widget-datepicker": "@dev",
     "yiisoft/yii2-authclient": "*",
     "demi/backup": "~1.0",
-    "isudakoff/yii2-mailru-authclient": "*"
+    "isudakoff/yii2-mailru-authclient": "*",
+    "consik/yii2-websocket": "^1.0"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.0.0",

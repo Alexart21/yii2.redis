@@ -6,6 +6,7 @@ use yii\web\Controller;
 use app\models\test\TestModel;
 use yii\web\UploadedFile;
 use Yii;
+//use app\models\chat\WSchat;
 
 class TestController extends Controller
 {
@@ -29,10 +30,5 @@ class TestController extends Controller
             }
         }
         return $this->render('index', compact('model'));
-    }
-
-    public function actionChat()
-    {
-        return $this->render('chat',);
     }
 }

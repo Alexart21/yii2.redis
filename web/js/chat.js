@@ -97,7 +97,7 @@ $(document).on('pjax:complete', () => {
     echoTime('.dt');
 });
 
-updateUserColor();
+// updateUserColor();
 $('#msgs-content').scrollTop($('#msgs-content')[0].scrollHeight);
 $('.msg-body').replaceUrl();
 echoTime('.dt');

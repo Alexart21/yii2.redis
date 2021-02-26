@@ -38,7 +38,7 @@ Modal::begin([
         ?>
 
         <?= $form->field($formModel, 'reCaptcha')->widget(
-            \himiklab\yii2\recaptcha\ReCaptcha2::class,
+            \himiklab\yii2\recaptcha\ReCaptcha2::className(),
             [
                 'siteKey' => '6LfRBQEaAAAAAEqEbZSrlYH0sQz5Q-bX58GHPNjL', // unnecessary is reCaptcha component was set up
             ]
