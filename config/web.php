@@ -1,7 +1,7 @@
 <?php
 /* Критичные данные не сливаем на GitHub храним отдельно !!! */
 
-use app\models\User;
+// use app\models\User;
 
 $my_config = parse_ini_file(__DIR__ . '/../../secret/config.ini');
 if(!$my_config){
@@ -158,8 +158,8 @@ $config = [
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
-            'useFileTransport' => true, // локалка
-//            'useFileTransport' => false, // на боевом поставить false
+//            'useFileTransport' => true, // локалка
+            'useFileTransport' => false, // на боевом поставить false
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.mail.ru',

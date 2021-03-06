@@ -23,7 +23,7 @@ $portfArr = [
     [
         'name' => 'Соло мебель',
         'title' => 'Сайт фирмы Соло мебель',
-        'url' => 'r98766na.beget.tech',
+        'url' => 'new.s-solo.ru',
     ],
 ];
 ?>
@@ -41,7 +41,7 @@ $portfArr = [
     <?php foreach ($portfArr as $portf) : ?>
         <div class="atv-outer">
             <div class="portf-title">сайт фирмы <a href="http://<?= $portf['url'] ?>"> <?= $portf['name'] ?></a></div>
-            <a href="http://<?= $portf['url'] ?>">
+            <a href="http://<?= $portf['url'] ?>" target="_blank">
                 <figure class="a-image atvImg">
                     <div class="atvImg-shadow"></div>
                     <img class="atvImg-layer" data-img="/img/main_img/portfolio/img<?= $i ?>.jpg"

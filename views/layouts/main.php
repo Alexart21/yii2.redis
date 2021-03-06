@@ -60,7 +60,7 @@ AppAsset::register($this);
         <?php endif; ?>
         <!--end Flash-->
         <!--noindex-->
-        <nav class="mob-menu-list">
+        <nav id="mobMenu" class="mob-menu-list">
             <strong class="mob-menu-header" title="создание сайтов">Создание сайтов</strong>
             <ul>
                 <li class="mob-link"><a class="portf-call" title="сайт визитка" href="/sozdanie#sait_vizitka">сайт

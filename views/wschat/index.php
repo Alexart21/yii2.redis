@@ -187,14 +187,18 @@
                 let response = JSON.parse(e.data);
                 if (response.type && response.type == 'chat') {
                     let dt = new Date();
-                    let currentDate = dt.getFullYear() + '-' + (parseInt(dt.getMonth()) + 1).toString() + '-' + dt.getDate();
-                    let currentTime = dt.getHours() + ':' + dt.getMinutes() + ':' + dt.getSeconds();
-
+                    // дата вида 06.03.2021
+                    let currentDate = dt.toLocaleDateString();
+                    // время без секунд вида 07:48
+                    let currentTime = dt.toLocaleTimeString().slice(0,-3);
+                    
                     $('#msgs-content').prepend('<p class="msg-line" style="border: .5px solid transparent"><span class="full-name"><b style="border-bottom: 2px solid hsl(' + response.user_color + ',100%,50%)">' + response.from + '</b></span><span class="msg-body">' + response.message + '</span><span class="dt"><span class="fa fa-check" style="font-size: 90%;color: green"></span><span class="dateOnly" style="display: none">' + currentDate + ' </span>' + currentTime + '</span></p>');
                     $('#msgs-content').scrollTop = $('#msgs-content').height;
                     $('.msg-body').replaceUrl();
                     document.cookie = 'user_color=' + response.user_color;
-                    // console.log(response);
+                    console.log(dt.toLocaleDateString());
+                    console.log(dt.toLocaleTimeString());
+                    console.log(dt.toLocaleTimeString().slice(0,-3));
                     sound();
                 } else if (response.message) {
                     $('#response').text(response.message);
@@ -205,7 +209,7 @@
                         document.cookie = 'user_color=' + response.user_color;
                         document.cookie = 'user_name=' + response.user_name;
                         updateColor();
-                        console.log('here');
+                        // console.log('here');
                     }
 
                 }

@@ -14,16 +14,24 @@ window.onresize = function () {
 function mobLeft() {
     const menuBtn = document.querySelector('.mob-menu-button'); //кнопка
     const menu = document.querySelector('.mob-menu-list'); // выезжающий блок
-    const menuCol = document.querySelector('.mob-menu-col'); // "колонка"
-    const mobLink = document.querySelectorAll('.mob-link'); // ссылки в меню
-    // let y = menuBtn.getBoundingClientRect().top; // запоминаем смещение по y
-    menu.style.height = screen_h + 'px'; // высоту выехавшему блоку по всей высоте
     menuBtn.addEventListener('click', function () {
-        let has = menuBtn.classList.contains('btn-pos');
         menu.classList.toggle('menu-animate');
         menuBtn.classList.toggle('btn-pos');
-        menuCol.classList.toggle('open');
     });
+    // закритие мобильного меню при клики вне его
+    const Btn = $('.mob-menu-button'),
+          $menu = $('.mob-menu-list');
+    $(document).click(function (e) {
+        if ( !Btn.is(e.target) && !$menu.is(e.target) && $menu.has(e.target).length === 0) {
+            console.log();
+            if(menu.classList.contains('menu-animate')){
+                // menu.classList.remove('menu-animate');
+                menu.classList.toggle('menu-animate');
+                menuBtn.classList.toggle('btn-pos');
+            }
+        };
+    });
+    ////////
     const c = mobLink.length;
     // чтоб меню закрывалось при клике на любую ссылку
     for (let i = 0; i < c; i++) {
@@ -60,7 +68,7 @@ function menu_fix() {
             resp = $('nav.resp'),
             ul = $('nav.resp ul'),
             link = $('.resp a');
-        if ((top + h_mrg) > h_hght) { // включается "скролл-меню"
+        if ((top + h_mrg) > h_hght && screen_w >= 930) { // включается "скролл-меню"
             menu.css({
                 'top': h_mrg,
                 'position': 'fixed',

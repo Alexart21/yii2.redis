@@ -40,7 +40,8 @@
     "yiisoft/yii2-authclient": "*",
     "demi/backup": "~1.0",
     "isudakoff/yii2-mailru-authclient": "*",
-    "consik/yii2-websocket": "^1.0"
+    "consik/yii2-websocket": "^1.0",
+    "aki/yii2-vue": "*"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.0.0",
