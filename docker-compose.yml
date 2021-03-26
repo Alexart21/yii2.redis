@@ -1,0 +1,82 @@
+version: '2'
+networks:
+    my-network:
+        driver: bridge
+services:
+    nginx:
+      # используем последний стабильный образ nginx
+        image: nginx:latest
+        # маршрутизируем порты
+        ports:
+            - "80:80"
+            - "443:443"
+        # монтируем директории, слева директории на основной машине, справа - куда они монтируются в контейнере
+        volumes:
+            #- ./hosts:/etc/nginx/conf.d
+            - ./yii2.docker.conf:/etc/nginx/conf.d/yii2.docker.conf
+            - ./:/var/www/yii2.docker
+            - ./nginx:/var/log/nginx
+        # nginx должен общаться с php контейнером
+        links:
+            - php
+
+        networks:
+            - my-network
+
+    php:
+        build: ./docker_images/php
+        # монтируем директорию с проектами
+        volumes:
+            - ./:/var/www/yii2.docker
+
+#        links:
+#          - redis
+#          - mysql
+#        depends_on:
+#            - redis
+#            - mysql
+
+        networks:
+            - my-network
+
+#    redis:
+##        build: ./docker_images/redis
+#        image: redis:latest
+#        restart: always
+#        ports:
+#            - "6379:6379"
+#        networks:
+#            - my-network
+#        command: [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
+#
+#    mysql:
+#         image: mysql:8
+#         restart: always
+#         ports:
+#             - "3306:3306"
+#         volumes:
+#             - ./mysql:/var/lib/mysql
+#         environment:
+#             # MYSQL_HOST: mysql
+#             # MYSQL_USER: root
+#             MYSQL_PASSWORD: root
+#             MYSQL_ROOT_PASSWORD: root
+#             MYSQL_DATABASE: demo
+#
+#         command: --default-authentication-plugin=mysql_native_password
+#         networks:
+#             - my-network
+    
+#    pma:
+#        image: phpmyadmin/phpmyadmin
+#        ports:
+#            - "8183:80"
+#        environment:
+#            - "PMA_HOST=mysql8"
+#            - "MYSQL_USER=root"
+#            - "MYSQL_PASSWORD=root"
+#            - "MYSQL_ROOT_PASSWORD=root"
+#            - "UPLOAD_LIMIT=3000000000"
+#        networks:
+#            - my-network
+

@@ -3,9 +3,9 @@
 
 // use app\models\User;
 
-$my_config = parse_ini_file(__DIR__ . '/../../secret/config.ini');
+$my_config = parse_ini_file(__DIR__ . '/../.secret/config.ini');
 if(!$my_config){
-    die('Не найден файл ' . __DIR__ . '/../../secret/config.ini');
+    die('Не найден файл ' . __DIR__ . '/../.secret/config.ini');
 }
 $params = require(__DIR__ . '/params.php');
 
@@ -96,26 +96,26 @@ $config = [
             'class' => 'yii\rbac\PhpManager',
         ],*/
         /* Redis кэш */
-        /*'cache' => [
+        'cache' => [
             'class' => 'yii\redis\Cache',
             'redis' => [
-                'hostname' => 'localhost',
+                'hostname' => '172.17.0.1',
                 'port' => 6379,
                 'database' => 0,
             ]
-        ],*/
-        /*'session' => [
+        ],
+        'session' => [
             'class' => 'yii\redis\Session',
             'redis' => [
-                'hostname' => 'localhost',
+                'hostname' => '172.17.0.1',
                 'port' => 6379,
                 'database' => 0,
             ]
-        ],*/
-        /* Файловый кэш */
-        'cache' => [
-            'class' => 'yii\caching\FileCache',
         ],
+        /* Файловый кэш */
+        /*'cache' => [
+            'class' => 'yii\caching\FileCache',
+        ],*/
         'view' => [
             'class' => '\rmrevin\yii\minify\View',
             'enableMinify' => !YII_DEBUG,

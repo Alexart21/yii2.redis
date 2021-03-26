@@ -32,7 +32,7 @@ function mobLeft() {
         };
     });
     ////////
-    const c = mobLink.length;
+    /*const c = mobLink.length;
     // чтоб меню закрывалось при клике на любую ссылку
     for (let i = 0; i < c; i++) {
         mobLink[i].addEventListener('click', function () {
@@ -40,7 +40,7 @@ function mobLeft() {
             menuBtn.classList.toggle('btn-pos');
             menuCol.classList.toggle('open');
         });
-    }
+    }*/
 }
 
 /* кнопка наверх */

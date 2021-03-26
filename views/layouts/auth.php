@@ -11,10 +11,10 @@ header('X-Content-Type-Options: nosniff');
 header('X-XSS-Protection: 1;mode=block');
 /* При подключении аналитики проверь адреса Content-Security-Policy: script-src */
 header('Content-Security-Policy: default-src \'self\' \'unsafe-inline\' \'unsafe-eval\'; img-src \'self\' data:; style-src \'unsafe-inline\' \'unsafe-eval\' \'self\'; script-src \'self\' *.google.com www.gstatic.com \'unsafe-inline\' \'unsafe-eval\'; frame-src *.google.com gstatic.com');
-header('Permissions-Policy:
+/*header('Permissions-Policy:
     geolocation=(\'none\'),
     camera=(\'none\'),
-    microphone=(\'none\')');
+    microphone=(\'none\')');*/
 header('Referrer-Policy: origin-when-cross-origin');
 header('Strict-Transport-Security: max-age=31536000');
 ?>
