@@ -156,13 +156,13 @@ class UserController  extends Controller
         $this->layout = 'auth';
         $model = new SignupForm();
 
-        // AJAX валидация ( только для полей usename && email)
-        /*if (Yii::$app->request->isAjax) {
+        // AJAX валидация ( только для полей определенных в views/user/signup)
+        if (Yii::$app->request->isAjax) {
             if($model->load(Yii::$app->request->post())) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
                 return ActiveForm::validate($model);
             }
-        }*/
+        }
 
         // обычная отправка формы
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
