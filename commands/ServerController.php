@@ -25,4 +25,9 @@ class ServerController extends Controller
         $server->start();
     }
 
+    public function actionStop()
+    {
+        $this->stop();
+    }
+
 }

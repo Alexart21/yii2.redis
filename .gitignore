@@ -35,6 +35,6 @@ tests/_support/_generated
 /runtime
 /backups
 
-.secret
-nginx
-dump.sql
+/.secret
+/.mysql
+/nginx

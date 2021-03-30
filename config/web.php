@@ -82,7 +82,7 @@ $config = [
         'backup' => [
             'class' => 'demi\backup\Component',
             // The directory for storing backups files
-            'backupsFolder' => dirname(dirname(__DIR__)) . '/backups', // <project-root>/backups
+            'backupsFolder' => __DIR__ . '/../backups', // <project-root>/backups
             // Directories that will be added to db-backup
             'directories' => [
                 'img' => '@app/web/img',
@@ -216,19 +216,19 @@ $config = [
     ],
     'params' => $params,
 ];
-
+// Для docker ip вззят из docker inspect <nginx_container> ("Gateway": "172.21.0.1")
 if (YII_ENV_DEV) {
     // configuration adjustments for 'dev' environment
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
-        'allowedIPs' => ['127.0.0.1', '172.20.0.3', '172.20.0.1'] // adjust this to your needs
+        'allowedIPs' => ['127.0.0.1', '172.21.0.1'] // adjust this to your needs
     ];
 
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
-        'allowedIPs' => ['127.0.0.1', '172.20.0.3', '172.20.0.1'] // adjust this to your needs
+        'allowedIPs' => ['127.0.0.1', '172.21.0.1'] // adjust this to your needs
     ];
 }
 

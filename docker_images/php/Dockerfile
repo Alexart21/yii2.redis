@@ -16,10 +16,12 @@ RUN apt-get update && apt-get install -y \
         libpng-dev \
         libzip-dev \
     && pecl install mcrypt-1.0.3 \
-    && docker-php-ext-install -j$(nproc) iconv mbstring mysqli pdo pdo_mysql zip \
+    && docker-php-ext-install -j$(nproc) iconv mbstring mysqli pdo pdo_mysql zip json \
+    && docker-php-ext-install  sockets \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd \
-    && docker-php-ext-enable mcrypt
+    && docker-php-ext-enable mcrypt \
+    && docker-php-ext-enable sockets
 
 # Добавим свой php.ini, можем в нем определять свои значения конфига
 ADD php.ini /usr/local/etc/php/conf.d/40-custom.ini
