@@ -1,6 +1,8 @@
 # phpstorm project files
 .idea
 
+.dump.sql
+
 # netbeans project files
 nbproject
 
@@ -37,4 +39,5 @@ tests/_support/_generated
 
 /.secret
 /.mysql
-/nginx
+/docker/mysql
+/docker/nginx

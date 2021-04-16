@@ -172,7 +172,8 @@
 <script>
     window.onload = () => {
         $(function () {
-            let chat = new WebSocket('ws://127.0.0.1');
+            let chat = new WebSocket('ws://yii2.docker:8080/wschat');
+
             let user_color = readCookie('user_color'),
                 user_name = readCookie('user_name');
             if (user_name != 'undefined'){
@@ -196,9 +197,9 @@
                     $('#msgs-content').scrollTop = $('#msgs-content').height;
                     $('.msg-body').replaceUrl();
                     document.cookie = 'user_color=' + response.user_color;
-                    console.log(dt.toLocaleDateString());
-                    console.log(dt.toLocaleTimeString());
-                    console.log(dt.toLocaleTimeString().slice(0,-3));
+                    // console.log(dt.toLocaleDateString());
+                    // console.log(dt.toLocaleTimeString());
+                    // console.log(dt.toLocaleTimeString().slice(0,-3));
                     sound();
                 } else if (response.message) {
                     $('#response').text(response.message);

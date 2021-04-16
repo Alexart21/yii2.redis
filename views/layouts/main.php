@@ -1,5 +1,4 @@
 <?php
-
 use app\assets\AppAsset;
 use yii\helpers\Html;
 use yii\widgets\Pjax;

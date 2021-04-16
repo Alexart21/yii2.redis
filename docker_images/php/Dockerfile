@@ -26,6 +26,13 @@ RUN apt-get update && apt-get install -y \
 # Добавим свой php.ini, можем в нем определять свои значения конфига
 ADD php.ini /usr/local/etc/php/conf.d/40-custom.ini
 
+ENV TZ=Europe/Moscow
+RUN apk update
+RUN apk upgrade
+RUN apk add ca-certificates && update-ca-certificates
+RUN apk add --update tzdata
+RUN rm -rf /var/cache/apk/*
+
 # Указываем рабочую директорию для PHP
 WORKDIR /var/www
 

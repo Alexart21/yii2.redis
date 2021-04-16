@@ -1,4 +1,5 @@
 <?php
+//date_default_timezone_set('Europe/Moscow');
 /* Критичные данные не сливаем на GitHub храним отдельно !!! */
 
 // use app\models\User;
@@ -222,7 +223,7 @@ if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
-        'allowedIPs' => ['127.0.0.1', '172.21.0.1'] // adjust this to your needs
+        'allowedIPs' => ['127.0.0.1', '172.20.0.1'] // adjust this to your needs
     ];
 
     $config['bootstrap'][] = 'gii';
