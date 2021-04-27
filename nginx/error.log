@@ -1,4 +1,0 @@
-2021/04/16 10:02:25 [error] 30#30: *8 connect() failed (111: Connection refused) while connecting to upstream, client: 172.28.0.1, server: , request: "GET /wschat HTTP/1.1", upstream: "http://172.20.0.4:8080/wschat", host: "yii2.docker:8080"
-2021/04/16 10:02:50 [error] 30#30: *20 connect() failed (111: Connection refused) while connecting to upstream, client: 172.28.0.1, server: , request: "GET /wschat HTTP/1.1", upstream: "http://172.20.0.4:8080/wschat", host: "yii2.docker:8080"
-2021/04/16 10:11:16 [error] 31#31: *8 connect() failed (111: Connection refused) while connecting to upstream, client: 172.29.0.1, server: , request: "GET /wschat HTTP/1.1", upstream: "http://172.20.0.4:8080/wschat", host: "yii2.docker:8080"
-2021/04/16 10:14:13 [error] 31#31: *17 connect() failed (111: Connection refused) while connecting to upstream, client: 172.29.0.1, server: , request: "GET /wschat HTTP/1.1", upstream: "http://172.20.0.4:8080/wschat", host: "yii2.docker:8080"

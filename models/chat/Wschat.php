@@ -3,28 +3,41 @@
 namespace app\models\chat;
 
 use Yii;
+//use yii\behaviors\TimestampBehavior;
 
 /**
- * This is the model class for table "chat".
+ * This is the model class for table "wschat".
  *
  * @property int $id
  * @property string $name
  * @property string $text
- * @property string $ip
+ * @property int $ip
  * @property string $created_at
  * @property string $color
  */
-class WSchat extends \yii\db\ActiveRecord
+class Wschat extends \yii\db\ActiveRecord
 {
+    const MSG_LIMIT = 200; // кол-во выводимых записей
+
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'chat';
+        return 'wschat';
     }
 
-    const MSG_LIMIT = 200; // кол-во выводимых записей
+    /*public static function primaryKey()
+    {
+        return 'id';
+    }*/
+
+    /*public function behaviors()
+    {
+        return [
+            TimestampBehavior::class,
+        ];
+    }*/
 
     /**
      * {@inheritdoc}
@@ -33,11 +46,12 @@ class WSchat extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'text'], 'required'],
-            [['created_at'], 'safe'],
-            [['name'], 'string', 'max' => 40],
-            [['text'], 'string', 'max' => 1024],
-            [['ip'], 'string', 'max' => 50],
+            [['text'], 'string'],
             [['color'], 'string', 'max' => 7],
+            [['created_at'], 'safe'],
+            [['name'], 'string', 'max' => 30],
+            [['text'], 'string', 'max' => 1000],
+            [['ip'], 'string', 'max' => 50],
         ];
     }
 
@@ -50,9 +64,8 @@ class WSchat extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
             'text' => 'Text',
-            'ip' => 'Ip',
             'created_at' => 'Created At',
-            'color' => 'Color',
+//            'color' => 'Color',
         ];
     }
 

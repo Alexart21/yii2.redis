@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Handles the creation for table `{{%callback}}`.
  */
-class m210117_101412_create_table_callback extends Migration
+class m210427_115547_create_table_callback extends Migration
 {
     /**
      * @inheritdoc

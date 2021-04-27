@@ -7,12 +7,12 @@ use Ratchet\ConnectionInterface;
 use yii\db\ActiveRecord;
 use Yii;
 use yii\helpers\StringHelper;
-use app\models\chat\WSchat;
+use app\models\chat\Wschat;
 
 class ChatServer extends WebSocketServer
 {
     const MAX_NAME_LENGTH = 30; // должно соответствовать атрибуту maxlenght  в теге input
-    const MAX_MSG_LENGHT = 1000; // должно соответствовать атрибуту maxlenght  в теге input
+    const MAX_MSG_LENGHT = 1000; // должно соответствовать атрибуту maxlenght  в теге textarea
 
     public function init()
     {
@@ -37,7 +37,7 @@ class ChatServer extends WebSocketServer
 
         if (!$client->name) {
             $result['message'] = 'Введите имя и нажмите "установить"';
-        } elseif (!empty($request['message']) && $message = trim($request['message']) ) {
+        } elseif (!empty($request['message']) && $message = nl2br(trim($request['message'])) ) {
 
             foreach ($this->clients as $chatClient) {
                 $message = StringHelper::truncate($message, self::MAX_MSG_LENGHT);
@@ -48,11 +48,12 @@ class ChatServer extends WebSocketServer
                     'user_color' => $request['user_color'],
                 ]) );
                 /* Пишем в БД */
-                /*$newMsg = new WSchat();
-                $newMsg->name = $client->name;
-                $newMsg->text = $message;
-                $newMsg->color = $request['user_color'];
-                $newMsg->save();*/
+                $msg = new Wschat();
+                $msg->name = $client->name;
+                $msg->text = $message;
+//                $msg->ip = '0000';
+                $msg->color = $request['user_color'];
+                $msg->save();
             }
 
         } else {

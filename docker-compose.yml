@@ -4,8 +4,8 @@ networks:
         driver: bridge
 services:
     nginx:
-      # используем последний стабильный образ nginx
-        image: nginx:latest
+        #image: nginx:latest
+        image: nginx:1.19.10
         # маршрутизируем порты
         ports:
             - "80:80"
@@ -76,6 +76,7 @@ services:
     #PhpMyAdmin
     pma:
         image: phpmyadmin/phpmyadmin
+        #image: phpmyadmin/phpmyadmin:5.1.0
         ports:
             - "8083:80"
         environment:
@@ -96,6 +97,7 @@ services:
     #PhpRedisAdmin
     pra:
         image: erikdubbelboer/phpredisadmin
+        #image: erikdubbelboer/phpredisadmin:0.18.0-r0
         ports:
             - "8084:80"
         environment:

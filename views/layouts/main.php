@@ -28,7 +28,9 @@ AppAsset::register($this);
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
         <link rel="canonical" href="https://<?= Yii::$app->params['siteUrl'] ?>" />
-        <link rel="icon" type="image/png" href="/icons/64x64.png" />
+        <link rel="icon" href="favicon.svg" />
+<!--        <link rel="icon" href="favicon.ico" />-->
+<!--        <link rel="icon" type="image/png" href="/icons/64x64.png" />-->
         <link rel="manifest" href="/manifest.json" />
         <meta name="msapplication-config" content="/browserconfig.xml" />
         <meta name="referrer" content="origin" />
