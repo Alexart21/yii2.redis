@@ -4,10 +4,10 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel app\modules\alexadmx\models\ChatSearch */
+/* @var $searchModel app\modules\alexadmx\models\WschatSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Chats';
+$this->title = 'WebSocket chat';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="chat-index">
@@ -38,13 +38,13 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
     <?php Pjax::end(); ?>
-    <iframe id="chatFrame" src="" style="display: none;position: absolute;top:80px;right:0;width: 300px;height: 600px;float: right" frameborder="0"></iframe>
+    <iframe id="chatFrame" src="" style="display: none;position: absolute;top:80px;right:0;width: 500px;height: 800px;float: right" frameborder="0"></iframe>
 </div>
 <script>
     chatBtn.addEventListener('click', () => {
         if(chatFrame.style.display == 'none') {
             chatFrame.style.display = 'block';
-            chatFrame.src = '/chat'
+            chatFrame.src = '/wschat'
         }else {
             chatFrame.style.display = 'none';
             chatFrame.src = ''

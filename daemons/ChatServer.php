@@ -66,7 +66,8 @@ class ChatServer extends WebSocketServer
     public function commandSetName(ConnectionInterface $client, $msg)
     {
         $request = json_decode($msg, true);
-        $result = ['message' => 'Имя установлено'];
+//        $result = ['message' => 'Имя установлено'];
+        $result = ['message' => ''];
 
         if (!empty($request['name']) && $name = trim($request['name'])) {
             $usernameFree = true;

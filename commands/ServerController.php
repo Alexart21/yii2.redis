@@ -4,6 +4,7 @@ namespace app\commands;
 //use app\daemons\EchoServer;
 use app\daemons\ChatServer;
 use yii\console\Controller;
+use consik\yii2websocket\WebSocketServer;
 
 class ServerController extends Controller
 {
@@ -26,6 +27,11 @@ class ServerController extends Controller
         });
 
         $server->start();
+    }
+
+    public function actionStop()
+    {
+
     }
 
 }

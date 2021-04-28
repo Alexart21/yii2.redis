@@ -19,6 +19,7 @@ $this->title = 'Административная панель';
     <h3><a href="/alexadmx/callback">Заказы обратных звонков</a></h3>
     <h3><a href="/alexadmx/user">Все пользователи</a></h3>
     <a class="btn btn-warning pjax" data-toggle="tooltip" title="Очистка временных папок(Рекомендуется перед бэкапом)" href="/alexadmx/default/clear">Удалить временные файлы</a>
+    <a class="btn btn-warning pjax" href="/alexadmx/default/log-clear">Очистка логов</a>
     <br>
     <?php
     $d = dirname(__DIR__);

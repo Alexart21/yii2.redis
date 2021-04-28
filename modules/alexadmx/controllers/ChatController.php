@@ -3,8 +3,8 @@
 namespace app\modules\alexadmx\controllers;
 
 use Yii;
-use app\models\chat\Chat;
-use app\modules\alexadmx\models\ChatSearch;
+use app\models\chat\Wschat;
+use app\modules\alexadmx\models\WschatSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -16,7 +16,7 @@ class ChatController extends AppAlexadmxController
 {
     public function actionIndex()
     {
-        $searchModel = new ChatSearch();
+        $searchModel = new WschatSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
