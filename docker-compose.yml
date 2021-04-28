@@ -18,6 +18,10 @@ services:
             - ./nginx:/var/log/nginx
             - /etc/localtime:/etc/localtime:ro
             - /etc/timezone:/etc/timezone:ro
+        logging:
+            options:
+                max-file: "1"
+                max-size: "10k"
         # nginx должен общаться с php контейнером
         links:
             - php

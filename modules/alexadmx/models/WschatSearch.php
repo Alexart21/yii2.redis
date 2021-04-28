@@ -4,12 +4,12 @@ namespace app\modules\alexadmx\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\chat\Chat;
+use app\models\chat\Wschat;
 
 /**
  * ChatSearch represents the model behind the search form of `app\models\chat\Chat`.
  */
-class ChatSearch extends Chat
+class WschatSearch extends Wschat
 {
     /**
      * {@inheritdoc}
@@ -40,7 +40,7 @@ class ChatSearch extends Chat
      */
     public function search($params)
     {
-        $query = Chat::find();
+        $query = Wschat::find();
 
         // add conditions that should always apply here
 

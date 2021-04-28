@@ -224,14 +224,13 @@
             };
             // закрылось соединение и переподключаемся
             chat.onclose = function(event) {
-                if (event.wasClean) {
+                // например, сервер убил процесс или сеть недоступна
+                /*if (event.wasClean) {
                     console.log(`[close] Соединение закрыто чисто, код=${event.code} причина=${event.reason}`);
                 } else {
-                    // например, сервер убил процесс или сеть недоступна
                     // обычно в этом случае event.code 1006
                     console.log(`код=${event.code} причина=${event.reason}`);
-                }
-
+                }*/
                 let chat2 = new WebSocket(socketUrl);
                 chat2.onopen=chat.onopen;
                 chat2.onmessage = chat.onmessage;
@@ -239,9 +238,8 @@
                 chat2.onerror = chat.onerror;
                 chat = chat2;
                 chat2.onopen = () => {
-                    console.log('повторное соединение успешно');
+                    // console.log('повторное соединение успешно');
                     let username = document.getElementById('chatform-name').value;
-                    // console.log(username);
                     if (username) {
                         chat.send(JSON.stringify({'action': 'setName', 'name': username}));
                     }

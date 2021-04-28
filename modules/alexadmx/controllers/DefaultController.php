@@ -4,6 +4,7 @@ namespace app\modules\alexadmx\controllers;
 
 use Yii;
 use app\modules\alexadmx\models\Content;
+use yii\helpers\BaseFileHelper;
 use yii\helpers\FileHelper;
 use yii\web\NotFoundHttpException;
 
@@ -165,12 +166,39 @@ class DefaultController extends AppAlexadmxController
             $session->remove('user_color');
 
             $header = '<h3>Очистка чата</h3>';
-            $res = Yii::$app->db->createCommand()->truncateTable('chat')->execute();
+            $res = Yii::$app->db->createCommand()->truncateTable('wschat')->execute();
             $flag = true;
             $result = $res == 0 ? true : false;
             return $this->renderPartial('modal', compact('result', 'flag', 'header'));
         }
         return $this->redirect(Yii::$app->request->referrer);
+    }
+
+    /* Очистка логов NGINX & YII2*/
+    public function actionLogClear()
+    {
+        $result = true;
+
+        $pathArr = [
+            __DIR__ . '/../../../nginx/access.log',
+            __DIR__ . '/../../../nginx/error.log',
+        ];
+
+        foreach ($pathArr as $path){
+            $bytes = file_put_contents($path, '');
+            $result = $result && ($bytes === 0);
+        }
+
+        $pathArr = FileHelper::findFiles(__DIR__ . '/../../../runtime/logs');
+        foreach ($pathArr as $path){
+           $f = unlink($path);
+           $result = $result && $f;
+        }
+
+        $header = '<h3>Очистка логов</h3>';
+        $flag = true;
+
+        return $this->renderPartial('modal', compact('result', 'flag', 'header'));
     }
 
 }
