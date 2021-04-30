@@ -33,7 +33,7 @@ services:
 
 
     php:
-        build: ./docker_images/php
+        build: ./docker/php
         # монтируем директорию с проектами
         volumes:
             - ./:/var/www/yii2.docker
@@ -111,4 +111,3 @@ services:
             ADMIN_PASS: root
         networks:
             - my-network
-

@@ -47,13 +47,6 @@ class ChatServer extends WebSocketServer
                     'message' => $message,
                     'user_color' => $request['user_color'],
                 ]) );
-                /* Пишем в БД */
-                $msg = new Wschat();
-                $msg->name = $client->name;
-                $msg->text = $message;
-//                $msg->ip = '0000';
-                $msg->color = $request['user_color'];
-                $msg->save();
             }
 
         } else {
@@ -61,13 +54,21 @@ class ChatServer extends WebSocketServer
         }
 
         $client->send( json_encode($result) );
+        
+        /* Пишем в БД */
+                $msg = new Wschat();
+                $msg->name = $client->name;
+                $msg->text = $message;
+//                $msg->ip = '0000';
+                $msg->color = $request['user_color'];
+                $msg->save();
     }
 
     public function commandSetName(ConnectionInterface $client, $msg)
     {
         $request = json_decode($msg, true);
-//        $result = ['message' => 'Имя установлено'];
-        $result = ['message' => ''];
+        $result = ['message' => 'Пишите в чат'];
+//        $result = ['message' => ''];
 
         if (!empty($request['name']) && $name = trim($request['name'])) {
             $usernameFree = true;
