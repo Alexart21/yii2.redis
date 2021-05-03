@@ -1,6 +1,0 @@
-version: '2'
-services:
-  cron:
-      build: ./docker/cron
-      # volumes:
-      #     - ./docker/cron/crontab:/etc/cron.d/crontab

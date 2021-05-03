@@ -83,7 +83,7 @@ $config = [
         'backup' => [
             'class' => 'demi\backup\Component',
             // The directory for storing backups files
-            'backupsFolder' => __DIR__ . '/../backups', // <project-root>/backups
+            'backupsFolder' => __DIR__ . '/../.backups', // <project-root>/backups
             // Directories that will be added to db-backup
             'directories' => [
                 'img' => '@app/web/img',
@@ -223,13 +223,13 @@ if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
-        'allowedIPs' => ['127.0.0.1', '172.20.0.1'] // adjust this to your needs
+        'allowedIPs' => ['127.0.0.1', '172.22.0.1'] // adjust this to your needs
     ];
 
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
-        'allowedIPs' => ['127.0.0.1', '172.20.0.1'] // adjust this to your needs
+        'allowedIPs' => ['127.0.0.1', '172.22.0.1'] // adjust this to your needs
     ];
 }
 

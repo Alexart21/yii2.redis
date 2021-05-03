@@ -35,9 +35,10 @@ tests/_support/_generated
 /web/assets
 /web/minify
 /runtime
-/backups
+/.backups
+/mysql
 
 /.secret
-/.mysql
-/docker/mysql
-/docker/nginx
+
+/docker/nginx/access.log
+/docker/nginx/error.log

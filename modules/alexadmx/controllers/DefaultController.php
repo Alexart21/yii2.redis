@@ -180,8 +180,8 @@ class DefaultController extends AppAlexadmxController
         $result = true;
 
         $pathArr = [
-            __DIR__ . '/../../../nginx/access.log',
-            __DIR__ . '/../../../nginx/error.log',
+            __DIR__ . '/../../../docker/nginx/access.log',
+            __DIR__ . '/../../../docker/nginx/error.log',
         ];
 
         foreach ($pathArr as $path){

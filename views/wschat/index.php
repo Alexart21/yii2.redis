@@ -221,6 +221,7 @@
             chat.onopen = function (e) {
                 console.log('соединение установлено');
                 $('#response').text('Установите имя');
+                console.log(chat);
             };
             // закрылось соединение и переподключаемся
             chat.onclose = function(event) {
