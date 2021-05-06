@@ -40,5 +40,4 @@ tests/_support/_generated
 
 /.secret
 
-/docker/nginx/access.log
-/docker/nginx/error.log
+/docker/nginx

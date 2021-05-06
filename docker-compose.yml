@@ -4,8 +4,8 @@ networks:
         driver: bridge
 services:
     nginx:
-        #image: nginx:latest
         image: nginx:1.19.10
+        container_name: nginx
         # маршрутизируем порты
         ports:
             - "80:80"
@@ -34,6 +34,7 @@ services:
 
     php:
         build: ./docker/php
+        container_name: php
         # монтируем директорию с проектами
         volumes:
             - ./:/var/www/yii2.docker
@@ -80,6 +81,7 @@ services:
     #PhpMyAdmin
     pma:
         image: phpmyadmin/phpmyadmin
+        container_name: pma
         #image: phpmyadmin/phpmyadmin:5.1.0
         ports:
             - "8083:80"
@@ -101,6 +103,7 @@ services:
     #PhpRedisAdmin
     pra:
         image: erikdubbelboer/phpredisadmin
+        container_name: pra
         #image: erikdubbelboer/phpredisadmin:0.18.0-r0
         ports:
             - "8084:80"

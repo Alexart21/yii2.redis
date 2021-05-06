@@ -174,7 +174,7 @@ class DefaultController extends AppAlexadmxController
         return $this->redirect(Yii::$app->request->referrer);
     }
 
-    /* Очистка логов NGINX & YII2*/
+    /* Очистка логов NGINX & YII2 & cron*/
     public function actionLogClear()
     {
         $result = true;
@@ -182,6 +182,7 @@ class DefaultController extends AppAlexadmxController
         $pathArr = [
             __DIR__ . '/../../../docker/nginx/access.log',
             __DIR__ . '/../../../docker/nginx/error.log',
+            __DIR__ . '/../../../docker/cron/log/cron.log',
         ];
 
         foreach ($pathArr as $path){

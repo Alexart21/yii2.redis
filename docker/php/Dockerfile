@@ -27,6 +27,4 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /var/www
 
 # Запускаем контейнер
-# Из документации: The main purpose of a CMD is to provide defaults for an executing container. These defaults can include an executable,
-# or they can omit the executable, in which case you must specify an ENTRYPOINT instruction as well.
 CMD ["php-fpm"]
