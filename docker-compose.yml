@@ -40,14 +40,6 @@ services:
             - ./:/var/www/yii2.docker
             - /etc/localtime:/etc/localtime:ro
             - /etc/timezone:/etc/timezone:ro
-
-#        links:
-#          - redis
-#          - mysql
-#        depends_on:
-#            - redis
-#            - mysql
-
         networks:
             - my-network
 
@@ -78,6 +70,24 @@ services:
 #         networks:
 #             - my-network
     
+    #cron
+    # cron:
+    #     image: hchstera/alpine-php-cron:latest
+    #     # image: alpine:3.13.5
+    #     container_name: cron
+    #     volumes:
+    #         - ./:/var/www/yii2.docker
+    #         - ./docker/cron/crontab:/etc/cron.d
+    #         - ./docker/cron/log:/var/log/cron
+    #     networks:
+    #         - my-network
+    #     links:
+    #      - php
+    #     depends_on:
+    #      - php
+    #     command: crond -f -d 8
+
+
     #PhpMyAdmin
     pma:
         image: phpmyadmin/phpmyadmin
@@ -104,7 +114,6 @@ services:
     pra:
         image: erikdubbelboer/phpredisadmin
         container_name: pra
-        #image: erikdubbelboer/phpredisadmin:0.18.0-r0
         ports:
             - "8084:80"
         environment:

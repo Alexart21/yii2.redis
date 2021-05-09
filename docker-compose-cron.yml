@@ -1,7 +1,7 @@
 version: '2'
 services:
   cron:
-        image: hchstera/alpine-php-cron:latest
+        image: hchstera/alpine-php-cron
         # image: alpine:3.13.5
         #build: ./docker/cron
         container_name: cron
