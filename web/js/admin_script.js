@@ -63,3 +63,4 @@ function read(id, table, tr, td) {
 ///
     $('[data-toggle="tooltip"]').tooltip();
 };
+//

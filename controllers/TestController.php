@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use yii\web\Controller;
 use app\models\test\TestModel;
+use app\models\test\TestForm;
 use yii\web\UploadedFile;
 use Yii;
 //use app\models\chat\WSchat;
@@ -18,7 +19,7 @@ class TestController extends Controller
         $request = Yii::$app->request;
         $session = Yii::$app->session;
         if ($request->isPost && $model->load($request->post())){
-            $model->audioFile = UploadedFile::getInstance($model, 'audioFile');
+            $model->avatar = UploadedFile::getInstance($model, 'avatar');
             if ($model->validate() && $model->upload()){
                 if($request->isPjax){
                     $session->setFlash('success', 'Данные приняты через Pjax');
@@ -30,5 +31,11 @@ class TestController extends Controller
             }
         }
         return $this->render('index', compact('model'));
+    }
+
+    public function actionForm()
+    {
+        $testForm = new TestForm();
+        return $this->render('form', compact('testForm'));
     }
 }

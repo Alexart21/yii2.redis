@@ -37,12 +37,12 @@ Modal::begin([
             ]);
         ?>
 
-        <?= $form->field($formModel, 'reCaptcha')->widget(
-            \himiklab\yii2\recaptcha\ReCaptcha2::className(),
+        <?/*= $form->field($formModel, 'reCaptcha')->widget(
+            \himiklab\yii2\recaptcha\ReCaptcha2::class,
             [
                 'siteKey' => '6LfRBQEaAAAAAEqEbZSrlYH0sQz5Q-bX58GHPNjL', // unnecessary is reCaptcha component was set up
             ]
-        ) ?>
+        ) */?>
 
         <?/*= \himiklab\yii2\recaptcha\ReCaptcha3::widget([
             'name' => 'reCaptcha',

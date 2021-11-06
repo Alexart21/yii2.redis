@@ -19,6 +19,9 @@ $session = Yii::$app->session;
 <div class="post-index">
     <br>
     <h1><?= Html::encode($this->title) ?></h1>
+    <p>
+        <?= Html::a('Создать', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
     <?php
     if (!empty($session->get('allPostCount'))) :
     ?>
@@ -56,7 +59,15 @@ $session = Yii::$app->session;
                     return $res;
                 }
             ],
-            'date',
+//            'date',
+            [
+                'attribute' => 'date',
+                'format' => ['datetime', 'php:d M Y H:i:s'],
+            ],
+            /*[
+                'attribute' => 'date',
+                'format' => 'date',
+            ],*/
             [
                'attribute' => 'is_read',
                 'format' => 'raw',
@@ -73,7 +84,8 @@ $session = Yii::$app->session;
             ],
             [
                'class' => 'yii\grid\ActionColumn',
-                'template' => '{view} {delete}',
+                'template' => '{view} {update} {delete}',
+                'header' => 'Действия',
             ],
         ],
     ]); ?>

@@ -16,7 +16,7 @@ class callForm extends Model
 {
     public $name;
     public $tel;
-    public $reCaptcha;
+//    public $reCaptcha;
 
     public function rules()
     {
@@ -25,9 +25,9 @@ class callForm extends Model
             [['name', 'tel'], 'required', 'message' => 'заполните это поле !'],
             ['name', 'string', 'length' => [3, 30]],
             ['tel', 'string', 'length' => [11, 30]],
-            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::class,
+            /*[['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::class,
                 'secret' => Yii::$app->params['secretV2'], // unnecessary if reСaptcha is already configured
-                'uncheckedMessage' => 'Подтвердите, что вы не робот'],
+                'uncheckedMessage' => 'Подтвердите, что вы не робот'],*/
 
             //reCaptcha v3
            /* [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator3::className(),
@@ -47,7 +47,7 @@ class callForm extends Model
         return [
             'name' => 'Ваше Имя',
             'tel' => 'Номер телефона',
-            'reCaptcha' => '',
+//            'reCaptcha' => '',
         ];
     }
 

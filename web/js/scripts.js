@@ -20,19 +20,20 @@ function mobLeft() {
     });
     // закритие мобильного меню при клики вне его
     const Btn = $('.mob-menu-button'),
-          $menu = $('.mob-menu-list');
+        $menu = $('.mob-menu-list');
     $(document).click(function (e) {
-        if ( !Btn.is(e.target) && !$menu.is(e.target) && $menu.has(e.target).length === 0) {
+        if (!Btn.is(e.target) && !$menu.is(e.target) && $menu.has(e.target).length === 0) {
             console.log();
-            if(menu.classList.contains('menu-animate')){
+            if (menu.classList.contains('menu-animate')) {
                 // menu.classList.remove('menu-animate');
                 menu.classList.toggle('menu-animate');
                 menuBtn.classList.toggle('btn-pos');
             }
-        };
+        }
+        ;
     });
     ////////
-    const c = mobLink.length;
+    /*const c = mobLink.length;
     // чтоб меню закрывалось при клике на любую ссылку
     for (let i = 0; i < c; i++) {
         mobLink[i].addEventListener('click', function () {
@@ -40,7 +41,7 @@ function mobLeft() {
             menuBtn.classList.toggle('btn-pos');
             menuCol.classList.toggle('open');
         });
-    }
+    }*/
 }
 
 /* кнопка наверх */
@@ -67,7 +68,8 @@ function menu_fix() {
         const menu = $('#menu_outer'), // блок меню
             resp = $('nav.resp'),
             ul = $('nav.resp ul'),
-            link = $('.resp a');
+            link = $('.resp a'),
+            leftMenu = $('#l_menu');
         if ((top + h_mrg) > h_hght && screen_w >= 930) { // включается "скролл-меню"
             menu.css({
                 'top': h_mrg,
@@ -84,6 +86,10 @@ function menu_fix() {
                 'color': '#313A3D',
                 'borderRight': '1px dotted #e61b05'
             });
+           /* leftMenu.css({
+                'position': 'fixed',
+                'top': 0
+            });*/
         } else {
             menu.css({
                 'top': 0,
@@ -101,6 +107,9 @@ function menu_fix() {
                 'color': '',
                 'borderRight': ''
             });
+            /*leftMenu.css({
+                'position': ''
+            });*/
         }
     });
 }
@@ -123,7 +132,7 @@ function readCookie(name) {
 window.onload = () => {
     // модалка с оповещением что выслано письмо
     const mailInfo = document.querySelector('#success-modal');
-    if(mailInfo) {
+    if (mailInfo) {
         $('#success-modal').modal();
         /*setTimeout(function() {
             $('#success-modal').modal('hide');
@@ -154,7 +163,7 @@ window.onload = () => {
     };
     /* Всплывающая подсказка над чатом */
     const showTooltip = () => {
-        if(msgBlock.hasAttribute('data-closed') && !readCookie('msg')){ // только при свернутом окошке и нету куки (не заходил больше часа или сколько там)
+        if (msgBlock.hasAttribute('data-closed') && !readCookie('msg')) { // только при свернутом окошке и нету куки (не заходил больше часа или сколько там)
             let promise = document.querySelector('audio').play();
             if (promise !== undefined) {
                 promise.then(_ => {
@@ -170,7 +179,7 @@ window.onload = () => {
     //
     const rmTooltip = () => { // убиваем tooltip
         let tltp = document.querySelector('.tooltip');
-        if(tltp){
+        if (tltp) {
             tltp.remove();
         }
     };
@@ -218,8 +227,8 @@ window.onload = () => {
         $('#container_loading').show();
         let method = $.pjax.options.type; // (GET или POST)
         let target = $.pjax.options.container; // контейнер куда грузим AJAX данные
-        if(method == 'POST' && $.pjax.options.url == '/'){ // отправка формы с главной
-            container_loading.style.top = window.pageYOffset + screen_h/2 - 30 + 'px';
+        if (method == 'POST' && $.pjax.options.url == '/') { // отправка формы с главной
+            container_loading.style.top = window.pageYOffset + screen_h / 2 - 30 + 'px';
         }
         if (target == '#my-modal' && method == 'GET') { // вызов модального окна(обратный звонок)
             $('#container').prepend('<div id="overlay"></div>');
@@ -242,7 +251,7 @@ window.onload = () => {
                 scrollWidth = scrollWidth ? scrollWidth : 0;
                 return scrollWidth;
             };
-            container_loading.style.left = (screen_w - mainW)/2 + l + incW/2 -30 - scrB() + 'px';
+            container_loading.style.left = (screen_w - mainW) / 2 + l + incW / 2 - 30 - scrB() + 'px';
             const incOverl = document.querySelector('#inc-overlay');
             incOverl.style.width = inc.clientWidth + 'px';
             incOverl.style.height = inc.clientHeight + 'px';
@@ -278,7 +287,7 @@ window.onload = () => {
             }
         });
     });
-   /* Фиксируем "шторки" в контактной форме при фокусе */
+    /* Фиксируем "шторки" в контактной форме при фокусе */
     /*document.getElementById('index-form').addEventListener('focusin', (e) => {
         let el = e.target;
         let lbl = e.target.previousElementSibling; //<label>
@@ -297,14 +306,23 @@ function linkColor() {
     for (var i = 0; i < links.length; i++) {
         let y = links[i].pathname;
         if (y == currentLink && currentLink != '/') {
+            // console.log(links[i]);
             links[i].classList.add('header_shadow');
+            links[i].classList.add('cursor-default');
+            links[i].onclick = () => {
+                return false;
+            }
         } else {
             links[i].classList.remove('header_shadow');
+            links[i].classList.remove('cursor-default');
+            links[i].onclick = () => {
+                return true;
+            }
         }
     }
 }
 
-/* Параграф "этапы создания сайта" на главной странице */
+/* Параграф "этапы создания сайта" на главной странице окраска активной ссылки */
 const etap = [ // массив с описаниями
     "Уяснение задач заказчика, определение целевой аудитории сайта, написание брифа(в народном фольклоре ТЗ).Прототипирование или составление эскиза где определяются расположения элементов страниц.",
     "Определение концепции дизайна.Цветовое и графическое решение будущего сайта, выбор шрифтов и др.",
@@ -314,20 +332,33 @@ const etap = [ // массив с описаниями
     "Здесь идет полная проверка работоспособности сайта.Так же тестируется стойкость к XSS атакам и SQL инъекциям.",
     "Собственно выкладка на выбранный хостинг.Этот этап может быть сделан уже в процессе верстки.Например когда коммерческий сайт планируеться к SEO продвижению.Ведь SEO&mdash; процесс нескорый и тут время-деньги."
 ];
-let selectedLi;
 const etli = document.querySelector('#etap ul');
-etli.onclick = (e) => {
-    let li = e.target;
-    if(!li) return;
-    highlight(li);
-};
+if (etli) {
+    etli.onclick = (e) => {
+        let li = e.target;
+        if (!li) return;
+        $('#etap ul li').removeClass('etap_active'); // убираем окраску если есть
+        li.classList.add('etap_active'); // подсветить новый li
+        let n = li.dataset.n;
+        document.getElementById('etap_target').innerHTML = etap[n]; // впендюриваем описание куда надо
 
-function highlight(li) {
-    if (selectedLi) { // убрать существующую подсветку, если есть
-        selectedLi.classList.remove('etap_active');
-    }
-    selectedLi = li;
-    selectedLi.classList.add('etap_active'); // подсветить новый li
-    let n = selectedLi.dataset.n;
-    document.getElementById('etap_target').innerHTML = etap[n]; // впендюриваем описание куда надо
+    };
 }
+/* Левое меню окраска активной ссылки */
+let leftMenu = document.querySelector('#l_menu');
+if (leftMenu) {
+    leftMenu.onclick = (e) => {
+        let a = e.target;
+        if (a.nodeName != 'A') return;
+        let li = a.parentElement;
+        if (li.nodeName != 'LI') return;
+        /*if(li.classList.contains('link-active')){ // ссылка уже активна ничего не делаем
+            a.onclick = () => {
+                return false;
+            }
+        }*/
+        $('#l_menu li').removeClass('link-active'); // убираем окраску если есть
+        li.classList.add('link-active'); // подсветить новый li
+    };
+}
+/******/

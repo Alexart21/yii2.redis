@@ -1,12 +1,12 @@
 <?php
-//var_dump($data[0]['title']);die;
+//var_dump($data);
+//die;
 use yii\helpers\Html;
 use yii\widgets\Pjax;
 use yii\widgets\ActiveForm;
 use yii\widgets\MaskedInput;
 
 header('Last-Modified:' . gmdate("D, d M Y H:i:s \G\M\T", $data['last_mod']));
-
 $title_seo = $data['title_seo'] ? $data['title_seo'] : $data['title']; // в тег title
 $title = $data['title']; // в заголовок h1
 
@@ -385,7 +385,7 @@ $this->endBlock('h1');
     <div class="field msg-box animated bounceInDown wow"  data-wow-delay="0.3s">
         <?= $form->field($indexForm, 'text')->textarea([
             'id' => 'msg',
-            'placeholder' => 'Введите текст сообщения',
+//            'placeholder' => 'Введите текст сообщения',
             'required' => true,
             'tabindex' => 4,
         ]); ?>
@@ -398,13 +398,13 @@ $this->endBlock('h1');
     ]
 ) */?>
 
-<?= $form->field($indexForm, 'reCaptcha')->widget(
+<?/*= $form->field($indexForm, 'reCaptcha')->widget(
     \himiklab\yii2\recaptcha\ReCaptcha3::class,
     [
         'siteKey' => '6LeUsCgaAAAAAHPBfAVWB1DwCTxSpYEqWDe87Xml', // unnecessary is reCaptcha component was set up
         'action' => 'index',
     ]
-); ?>
+); */?>
 
     <div class="form-group">
         <?= Html::submitButton('Отправить', ['class' => 'btn success-button animated bounceInDown wow', 'data-wow-delay' => '0.1s']) ?>

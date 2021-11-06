@@ -4,6 +4,7 @@ use app\assets\AppAsset;
 use yii\helpers\Html;
 use yii\widgets\Pjax;
 use yii\bootstrap4\Modal;
+
 //use yii\widgets\Spaceless;
 
 header('X-Frame-Options: sameorigin');
@@ -28,11 +29,11 @@ AppAsset::register($this);
         <meta charset="<?= Yii::$app->charset ?>">
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
-        <link rel="canonical" href="https://<?= Yii::$app->params['siteUrl'] ?>" />
-        <link rel="icon" type="image/png" href="/icons/64x64.png" />
-        <link rel="manifest" href="/manifest.json" />
-        <meta name="msapplication-config" content="/browserconfig.xml" />
-        <meta name="referrer" content="origin" />
+        <link rel="canonical" href="https://<?= Yii::$app->params['siteUrl'] ?>"/>
+        <link rel="icon" type="image/png" href="/icons/512x512.png"/>
+        <link rel="manifest" href="/manifest.json"/>
+        <meta name="msapplication-config" content="/browserconfig.xml"/>
+        <meta name="referrer" content="origin"/>
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <meta name="HandheldFriendly" content="true">
         <meta name="keywords" content="">
@@ -47,7 +48,7 @@ AppAsset::register($this);
     <output id="my-modal"></output>
     <div id="container">
         <!--Flash-->
-        <?php if(Yii::$app->session->hasFlash('success')): ?>
+        <?php if (Yii::$app->session->hasFlash('success')): ?>
             <?php
             Modal::begin([
 //                'title' => '<span class=".h2">Вам выслано письмо</span>',
@@ -56,7 +57,7 @@ AppAsset::register($this);
             echo '<h2 class="text-success">' . Yii::$app->session->getFlash('success') . '</h2>';
             Modal::end();
             ?>
-        <!-- "Запуск" модалки в scripts.js -->
+            <!-- "Запуск" модалки в scripts.js -->
         <?php endif; ?>
         <!--end Flash-->
         <!--noindex-->
@@ -273,19 +274,21 @@ AppAsset::register($this);
                     <source src="/audio/buben.ogg" type="audio/ogg">
                 </audio>
                 <!--Окно чата-->
-                <div id="msg-block" data-closed data-toggle="tooltip" data-trigger="manual" title="<?= hello() ?>,я Александр.Чем могу помочь ?">
+                <div id="msg-block" data-closed data-toggle="tooltip" data-trigger="manual"
+                     title="<?= hello() ?>,я Александр.Чем могу помочь ?">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
                     <div id="msg-content">
                         <div class="msg-closed button-anim">
                             &nbsp;&nbsp;&nbsp;<i class="fab fa-viber viber"></i> <i class="fab fa-whatsapp wats"></i> <i
                                     class="fab fa-telegram-plane tg"></i>
-                            <b  class="msg-closed-text">Начните чат</b>
+                            <b class="msg-closed-text">Начните чат</b>
                         </div>
                         <img class="msg-img rounded-circle img-thumbnail" src="/img/msg.png" alt="">
                         <div class="msg-text">
                             <div class="text-center"><?= hello() ?>,я Александр.</div>
                             <div class="text-center text-info">выберите мессенджер и начните чат</div>
-                            <i style="display:block;text-align: right"><span class="fa fa-check"></span><?= date('H:i') ?>&nbsp;&nbsp;</i>
+                            <i style="display:block;text-align: right"><span
+                                        class="fa fa-check"></span><?= date('H:i') ?>&nbsp;&nbsp;</i>
                         </div>
                         <hr>
                         <a class="msg-btn viber-bg" href="viber://chat?number=<?= Yii::$app->params['tel1_i'] ?>"
@@ -307,33 +310,36 @@ AppAsset::register($this);
                     class="corpid"><?= Yii::$app->params['tel1'] ?></b><br/>
             <strong>Создание и продвижение сайтов в Чебоксарах</strong><br/>
             <span>Ваши персональные данные могут обрабатывается только в соответствии с
-                        <a href="/politic" style="position: relative;z-index: 100">ФЗ «О персональных данных» № 152-ФЗ</a></span>
+                        <a href="/politic"
+                           style="position: relative;z-index: 100">ФЗ «О персональных данных» № 152-ФЗ</a></span>
             <br><small style="position: relative;z-index: 100">Этот сайт защищен Google reCAPTCHA в соответствии с
                 <a href="https://policies.google.com/privacy">политикой конфиденциальности</a> и
                 <a href="https://policies.google.com/terms">условиями применения</a>.
             </small>
             <br>
             <div class="text-center">
-            <?php
-                if(Yii::$app->user->getIsGuest()) :
-            ?>
-            <b style="font-size: 110%">Гость</b>&nbsp;&nbsp;&nbsp;
-            <a href="/signup">регистрация</a>&nbsp;&nbsp;
-            <a href="/login">вход</a>
+                <?php
+                if (Yii::$app->user->getIsGuest()) :
+                    ?>
+                    <b style="font-size: 110%">Гость</b>&nbsp;&nbsp;&nbsp;
+                    <a href="/signup">регистрация</a>&nbsp;&nbsp;
+                    <a href="/login">вход</a>
 
-            <?php
+                <?php
                 else:
-            ?>&nbsp;&nbsp;&nbsp;
-            <a href="/logout" data-method="post">выход</a>(<b style="font-size: 110%"><?= Yii::$app->user->identity->username ?></b>)
-            <?php
-              endif;
-            ?>
+                    ?>&nbsp;&nbsp;&nbsp;
+                    <a href="/logout" data-method="post">выход</a>(<b
+                        style="font-size: 110%"><?= Yii::$app->user->identity->username ?></b>)
+                    <a href="/user-settings">настройки</a>
+                <?php
+                endif;
+                ?>
             </div>
         </footer>
         <!--/noindex-->
     </div>
     <?php $this->endBody() ?>
-<!--    <script type="application/javascript" src="//cdn.callbackhunter.com/cbh.js?hunter_code=d82e7609836e952210721f77d740e85b" charset="UTF-8" async="true"></script>-->
+    <!--    <script type="application/javascript" src="//cdn.callbackhunter.com/cbh.js?hunter_code=d82e7609836e952210721f77d740e85b" charset="UTF-8" async="true"></script>-->
     </body>
     </html>
 <?php //Spaceless::end()?>

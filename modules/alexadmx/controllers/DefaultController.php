@@ -2,6 +2,7 @@
 
 namespace app\modules\alexadmx\controllers;
 
+use app\models\User;
 use Yii;
 use app\modules\alexadmx\models\Content;
 use yii\helpers\FileHelper;
@@ -173,4 +174,16 @@ class DefaultController extends AppAlexadmxController
         return $this->redirect(Yii::$app->request->referrer);
     }
 
+    /* Показ аватара в модалке */
+    public function actionAvatar($user)
+    {
+        if (Yii::$app->request->isAjax) {
+            if(!Yii::$app->user->isGuest){
+                $avatar = User::findOne(['username' => $user])->avatar_path;
+                $email = User::findOne(['username' => $user])->email;
+                return $this->renderPartial('avatar', compact('user', 'avatar', 'email'));
+            }
+
+        }
+    }
 }

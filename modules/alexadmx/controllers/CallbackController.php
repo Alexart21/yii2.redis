@@ -69,10 +69,50 @@ class CallbackController extends AppAlexadmxController
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
+    /**
+     * Creates a new Callback model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
+     */
+    public function actionCreate()
+    {
+        $model = new Callback();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+
+        return $this->render('create', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Updates an existing Callback model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param string $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionUpdate($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+
+        return $this->render('update', [
+            'model' => $model,
+        ]);
+    }
+
     public function actionDel_all() // Очистка всей табли `callback`
     {
-        $res = Yii::$app->db->createCommand()->truncateTable('callback')->execute();
-        if ($res == 0) {
+         // можно и так
+//        $res = Yii::$app->db->createCommand()->truncateTable('callback')->execute();
+        $res = Callback::deleteAll();
+        if ($res !== 0) {
             return $this->redirect('/alexadmx/callback');
         }
     }

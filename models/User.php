@@ -12,15 +12,22 @@ use Yii;
  *
  * @property string $id
  * @property string $username
+ * @property string $old_username
  * @property string $email
+ * @property string $old_email
+ * @property string $avatar_path
  * @property int $role
  * @property string $password_hash
  * @property string $auth_key
  * @property string $register_token
+ * @property string $email_reset_token
+ * @property string $new_email_request
  * @property string $password_reset_token
  * @property int $status
  * @property int $created_at
  * @property int $updated_at
+ *
+ * @property Auth[] $auths
  */
 
 class User extends ActiveRecord implements \yii\web\IdentityInterface
@@ -30,6 +37,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
         return 'user';
     }
 
+    /* С ЭТОй ФИГНЕЙ GridView::widget в админке не работает !!! */
     /*public static function primaryKey()
     {
         return 'id';
@@ -55,7 +63,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_REQUEST, self::STATUS_DELETED]],
             ['role', 'in', 'range' => [self::ROLE_USER, self::ROLE_ADMIN]],
-
+            ['avatar_path', 'string'],
             [['username', 'email'], 'required'],
             [['role', 'status', 'created_at', 'updated_at'], 'integer'],
             [['register_token', 'password_reset_token'], 'string'],

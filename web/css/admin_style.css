@@ -1,4 +1,4 @@
-body {
+ody {
     /*margin: 2em;*/
 }
 
@@ -431,4 +431,12 @@ td a span.fa-window-close{
     transform: scale(1.8) rotateZ(45deg);
     margin-top: 10px;
     margin-left: -10px;
+}
+
+.avatar{
+    margin-top: 8px;
+    width: 40px;
+    height: 40px;
+    border: 0 solid transparent;
+    border-radius: 50%
 }

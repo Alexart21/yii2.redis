@@ -6,50 +6,58 @@ use yii\bootstrap\ActiveForm;
 $this->title = 'Регистрация';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div  class="site-login container" style="max-width: 600px">
+<div class="site-login container" style="max-width: 600px">
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php if(Yii::$app->session->hasFlash('success')): ?>
+    <?php if (Yii::$app->session->hasFlash('success')): ?>
         <div class="alert alert-success alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
             <?= Yii::$app->session->getFlash('success') ?>
         </div>
     <?php endif; ?>
 
-    <?php if(Yii::$app->session->hasFlash('error')): ?>
+    <?php if (Yii::$app->session->hasFlash('error')): ?>
         <div class="alert alert-danger alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
             <?= Yii::$app->session->getFlash('error') ?>
         </div>
     <?php endif; ?>
 
-            <?php $form = ActiveForm::begin([
-                    'id' => 'form-signup',
-                ]);
-            ?>
-
-            <?= $form->field($model, 'username')->textInput(['autofocus' => true, 'placeholder' => 'Имя'])->label(false) ?>
-            <?= $form->field($model, 'email')->textInput(['placeholder' => 'email'])->label(false) ?>
-            <?= $form->field($model, 'password', ['template' => "<div class='form-group'> {input} <span class=\"fa fa-eye-slash\"></span><div>{error}</div></div>",])->passwordInput(['placeholder' => 'пароль'])->label(false) ?>
-            <?= $form->field($model, 'password_repeat', ['template' => "<div class='form-group'> {input} <span class=\"fa fa-eye-slash\"></span><div>{error}</div></div>",])->passwordInput(['placeholder' => 'пароль еще раз'])->label(false) ?>
-
-            <?= $form->field($model, 'reCaptcha')->widget(
+    <?php $form = ActiveForm::begin([
+        'id' => 'form-signup',
+    ]);
+    ?>
+    <fieldset>
+        <?= $form->field($model, 'username')->textInput(['autofocus' => true, 'placeholder' => 'Имя'])->label(false) ?>
+        <?= $form->field($model, 'email')->textInput(['placeholder' => 'email'])->label(false) ?>
+        <?= $form->field($model, 'password', ['template' => "<div class='form-group'> {input} <span class=\"clicked fa fa-eye-slash\"></span><div>{error}</div></div>",])->passwordInput(['class' => 'pass-input', 'placeholder' => 'пароль'])->label(false) ?>
+        <?= $form->field($model, 'password_repeat', ['template' => "<div class='form-group'> {input} <span class=\"clicked fa fa-eye-slash\"></span><div>{error}</div></div>",])->passwordInput(['class' => 'pass-input', 'placeholder' => 'пароль еще раз'])->label(false) ?>
+        <!--            --><? //= $form->field($model,'avatar')->fileInput()  ?>
+        <h3>Аватар</h3>
+        <div class="drop-zone">
+            <span class="drop-zone__prompt"><span class="fa fa-cloud-download-alt"></span><br>Кликните или перетащите файл<br><b>(jpg,tif,png,gif)</b></span>
+            <?= $form->field($model, 'avatar')->fileInput(['class' => 'drop-zone__input'])->label(false) ?>
+        </div>
+        <br>
+        <? /*= $form->field($model, 'reCaptcha')->widget(
                 \himiklab\yii2\recaptcha\ReCaptcha2::class,
                 [
                     'siteKey' => '6LfRBQEaAAAAAEqEbZSrlYH0sQz5Q-bX58GHPNjL', // unnecessary is reCaptcha component was set up
                 ]
-            )  ?>
+            )  */ ?>
 
-            <? /*= \himiklab\yii2\recaptcha\ReCaptcha3::widget([
+        <? /*= \himiklab\yii2\recaptcha\ReCaptcha3::widget([
                 'name' => 'reCaptcha',
                 'siteKey' => '6LfNdr4ZAAAAAIKLdnRzRCWwNM6HyP0qo0nYglbN', // unnecessary is reCaptcha component was set up
                 'action' => 'signup',
             ]) */ ?>
-
-<!--            <div class="form-group">-->
-                <?= Html::submitButton('Отправить', ['class' => 'btn btn-primary', 'name' => 'signup-button', 'style' => 'margin-top:-50px']) ?>
-<!--            </div>-->
-            <?php ActiveForm::end(); ?>
-<h2>Войти через</h2>
+        <br>
+        <?= Html::submitButton('Отправить', ['class' => 'btn btn-primary', 'name' => 'signup-button', 'style' => 'margin-top:-50px']) ?>
+    </fieldset>
+    <?php ActiveForm::end(); ?>
+    <hr>
+    <h3>Или войти с помощью</h3>
     <?= yii\authclient\widgets\AuthChoice::widget([
         'baseAuthUrl' => ['site/auth'],
         'popupMode' => false,
@@ -57,29 +65,8 @@ $this->params['breadcrumbs'][] = $this->title;
     ?>
 </div>
 <script>
-    window.onload = function(){
-        /* Пришлось так покрасить значок однокласников */
-        /*const ok = document.querySelector('.odnoklassniki').classList;
-        ok.add('fab');
-        ok.add('fa-odnoklassniki-square');*/
-        // Переключение видимости символов пароля и иконки
-        const icon = document.querySelectorAll('.fa');
-        let inp = [];
-        // console.log(icon);
-        for(let i=0; i<icon.length; i++){
-            icon[i].addEventListener('click', (e)=>{
-                inp[i] = icon[i].previousElementSibling;
-                if (icon[i].classList.contains('fa-eye-slash')) {
-                    icon[i].classList.remove('fa-eye-slash');
-                    icon[i].classList.add('fa-eye');
-                    inp[i].setAttribute('type', 'text');
-                } else {
-                    icon[i].classList.remove('fa-eye');
-                    icon[i].classList.add('fa-eye-slash');
-                    inp[i].setAttribute('type', 'password');
-                }
-            });
-        }
-
+    window.onload = function () {
+            $('#login').modal();
+            $('.modal-content').velocity('transition.bounceIn');
     };
 </script>

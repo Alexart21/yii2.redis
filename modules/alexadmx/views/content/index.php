@@ -27,7 +27,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'page',
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view} {update} {delete}',
+                'header' => 'Действия',
+            ],
         ],
     ]); ?>
     <?php Pjax::end(); ?></div>

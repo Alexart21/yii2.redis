@@ -1,6 +1,8 @@
 # phpstorm project files
 .idea
 
+.dump.sql
+
 # netbeans project files
 nbproject
 
@@ -34,3 +36,5 @@ tests/_support/_generated
 /web/minify
 /runtime
 /backups
+/.backups
+/.secret

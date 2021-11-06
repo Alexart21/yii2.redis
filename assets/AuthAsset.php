@@ -17,6 +17,8 @@ class AuthAsset extends AssetBundle
     public $js = [
         'js/velocity.min.js',
         'js/velocity.ui.min.js',
+        'js/dragDrop.js',
+        'js/auth_scripts.js',
     ];
 
     public $depends = [

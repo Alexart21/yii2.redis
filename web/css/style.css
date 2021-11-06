@@ -64,11 +64,13 @@ h6, .h6 {
 @font-face {
     font-family: corpid;
     src: url(/fonts/corpid2.woff);
+    font-display: swap;
 }
 
 @font-face {
     font-family: latoBold;
     src: url(/fonts/LatoBold.woff);
+    font-display: swap;
 }
 
 .company {
@@ -98,12 +100,12 @@ textarea {
 }
 
 .left_gr2 {
-    background: rgb(245, 246, 246);
+    /*background: rgb(245, 246, 246);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(245, 246, 246, 1)), color-stop(21%, rgba(219, 220, 226, 1)), color-stop(49%, rgba(222, 208, 224, 1)), color-stop(80%, rgba(221, 223, 227, 1)), color-stop(100%, rgba(245, 246, 246, 1)));
     background: -webkit-linear-gradient(top, rgba(245, 246, 246, 1) 0%, rgba(219, 220, 226, 1) 21%, rgba(222, 208, 224, 1) 49%, rgba(221, 223, 227, 1) 80%, rgba(245, 246, 246, 1) 100%);
     background: linear-gradient(to bottom, rgba(245, 246, 246, 1) 0%, rgba(219, 220, 226, 1) 21%, rgba(222, 208, 224, 1) 49%, rgba(221, 223, 227, 1) 80%, rgba(245, 246, 246, 1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f5f6f6', endColorstr='#f5f6f6', GradientType=0);
-
+*/
 }
 
 /* call btn */
@@ -114,6 +116,7 @@ textarea {
     height: 100% !important;
     color: #222 !important;
     padding: 4px;
+    /*font-family: latoBold;*/
 }
 
 .call-btn > a:hover {
@@ -703,7 +706,8 @@ ul.highlightTextIn li a:before {
 #l_menu {
     width: 210px;
     margin: 20px 0 0 5px;
-
+    /*position: fixed;
+    top: 0;*/
 }
 
 #l_menu ul {
@@ -714,6 +718,7 @@ ul.highlightTextIn li a:before {
 }
 
 #l_menu ul li {
+    position: relative;
     text-decoration: none !important;
     list-style-type: none;
     width: 215px;
@@ -776,6 +781,47 @@ ul.highlightTextIn li a:before {
 .link-anim:hover:after,
 .link-anim:focus:after {
     width: 100%;
+}
+/* Активная ссылка-левое меню */
+.link-active{
+    background: #ddd;
+    /*background: url('/img/menu-bg.png');*/
+    border: 1px solid var(--logo-color) !important;
+    /*left: 5px !important;*/
+    /*bottom: 5px !important;*/
+    box-shadow: -10px 10px 10px rgba(0,0,0,.3), inset 0 0 20px #fff !important;
+    /*text-shadow: 1px 1px #fff;*/
+    transform: scale(1.2);
+    transition: all .3s;
+    /*border-top-right-radius: 30px !important;*/
+}
+
+/*.link-active a{
+    color: #fff !important;
+}*/
+
+/*.link-active::after{
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    border-top: 17px solid transparent;
+    border-left: 10px solid var(--logo-color);
+    !*border-left: 10px solid #999;*!
+    border-bottom: 17px solid transparent;
+    right: -2px;
+    top: -2px;
+    background: #fff;
+    cursor: default;
+}*/
+
+#l_menu > ul > li.left_gr2.link-active > a{
+    cursor: default;
+}
+
+.link-active:hover{
+    margin-left: 0 !important;
+    /*border: none !important;*/
 }
 
 /* конец анимация подчеркивания */
@@ -2167,5 +2213,13 @@ abbr{
 .ftab td, .ftab th{
     text-align: center;
     width: 80px;
+}
+/**/
+.cursor-default{
+    cursor: default;
+}
+
+.cursor-pointer{
+    cursor: pointer;
 }
 /**/

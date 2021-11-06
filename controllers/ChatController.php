@@ -20,7 +20,7 @@ class ChatController extends Controller
 
         $name = $session->get('user_name');
         $color = $session->get('user_color');
-        $ip = Yii::$app->request->userIP;
+        $ip = Yii::$app->request->getRemoteIP();
         $id = substr(crc32($ip), 0, 8);
 //        $id = substr(sha1($ip), 0, 6);
 

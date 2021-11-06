@@ -3,9 +3,9 @@
 
 // use app\models\User;
 
-$my_config = parse_ini_file(__DIR__ . '/../../secret/config.ini');
+$my_config = parse_ini_file(__DIR__ . '/../.secret/config.ini');
 if(!$my_config){
-    die('Не найден файл ' . __DIR__ . '/../../secret/config.ini');
+    die('Не найден файл ' . __DIR__ . '/../.secret/config.ini');
 }
 $params = require(__DIR__ . '/params.php');
 
@@ -46,6 +46,9 @@ $config = [
         ],*/
     ],
     'components' => [
+        'formatter' => [
+            'datetimeFormat' => 'php:d F Y H:i:s',
+        ],
         'authClientCollection' => [
             'class' => 'yii\authclient\Collection',
             'clients' => [
@@ -82,7 +85,7 @@ $config = [
         'backup' => [
             'class' => 'demi\backup\Component',
             // The directory for storing backups files
-            'backupsFolder' => dirname(dirname(__DIR__)) . '/backups', // <project-root>/backups
+            'backupsFolder' => __DIR__ . '/../.backups', // <project-root>/backups
             // Directories that will be added to db-backup
             'directories' => [
                 'img' => '@app/web/img',
@@ -158,8 +161,8 @@ $config = [
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
-//            'useFileTransport' => true, // локалка
-            'useFileTransport' => false, // на боевом поставить false
+            'useFileTransport' => true, // локалка
+//            'useFileTransport' => false, // на боевом поставить false
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.mail.ru',

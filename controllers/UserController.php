@@ -19,9 +19,28 @@ use yii\web\MethodNotAllowedHttpException;
 use yii\widgets\ActiveForm;
 use yii\web\Response;
 use app\models\Auth;
+use yii\web\UploadedFile;
+use yii\helpers\FileHelper;
 
-
-class UserController  extends Controller
+/**
+ * This is the model class for table "user".
+ *
+ * @property string $id
+ * @property string $username
+ * @property string $email
+ * @property string $avatar_path
+ * @property int $role
+ * @property string $password_hash
+ * @property string $auth_key
+ * @property string $register_token
+ * @property string $password_reset_token
+ * @property int $status
+ * @property int $created_at
+ * @property int $updated_at
+ *
+ * @property Auth[] $auths
+ */
+class UserController extends Controller
 {
     public function behaviors()
     {
@@ -58,7 +77,7 @@ class UserController  extends Controller
                 // - true: use separate ratesfor guests and authenticated users
                 'separateRates' => false,
                 // Whether to return HTTP headers containing the current rate limiting information
-                'enableRateLimitHeaders' => false,
+                'enableRateLimitHeaders' => true,
                 'errorMessage' => 'Лимит запросов исчерпан. Не более ' . Yii::$app->params['rateLimit'] . ' попыток в минуту',
             ],
         ];
@@ -72,7 +91,6 @@ class UserController  extends Controller
             ],
         ];
     }
-
 
 
     public function actionIndex()
@@ -101,16 +119,16 @@ class UserController  extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $user = User::findByUsernameOrEmail($model->login_or_email); // проверяем по имени либо email
             //
-            if($user) {
+            if ($user) {
                 if ($user->isStatusActive()) { // статус 10 для активных
                     $model->login();
                     if (User::isUserAdmin(Yii::$app->user->identity->username)) { // для админа
                         return $this->redirect('/alexadmx');
                     }
                     return $this->goBack();
-                }elseif ($user->isStatusDeleted()){
+                } elseif ($user->isStatusDeleted()) {
                     throw new MethodNotAllowedHttpException('Такой пользователь удален. Вы можете связаться с администратором сайта.');
-                }else{
+                } else {
                     throw new MethodNotAllowedHttpException('Такой пользователь не прошел подтверждение регистрации.Воспользуйтесь ссылкой отправленной Вам на email или свяжитесь с администратором.');
                 }
             }
@@ -125,16 +143,16 @@ class UserController  extends Controller
     /* Регистрация пользователя */
     public function actionSignup($id = null, $token = null)
     {
-        if($id && $token){ // пришли по ссылке для подтверждения регистрации
+        if ($id && $token) { // пришли по ссылке для подтверждения регистрации
 
             $id = (int)$id;
             $token = Html::encode($token);
-            if(!SignupForm::isValidToken($token)){
+            if (!SignupForm::isValidToken($token)) {
                 throw new BadRequestHttpException('Недействительный токен');
             }
 
             $user = User::findOne(['id' => $id, 'register_token' => $token]);
-            if(!$user){
+            if (!$user) {
                 throw new BadRequestHttpException('Не найден пользователь, попробуйте пройти регистрацию повторно');
             }
 
@@ -143,19 +161,18 @@ class UserController  extends Controller
             if ($user->save()) {
                 Yii::$app->session->setFlash('success', 'Вы успешно прошли регистрацию! Введите данные для входа.');
                 return $this->redirect('/login');
-            }else{
+            } else {
                 Yii::$app->session->setFlash('error', 'Произошла ошибка.');
                 return $this->redirect('/signup');
             }
 
-                /* Вариант с автоматическим входом */
-               /* Yii::$app->getUser()->login($user, Yii::$app->params['rememberMeSec']); // запоминаем по умолчанию
-                return $this->goHome();*/
+            /* Вариант с автоматическим входом */
+            /* Yii::$app->getUser()->login($user, Yii::$app->params['rememberMeSec']); // запоминаем по умолчанию
+             return $this->goHome();*/
         }
         //
         $this->layout = 'auth';
         $model = new SignupForm();
-
         // AJAX валидация ( только для полей usename && email)
         /*if (Yii::$app->request->isAjax) {
             if($model->load(Yii::$app->request->post())) {
@@ -166,10 +183,23 @@ class UserController  extends Controller
 
         // обычная отправка формы
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->signupRequest()) { // занесли в базу и отправили пимьмо заявителю
+            $model->avatar = UploadedFile::getInstance($model, 'avatar');
+//            var_dump($model->avatar->size);die;
+            if (!empty($model->avatar->size)) { // для загрузивших аватар
+                $imgName = substr(time(), -4) . strtolower(Yii::$app->security->generateRandomString(12)) . '.' . $model->avatar->extension;
+            }
+            $usrId = $model->signupRequest($imgName); // занесли в базу и отправили пимьмо заявителю вернули ID нового юзера
+            if ($usrId) {
+                if (!empty($model->avatar->size)) {
+                    $basePath = Yii::getAlias('@app/web') . '/upload/users/';
+                    $usrDir = 'usr' . $usrId;
+                    FileHelper::createDirectory($basePath . $usrDir . '/img');
+                    $path = FileHelper::normalizePath($basePath . $usrDir . '/img/' . $imgName);
+                    $model->avatar->saveAs($path);
+                }
                 Yii::$app->session->setFlash('success', 'Перейдите по ссылке, высланной Вам на E-mail для подтверждения регистрации');
                 return $this->redirect('/');
-            }else{
+            } else {
                 Yii::$app->session->setFlash('error', 'Во время выполнения запроса произошла ошибка!');
                 return $this->refresh();
             }
@@ -195,11 +225,15 @@ class UserController  extends Controller
     /* Запрос на сброс пароля */
     public function actionRequestPasswordReset()
     {
+        if(Yii::$app->user->identity->username){
+            throw new BadRequestHttpException('Вы уже залогинены как ' . Yii::$app->user->identity->username);
+        }
+
         $this->layout = 'auth';
         $model = new PasswordResetRequestForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->email == Yii::$app->params['adminEmail']){
+            if ($model->email == Yii::$app->params['adminEmail']) {
                 throw new MethodNotAllowedHttpException('Вы не можете изменить пароль администратора таким способом !!!');
             }
 
@@ -231,7 +265,7 @@ class UserController  extends Controller
         /* Вся валидация токена в конструкторе модели ResetPasswordForm */
         try {
             $model = new ResetPasswordForm($token);
-        }catch(InvalidValueException $e){
+        } catch (InvalidValueException $e) {
             new BadRequestHttpException($e->getMessage());
         }
 

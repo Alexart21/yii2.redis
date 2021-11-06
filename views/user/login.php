@@ -25,6 +25,12 @@ Modal::begin([
             <?= Yii::$app->session->getFlash('success') ?>
         </div>
     <?php endif; ?>
+    <?php if(Yii::$app->session->hasFlash('error')): ?>
+        <div class="alert alert-error alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <?= Yii::$app->session->getFlash('error') ?>
+        </div>
+    <?php endif; ?>
     <?php
     // здесь вставить  реальный пароль
     // в базу поставить сгенеренный хеш и рабочий логин
@@ -36,9 +42,9 @@ Modal::begin([
         'id' => 'login-form',
     ]); ?>
 
-    <?= $form->field($model, 'login_or_email', ['template' => "<div class='form-group'> {input} <span class=\"fa fa-user\"></span><div>{error}</div></div>",])->textInput(['placeholder' => 'Имя или E-mail']) ?>
+    <?= $form->field($model, 'login_or_email', ['template' => "<div class='form-group'> {input} <span class=\"clicked fa fa-user\"></span><div>{error}</div></div>",])->textInput(['placeholder' => 'Имя или E-mail', 'autofocus' => true]) ?>
     <br/>
-    <?= $form->field($model, 'password', ['template' => "<div class='form-group'> {input} <span class=\"fa fa-eye-slash\"></span><div>{error}</div></div>",])->passwordInput(['placeholder' => 'Пароль']) ?>
+    <?= $form->field($model, 'password', ['template' => "<div class='form-group'> {input} <span class=\"clicked fa fa-eye-slash\"></span><div>{error}</div></div>",])->passwordInput(['class' => 'pass-input', 'placeholder' => 'Пароль']) ?>
 
     <?/*= $form->field($model, 'reCaptcha')->widget(
         \himiklab\yii2\recaptcha\ReCaptcha2::class,
@@ -64,7 +70,8 @@ Modal::begin([
 
     <a href="/signup" style="display: block;text-align: right">Регистрация</a>
     <?php ActiveForm::end(); ?>
-    <h2>Войти через</h2>
+    <hr>
+    <h3>Или войти с помощью</h3>
     <?= yii\authclient\widgets\AuthChoice::widget([
         'baseAuthUrl' => ['site/auth'],
         'popupMode' => false,
@@ -76,30 +83,7 @@ Modal::end();
 ?>
 <script>
     window.onload = function(){
-        /* Пришлось так покрасить значок однокласников */
-        /*const ok = document.querySelector('.odnoklassniki').classList;
-        ok.add('fab');
-        ok.add('fa-odnoklassniki-square');*/
-        //
         $('#login').modal();
         $('.modal-content').velocity('transition.bounceIn');
-        // Переключение видимости символов пароля и иконки
-        const inp = document.getElementById('loginform-password');
-        let icon = inp.nextElementSibling;
-        icon.addEventListener('click', function () {
-            if (icon.classList.contains('fa-eye-slash')) {
-                icon.classList.remove('fa-eye-slash');
-                icon.classList.add('fa-eye');
-            } else {
-                icon.classList.remove('fa-eye');
-                icon.classList.add('fa-eye-slash');
-            }
-
-            if (inp.getAttribute('type') == 'password') {
-                inp.setAttribute('type', 'text');
-            } else {
-                inp.setAttribute('type', 'password');
-            }
-        });
     };
 </script>

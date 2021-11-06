@@ -1,5 +1,4 @@
 <?php
-
 use yii\widgets\ActiveForm;
 use kartik\date\DatePicker;
 use yii\helpers\Html;
@@ -65,7 +64,7 @@ $form = ActiveForm::begin([
 ?>
 <fieldset>
 <?=$form->field($model, 'date')->textInput()
-    ->widget(DatePicker::classname(), [
+    ->widget(DatePicker::class, [
         'name' => 'check_issue_date',
         'value' => date('d-M-Y', strtotime('+2 days')),
         'options' => ['placeholder' => 'Выберите дату'],
@@ -74,7 +73,7 @@ $form = ActiveForm::begin([
             'todayHighlight' => true
         ]
 ]);?>
-    <?=$form->field($model,'audioFile')->fileInput()  ?>
+    <?=$form->field($model,'avatar')->fileInput()  ?>
     <?=$form->field($model,'test')->textInput()  ?>
 </fieldset>
     <?= Html::submitButton('Отправить', ['class' => 'btn btn-success']) ?>
