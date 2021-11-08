@@ -232,6 +232,12 @@ class UserController extends Controller
         $this->layout = 'auth';
         $model = new PasswordResetRequestForm();
 
+        if (Yii::$app->request->isAjax) {
+            if ($model->load(Yii::$app->request->post())) {
+                Yii::$app->response->format = Response::FORMAT_JSON;
+                return ActiveForm::validate($model);
+            }
+        }
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->email == Yii::$app->params['adminEmail']) {
                 throw new MethodNotAllowedHttpException('Вы не можете изменить пароль администратора таким способом !!!');

@@ -1,3 +1,48 @@
+:root {
+    --logo-color: #e61b05;
+    --btn-color: #FD9638;
+    --viber-color: #774E98;
+    --watsapp-color: #12940A;
+    --tg-color: #52ADDE;
+}
+
+@font-face {
+    font-family: latoBold;
+    src: url(/fonts/LatoBold.woff);
+    font-display: swap;
+}
+
+@media all and (max-width: 846px), all and (max-device-width: 846px) {
+    /* виджет мессенджеров */
+    #msg-block{
+        width: 80% !important;
+        max-width: 500px;
+    }
+
+    #msg-content > div.msg-text{
+        font-size: 180% !important;
+    }
+
+    .msg-closed-text{
+        display: block;
+        /*left: 180px;*/
+        font-size: 140% !important;
+        margin-top: -60px !important;
+    }
+
+    .tooltip-inner{
+        font-size: 180% !important;
+    }
+
+    .msg-btn{
+        letter-spacing: 2px;
+    }
+
+    .viber-bg{
+        /*margin-top: -30px !important;*/
+    }
+}
+
 body{
     position: relative;
     font-family: Arial;
@@ -8,15 +53,47 @@ body{
     /*left: 0;*/
 }
 
-/*
+html,
+body {
+    height: 100%;
+}
+
 .help-block{
     color: red !important;
 }
-*/
 
+#container{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+}
 
-.help-block{
-    color: red !important;
+.cont-wrapper{
+    flex: 1 0 auto;
+}
+
+.bottom-menu{
+    flex: 0 0 auto;
+    margin-top: 2em;
+}
+
+.bottom-menu a,.bottom-menu a:visited,.bottom-menu a:active{
+    color: inherit !important;
+}
+
+.bottom-menu i{
+    display: inline-block;
+    position: relative;
+    font-size: 200%;
+    bottom: -10px;
+}
+
+.avatar-icon{
+    width: 60px;
+    height: auto;
+    border: 0 solid transparent;
+    border-radius: 50%;
 }
 
 .site-login{
@@ -27,6 +104,7 @@ body{
     box-shadow: -2rem 2rem 2rem rgba(0, 0, 0, 0.2), inset 0 0 30px #ddd;
     border: 1px solid #e61b05;
     border-radius: 3px;
+    /*margin-top: 2rem;*/
 }
 
 input[type=text], input[type=password], input[type=password]{
@@ -143,7 +221,7 @@ button:hover{
 
 .usr-set{
     width: 400px;
-    margin: 0 auto
+    /*margin: 0 auto*/
 }
 
 fieldset{
@@ -200,31 +278,218 @@ fieldset{
     text-align: center;
 }
 
-.fa-cloud-download-alt{
+.fa-cloud-upload-alt{
     color: blue;
     font-size: 200%;
 }
-/**/
-.topMenu{
-    float: right;
-    margin: 1em;
-    /*background: lime;*/
-}
 
-.topMenu a,.topMenu a:visited,.topMenu a:active{
-    color: inherit !important;
-}
-
-.topMenu i{
-    display: inline-block;
+.success-button {
     position: relative;
-    font-size: 200%;
-    bottom: -10px;
+    /*margin-top: 1vw;*/
+    background: var(--btn-color);
+    color: white;
+    font-family: latoBold;
+    border: none;
+    /* text-transform: uppercase; */
+    padding: 13px 30px;
+    font-size: 1.5vw;
+    letter-spacing: 0.1em;
+    font-weight: 300;
+    transition: all 333ms ease-in-out;
+    overflow: hidden;
+    box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),
+    7px 7px 20px 0px rgba(0, 0, 0, .1),
+    4px 4px 5px 0px rgba(0, 0, 0, .1);
 }
 
-.avatar-icon{
-    width: 60px;
-    height: auto;
-    border: 0 solid transparent;
-    border-radius: 50%;
+.success-button:hover {
+    cursor: pointer !important;
+    background: #313A3D;
+    color: var(--btn-color);
+    top: -5px;
+}
+
+.success-button:focus {
+    outline: none;
+    background: #cd6302;
+}
+/**/
+/* блок с иконками мессенджеров*/
+#msg-block {
+    display: none;
+    position: fixed;
+    z-index: 100000;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    height: 50px;
+    border: 1px solid #222;
+    /*background: rgba(150, 150, 150, .4);*/
+    background: #f4fcff;
+    /*background: url('/img/wats-bg.gif');*/
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: 0 0 40px #87ffdb, 0 0 5px var(--btn-color) inset;
+}
+
+.msg-opened{
+    height: 350px !important;
+}
+
+.msg-text {
+    width: 80%;
+    margin: 50px auto 0 auto;
+    background: #AAD9C2;
+    border: 0px solid transparent;
+    border-radius: 5px;
+    box-shadow: 0 0 20px #555;
+}
+
+#msg-content {
+    margin-top: -20px;
+}
+
+.msg-closed {
+    overflow: hidden;
+    position: relative;
+    display: block;
+    font-size: 26px;
+    color: #222;
+    margin-top: 24px;
+    cursor: pointer;
+    background: inherit;
+    /*height: 40px;*/
+    /*line-height: 40px;*/
+}
+
+.msg-closed-text{
+    position: absolute;
+    left: 130px
+}
+
+.msg-closed i {
+    font-size: 34px;
+    /*color: lime !important;*/
+}
+
+.msg-img {
+    position: absolute;
+    top: -35px;
+    right: 0;
+}
+
+.msg-btn {
+    display: block;
+    padding: 5px;
+    text-align: center;
+    /*background: #0d6aad;*/
+    border: 0px solid transparent;
+    border-radius: 10px;
+    text-decoration: none !important;
+    font-size: 30px;
+    color: #fff;
+    width: 80%;
+    min-width: 160px;
+    margin: 0 auto 10px auto;
+}
+
+.viber-bg {
+    background: var(--viber-color);
+}
+
+.watsap-bg {
+    background: var(--watsapp-color);
+}
+
+.tg-bg {
+    background: var(--tg-color);
+}
+
+.viber {
+    color: var(--viber-color);
+}
+
+.wats {
+    color: var(--watsapp-color);
+}
+
+.tg {
+    color: var(--tg-color);
+}
+
+.msg-btn:hover, .msg-btn:visited {
+    box-shadow: 4px 4px 10px #999;
+    color: #fff !important;
+}
+
+.msg-btn i {
+    font-size: 26px;
+}
+
+#msg-block > button {
+    /*display: none;*/
+    position: absolute;
+    top: 10px;
+    right: 24px;
+}
+
+#msg-block hr {
+    border-bottom: 1px dashed #222;
+}
+
+/* всплывающая подсказка над чатом */
+.tooltip{
+    z-index: 100001 !important;
+}
+
+.tooltip-inner{
+    font-size: 18px;
+    color: #222;
+    font-weight: bold;
+    letter-spacing: 1px;
+    background-color: #fff !important;
+    border: 1px solid #222;
+    box-shadow: 0 0 8px inset var(--logo-color);
+}
+
+.arrow::before{
+    border-top-color: #222 !important;
+}
+/**/
+.auth-hr {
+    margin: .5em;
+    width: 90%;
+    border-bottom: 2px dashed #999;
+}
+
+a.btn-set, a.btn-set:active, a.btn-set:visited{
+    display: inline-block;
+    font-weight: bold;
+    /*border-left: 2px solid #222;*/
+    /*border: 1px solid #222;*/
+    padding: .3em;
+    /*text-decoration: none;*/
+    color: #222;
+    text-decoration: underline;
+}
+
+.breadcrumb-out{
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 2rem;
+}
+
+.breadcrumb{
+    background: none;
+    padding: 0;
+    letter-spacing: 1px;
+}
+
+.breadcrumb a, .breadcrumb a:active, .breadcrumb a:visited{
+    color: #222;
+    font-weight: bold;
+    font-size: 110%;
+    text-shadow: 0 .5px var(--btn-color);
+    /*text-decoration: underline !important;*/
 }

@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Личный кабинет | '), 'url' => ['index']];
+$this->params['breadcrumbs'][] = 'Изменить пароль';
 ?>
 <div class="usr-set site-login">
     <?php $form = ActiveForm::begin(); ?>
@@ -10,7 +12,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($passFormModel, 'new_password', ['template' => "<div class='form-group'> {input} <span class=\"clicked fa fa-eye-slash\"></span><div>{error}</div></div>"])->passwordInput(['class' => 'pass-input', 'placeholder' => 'Новый пароль']) ?>
     <?= $form->field($passFormModel, 'new_password_repeat', ['template' => "<div class='form-group'> {input} <span class=\"clicked fa fa-eye-slash\"></span><div>{error}</div></div>"])->passwordInput(['class' => 'pass-input', 'placeholder' => 'Повторите новый пароль']) ?>
     <div class="form-group">
-        <?= Html::submitButton('Отправить', ['class' => 'btn btn-primary']) ?>
+        <?= Html::submitButton('Отправить', ['class' => 'btn success-button']) ?>
     </div>
     <?php ActiveForm::end(); ?>
 </div>

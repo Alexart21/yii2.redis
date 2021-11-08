@@ -34,7 +34,7 @@ if ($statusCode == 429) :
 
         timer.innerText = time;
         let timerId = setInterval(clock, 1000);
-        setTimeout(() => {clearInterval(timerId);document.getElementById('timer-block').innerHTML = '<a href="<?= Yii::$app->request->referrer ?>">Повторить попытку</a>';}, time*1000);
+        setTimeout(() => {clearInterval(timerId);document.getElementById('timer-block').innerHTML = '<a href="user/login">Повторить попытку</a>';}, time*1000);
     </script>
 <?php
 endif;

@@ -3,7 +3,8 @@ use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 use yii\bootstrap4\Modal;
 
-$this->title = 'Вход';
+/*$this->title = 'Вход';
+$this->params['breadcrumbs'][] = $this->title;*/
 // Здесь пароль меняй (в поле password_hash)
 //echo Yii::$app->getSecurity()->generatePasswordHash('password');
 //die;
@@ -63,14 +64,14 @@ Modal::begin([
         'template' => "<div class=\"squaredTwo\">{input} {label}<span id =\"labelText\">Запомнить на " . Yii::$app->params['rememberMeDay'] . " дней</span></div>\n<div class=\"col-lg-8\">{error}</div>",
     ]) ?>
     <div class="form-group">
-            <?= Html::submitButton('Отправить', ['class' => 'btn btn-success', 'name' => 'login-button']) ?>
+            <?= Html::submitButton('Отправить', ['class' => 'btn success-button', 'name' => 'login-button']) ?>
 <!--        <button title="очистить форму" class="login-reset" type="reset" style="float: right;border: none;background: #fff"><span style="font-size: 80%">очистить</span></button>-->
         <?= Html::a('Забыли пароль?', ['user/request-password-reset'], ['style' => 'display:block;text-align:right']) ?>
     </div>
 
     <a href="/signup" style="display: block;text-align: right">Регистрация</a>
     <?php ActiveForm::end(); ?>
-    <hr>
+    <hr class="auth-hr">
     <h3>Или войти с помощью</h3>
     <?= yii\authclient\widgets\AuthChoice::widget([
         'baseAuthUrl' => ['site/auth'],

@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 
 $this->title = 'Сброс пароля';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login container" style="max-width: 600px">
 
@@ -26,7 +27,7 @@ $this->title = 'Сброс пароля';
         'id' => 'pass-form',
     ]); ?>
     <h3>Укажите Ваш email для сброса пароля</h3>
-    <?= $form->field($model, 'email')->textInput(['placeholder' => 'E-mail'])->label(false) ?>
+    <?= $form->field($model, 'email', ['enableAjaxValidation' => true])->textInput(['placeholder' => 'E-mail'])->label(false) ?>
 
     <?/*= $form->field($model, 'reCaptcha')->widget(
                 \himiklab\yii2\recaptcha\ReCaptcha2::class,
@@ -42,10 +43,8 @@ $this->title = 'Сброс пароля';
             ]) */ ?>
 
     <br/>
-
-
     <div class="form-group">
-        <?= Html::submitButton('Отправить', ['class' => 'btn btn-success', 'name' => 'login-button']) ?>
+        <?= Html::submitButton('Отправить', ['class' => 'btn success-button', 'name' => 'login-button']) ?>
     </div>
     <?php ActiveForm::end(); ?>
 </div>

@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\SignupForm;
+use app\models\userSettings\CloseForm;
 use app\models\userSettings\PassForm;
 use yii\db\ActiveRecord;
 use yii\filters\AccessControl;
@@ -100,18 +101,50 @@ class UserSettingsController extends \yii\web\Controller
     public function actionClose()
     {
         $model = User::findOne(Yii::$app->user->identity->getId());
-        if(!$model){
+        /* Вариант без ввода пароля */
+        /*if(!$model){
             throw new MethodNotAllowedHttpException('Нет такого пользователя.Как ты сюда попал(а)?!');
         }
-        // помечаем в базе как удаленного(неактивного)
-        $model->status = 0;
-        if (!$model->save()) {
-            die('<h1 style="color: red">Произошла ошибка</h1>');
+        // Транзакцию включил
+        $transaction = User::getDb()->beginTransaction();
+        try {
+            // помечаем в базе как удаленного(неактивного)
+            $model->status = 0;
+            $model->save();
+            $transaction->commit();
+        } catch(\Exception $e) {
+            $transaction->rollBack();
+            throw $e;
+        } catch(\Throwable $e) {
+            $transaction->rollBack();
+            throw $e;
         }
-        // разлогиниваем
-        Yii::$app->user->logout();
 
-        return $this->goHome();
+        Yii::$app->user->logout();
+        return $this->goHome();*/
+
+        /* С вводом пароля */
+        $closeFormModel = new CloseForm();
+        if ($closeFormModel->load(Yii::$app->request->post()) && $closeFormModel->validate()){
+            // Транзакцию включил
+            $transaction = User::getDb()->beginTransaction();
+            try {
+                // помечаем в базе как удаленного(неактивного)
+                $model->status = 0;
+                $model->save();
+                $transaction->commit();
+            } catch(\Exception $e) {
+                $transaction->rollBack();
+                throw $e;
+            } catch(\Throwable $e) {
+                $transaction->rollBack();
+                throw $e;
+            }
+
+            Yii::$app->user->logout();
+            return $this->goHome();
+        }
+        return $this->render('close', compact('closeFormModel'));
     }
 
     // изменение email
@@ -206,8 +239,19 @@ class UserSettingsController extends \yii\web\Controller
         if(!$user){
             throw new MethodNotAllowedHttpException('Нет такого пользователя.Как ты сюда попал(а)?!');
         }
-        $user->avatar_path = null;
-        $user->save();
-        return $this->redirect('index');
+        // Транзакцию включил
+        $transaction = User::getDb()->beginTransaction();
+        try {
+            $user->avatar_path = null;
+            $user->save();
+            $transaction->commit();
+        } catch(\Exception $e) {
+            $transaction->rollBack();
+            throw $e;
+        } catch(\Throwable $e) {
+            $transaction->rollBack();
+            throw $e;
+        }
+        return $this->goHome();
     }
 }

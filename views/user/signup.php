@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'id' => 'form-signup',
     ]);
     ?>
-    <fieldset>
+<!--    <fieldset>-->
         <?= $form->field($model, 'username')->textInput(['autofocus' => true, 'placeholder' => 'Имя'])->label(false) ?>
         <?= $form->field($model, 'email')->textInput(['placeholder' => 'email'])->label(false) ?>
         <?= $form->field($model, 'password', ['template' => "<div class='form-group'> {input} <span class=\"clicked fa fa-eye-slash\"></span><div>{error}</div></div>",])->passwordInput(['class' => 'pass-input', 'placeholder' => 'пароль'])->label(false) ?>
@@ -53,10 +53,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'action' => 'signup',
             ]) */ ?>
         <br>
-        <?= Html::submitButton('Отправить', ['class' => 'btn btn-primary', 'name' => 'signup-button', 'style' => 'margin-top:-50px']) ?>
-    </fieldset>
+        <?= Html::submitButton('Отправить', ['class' => 'btn success-button', 'name' => 'signup-button', 'style' => 'margin-top:-50px']) ?>
+<!--    </fieldset>-->
     <?php ActiveForm::end(); ?>
-    <hr>
+    <hr class="auth-hr">
     <h3>Или войти с помощью</h3>
     <?= yii\authclient\widgets\AuthChoice::widget([
         'baseAuthUrl' => ['site/auth'],

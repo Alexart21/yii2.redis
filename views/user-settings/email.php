@@ -2,15 +2,15 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-//var_dump(Yii::$app->user->identity->email);
-//die;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Личный кабинет | '), 'url' => ['index']];
+$this->params['breadcrumbs'][] = 'Изменить Email';
 ?>
 <div class="usr-set site-login">
-    <p>Ваш текущий Email: <b><?= Yii::$app->user->identity->email ?></b></p>
+    <p>Ваш Email: <b><?= Yii::$app->user->identity->email ?></b></p>
     <?php $form = ActiveForm::begin(); ?>
     <?= $form->field($emailFormModel, 'email', ['enableAjaxValidation' => true]) ?>
     <div class="form-group">
-        <?= Html::submitButton('Отправить', ['class' => 'btn btn-primary']) ?>
+        <?= Html::submitButton('Отправить', ['class' => 'success-button']) ?>
     </div>
     <?php ActiveForm::end(); ?>
 </div>

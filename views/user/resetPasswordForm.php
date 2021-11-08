@@ -2,16 +2,19 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use app\models\User;
 
 $this->title = 'Установка пароля';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<br>
-<br>
-<br>
-<br>
+<?php
+$id = (int)$_GET['id'];
+$sql = 'SELECT `username` FROM `user` WHERE id=' . $id;
+$user = User::findOne($id);
+//var_dump($user->username);die;
+?>
 <div class="site-login container" style="max-width: 600px">
-    <h2><?= Html::encode($this->title) ?></h2>
+    <p>Установка пароля для пользователя <b style="font-size: 110%"><?= $user->username ?></b></p>
     <?php if(Yii::$app->session->hasFlash('success')): ?>
         <div class="alert alert-success alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -44,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ]) */ ?>
 
             <div class="form-group">
-                <?= Html::submitButton('Сохранить', ['class' => 'btn btn-primary']) ?>
+                <?= Html::submitButton('Сохранить', ['class' => 'btn success-button']) ?>
             </div>
             <?php ActiveForm::end(); ?>
 
