@@ -41,9 +41,7 @@
     "demi/backup": "~1.0",
     "isudakoff/yii2-mailru-authclient": "*",
     "consik/yii2-websocket": "^1.0",
-    "aki/yii2-vue": "*",
-    "cebe/yii2-gravatar": "^1.0",
-    "yiisoft/yii2-bootstrap5": "*"
+    "aki/yii2-vue": "*"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.0.0",
