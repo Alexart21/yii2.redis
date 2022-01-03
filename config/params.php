@@ -5,7 +5,8 @@ return [
     'bk_email' => 'alexart21@bk.ru', // куда
     'sender_email' => 'mail@houme21.ru', // от кого
     /**/
-    'siteUrl' =>'alexart.houme21.ru',
+    'siteUrl' =>'alexart.local',
+    'protocol' =>'https',
     'company' => 'Alex-art21',
     'email' => 'mail@site.ru',
     'adminEmail' => 'aa@aa.aa', // критично, должно совпадать с тем что в базе
@@ -14,7 +15,7 @@ return [
     'tel1_min' => '+79876680484',
     'tel1_i' => '79876680484',
     'admin' => 'admin_alex',
-    'rateLimit' => 5, // попыток входа в минуту. В scripts.js Тоже можно эту цифру (строка )
+    'rateLimit' => 10, // попыток входа в минуту. В scripts.js Тоже можно эту цифру (строка )
     /*
         1728000 => 20 суток
         2592000 => 30 суток
@@ -24,4 +25,7 @@ return [
     'rememberMeDay' => 30, // то же в сутках(показать пользователю)
     'user.passwordResetTokenExpire' => 3600, // время действия ссылки на сброс пароля
     'user.registerTokenExpire' => 3600*24, // время действия ссылки на подтверждение регистрации
+    'max_avatar_size' => 200, // макс. размер в килобайтах для аватара
+    'max_file_count' => 1000, // не позволим мильён файлов загружать
+    'min_pass_length' => 6, // минимальная длина пароляs
 ];

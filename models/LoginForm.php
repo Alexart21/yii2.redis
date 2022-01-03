@@ -30,7 +30,8 @@ class LoginForm extends Model
             [['login_or_email', 'password'], 'required', 'message' => 'заполните это поле !'],
             [['login_or_email', 'password'], 'trim'],
             ['login_or_email',  'string', 'length' => [3, 100]],
-            ['password', 'string', 'length' => [6, 100]],
+            ['login_or_email',  'validateLoginOrEmail'],
+            ['password', 'string', 'length' => [Yii::$app->params['min_pass_length'], 100]],
             ['rememberMe', 'boolean'],
             ['password', 'validatePassword'],
             //reCaptcha v2
@@ -72,6 +73,13 @@ class LoginForm extends Model
             if (!$user || !$user->validatePassword($this->password)) {
                 $this->addError($attribute, 'Неверные логин/пароль');
             }
+        }
+    }
+
+    public function validateLoginOrEmail($attribute, $params)
+    {
+        if (!User::findByUsernameOrEmail($this->$attribute)){
+            $this->addError($attribute, 'Нет такого пользователя!');
         }
     }
 

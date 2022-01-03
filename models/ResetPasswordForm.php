@@ -55,7 +55,8 @@ class ResetPasswordForm extends Model
         return [
             [['password', 'password_repeat'], 'required'],
             [['password', 'password_repeat'], 'trim'],
-            [['password', 'password_repeat'], 'string', 'length' => [6, 100]],
+            [['password', 'password_repeat'], 'string', 'length' => [Yii::$app->params['min_pass_length'], 100]],
+            ['password', 'match', 'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^\w\s]).*/', 'message' => 'Пароль должен быть не менее ' . Yii::$app->params['min_pass_length'] . ' символов, только латиница, содержать не менее одной заглавной и строчной буквы, хотя бы одну цифру и спецсимвол'],
             ['password_repeat', 'compare', 'compareAttribute'=>'password', 'message'=>"Пароли не совпадают !" ],
             //reCaptcha v2
             /*[['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::class,

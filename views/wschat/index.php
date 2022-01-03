@@ -172,7 +172,7 @@
 <script>
     window.onload = () => {
         $(function () {
-            let chat = new WebSocket('ws://localhost:8080');
+            let chat = new WebSocket('ws://localhost:8080/wschat');
             let user_color = readCookie('user_color'),
                 user_name = readCookie('user_name');
             if (user_name != 'undefined'){

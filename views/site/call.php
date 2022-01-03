@@ -32,7 +32,7 @@ Modal::begin([
 
 
         <?= $form->field($formModel, 'tel')->textInput(['class' => 'phone', 'required' => true])
-            ->widget(MaskedInput::className(), [
+            ->widget(MaskedInput::class, [
                 'mask' => '+7 (999) - 999 - 99 - 99',
             ]);
         ?>

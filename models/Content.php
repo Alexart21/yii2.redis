@@ -63,7 +63,9 @@ class Content extends ActiveRecord
         $data = $data[0];*/
 
         /* ActivRecord + подготовленный запрос */
-        $data = self::find()->where('page=:act', [':act' => $act])->limit(1)->asArray()->one();
+//        $data = self::find()->where('page=:act', [':act' => $act])->limit(1)->asArray()->one();
+        /* ActivRecord*/
+        $data = self::find()->where(['page' => $act])->limit(1)->asArray()->one();
         /* Хранимая процедура */
         /*$sql = "CALL getContent('$act')";
         $data = ActiveRecord::findBySql($sql)->asArray()->all();
@@ -76,7 +78,8 @@ class Content extends ActiveRecord
         // 604800 - неделя
         // 18144000 - 30 дней
         //15552000 - 180 суток
-        Yii::$app->cache->set($act, $data, 15552000);
+//        Yii::$app->cache->set($act, $data, 15552000);
+        Yii::$app->cache->set($act, $data); // "навечно" закешировали
         return $data;
     }
 }

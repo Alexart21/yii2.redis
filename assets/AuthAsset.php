@@ -12,6 +12,7 @@ class AuthAsset extends AssetBundle
     public $css = [
         'css/auth.css',
         'fontawesome/css/all.min.css',
+        'css/cropper.min.css',
     ];
 
     public $js = [
@@ -19,6 +20,7 @@ class AuthAsset extends AssetBundle
         'js/velocity.ui.min.js',
         'js/dragDrop.js',
         'js/auth_scripts.js',
+        'js/cropper.min.js',
     ];
 
     public $depends = [

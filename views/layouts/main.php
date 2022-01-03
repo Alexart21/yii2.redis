@@ -322,13 +322,13 @@ AppAsset::register($this);
                 if (Yii::$app->user->getIsGuest()) :
                     ?>
                     <b style="font-size: 110%">Гость</b>&nbsp;&nbsp;&nbsp;
-                    <a href="/signup">регистрация</a>&nbsp;&nbsp;
-                    <a href="/login">вход</a>
+                    <a href="/user/signup">регистрация</a>&nbsp;&nbsp;
+                    <a href="/user/login">вход</a>
 
                 <?php
                 else:
                     ?>&nbsp;&nbsp;&nbsp;
-                    <a href="/logout" data-method="post">выход</a>(<b
+                    <a href="/user/logout" data-method="post">выход</a>(<b
                         style="font-size: 110%"><?= Yii::$app->user->identity->username ?></b>)
                     <a href="/user-settings">&nbsp;Личный кабинет</a>
                 <?php

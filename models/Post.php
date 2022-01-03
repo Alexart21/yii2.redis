@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "post".
@@ -66,17 +67,24 @@ class Post extends \yii\db\ActiveRecord
     /* Запись в БД */
     public function dbSave($indexForm)
     {
-        $name = mb_ucfirst(clr_get($indexForm->name));
-        $email = clr_get($indexForm->email);
-        $tel = clr_get($indexForm->tel);
-        $text = clr_get($indexForm->text);
+        /* Санитайзинг номера телефона */
+        /*$indexForm->tel = str_replace(')', '', $indexForm->tel);
+        $indexForm->tel = str_replace('(', '', $indexForm->tel);
+        $indexForm->tel = str_replace('-', '', $indexForm->tel);
+        $indexForm->tel = str_replace(' ', '', $indexForm->tel);
+        $indexForm->tel = str_replace('+', '', $indexForm->tel);*/
 
-        $this->name = $name;
-        $this->email = $email;
-        $this->tel = $tel;
-        $this->body = $text;
-
-        $res = $this->save();
-        return  $res ? 'DB_OK!' : 'DB_ERR!';
+        $transaction = Yii::$app->db->beginTransaction();
+        $this->name = mb_ucfirst(clr_get($indexForm->name));
+        $this->email = clr_get($indexForm->email);
+        $this->tel = clr_get($indexForm->tel);
+        $this->body = clr_get($indexForm->text);
+        if($this->save()){
+           $transaction->commit();
+           return 'DB_OK!';
+        }else{
+            $transaction->rollBack();
+            return 'DB_ERR!';
+        }
     }
 }

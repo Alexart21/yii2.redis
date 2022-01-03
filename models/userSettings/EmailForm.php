@@ -25,7 +25,7 @@ class EmailForm extends Model
     public function attributeLabels()
     {
         return [
-            'email' => 'Ведите новый Email',
+            'email' => 'Введите новый Email',
         ];
     }
 

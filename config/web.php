@@ -151,7 +151,7 @@ $config = [
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
-            'loginUrl' => '/login'
+            'loginUrl' => '/user/login'
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -194,7 +194,8 @@ $config = [
                 // слева Url справа controller/action
                 '<action:(index|sozdanie|prodvijenie|parsing|portfolio|politic|call|call_ok)>' => 'site/<action>',
                 '<action:(login|logout|signup|request-password-reset|reset-password)>' => 'user/<action>',
-            ],
+//                '<action:\w+>' => 'site/<action>',
+                ],
         ],
 
         'reCaptcha' => [ // for houme21.ru
@@ -225,13 +226,13 @@ if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
-        'allowedIPs' => ['127.0.0.1'] // adjust this to your needs
+        'allowedIPs' => ['127.0.0.1', '172.19.0.1'] // adjust this to your needs
     ];
 
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
-        'allowedIPs' => ['127.0.0.1'] // adjust this to your needs
+        'allowedIPs' => ['127.0.0.1', '172.19.0.1'] // adjust this to your needs
     ];
 }
 

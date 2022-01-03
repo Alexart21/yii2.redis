@@ -35,11 +35,20 @@ header('Strict-Transport-Security: max-age=31536000');
 <?php $this->beginBody() ?>
 <div id="container">
     <div class="breadcrumb-out">
+        <?php
+        if (!Yii::$app->user->isGuest) :
+        ?>
+        <b>[<?= Yii::$app->user->identity->username ?>]</b><a href="/user/logout" data-method="post" title="выход" style="margin-left: 3em">
+            <i class="fa fa-sign-out-alt"></i>&nbsp;выход</a>
+        <?php
+        endif;
+        ?>
         <?= Breadcrumbs::widget([
-            'homeLink' => ['label' => 'Главная | ', 'url' => 'site/index'],
+            'homeLink' => ['label' => 'Главная | ', 'url' => '/'],
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
     </div>
+
     <div class="cont-wrapper">
         <?= $content ?>
     </div>
@@ -49,9 +58,9 @@ header('Strict-Transport-Security: max-age=31536000');
                     if (!Yii::$app->user->isGuest) :
                         $imgLink = Yii::$app->user->identity->avatar_path ? '/upload/users/usr' . Yii::$app->user->identity->id . '/img/' . Yii::$app->user->identity->avatar_path : '/upload/default_avatar/no-image.png';
                         ?>
-                        <img class="avatar-icon" src="<?= $imgLink ?>" alt="">
+<!--                        <img class="avatar-icon" src="--><?//= $imgLink ?><!--" alt="">-->
                         <b>[<?= Yii::$app->user->identity->username ?>]</b>
-                        &nbsp;<a href="/user/logout" data-method="post" title="выйти"><i class="fa fa-external-link-alt" style="transform: rotateZ(45deg)"></i></a>
+                        &nbsp;<a href="/user/logout" data-method="post" title="выход"><i class="fa fa-sign-out-alt"></i></a>
                     <?php
                     endif;
                     ?>

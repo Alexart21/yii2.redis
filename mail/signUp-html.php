@@ -15,3 +15,6 @@ $link = Yii::$app->urlManager->createAbsoluteUrl(['user/signup', 'id' =>  $user-
 <p>
     Ссылка действительна в течении <?= Yii::$app->params['user.registerTokenExpire'] /3600 ?> часа.
 </p>
+<p>
+    (До <?= date("Y-m-d H:i:s", time() + Yii::$app->params['user.registerTokenExpire']) ?> включительно)
+</p>

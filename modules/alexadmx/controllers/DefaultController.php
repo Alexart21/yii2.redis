@@ -179,9 +179,8 @@ class DefaultController extends AppAlexadmxController
     {
         if (Yii::$app->request->isAjax) {
             if(!Yii::$app->user->isGuest){
-                $avatar = User::findOne(['username' => $user])->avatar_path;
-                $email = User::findOne(['username' => $user])->email;
-                return $this->renderPartial('avatar', compact('user', 'avatar', 'email'));
+                $model = User::findOne(['username' => $user]);
+                return $this->renderPartial('avatar', compact('model'));
             }
 
         }

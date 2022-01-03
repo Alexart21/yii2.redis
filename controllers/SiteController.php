@@ -132,7 +132,7 @@ class SiteController extends Controller
 
         $request = Yii::$app->request;
         /* Отправка сообщения и запись в БД */
-        if ($request->isAjax && $request->isPost) {
+        if ($request->isPjax && $request->isPost) {
             if ($indexForm->load($request->post()) && $indexForm->validate()) {
                 $success = $indexForm->mailSend(); // отправка email
 
@@ -208,7 +208,7 @@ class SiteController extends Controller
     public function actionCall()
     {
         $request = Yii::$app->request;
-        if ($request->isAjax) {
+        if ($request->isPjax) {
             $formModel = new CallForm();
 
             if ($formModel->load($request->post()) && $formModel->validate()) { // Форма отправлен
@@ -217,7 +217,7 @@ class SiteController extends Controller
                 $call = new Callback();
                 $res = $call->dbSend($formModel);
                 // выводим модальное окно об успехе/ошибке
-                return $this->renderAjax('call_ok', compact('success', 'res'));
+                return $this->renderPartial('call_ok', compact('success', 'res'));
             }
             // модальное окно с формой
             return $this->renderAjax('call', compact('formModel'));

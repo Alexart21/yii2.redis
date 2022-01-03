@@ -11,6 +11,7 @@ $this->params['breadcrumbs'][] = 'Изменить Email';
     <?= $form->field($emailFormModel, 'email', ['enableAjaxValidation' => true]) ?>
     <div class="form-group">
         <?= Html::submitButton('Отправить', ['class' => 'success-button']) ?>
+<!--        --><?//= Html::a('Забыли пароль?', ['user/request-password-reset'], ['style' => 'display:block;text-align:right']) ?>
     </div>
     <?php ActiveForm::end(); ?>
 </div>

@@ -43,7 +43,7 @@ Modal::begin([
         'id' => 'login-form',
     ]); ?>
 
-    <?= $form->field($model, 'login_or_email', ['template' => "<div class='form-group'> {input} <span class=\"clicked fa fa-user\"></span><div>{error}</div></div>",])->textInput(['placeholder' => 'Имя или E-mail', 'autofocus' => true]) ?>
+    <?= $form->field($model, 'login_or_email', ['enableAjaxValidation' => true, 'template' => "<div class='form-group'> {input} <span class=\"clicked fa fa-user\"></span><div>{error}</div></div>",])->textInput(['placeholder' => 'Имя или E-mail', 'autofocus' => true]) ?>
     <br/>
     <?= $form->field($model, 'password', ['template' => "<div class='form-group'> {input} <span class=\"clicked fa fa-eye-slash\"></span><div>{error}</div></div>",])->passwordInput(['class' => 'pass-input', 'placeholder' => 'Пароль']) ?>
 
@@ -69,10 +69,10 @@ Modal::begin([
         <?= Html::a('Забыли пароль?', ['user/request-password-reset'], ['style' => 'display:block;text-align:right']) ?>
     </div>
 
-    <a href="/signup" style="display: block;text-align: right">Регистрация</a>
+    <a href="/user/signup" style="display: block;text-align: right">Регистрация</a>
     <?php ActiveForm::end(); ?>
     <hr class="auth-hr">
-    <h3>Или войти с помощью</h3>
+    <h3>Или войти через</h3>
     <?= yii\authclient\widgets\AuthChoice::widget([
         'baseAuthUrl' => ['site/auth'],
         'popupMode' => false,

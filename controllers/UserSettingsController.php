@@ -5,10 +5,13 @@ namespace app\controllers;
 use app\models\SignupForm;
 use app\models\userSettings\CloseForm;
 use app\models\userSettings\PassForm;
-use yii\db\ActiveRecord;
+//use app\models\userSettings\TestModel;
+//use yii\base\ErrorException;
+//use yii\db\ActiveRecord;
 use yii\filters\AccessControl;
 use Yii;
 use app\models\userSettings\User;
+use yii\filters\VerbFilter;
 use yii\helpers\FileHelper;
 use yii\helpers\Html;
 use yii\web\BadRequestHttpException;
@@ -34,6 +37,30 @@ class UserSettingsController extends \yii\web\Controller
                     ]
                 ],
             ],
+            'verbs' => [
+                'class' => VerbFilter::class,
+                'actions' => [
+                    'logout' => ['post'],
+                ],
+            ],
+            'rateLimiter' => [
+                // сторонняя фича. Пишется в кэш.Бд не трогается.
+                'class' => \ethercreative\ratelimiter\RateLimiter::class,
+//                'only' => ['login'],
+//                'only' => ['login', 'signup', 'requestPasswordReset', 'passwordReset'],
+                // The maximum number of all'ow'ed requests
+                'rateLimit' => Yii::$app->params['rateLimit'],
+                // The time period for the rates to apply to
+                'timePeriod' => 60,
+                // Separate rate limiting for guests and authenticated users
+                // Defaults to true
+                // - false: use one set of rates, whether you are authenticated or not
+                // - true: use separate ratesfor guests and authenticated users
+                'separateRates' => false,
+                // Whether to return HTTP headers containing the current rate limiting information
+                'enableRateLimitHeaders' => true,
+                'errorMessage' => 'Лимит запросов исчерпан. Не более ' . Yii::$app->params['rateLimit'] . ' попыток в минуту',
+            ],
         ];
     }
 
@@ -50,48 +77,74 @@ class UserSettingsController extends \yii\web\Controller
     public function actionIndex()
     {
         $model = User::findOne(Yii::$app->user->identity->getId());
-        if(!$model){
+        if (!$model) {
             throw new MethodNotAllowedHttpException('Нет такого пользователя.Как ты сюда попал(а)?!');
         }
         // AJAX валидация(поле username)
         if (Yii::$app->request->isAjax) {
-            if($model->load(Yii::$app->request->post())) {
+            if ($model->load(Yii::$app->request->post())) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
                 return ActiveForm::validate($model);
             }
         }
 
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            // пользователь изменил имя
-            if ($model->username != Yii::$app->user->identity->username){
-                if(empty($model->old_username)){
-                    $old_username = [];
-                }else{
-                    $old_username = unserialize($model->old_username);
+        if (Yii::$app->request->isPost) {
+            $transaction = User::getDb()->beginTransaction();
+
+            /* Изменили имя (здесь обычный запрос) */
+            if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+                try {
+                    if (empty($model->old_username)) {
+                        $old_username = [];
+                    } else {
+                        $old_username = unserialize($model->old_username);
+                    }
+                    array_push($old_username, [Yii::$app->user->identity->username, date('Y-m-d')]);
+                    $model->old_username = serialize($old_username);
+                    $model->save();
+                    $transaction->commit();
+                    return $this->refresh();
+                } catch (\Throwable $e) {
+                    $transaction->rollBack();
+                    throw $e;
                 }
-                array_push($old_username, Yii::$app->user->identity->username);
-                $model->old_username = serialize($old_username);
             }
-            //
-            $model->avatar = UploadedFile::getInstance($model, 'avatar');
-            if (!empty($model->avatar->size)) { // для загрузивших аватар
-                $imgName = substr(time(), -4) . strtolower(Yii::$app->security->generateRandomString(12)) . '.' . $model->avatar->extension;
-                $usrId = $model->id;
+            // картинку (здесь асинхронный feth() Yii его не определяет как AJAX)
+            if (!empty($_FILES["avatar"]["size"])) { // пришла картинка (использовали на клиенте JS fetch() ())
+                if ($_FILES["avatar"]["size"] > Yii::$app->params['max_avatar_size'] * 1024) { // картинка больше чем позволено
+                    Yii::$app->response->statusCode = 411; // 'Length Required'
+                    return;
+                }
+
+                if (!exif_imagetype($_FILES["avatar"]["tmp_name"])) {
+                    Yii::$app->response->statusCode = 415; // 'Unsupported Media Type'
+                    return;
+//                    throw new BadRequestHttpException('Не распознан файл изображения');
+                }
+                $imgName = substr(time(), -4) . strtolower(Yii::$app->security->generateRandomString(12)) . '.' . 'png';
+                $usrId = Yii::$app->user->identity->getId();
                 $basePath = Yii::getAlias('@app/web') . '/upload/users/';
                 $imgDir = $basePath . 'usr' . $usrId . '/img';
-                if (!FileHelper::createDirectory($imgDir)){
-                    die('<h1>Непредвиденная ошибка</h1>' . __FILE__ . '<br>' . __LINE__);
+                if (!FileHelper::createDirectory($imgDir)) {
+                    Yii::$app->response->statusCode = 400;
+                    return;
+//                    die('<h1 style="color:red">Непредвиденная ошибка</h1>' . __FILE__ . '<br>' . __LINE__);
                 }
                 $imgPath = FileHelper::normalizePath($imgDir . '/' . $imgName);
-                if(!$model->avatar->saveAs($imgPath)){
-                    die('<h1>Не Удалось загрузить файл</h1>');
+                try {
+                    $model->avatar_path = $imgName;
+                    $model->save();
+                    $transaction->commit();
+                } catch (\Throwable $e) {
+                    $transaction->rollBack();
+                    throw $e;
                 }
-                $model->avatar_path = $imgName;
-            }
-            if ($model->save()) {
-                Yii::$app->session->setFlash('success', 'Успешно!');
-            } else {
-                Yii::$app->session->setFlash('error', 'Произошла ошибка.');
+                if (!move_uploaded_file($_FILES["avatar"]["tmp_name"], $imgPath)) {
+                    Yii::$app->response->statusCode = 400;
+                    return;
+//                    throw new BadRequestHttpException('Ошибка при загрузке файла');
+                }
+                return true;
             }
         }
         return $this->render('index', compact('model'));
@@ -101,47 +154,22 @@ class UserSettingsController extends \yii\web\Controller
     public function actionClose()
     {
         $model = User::findOne(Yii::$app->user->identity->getId());
-        /* Вариант без ввода пароля */
-        /*if(!$model){
-            throw new MethodNotAllowedHttpException('Нет такого пользователя.Как ты сюда попал(а)?!');
-        }
-        // Транзакцию включил
-        $transaction = User::getDb()->beginTransaction();
-        try {
-            // помечаем в базе как удаленного(неактивного)
-            $model->status = 0;
-            $model->save();
-            $transaction->commit();
-        } catch(\Exception $e) {
-            $transaction->rollBack();
-            throw $e;
-        } catch(\Throwable $e) {
-            $transaction->rollBack();
-            throw $e;
-        }
-
-        Yii::$app->user->logout();
-        return $this->goHome();*/
-
-        /* С вводом пароля */
         $closeFormModel = new CloseForm();
-        if ($closeFormModel->load(Yii::$app->request->post()) && $closeFormModel->validate()){
-            // Транзакцию включил
+
+        if ($closeFormModel->load(Yii::$app->request->post()) && $closeFormModel->validate()) {
             $transaction = User::getDb()->beginTransaction();
             try {
                 // помечаем в базе как удаленного(неактивного)
                 $model->status = 0;
                 $model->save();
                 $transaction->commit();
-            } catch(\Exception $e) {
+                Yii::$app->session->setFlash('success', 'Аккаунт для ' . Yii::$app->user->identity->username . ' закрыт');
+            } catch (\Exception $e) {
                 $transaction->rollBack();
-                throw $e;
-            } catch(\Throwable $e) {
-                $transaction->rollBack();
+                Yii::$app->session->setFlash('error', 'Произошла ошибка. Повторите попытку или свяжитесь с администратором.');
                 throw $e;
             }
-
-            Yii::$app->user->logout();
+            Yii::$app->user->logout(false);
             return $this->goHome();
         }
         return $this->render('close', compact('closeFormModel'));
@@ -162,30 +190,39 @@ class UserSettingsController extends \yii\web\Controller
                 throw new BadRequestHttpException('Не найден пользователь, попробуйте повторить попытку или свяжитесь с администратором');
             }
             ///
-            if(empty($user->old_email)){
-                $old_email = [];
-            }else{
-                $old_email = unserialize($user->old_email);
-            }
-            array_push($old_email, Yii::$app->user->identity->email);
-            $user->old_email = serialize($old_email);
-            ///
-            $user->email = $user->new_email_request;
-            $user->email_reset_token = null;
-            $user->new_email_request = null;
-            if ($user->save()) {
-                Yii::$app->session->setFlash('success', 'Вы успешно сменили Email.');
-                 return $this->goHome();
-            } else {
-                Yii::$app->session->setFlash('error', 'Произошла ошибка. Повторите попытку или свяжитесь с администратором.');
-                return $this->goHome();
+            $transaction = User::getDb()->beginTransaction();
+            try {
+                if (empty($user->old_email)) {
+                    $old_email = [];
+                } else {
+                    $old_email = unserialize($user->old_email);
+                }
+                array_push($old_email, [Yii::$app->user->identity->email, date('Y-m-d')]);
+                //
+                $user->old_email = serialize($old_email);
+                $user->email = $user->new_email_request;
+                $user->email_reset_token = null;
+                $user->new_email_request = null;
+                $res = $user->save();
+                if ($res) {
+                    Yii::$app->session->setFlash('success', 'Вы успешно сменили Email.');
+                    $transaction->commit();
+                    return $this->goHome();
+                } else {
+                    Yii::$app->session->setFlash('error', 'Произошла ошибка. Повторите попытку или свяжитесь с администратором.');
+                    $transaction->rollBack();
+                    return $this->goHome();
+                }
+            }catch (\Exception $e){
+                $transaction->rollBack();
+                throw $e;
             }
         }
 ////////////////////////
         $emailFormModel = new EmailForm();
         // AJAX валидация
         if (Yii::$app->request->isAjax) {
-            if($emailFormModel->load(Yii::$app->request->post())) {
+            if ($emailFormModel->load(Yii::$app->request->post())) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
                 return ActiveForm::validate($emailFormModel);
             }
@@ -193,18 +230,26 @@ class UserSettingsController extends \yii\web\Controller
 
         if ($emailFormModel->load(Yii::$app->request->post()) && $emailFormModel->validate()) {
             $user = User::findOne(Yii::$app->user->identity->getId());
-            $user->email_reset_token = Yii::$app->security->generateRandomString(30) . '_' . time();
-            $user->new_email_request = $emailFormModel->email;
-            $save = $user->save();
-            $sendEmail = $emailFormModel->sendEmail($user);
-            $result = $save && $sendEmail;
-
-            if ($result) {
-                Yii::$app->session->setFlash('success', 'Для завершения пройдите по ссылке высланной Вам на новый Email. Ссылка валидна в течении ' . Yii::$app->params['user.registerTokenExpire'] /3600 . ' часа');
-                return $this->redirect('/');
-            } else {
-                Yii::$app->session->setFlash('error', 'Произошла ошибка. Повторите попытку или свяжитесь с администратором');
-                return $this->redirect('/');
+            //
+            $transaction = User::getDb()->beginTransaction();
+            try {
+                $user->email_reset_token = Yii::$app->security->generateRandomString(30) . '_' . time();
+                $user->new_email_request = $emailFormModel->email;
+                $save = $user->save();
+                $sendEmail = $emailFormModel->sendEmail($user);
+                $result = $save && $sendEmail;
+                if ($result) {
+                    Yii::$app->session->setFlash('success', 'Для завершения пройдите по ссылке высланной Вам на новый Email. Ссылка действительна в течении ' . Yii::$app->params['user.registerTokenExpire'] / 3600 . ' часа');
+                    $transaction->commit();
+                    return $this->redirect('/');
+                } else {
+                    Yii::$app->session->setFlash('error', 'Произошла ошибка. Повторите попытку или свяжитесь с администратором');
+                    $transaction->rollBack();
+                    return $this->redirect('/');
+                }
+            }catch (\Exception $e){
+                $transaction->rollBack();
+                throw $e;
             }
         }
 
@@ -214,19 +259,32 @@ class UserSettingsController extends \yii\web\Controller
     public function actionPass()
     {
         $passFormModel = new PassForm();
+
+        // AJAX валидация поля password
+        if (Yii::$app->request->isAjax) {
+            if ($passFormModel->load(Yii::$app->request->post())) {
+                Yii::$app->response->format = Response::FORMAT_JSON;
+                return ActiveForm::validate($passFormModel);
+            }
+        }
+        //
         if ($passFormModel->load(Yii::$app->request->post()) && $passFormModel->validate()) {
             $user = User::findOne(Yii::$app->user->identity->getId());
-            if(!$user){
+            if (!$user) {
                 throw new MethodNotAllowedHttpException('Нет такого пользователя.Как ты сюда попал(а)?!');
             }
-            $user->setPassword($passFormModel->new_password);
-            if ($user->save()) {
+            //
+            $transaction = User::getDb()->beginTransaction();
+            try {
+                $user->setPassword($passFormModel->new_password);
+                $user->save();
+                $transaction->commit();
                 Yii::$app->session->setFlash('success', 'Ваш пароль успешно изменен.');
                 Yii::$app->user->logout(false); // не удаляем сесии
                 return $this->redirect('/user/login');
-            } else {
-                Yii::$app->session->setFlash('error', 'Произошла ошибка.');
-                return $this->redirect(Yii::$app->request->referrer);
+            }catch (\Exception $e) {
+                $transaction->rollBack();
+                throw $e;
             }
         }
         return $this->render('pass', compact('passFormModel'));
@@ -236,22 +294,25 @@ class UserSettingsController extends \yii\web\Controller
     public function actionDeleteAvatar()
     {
         $user = User::findOne(Yii::$app->user->identity->getId());
-        if(!$user){
+        if (!$user) {
             throw new MethodNotAllowedHttpException('Нет такого пользователя.Как ты сюда попал(а)?!');
         }
-        // Транзакцию включил
+        //
         $transaction = User::getDb()->beginTransaction();
         try {
             $user->avatar_path = null;
             $user->save();
             $transaction->commit();
-        } catch(\Exception $e) {
-            $transaction->rollBack();
-            throw $e;
-        } catch(\Throwable $e) {
+        } catch (\Exception $e) {
             $transaction->rollBack();
             throw $e;
         }
         return $this->goHome();
+    }
+
+
+    public function actionTest()
+    {
+        return $this->render('test');
     }
 }

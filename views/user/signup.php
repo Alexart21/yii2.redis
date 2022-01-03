@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
+use yii\widgets\ActiveForm;
 
 $this->title = 'Регистрация';
 $this->params['breadcrumbs'][] = $this->title;
@@ -28,33 +28,34 @@ $this->params['breadcrumbs'][] = $this->title;
         'id' => 'form-signup',
     ]);
     ?>
-<!--    <fieldset>-->
-        <?= $form->field($model, 'username')->textInput(['autofocus' => true, 'placeholder' => 'Имя'])->label(false) ?>
-        <?= $form->field($model, 'email')->textInput(['placeholder' => 'email'])->label(false) ?>
-        <?= $form->field($model, 'password', ['template' => "<div class='form-group'> {input} <span class=\"clicked fa fa-eye-slash\"></span><div>{error}</div></div>",])->passwordInput(['class' => 'pass-input', 'placeholder' => 'пароль'])->label(false) ?>
-        <?= $form->field($model, 'password_repeat', ['template' => "<div class='form-group'> {input} <span class=\"clicked fa fa-eye-slash\"></span><div>{error}</div></div>",])->passwordInput(['class' => 'pass-input', 'placeholder' => 'пароль еще раз'])->label(false) ?>
-        <!--            --><? //= $form->field($model,'avatar')->fileInput()  ?>
-        <h3>Аватар</h3>
-        <div class="drop-zone">
-            <span class="drop-zone__prompt"><span class="fa fa-cloud-download-alt"></span><br>Кликните или перетащите файл<br><b>(jpg,tif,png,gif)</b></span>
-            <?= $form->field($model, 'avatar')->fileInput(['class' => 'drop-zone__input'])->label(false) ?>
-        </div>
-        <br>
-        <? /*= $form->field($model, 'reCaptcha')->widget(
+    <!--    <fieldset>-->
+    <?= $form->field($model, 'username', ['enableAjaxValidation' => true])->textInput(['autofocus' => true, 'placeholder' => 'Имя'])->label(false)->error(['style' => 'max-width:300px']) ?>
+    <?= $form->field($model, 'email', ['enableAjaxValidation' => true])->textInput(['placeholder' => 'email'])->label(false) ?>
+    <?= $form->field($model, 'password', ['enableAjaxValidation' => true, 'template' => "<div class='form-group'> {input} <span class=\"clicked fa fa-eye-slash\"></span><div>{error}</div></div>",])->passwordInput(['class' => 'pass-input', 'placeholder' => 'пароль'])->label(false) ?>
+    <?= $form->field($model, 'password_repeat', ['template' => "<div class='form-group'> {input} <span class=\"clicked fa fa-eye-slash\"></span><div>{error}</div></div>",])->passwordInput(['class' => 'pass-input', 'placeholder' => 'пароль еще раз'])->label(false) ?>
+    <!--            --><? //= $form->field($model,'avatar')->fileInput()  ?>
+    <!--<h3>Аватар</h3>
+    <div class="drop-zone">
+        <span class="drop-zone__prompt"><span class="fa fa-cloud-download-alt"></span><br>Кликните или перетащите файл<br><b>(jpg,tif,png,gif)</b></span>
+        <?/*= $form->field($model, 'avatar')->fileInput(['class' => 'drop-zone__input'])->label(false) */?>
+    </div>
+    <br>-->
+    <? /*= $form->field($model, 'reCaptcha')->widget(
                 \himiklab\yii2\recaptcha\ReCaptcha2::class,
                 [
                     'siteKey' => '6LfRBQEaAAAAAEqEbZSrlYH0sQz5Q-bX58GHPNjL', // unnecessary is reCaptcha component was set up
                 ]
             )  */ ?>
 
-        <? /*= \himiklab\yii2\recaptcha\ReCaptcha3::widget([
+    <? /*= \himiklab\yii2\recaptcha\ReCaptcha3::widget([
                 'name' => 'reCaptcha',
                 'siteKey' => '6LfNdr4ZAAAAAIKLdnRzRCWwNM6HyP0qo0nYglbN', // unnecessary is reCaptcha component was set up
                 'action' => 'signup',
             ]) */ ?>
-        <br>
-        <?= Html::submitButton('Отправить', ['class' => 'btn success-button', 'name' => 'signup-button', 'style' => 'margin-top:-50px']) ?>
-<!--    </fieldset>-->
+    <br>
+    <br>
+    <?= Html::submitButton('Отправить', ['class' => 'btn success-button', 'name' => 'signup-button', 'style' => 'margin-top:-50px']) ?>
+    <!--    </fieldset>-->
     <?php ActiveForm::end(); ?>
     <hr class="auth-hr">
     <h3>Или войти с помощью</h3>
@@ -66,7 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 <script>
     window.onload = function () {
-            $('#login').modal();
-            $('.modal-content').velocity('transition.bounceIn');
+        $('#login').modal();
+        $('.modal-content').velocity('transition.bounceIn');
     };
 </script>

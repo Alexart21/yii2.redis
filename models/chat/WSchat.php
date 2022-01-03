@@ -21,7 +21,7 @@ class WSchat extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'chat';
+        return 'wschat';
     }
 
     const MSG_LIMIT = 200; // кол-во выводимых записей

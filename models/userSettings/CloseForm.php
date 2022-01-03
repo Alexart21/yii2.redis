@@ -4,6 +4,7 @@
 namespace app\models\userSettings;
 
 use yii\db\ActiveRecord;
+use Yii;
 
 class CloseForm extends ActiveRecord
 {
@@ -13,7 +14,8 @@ class CloseForm extends ActiveRecord
     {
         return [
             ['password', 'trim'],
-            ['password', 'string', 'length' => [6, 100]],
+            ['password', 'required', 'message' => 'Пароль обязателен!'],
+            ['password', 'string', 'length' => [Yii::$app->params['min_pass_length'], 100]],
             ['password', 'validatePassword'],
         ];
     }
@@ -33,5 +35,12 @@ class CloseForm extends ActiveRecord
                 $this->addError($attribute, 'Неверный пароль');
             }
         }
+    }
+
+    public function attributeLabels()
+    {
+        return[
+            'password' => 'пароль',
+        ];
     }
 }

@@ -67,10 +67,11 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
             [['username', 'email'], 'required'],
             [['role', 'status', 'created_at', 'updated_at'], 'integer'],
             [['register_token', 'password_reset_token'], 'string'],
-            [['username'], 'string', 'length' => [3, 100]],
             [['email', 'password_hash', 'auth_key'], 'string', 'max' => 255],
             ['email', 'unique', 'message' => 'Такой email уже существует.'],
+            [['username'], 'string', 'length' => [3, 100]],
             ['username', 'unique', 'message' => 'Такое имя уже существует.'],
+            ['username', 'match', 'pattern' => '/^[a-z]\w*$/i', 'message' => 'Имя должно начинаться с буквы и содержать только буквенные символы,числовые символы и знак подчеркивания'],
         ];
     }
 
@@ -132,6 +133,11 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     /* Проверка на статус удаленного пользователя */
     public function isStatusDeleted(){
         return $this->status == self::STATUS_DELETED;
+    }
+
+    /* Проверка на статус пользователя не завершившего регистрацию*/
+    public function isStatusRequest(){
+        return $this->status == self::STATUS_REQUEST;
     }
 
     /**
@@ -225,6 +231,12 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     public static function isUserAdmin($username)
     {
         return (bool)static::findOne(['username' => $username, 'role' => self::ROLE_ADMIN, 'id' => self::ADMIN_ID]);
+    }
+
+    /* Удаление пользователя */
+    public static function deleteUser($id){
+        $id = (int)$id;
+        ActiveRecord::findOne($id)->delete();
     }
 
 }

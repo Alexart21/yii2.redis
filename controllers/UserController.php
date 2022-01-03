@@ -7,7 +7,7 @@ use app\models\PasswordResetRequestForm;
 use app\models\ResetPasswordForm;
 use app\models\SignupForm;
 use app\models\User;
-use http\Url;
+//use http\Url;
 use yii\base\InvalidValueException;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -19,8 +19,8 @@ use yii\web\MethodNotAllowedHttpException;
 use yii\widgets\ActiveForm;
 use yii\web\Response;
 use app\models\Auth;
-use yii\web\UploadedFile;
-use yii\helpers\FileHelper;
+//use yii\web\UploadedFile;
+//use yii\helpers\FileHelper;
 
 /**
  * This is the model class for table "user".
@@ -65,8 +65,6 @@ class UserController extends Controller
             'rateLimiter' => [
                 // сторонняя фича. Пишется в кэш.Бд не трогается.
                 'class' => \ethercreative\ratelimiter\RateLimiter::class,
-//                'only' => ['login'],
-//                'only' => ['login', 'signup', 'requestPasswordReset', 'passwordReset'],
                 // The maximum number of all'ow'ed requests
                 'rateLimit' => Yii::$app->params['rateLimit'],
                 // The time period for the rates to apply to
@@ -116,6 +114,15 @@ class UserController extends Controller
         $this->layout = 'auth';
 
         $model = new LoginForm();
+
+        // AJAX валидация ( только для поля usename_or_email)
+        if (Yii::$app->request->isAjax) {
+            if ($model->load(Yii::$app->request->post())) {
+                Yii::$app->response->format = Response::FORMAT_JSON;
+                return ActiveForm::validate($model);
+            }
+        }
+
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $user = User::findByUsernameOrEmail($model->login_or_email); // проверяем по имени либо email
             //
@@ -127,10 +134,12 @@ class UserController extends Controller
                     }
                     return $this->goBack();
                 } elseif ($user->isStatusDeleted()) {
-                    throw new MethodNotAllowedHttpException('Такой пользователь удален. Вы можете связаться с администратором сайта.');
-                } else {
+                    throw new MethodNotAllowedHttpException('Такой пользователь удален или заблокирован. Вы можете связаться с администратором сайта.');
+                } elseif ($user->isStatusRequest()) {
                     throw new MethodNotAllowedHttpException('Такой пользователь не прошел подтверждение регистрации.Воспользуйтесь ссылкой отправленной Вам на email или свяжитесь с администратором.');
                 }
+            } else {
+                throw new MethodNotAllowedHttpException('Нет такого пользователя');
             }
             //
         }
@@ -147,23 +156,30 @@ class UserController extends Controller
 
             $id = (int)$id;
             $token = Html::encode($token);
-            if (!SignupForm::isValidToken($token)) {
-                throw new BadRequestHttpException('Недействительный токен');
+            if (!SignupForm::isValidToken($token)) { // не "протух" ли токен
+                /* Удаляем из базы не захотевшего продолжить регистрацию пользоаптеля.
+                    Действие спорное и не всегда оправданное.
+                 */
+                User::deleteUser($id);
+                throw new BadRequestHttpException('Недействительный токен.Вы можете пройти регистрацию повторно.');
             }
 
-            $user = User::findOne(['id' => $id, 'register_token' => $token]);
+            $user = User::findOne(['id' => $id, 'register_token' => $token, 'status' => User::STATUS_REQUEST]);
             if (!$user) {
-                throw new BadRequestHttpException('Не найден пользователь, попробуйте пройти регистрацию повторно');
+                throw new BadRequestHttpException('Не найден пользователь, попробуйте пройти регистрацию повторно или свяжитесь с администратором');
             }
-
+            //
+            $transaction = User::getDb()->beginTransaction();
             $user->status = User::STATUS_ACTIVE; // метим в базе как прошедшего подтверждение регистрации
             $user->register_token = null;
             if ($user->save()) {
+                $transaction->commit();
                 Yii::$app->session->setFlash('success', 'Вы успешно прошли регистрацию! Введите данные для входа.');
-                return $this->redirect('/login');
+                return $this->redirect('/user/login');
             } else {
+                $transaction->rollBack();
                 Yii::$app->session->setFlash('error', 'Произошла ошибка.');
-                return $this->redirect('/signup');
+                return $this->redirect('/user/signup');
             }
 
             /* Вариант с автоматическим входом */
@@ -173,30 +189,17 @@ class UserController extends Controller
         //
         $this->layout = 'auth';
         $model = new SignupForm();
-        // AJAX валидация ( только для полей usename && email)
-        /*if (Yii::$app->request->isAjax) {
-            if($model->load(Yii::$app->request->post())) {
+        // AJAX валидация (usename, email, password)
+        if (Yii::$app->request->isAjax) {
+            if ($model->load(Yii::$app->request->post())) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
                 return ActiveForm::validate($model);
             }
-        }*/
-
+        }
         // обычная отправка формы
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $model->avatar = UploadedFile::getInstance($model, 'avatar');
-//            var_dump($model->avatar->size);die;
-            if (!empty($model->avatar->size)) { // для загрузивших аватар
-                $imgName = substr(time(), -4) . strtolower(Yii::$app->security->generateRandomString(12)) . '.' . $model->avatar->extension;
-            }
-            $usrId = $model->signupRequest($imgName); // занесли в базу и отправили пимьмо заявителю вернули ID нового юзера
+            $usrId = $model->signupRequest(); // занесли в базу и отправили пимьмо заявителю вернули ID нового юзера
             if ($usrId) {
-                if (!empty($model->avatar->size)) {
-                    $basePath = Yii::getAlias('@app/web') . '/upload/users/';
-                    $usrDir = 'usr' . $usrId;
-                    FileHelper::createDirectory($basePath . $usrDir . '/img');
-                    $path = FileHelper::normalizePath($basePath . $usrDir . '/img/' . $imgName);
-                    $model->avatar->saveAs($path);
-                }
                 Yii::$app->session->setFlash('success', 'Перейдите по ссылке, высланной Вам на E-mail для подтверждения регистрации');
                 return $this->redirect('/');
             } else {
@@ -225,7 +228,7 @@ class UserController extends Controller
     /* Запрос на сброс пароля */
     public function actionRequestPasswordReset()
     {
-        if(Yii::$app->user->identity->username){
+        if (Yii::$app->user->identity->username) {
             throw new BadRequestHttpException('Вы уже залогинены как ' . Yii::$app->user->identity->username);
         }
 
@@ -275,11 +278,19 @@ class UserController extends Controller
             new BadRequestHttpException($e->getMessage());
         }
 
+        // AJAX валидация (password)
+        if (Yii::$app->request->isAjax) {
+            if ($model->load(Yii::$app->request->post())) {
+                Yii::$app->response->format = Response::FORMAT_JSON;
+                return ActiveForm::validate($model);
+            }
+        }
+
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $res = $model->resetPassword(); // Имя пользователя сюда возвращается при успехе
             if ($res) {
                 Yii::$app->session->setFlash('success', 'Новый пароль установлен для пользователя ' . Html::encode($res));
-                return $this->redirect('/login');
+                return $this->redirect('/user/login');
             } else {
                 Yii::$app->session->setFlash('error', 'Во время выполнения запроса произошла ошибка!');
                 return $this->refresh();

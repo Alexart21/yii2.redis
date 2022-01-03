@@ -19,7 +19,8 @@ $newCallCount = $session->get('newCallCount');
 $allPostCount = $session->get('allPostCount');
 $allCallCount = $session->get('allCallCount');
 
-$avatar = User::findOne(['username' => $user])->avatar_path;
+$model = User::findOne(['username' => $user]);
+$avatar = $model->avatar_path ? '/upload/users/usr' . $model->id . '/img/' . $model->avatar_path : '/upload/default_avatar/no-image.png';
 //var_dump($avatar);die;
 //$avatar = null;
 ?>
@@ -101,17 +102,11 @@ $avatar = User::findOne(['username' => $user])->avatar_path;
                                 <span id="callback" class="db-count" style="transform: scale(1.5)"><?= $c ?></span>
                             </a>
                         </li>
-                        <?php if ($avatar) : ?>
                         <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                             <a class="pjax" href="/alexadmx/default/avatar?user=<?= $user ?>">
-                            <img id="avatar" class="avatar" src="/upload/avatars/<?= $avatar ?>" alt="">
+                            <img id="avatar" class="avatar" src="<?= $avatar ?>">
                             </a>
                         </li>
-                        <?php else: ?>
-                        <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                            <img class="avatar" src="/upload/default_avatar/no-image.png" alt="">
-                        </li>
-                        <?php endif; ?>
                         <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                             <h4 class="nav-link" style="background: #fff;height: 100%"><?= $user ?></h4>
                         </li>

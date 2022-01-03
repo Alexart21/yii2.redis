@@ -371,7 +371,7 @@ $this->endBlock('h1');
 
 <div class="field tel-box animated bounceInDown wow" data-wow-delay="0.5s">
     <?= $form->field($indexForm, 'tel')
-        ->widget(MaskedInput::className(), [
+        ->widget(MaskedInput::class, [
             'mask' => '+7 (999) - 999 - 99 - 99',
             'options' => [
 //                    'required' => true,

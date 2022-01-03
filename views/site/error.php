@@ -30,7 +30,7 @@ if ($statusCode == 429) :
         const clock = function(){
             time--;
             timer.innerText = time;
-        }
+        };
 
         timer.innerText = time;
         let timerId = setInterval(clock, 1000);

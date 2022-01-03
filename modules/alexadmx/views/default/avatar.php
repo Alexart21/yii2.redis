@@ -38,9 +38,11 @@ Modal::begin([
 ]);
 ?>
 <?php
-echo '<h2>' . $user . '</h2><h4 style="float: left">E-mail: ' . $email . '</h4>';
+echo '<h2>' . $user . '</h2><h4 style="float: left">E-mail: ' . $model->email . '</h4>';
+//
+$imgPath = $model->avatar_path ? '/upload/users/usr' . $model->id . '/img/' . $model->avatar_path : '/upload/default_avatar/no-image.png';
 ?>
-<img src="/upload/avatars/<?= $avatar ?>" alt="">
+<img src="<?= $imgPath ?>" alt="">
 <?php
 Modal::end();
 ?>

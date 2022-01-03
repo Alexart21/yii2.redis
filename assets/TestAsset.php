@@ -12,8 +12,7 @@ class TestAsset extends AssetBundle
         'css/style.css',
 //        'css/animate.min.css',
 //  'css/font-awesome.css',
-        'fontawesome/css/all.min.css',
-//        'fontawesome/css/brands.min.css',
+       'fontawesome/css/all.min.css',
     ];
     public $js = [
         'js/chat.js'

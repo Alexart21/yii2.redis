@@ -5,8 +5,9 @@ namespace app\models\userSettings;
 
 
 //use yii\base\Model;
-use app\models\LoginForm;
+//use app\models\LoginForm;
 use yii\db\ActiveRecord;
+use Yii;
 
 
 /**
@@ -37,9 +38,11 @@ class PassForm extends ActiveRecord
     {
         return [
             [['password', 'new_password', 'new_password_repeat'], 'trim'],
-            ['password', 'string', 'length' => [6, 100]],
+            [['password', 'new_password', 'new_password_repeat'], 'required'],
+            ['password', 'string', 'length' => [Yii::$app->params['min_pass_length'], 100]],
             ['password', 'validatePassword'],
-            ['new_password', 'string', 'length' => [6, 100]],
+            ['new_password', 'string', 'length' => [Yii::$app->params['min_pass_length'], 100]],
+            ['new_password', 'match', 'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^\w\s]).*/', 'message' => 'Пароль должен быть не менее ' . Yii::$app->params['min_pass_length'] . ' символов, только латиница, содержать не менее одной заглавной и строчной буквы, хотя бы одну цифру и спецсимвол'],
             ['new_password_repeat', 'compare', 'compareAttribute'=>'new_password', 'message'=>"Пароли не совпадают !" ],
         ];
     }

@@ -48,11 +48,12 @@ class ChatServer extends WebSocketServer
                     'user_color' => $request['user_color'],
                 ]) );
                 /* Пишем в БД */
-                /*$newMsg = new WSchat();
+                $newMsg = new WSchat();
                 $newMsg->name = $client->name;
+                // $newMsg->ip = $_SERVER['REMOTE_ADDR'];
                 $newMsg->text = $message;
                 $newMsg->color = $request['user_color'];
-                $newMsg->save();*/
+                $newMsg->save();
             }
 
         } else {

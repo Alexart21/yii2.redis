@@ -60,6 +60,7 @@ body {
 
 .help-block{
     color: red !important;
+    max-width: 300px;
 }
 
 #container{
@@ -76,10 +77,12 @@ body {
 .bottom-menu{
     flex: 0 0 auto;
     margin-top: 2em;
+    position: relative;
+    z-index: 1100;
 }
 
 .bottom-menu a,.bottom-menu a:visited,.bottom-menu a:active{
-    color: inherit !important;
+    color: blue !important;
 }
 
 .bottom-menu i{
@@ -89,12 +92,12 @@ body {
     bottom: -10px;
 }
 
-.avatar-icon{
+/*.avatar-icon{
     width: 60px;
     height: auto;
     border: 0 solid transparent;
     border-radius: 50%;
-}
+}*/
 
 .site-login{
     background: #fff;
@@ -110,7 +113,7 @@ body {
 input[type=text], input[type=password], input[type=password]{
     font-size: 18px;
     margin: 0 auto;
-    width: 300px;
+    width: 260px;
     height: 30px;
     outline: none;
     border: none;
@@ -478,6 +481,8 @@ a.btn-set, a.btn-set:active, a.btn-set:visited{
     display: flex;
     flex-direction: row-reverse;
     padding: 2rem;
+    position: relative;
+    z-index: 1100;
 }
 
 .breadcrumb{

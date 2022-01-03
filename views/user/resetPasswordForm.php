@@ -30,7 +30,7 @@ $user = User::findOne($id);
     <?php endif; ?>
 
             <?php $form = ActiveForm::begin(['id' => 'reset-password-form']); ?>
-            <?= $form->field($model, 'password', ['template' => "<div class='form-group'> {input} <span class=\"fa fa-eye-slash\"></span><div>{error}</div></div>",])->passwordInput(['autofocus' => true, 'placeholder' => 'новый пароль'])->label(false) ?>
+            <?= $form->field($model, 'password', ['enableAjaxValidation' => true, 'template' => "<div class='form-group'> {input} <span class=\"fa fa-eye-slash\"></span><div>{error}</div></div>",])->passwordInput(['autofocus' => true, 'placeholder' => 'новый пароль'])->label(false) ?>
             <?= $form->field($model, 'password_repeat', ['template' => "<div class='form-group'> {input} <span class=\"fa fa-eye-slash\"></span><div>{error}</div></div>",])->passwordInput(['placeholder' => 'повторите пароль'])->label(false) ?>
 
             <?/*= $form->field($model, 'reCaptcha')->widget(

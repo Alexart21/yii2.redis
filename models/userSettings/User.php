@@ -4,7 +4,9 @@ namespace app\models\userSettings;
 
 use app\models\Auth;
 use Yii;
+
 //var_dump(Yii::$app->user->identity->getId());
+
 /**
  * This is the model class for table "user".
  *
@@ -48,12 +50,12 @@ class User extends \yii\db\ActiveRecord
             [['username'], 'trim'],
             [['username'], 'string', 'max' => 100],
             // имя проверяем на уникальность в базе кроме текукущего (имя не изменили)
-            ['username', 'unique', 'targetClass' => '\app\models\User', 'message' => 'Такое имя уже существует.Введите другое', 'when' => function($model) {
-            return $model->username != Yii::$app->user->identity->username;
+            ['username', 'unique', 'targetClass' => '\app\models\User', 'message' => 'Такое имя уже существует.Введите другое', 'when' => function ($model) {
+                return $model->username != Yii::$app->user->identity->username;
             }],
-//            [['avatar'], 'file', 'skipOnEmpty' => true, 'maxSize' => 1024*1024*5, 'extensions' => ['jpeg', 'jpg', 'png', 'tiff', 'tif', 'gif'],],
-            [['avatar'], 'file', 'skipOnEmpty' => true, 'maxSize' => 1024*1024*5],
-            ];
+            ['username', 'match', 'pattern' => '/^[a-z]\w*$/i', 'message' => 'Имя должно начинаться с буквы и содержать только буквенные символы,числовые символы и знак подчеркивания'],
+            [['avatar'], 'file', 'skipOnEmpty' => true, 'extensions' => ['jpeg', 'jpg', 'png', 'gif', 'webp'], 'maxSize' => Yii::$app->params['max_avatar_size'] * 1024],
+        ];
     }
 
     /**

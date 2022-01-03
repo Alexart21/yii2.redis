@@ -15,6 +15,7 @@ class TestController extends Controller
 
     public function actionIndex()
     {
+//        die('here');
         $model = new TestModel();
         $request = Yii::$app->request;
         $session = Yii::$app->session;
