@@ -231,9 +231,7 @@ window.onload = () => {
             container_loading.style.top = window.pageYOffset + screen_h / 2 - 30 + 'px';
         }
         if (target == '#my-modal' && method == 'GET') { // вызов модального окна(обратный звонок)
-            $('#container').prepend('<div id="overlay"></div>');
-            $('#overlay').show();
-            // $('#container_loading').show();
+            showOverlay();
         } else if (method != 'POST') { // данные в блок #inc (основной контент)
             const inc = document.querySelector('#inc');
             const mainW = document.querySelector('#main').clientWidth;
@@ -268,8 +266,7 @@ window.onload = () => {
             linkColor(); // красим активную ссылку
         }
         document.body.style.cursor = 'default';
-        $('#overlay').remove();
-        $('#container_loading').hide();
+        hideOverlay();
         container_loading.style.left = '';
         container_loading.style.top = '';
         $('#inc-overlay').css('display', 'none');
@@ -298,7 +295,14 @@ window.onload = () => {
     });*/
 };
 /* конец обертка onload */
-
+function showOverlay() {
+    $('#container').prepend('<div id="overlay"></div>');
+    $('#overlay').show();
+}
+function hideOverlay() {
+    $('#overlay').remove();
+    $('#container_loading').hide();
+}
 // окраска активной AJAX ссылки верхнего меню
 function linkColor() {
     let links = document.querySelectorAll('.resp li a'); // все ссылки верхнего меню
