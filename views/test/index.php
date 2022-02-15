@@ -1,4 +1,5 @@
 <?php
+// echo base64_decode('B?0JfQsNC/0YDQvtGBINC+0YIgQWxleA');die;
 use yii\widgets\ActiveForm;
 use kartik\date\DatePicker;
 use yii\helpers\Html;
@@ -29,6 +30,8 @@ use yii\widgets\Pjax;
 </script>
 <div style="font-size: 400%"><span class="fa fa-ruble-sign"></span><span class="fab fa-docker" style="font-size: 100px"></span>
     <span class="fa fa-key"></span><i class="fal fa-angle-right"></i>
+    <i class="fa fa-phone-volume"></i>
+    <i class="">&#xf021;</i>
 </div>
 
 <?php

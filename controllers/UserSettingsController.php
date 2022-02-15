@@ -112,7 +112,7 @@ class UserSettingsController extends \yii\web\Controller
             // картинку (здесь асинхронный feth() Yii его не определяет как AJAX)
             if (!empty($_FILES["avatar"]["size"])) { // пришла картинка (использовали на клиенте JS fetch() ())
                 if ($_FILES["avatar"]["size"] > Yii::$app->params['max_avatar_size'] * 1024) { // картинка больше чем позволено
-                    Yii::$app->response->statusCode = 411; // 'Length Required'
+                    Yii::$app->response->statusCode = 413; // 'Length Required'
                     return;
                 }
 

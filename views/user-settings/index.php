@@ -255,7 +255,7 @@ $csrf_token = Yii::$app->request->csrfToken;
                             let code = xhr.status;
                             // console.log("Ошибка " + code);
                             switch (code) {
-                                case 411 : errText = 'Слишком большой файл.';break;
+                                case 413 : errText = 'Слишком большой файл.';break;
                                 case 415 : errText = 'Не распознан файл изображения.';break;
                                 default : errText = '';
                             }
