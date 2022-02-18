@@ -9,13 +9,14 @@ class TestAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/style.css',
+        'css/test.css',
 //        'css/animate.min.css',
 //  'css/font-awesome.css',
-       'fontawesome/css/all.min.css',
+//       'fontawesome/css/all.min.css',
     ];
     public $js = [
-        'js/chat.js'
+        'js/html2canvas.js',
+        'js/test.js',
     ];
     public $depends = [
 //        'yii\web\JQueryAsset',

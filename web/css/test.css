@@ -1,0 +1,53 @@
+* {
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+body{
+    margin: 1em;
+    background: #ddd;
+}
+
+.container{
+    margin: 1em;
+}
+
+#img-container{
+    border: 1px solid red;
+    width:900px;
+    height: 1400px;
+    /*background: lime;*/
+    /*width: 450px;*/
+    /*height: 700px;*/
+    /*position: relative;*/
+    /*background-image: url("/img/test/img1.png");*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    /*transform: scale(0.5);*/
+}
+
+#img1{
+    display: block;
+    position: absolute;
+    z-index: 1;
+}
+
+#img2{
+    visibility: hidden;
+    border: 1px solid blue;
+    position: absolute;
+   top: 0;
+   left: 0;
+    /*transform: scale(0.5);*/
+    cursor: move;
+    z-index: 2;
+}
+
+input[type=number]{
+    width: 3em;
+    border: 1px solid #222;
+}

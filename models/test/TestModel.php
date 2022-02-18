@@ -9,36 +9,25 @@ use Yii;
 
 class TestModel extends Model
 {
-    public $date;
-    public $avatar;
-    public $test;
+    public $background_img;
+    public $drag_img;
 
     public function rules()
     {
+
         return [
-            ['date', 'required'],
-            [['avatar'], 'file', 'extensions' => ['jpg', 'jpeg', 'png', 'gif'], 'skipOnEmpty' => true, 'maxSize' => 1024*1024*5],
+            [['background_img', 'drag_img'], 'file', 'skipOnEmpty' => true, 'extensions' => ['png'], 'maxSize' => 5 * 1024 * 1024],
+//            [['background_img', 'drag_img'], 'safe'],
+//            ['background_img', 'skipOnEmpty' => true],
         ];
     }
 
     public function attributeLabels()
     {
         return [
-            'date' => 'Выберите дату',
-            'test' => 'Test',
+            'background_img' => 'Фоновое изображение',
+            'drag_img' => 'Накладываемое изображение',
         ];
     }
 
-    public function upload()
-    {
-        if ($this->validate()) {
-            if(!empty($this->avatar->size)){
-                $originImgPath = 'upload/avatars/' . substr(time(), -4) . strtolower(Yii::$app->security->generateRandomString(12)) . '.' . $this->avatar->extension;
-                $this->avatar->saveAs($originImgPath);
-            }
-            return true;
-        } else {
-            return false;
-        }
-    }
 }

@@ -1,88 +1,55 @@
 <?php
-// echo base64_decode('B?0JfQsNC/0YDQvtGBINC+0YIgQWxleA');die;
+//var_dump($path);die;
 use yii\widgets\ActiveForm;
-use kartik\date\DatePicker;
 use yii\helpers\Html;
-use yii\widgets\Pjax;
+
+$this->title = 'Тестовое задание';
+// картинка по умолчанию
+if(!$img_src){
+    $img_src = '/img/test/img2.png';
+}
+// фон
+if(!$bg_src){
+    $bg_src = '/img/test/img1.png';
+}
 ?>
-
-<style>
-    #logo{
-        width: 200px;
-        height: 100px;
-        border: 1px solid #000;
-    }
-
-    .logo-displ{
-        display: none;
-    }
-</style>
-<div id="logo" class="logo-vis"></div>
-<button id="left-togle">click</button>
-
-<script>
-
-    const lbt = document.getElementById('left-togle');
-    lbt.onclick = function () {
-        const logo = document.getElementById('logo');
-        logo.classList.toggle('logo-displ');
-    }
-</script>
-<div style="font-size: 400%"><span class="fa fa-ruble-sign"></span><span class="fab fa-docker" style="font-size: 100px"></span>
-    <span class="fa fa-key"></span><i class="fal fa-angle-right"></i>
-    <i class="fa fa-phone-volume"></i>
-    <i class="">&#xf021;</i>
-</div>
-
-<?php
-use yii\bootstrap4\Alert;
-?>
-<?php
-Alert::begin([
-        'options' => [
-                'class' => 'alert-warning',
-        ]
-]);
-?>
-<h1>TEST</h1>
-<?php
-Alert::end();
-?>
-<?php Pjax::begin() ?>
-<?php if(Yii::$app->session->hasFlash('success')): ?>
-    <div class="alert alert-success alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <?= Yii::$app->session->getFlash('success') ?>
+<main class="container">
+    <h1>Тестовое задание</h1>
+    <h3>Перетащите внутреннюю картинку в пределах красной рамки</h3>
+    <div id="img-container" style='background-image: url("<?= $bg_src ?>")'>
+<!--        <img src="/img/test/img1.png" alt="" id="img2">-->
+        <img src="<?= $img_src ?>" alt="" id="img2" draggable="true">
     </div>
-<?php endif; ?>
+    <br>
+    <br>
+    <h5>Размер картинки</h5>
+    ширина
+    <input id="width" type="number" >
+    высота
+    <input id="height" type="number">
+    <button id="scale-btn" class="btn btn-secondary" title="не забудь нажать" data-toggle="tooltip" data-trigger="manual">Применить</button>
+    <br>
+    <h5>Поворот в градусах по часовой<br>(можно отрицательные значения)</h5>
+    <input id="rotate" type="number" value="90">
+    <button id="rotate-btn" class="btn btn-secondary" title="не забудь нажать" data-toggle="tooltip" data-trigger="manual">применить</button><br><br>
+    <button id="clear-btn" class="btn btn-danger">Сброс</button>
 
+    <button id="export-btn" class="btn btn-success">Скачать результат</button>
+</main>
+<hr>
+<h2>Смена картинок(только *.png,  синхронно)</h2>
 <?php
-$form = ActiveForm::begin([
-        'options' => [
-                'enctype' => 'multipart/form-data',
-//                'data-pjax' => true,
-        ]
-]);
-//var_dump($form);die;
+$form = ActiveForm::begin();
 ?>
-<fieldset>
-<?=$form->field($model, 'date')->textInput()
-    ->widget(DatePicker::class, [
-        'name' => 'check_issue_date',
-        'value' => date('d-M-Y', strtotime('+2 days')),
-        'options' => ['placeholder' => 'Выберите дату'],
-        'pluginOptions' => [
-            'format' => 'd-M-yyyy',
-            'todayHighlight' => true
-        ]
-]);?>
-    <?=$form->field($model,'avatar')->fileInput()  ?>
-    <?=$form->field($model,'test')->textInput()  ?>
-</fieldset>
-    <?= Html::submitButton('Отправить', ['class' => 'btn btn-success']) ?>
+<?= $form->field($model, 'background_img')->fileInput() ?>
+<?= $form->field($model, 'drag_img')->fileInput() ?>
+<div class="form-group" style="margin-left: 1em">
+    <?= Html::submitButton('Отправить', ['class' => 'btn btn-success', 'id' => 'file-btn']) ?>
+</div>
 <?php
 ActiveForm::end();
 ?>
-<?php Pjax::end() ?>
-<br>
 <hr>
+асинхронно еще не сделал...
+<h5>Ссылка на github: <a href="https://github.com/Alexart21/yii2.redis" target="_blank">https://github.com/Alexart21/yii2.redis</a></h5>
+<h5>Подробнее в файле README.md на GitHub</h5>

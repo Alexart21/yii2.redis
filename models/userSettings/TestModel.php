@@ -8,15 +8,15 @@ use yii\base\Model;
 
 class TestModel extends Model
 {
-    public $avatar;
+    public $background_img;
+    public $drag_img;
 
     public function rules()
     {
 
         return [
-//            ['avatar', 'file', 'maxSize' => 1024*1024*5],
-            ['avatar', 'file'],
-            ['avatar', 'safe'],
-            ];
+            [['background_img', 'drag_img'], 'file'],
+            [['background_img', 'drag_img'], 'skipOnEmpty' => true, 'extensions' => ['png']],
+        ];
     }
 }
