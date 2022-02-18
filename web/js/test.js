@@ -72,9 +72,9 @@ window.onload = () => {
         scaleImg(dragableImg, wInput, hInput)
     });
     //
-    fileBtn.addEventListener('click', () => {
+    /*fileBtn.addEventListener('click', () => {
         clear(dragableImg, container);
-    });
+    });*/
     //
     exportBtn.addEventListener('click', () => {
         // убираем бордеры иначе с ними будет скриншот
