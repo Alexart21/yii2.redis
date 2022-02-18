@@ -4,27 +4,45 @@ use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 
 $this->title = 'Тестовое задание';
-// картинка по умолчанию
-if(!$img_src){
-    $img_src = '/img/test/img2.png';
-}
-// фон
+// фон пришел синхронно
 if(!$bg_src){
     $bg_src = '/img/test/img1.png';
 }
 ?>
 <main class="container">
     <h1>Тестовое задание</h1>
-    <h3>Перетащите внутреннюю картинку в пределах красной рамки</h3>
+    <h3>Позиционируйте внутреннюю картинку в пределах красной рамки перетаскиванием</h3>
+    <h3>Для загрузки своей картинки кликните по ней или перетащите файл в синюю рамку</h3>
+    <h3>Все отменить "Сброс"</h3>
     <div id="img-container" style='background-image: url("<?= $bg_src ?>")'>
 <!--        <img src="/img/test/img1.png" alt="" id="img2">-->
-        <img src="<?= $img_src ?>" alt="" id="img2" draggable="true">
+        <div class="drop-zone">
+        <img src="/img/test/img2.png" alt="" id="img2" draggable="true">
+            <span class="drop-zone__prompt"></span>
+            <input type="file" name="myFile" class="drop-zone__input">
+        </div>
     </div>
+    <hr>
+    <!--<h2>Синхронная загрузка фона(только *.png)</h2>
+    <?php
+/*    $form = ActiveForm::begin();
+    */?>
+    <?/*= $form->field($model, 'background_img')->fileInput() */?>
+    <?/*//= $form->field($model, 'drag_img')->fileInput() */?>
+    <div class="form-group" style="margin-left: 1em">
+        <?/*= Html::submitButton('Отправить', ['class' => 'btn btn-success', 'id' => 'file-btn']) */?>
+    </div>
+    <?php
+/*    ActiveForm::end();
+    */?>
     <br>
-    <br>
+    <br>-->
     <h5>Размер картинки</h5>
+    сохранять пропорции
+    <input id="zoom" type="checkbox" name="zoom" checked>
+    <br>
     ширина
-    <input id="width" type="number" >
+    <input id="width" type="number">
     высота
     <input id="height" type="number">
     <button id="scale-btn" class="btn btn-secondary" title="не забудь нажать" data-toggle="tooltip" data-trigger="manual">Применить</button>
@@ -37,19 +55,5 @@ if(!$bg_src){
     <button id="export-btn" class="btn btn-success">Скачать результат</button>
 </main>
 <hr>
-<h2>Смена картинок(только *.png,  синхронно)</h2>
-<?php
-$form = ActiveForm::begin();
-?>
-<?= $form->field($model, 'background_img')->fileInput() ?>
-<?= $form->field($model, 'drag_img')->fileInput() ?>
-<div class="form-group" style="margin-left: 1em">
-    <?= Html::submitButton('Отправить', ['class' => 'btn btn-success', 'id' => 'file-btn']) ?>
-</div>
-<?php
-ActiveForm::end();
-?>
-<hr>
-асинхронно еще не сделал...
 <h5>Ссылка на github: <a href="https://github.com/Alexart21/yii2.redis" target="_blank">https://github.com/Alexart21/yii2.redis</a></h5>
 <h5>Подробнее в файле README.md на GitHub</h5>

@@ -15,16 +15,13 @@ class TestController extends Controller
 
     public function actionIndex()
     {
-//        die('here');
         $model = new TestModel();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
 //            var_dump($_FILES['TestModel']['tmp_name']['drag_img']);die;
-
-
             $basePath = Yii::getAlias('@app/web') . '/upload/test/';
             // Очищаем папку от предидущих файлов
             $arr = FileHelper::findFiles($basePath, ['only' => ['*.png'], 'recursive' => true]);
-            if(!empty($arr)) {
+            if (!empty($arr)) {
                 foreach ($arr as $file) {
                     if (file_exists($file)) {
                         unlink(FileHelper::normalizePath($file));
@@ -34,19 +31,18 @@ class TestController extends Controller
             // генерируем имя файла
             $imgName = substr(time(), -4) . strtolower(Yii::$app->security->generateRandomString(12)) . '.' . 'png';
 
-            $drag_img_path = FileHelper::normalizePath($basePath . $imgName);
-            $bg_path = FileHelper::normalizePath(  $basePath . 'bg_' . $imgName);
-            if (!move_uploaded_file($_FILES['TestModel']['tmp_name']['drag_img'], $drag_img_path)) {
-                throw new BadRequestHttpException('Ошибка при загрузке файла');
+            $bg_path = FileHelper::normalizePath($basePath . 'bg_' . $imgName);
+            if ($_FILES['TestModel']['tmp_name']['background_img']) {
+//                var_dump($_FILES['TestModel']['tmp_name']['background_img']);
+                if (!move_uploaded_file($_FILES['TestModel']['tmp_name']['background_img'], $bg_path)) {
+                    throw new BadRequestHttpException('Ошибка при загрузке файла');
+                }
+                $bg_src = '/upload/test/' . 'bg_' . $imgName;
             }
-            if (!move_uploaded_file($_FILES['TestModel']['tmp_name']['background_img'], $bg_path)) {
-                throw new BadRequestHttpException('Ошибка при загрузке файла');
-            }
-            $img_src = '/upload/test/' . $imgName;
-            $bg_src = '/upload/test/' . 'bg_' . $imgName;
 
+//            return $this->refresh();
         }
-        return $this->render('index', compact('model', 'img_src', 'bg_src'));
+        return $this->render('index', compact('model', 'bg_src'));
     }
 
 
