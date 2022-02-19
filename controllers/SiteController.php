@@ -42,7 +42,7 @@ class SiteController extends Controller
         if (Yii::$app->user->isGuest) {
             if ($auth) { // авторизация
                 $user = $auth->user;
-                Yii::$app->user->login($user);
+                Yii::$app->user->login($user, Yii::$app->params['rememberMeSec']); // логиним и запоминаем на сколькото там дней
             } else { // регистрация
                 if (isset($attributes['email']) && User::find()->where(['email' => $attributes['email']])->exists()) {
 //                    var_dump($client->getTitle());
@@ -50,8 +50,11 @@ class SiteController extends Controller
                     $usr = User::find()->where(['email' => $attributes['email']])->one();
                     $x = Auth::find()->where(['user_id' => $usr->id])->one();
                     if($x){
-                        echo "<h4>Вы уже использовали этот email когда заходили через {$x->source}</h4>";
-                        echo "<h4>Снова зайдите через <a style='font-size: 150%' href=\"/site/auth?authclient={$x->source}\">{$x->source}</a> или используйте другой email</h4>";
+                        echo "<h4>Вы уже использовали email адрес {$attributes['email']} когда заходили через {$x->source}</h4>";
+                        echo '<h1>Вы можете:</h1>';
+                        echo "<h4>1. Снова войти через <a style='font-size: 150%' href=\"/site/auth?authclient={$x->source}\">{$x->source}</a> (рекомендуется)</h4>";
+                        echo "<h4>2. Вернуться назад и войти через другой внешний сервис авторизации где у вас email отличный от {$attributes['email']}</h4>";
+                        echo '<h4>3. Вернуться назад и войти или зарегистрироваться обычным способом</h4>';
                     }
                     die;
                 } else {
@@ -102,7 +105,7 @@ class SiteController extends Controller
                         ]);
                         if ($auth->save()) {
                             $transaction->commit();
-                            Yii::$app->user->login($user);
+                            Yii::$app->user->login($user, Yii::$app->params['rememberMeSec']); // логиним и запоминаем на сколькото там дней
                         } else {
                             print_r($auth->getErrors());
                         }

@@ -3,8 +3,8 @@ use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 use yii\bootstrap4\Modal;
 
-/*$this->title = 'Вход';
-$this->params['breadcrumbs'][] = $this->title;*/
+$this->title = 'Вход';
+//$this->params['breadcrumbs'][] = $this->title; // в виде закрывает поля
 // Здесь пароль меняй (в поле password_hash)
 //echo Yii::$app->getSecurity()->generatePasswordHash('password');
 //die;
