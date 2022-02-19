@@ -4,7 +4,7 @@ window.onload = () => {
     const exportBtn = document.getElementById('export-btn');
     const clearBtn = document.getElementById('clear-btn');
     const rotateBtn = document.getElementById('rotate-btn');
-    const fileBtn = document.getElementById('file-btn');
+    // const fileBtn = document.getElementById('file-btn');
     const scaleBtn = document.getElementById('scale-btn');
     const wInput = document.getElementById('width');
     const hInput = document.getElementById('height');
@@ -37,8 +37,14 @@ window.onload = () => {
     setTimeout(() => { // чтобы не прыгала картинка при позиционировании
         dragableImg.style.visibility = 'visible';
     }, 100);
+
     /* Если есть ранее сохраненные трансформации то применяем */
-    if (localStorage.getItem('x')) { // Мы уже ранее чето делали с картинкой
+    if (localStorage.getItem('bg')) {
+        container.style.backgroundImage = 'url("' + localStorage.getItem('bg') + '")';
+    }else{
+        container.style.backgroundImage = 'url("/img/test/img1.png")';
+    }
+    if (localStorage.getItem('x')) {
         dragableImg.style.left = localStorage.getItem('x') + 'px';
         dragableImg.style.top = localStorage.getItem('y') + 'px';
     } else {// зашли впервые и позиционируем картинку в левый верхний угол
@@ -47,7 +53,7 @@ window.onload = () => {
         // clear(dragableImg, container);
     }
     if (localStorage.getItem('rotation')) {
-        dragableImg.style.transform = 'rotate(' + localStorage.getItem('rotation') + ' deg)';
+        dragableImg.style.transform = 'rotate(' + localStorage.getItem('rotation') + 'deg)';
         // dragableImg.src = localStorage.getItem('src');
     } else {
         dragableImg.style.transform = 'rotate(0)';
@@ -55,33 +61,26 @@ window.onload = () => {
     if (localStorage.getItem('src')) {
         dragableImg.src = localStorage.getItem('src');
     } else {
-        // dragableImg.src = localStorage.getItem('src');
+        dragableImg.src = "/img/test/img2.png";
     }
-
 
     /* Вешаем события на кнопи */
     clearBtn.addEventListener('click', () => {
         clear(dragableImg, container);
     });
-    //
     rotateBtn.addEventListener('click', () => {
         rotate(dragableImg);
     });
-    //
     scaleBtn.addEventListener('click', (elem) => {
         scaleImg(dragableImg, wInput, hInput)
     });
-    //
-    /*fileBtn.addEventListener('click', () => {
-        clear(dragableImg, container);
-    });*/
-    //
     exportBtn.addEventListener('click', () => {
         // убираем бордеры иначе с ними будет скриншот
         dragableImg.style.border = 0;
         container.style.border = 0;
         exportImg(container);
     });
+
     //* ограничения, за которые нельзя вытащить dragableImg
     let limits = {
         top: container.offsetTop,
@@ -115,6 +114,8 @@ window.onload = () => {
         localStorage.setItem('x', x);
         localStorage.setItem('y', y);
     });
+    // console.log(dragableImg.width);
+    // console.log(dragableImg.height);
 }
 
 /* Сохраняем как png файл */
@@ -203,7 +204,37 @@ function showDragImg(elem) {
 function getFileExt(fname) {
     return fname.slice((fname.lastIndexOf(".") - 1 >>> 0) + 2);
 }
+/* Form Fetch() */
+document.addEventListener('DOMContentLoaded', () => {
+    //
+    const form = document.querySelector('#bg-form');
+    const fileInput = document.getElementById('file-input');
+    /* Здесь отпрака на сервер */
+    /*form.onsubmit = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        console.log(formData.get('background_img'));
+        let response = await fetch('/test', {
+            method: 'POST',
+            body: formData,
+        });
+        let result = await response.text();
+        if(response.ok){
 
+        }
+    }*/
+    /* Здесь никуда не отправляем */
+    fileInput.onchange = () =>{
+        let file = fileInput.files[0];
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function() {
+            let bgImg = reader.result;
+            document.getElementById('img-container').style.backgroundImage = 'url("' + bgImg + '")';
+            localStorage.setItem('bg', bgImg);
+        };
+    }
+});
 /**********************************************/
 /*DRAG DROP Взял откудато с codepen.io */
 /* Работает не трогаю */
@@ -274,6 +305,7 @@ function updateThumbnail(dropZoneElement, file) {
         reader.onload = () => {
             thumbnailElement.style.backgroundImage = `url('${reader.result}')`;
             let img = reader.result;
+            // console.log(file);
             let fileExt = getFileExt(file.name); // расширение файла
             // допустимые расширения
             let res = ['png', 'PNG'].indexOf(fileExt);
@@ -287,8 +319,11 @@ function updateThumbnail(dropZoneElement, file) {
             // получаем размеры у base64 картинки и вставляем в инпуты ширины/высоты
             document.getElementById('width').value = newImg.width;
             document.getElementById('height').value = newImg.height;
-            // console.log(newImg.width);
-            // console.log(newImg.height);
+            // то размеры картинки
+            document.getElementById('img2').style.width = newImg.width + 'px';
+            document.getElementById('img2').style.height = newImg.height + 'px';
+            // сохраняем
+            localStorage.setItem('src', img)
         };
     } else {
         thumbnailElement.style.backgroundImage = null;

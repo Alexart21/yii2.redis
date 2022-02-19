@@ -14,7 +14,7 @@ if(!$bg_src){
     <h3>Позиционируйте внутреннюю картинку в пределах красной рамки перетаскиванием</h3>
     <h3>Для загрузки своей картинки кликните по ней или перетащите файл в синюю рамку</h3>
     <h3>Все отменить "Сброс"</h3>
-    <div id="img-container" style='background-image: url("<?= $bg_src ?>")'>
+    <div id="img-container">
 <!--        <img src="/img/test/img1.png" alt="" id="img2">-->
         <div class="drop-zone">
         <img src="/img/test/img2.png" alt="" id="img2" draggable="true">
@@ -22,22 +22,22 @@ if(!$bg_src){
             <input type="file" name="myFile" class="drop-zone__input">
         </div>
     </div>
-    <hr>
-    <!--<h2>Синхронная загрузка фона(только *.png)</h2>
-    <?php
-/*    $form = ActiveForm::begin();
-    */?>
-    <?/*= $form->field($model, 'background_img')->fileInput() */?>
-    <?/*//= $form->field($model, 'drag_img')->fileInput() */?>
-    <div class="form-group" style="margin-left: 1em">
-        <?/*= Html::submitButton('Отправить', ['class' => 'btn btn-success', 'id' => 'file-btn']) */?>
-    </div>
-    <?php
-/*    ActiveForm::end();
-    */?>
     <br>
-    <br>-->
-    <h5>Размер картинки</h5>
+    <h5>Фоновое изображение(только *.png)</h5>
+    <?php
+    $form = ActiveForm::begin([
+        'id' => 'bg-form',
+    ])
+    ?>
+
+    <?= $form->field($model, 'background_img')->fileInput(['id' => 'file-input', 'accept' => 'image/*']); ?>
+    <?//= Html::submitButton('отправить', ['id' => 'submit-btn', 'class' => 'btn btn-success']) ?>
+
+    <?php
+    ActiveForm::end();
+    ?>
+    <hr>
+    <h5>Размер внутреннего изображения</h5>
     сохранять пропорции
     <input id="zoom" type="checkbox" name="zoom" checked>
     <br>
@@ -50,8 +50,8 @@ if(!$bg_src){
     <h5>Поворот в градусах по часовой<br>(можно отрицательные значения)</h5>
     <input id="rotate" type="number" value="90">
     <button id="rotate-btn" class="btn btn-secondary" title="не забудь нажать" data-toggle="tooltip" data-trigger="manual">применить</button><br><br>
+    <hr>
     <button id="clear-btn" class="btn btn-danger">Сброс</button>
-
     <button id="export-btn" class="btn btn-success">Скачать результат</button>
 </main>
 <hr>

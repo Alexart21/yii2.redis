@@ -45,10 +45,15 @@ class SiteController extends Controller
                 Yii::$app->user->login($user);
             } else { // регистрация
                 if (isset($attributes['email']) && User::find()->where(['email' => $attributes['email']])->exists()) {
-                    die("<h4 style='color: red'>Пользователь с такой электронной почтой как в {$client->getTitle()} уже существует, но с ним не связан. Для начала войдите на сайт используя электронную почту, для того, что бы связать её.</h4>");
-                    /*Yii::$app->getSession()->setFlash('error', [
-                        Yii::t('app', "Пользователь с такой электронной почтой как в {client} уже существует, но с ним не связан. Для начала войдите на сайт используя электронную почту, для того, что бы связать её.", ['client' => $client->getTitle()]),
-                    ]);*/
+//                    var_dump($client->getTitle());
+                    echo("<h4>Пользователь с такой электронной почтой как в {$client->getTitle()} уже существует</h4>");
+                    $usr = User::find()->where(['email' => $attributes['email']])->one();
+                    $x = Auth::find()->where(['user_id' => $usr->id])->one();
+                    if($x){
+                        echo "<h4>Вы уже использовали этот email когда заходили через {$x->source}</h4>";
+                        echo "<h4>Снова зайдите через <a style='font-size: 150%' href=\"/site/auth?authclient={$x->source}\">{$x->source}</a> или используйте другой email</h4>";
+                    }
+                    die;
                 } else {
 //                    var_dump($attributes);die;
                     $authClient = $client->getTitle();

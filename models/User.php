@@ -32,6 +32,8 @@ use Yii;
 
 class User extends ActiveRecord implements \yii\web\IdentityInterface
 {
+    public $avatar_path;// Почему без этого Unknow ......
+
     public static function tableName()
     {
         return 'user';
@@ -71,7 +73,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
             ['email', 'unique', 'message' => 'Такой email уже существует.'],
             [['username'], 'string', 'length' => [3, 100]],
             ['username', 'unique', 'message' => 'Такое имя уже существует.'],
-            ['username', 'match', 'pattern' => '/^[a-z]\w*$/i', 'message' => 'Имя должно начинаться с буквы и содержать только буквенные символы,числовые символы и знак подчеркивания'],
+//            ['username', 'match', 'pattern' => '/^[a-z]\w*$/i', 'message' => 'Имя должно начинаться с буквы и содержать только буквенные символы,числовые символы и знак подчеркивания'],
         ];
     }
 

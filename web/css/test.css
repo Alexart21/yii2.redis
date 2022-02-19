@@ -26,7 +26,7 @@ body{
     /*position: relative;*/
     /*background-image: url("/img/test/img1.png");*/
     background-repeat: no-repeat;
-    background-size: cover;
+    /*background-size: cover;*/
     /*transform: scale(0.5);*/
 }
 
@@ -54,4 +54,8 @@ input[type=number]{
 /************/
 .drop-zone__input {
     display: none;
+}
+
+form .help-block{
+    color: red;
 }
