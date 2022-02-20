@@ -4,39 +4,12 @@ window.onload = () => {
     const exportBtn = document.getElementById('export-btn');
     const clearBtn = document.getElementById('clear-btn');
     const rotateBtn = document.getElementById('rotate-btn');
-    // const fileBtn = document.getElementById('file-btn');
     const scaleBtn = document.getElementById('scale-btn');
     const wInput = document.getElementById('width');
     const hInput = document.getElementById('height');
     const checkboks = document.getElementById('zoom');
     const rotation = 0;
-    // инпуты ширины/высоты
-    wInput.value = dragableImg.clientWidth;
-    hInput.value = dragableImg.clientHeight;
-    // соотношения сторон картинки
-    const ratio = dragableImg.clientWidth / dragableImg.clientHeight;
-    // сохраняем пропорции
-    // console.log(checkboks.checked);
-    wInput.addEventListener('change', () => {
-        if (checkboks.checked) {
-            hInput.value = Math.floor(wInput.value / ratio);
-            $('#scale-btn').tooltip('show');
-        }
-    })
-    //
-    hInput.addEventListener('change', () => {
-        if (checkboks.checked) {
-            wInput.value = Math.floor(hInput.value * ratio);
-            $('#scale-btn').tooltip('show');
-        }
-    })
-    //
-    document.getElementById('rotate').addEventListener('change', () => {
-        $('#rotate').tooltip('show');
-    })
-    setTimeout(() => { // чтобы не прыгала картинка при позиционировании
-        dragableImg.style.visibility = 'visible';
-    }, 100);
+    let limits;
 
     /* Если есть ранее сохраненные трансформации то применяем */
     if (localStorage.getItem('bg')) {
@@ -63,6 +36,41 @@ window.onload = () => {
     } else {
         dragableImg.src = "/img/test/img2.png";
     }
+    if (localStorage.getItem('w')) {
+        const w = localStorage.getItem('w');
+        const h = localStorage.getItem('h');
+        // инпуты ширины/высоты
+        wInput.value = w;
+        hInput.value = h;
+    }else{
+        wInput.value = dragableImg.clientWidth;
+        hInput.value = dragableImg.clientHeight;
+    }
+
+
+    // соотношения сторон картинки
+    const ratio = dragableImg.clientWidth / dragableImg.clientHeight;
+    // сохраняем пропорции
+    wInput.addEventListener('change', () => {
+        if (checkboks.checked) {
+            hInput.value = Math.floor(wInput.value / ratio);
+            $('#scale-btn').tooltip('show');
+        }
+    })
+    //
+    hInput.addEventListener('change', () => {
+        if (checkboks.checked) {
+            wInput.value = Math.floor(hInput.value * ratio);
+            $('#scale-btn').tooltip('show');
+        }
+    })
+    //
+    document.getElementById('rotate').addEventListener('change', () => {
+        $('#rotate').tooltip('show');
+    })
+    setTimeout(() => { // чтобы не прыгала картинка при позиционировании
+        dragableImg.style.visibility = 'visible';
+    }, 100);
 
     /* Вешаем события на кнопи */
     clearBtn.addEventListener('click', () => {
@@ -82,12 +90,17 @@ window.onload = () => {
     });
 
     //* ограничения, за которые нельзя вытащить dragableImg
-    let limits = {
+    limits = {
         top: container.offsetTop,
         right: container.offsetWidth + container.offsetLeft - dragableImg.offsetWidth,
         bottom: container.offsetHeight + container.offsetTop - dragableImg.offsetHeight,
         left: container.offsetLeft
     };
+    if(localStorage.getItem('w')){ // после изменения размеров картинки прежние значения уже не подходят ставим другие
+        limits.right = container.offsetWidth + container.offsetLeft - localStorage.getItem('w');
+        limits.bottom = container.offsetHeight + container.offsetTop - localStorage.getItem('h');
+    }
+
     // позиционируем перетаскиваемую картинку не давая вылезти за пределы родителя
     dragableImg.addEventListener('dragend', (e) => {
         let x, y;
@@ -114,8 +127,6 @@ window.onload = () => {
         localStorage.setItem('x', x);
         localStorage.setItem('y', y);
     });
-    // console.log(dragableImg.width);
-    // console.log(dragableImg.height);
 }
 
 /* Сохраняем как png файл */
@@ -153,13 +164,17 @@ function scaleImg(elem, wInput, hInput) {
         reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = function () {
-            // console.log(reader.result);
             elem.src = reader.result;
+            elem.style.width = w + 'px';
+            elem.style.height = h + 'px';
             // сохраняем на будущее
             localStorage.setItem('src', reader.result);
+            localStorage.setItem('w', w);
+            localStorage.setItem('h', h);
         };
     }, 'image/png', 1);
-
+    // перезагружаемся
+    location.reload();
 }
 
 /* Возвращаем в девственное состояние */
@@ -172,6 +187,7 @@ function clear(dragablElem, container) {
     container.style.backgroundImage = '/img/test/img1.png';
     document.getElementById('width').value = dragablElem.width;
     document.getElementById('height').value = dragablElem.height;
+    // перезагружаемся
     location.reload();
 }
 
@@ -180,7 +196,6 @@ function rotate(elem) {
     let rotation = document.querySelector('#rotate').value;
     elem.style.transform = 'rotate(' + rotation + 'deg)';
     localStorage.setItem('rotation', rotation);
-    // console.log(deg);
 }
 
 /* Генерация псевдослучайной строки */
@@ -303,9 +318,8 @@ function updateThumbnail(dropZoneElement, file) {
 
         reader.readAsDataURL(file);
         reader.onload = () => {
-            thumbnailElement.style.backgroundImage = `url('${reader.result}')`;
             let img = reader.result;
-            // console.log(file);
+            thumbnailElement.style.backgroundImage = `url('${img}')`;
             let fileExt = getFileExt(file.name); // расширение файла
             // допустимые расширения
             let res = ['png', 'PNG'].indexOf(fileExt);
@@ -313,17 +327,25 @@ function updateThumbnail(dropZoneElement, file) {
                 alert('Недопустимый тип файла !');
                 return;
             }
-
-            let newImg = document.getElementById('img2');
-            newImg.src = img;
-            // получаем размеры у base64 картинки и вставляем в инпуты ширины/высоты
-            document.getElementById('width').value = newImg.width;
-            document.getElementById('height').value = newImg.height;
-            // то размеры картинки
-            document.getElementById('img2').style.width = newImg.width + 'px';
-            document.getElementById('img2').style.height = newImg.height + 'px';
-            // сохраняем
-            localStorage.setItem('src', img)
+            // такой финт ушами чтобы узнать реальные размеры Base64 изображения
+            const tmpImg = new Image();
+            tmpImg.src = img;
+            tmpImg.onload = function() {
+                const imgWidth = tmpImg.naturalWidth;
+                const imgHeight = tmpImg.naturalHeight;
+                const newImg = document.getElementById('img2');
+                newImg.src = img; //
+                newImg.style.width = imgWidth + 'px';
+                newImg.style.height = imgHeight + 'px';
+                // вставляем в инпуты ширины/высоты
+                document.getElementById('width').value = imgWidth;
+                document.getElementById('height').value = imgHeight;
+                // сохраняем
+                localStorage.setItem('src', img);
+                localStorage.setItem('w', imgWidth);
+                localStorage.setItem('h', imgHeight);
+                location.reload();
+            };
         };
     } else {
         thumbnailElement.style.backgroundImage = null;

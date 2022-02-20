@@ -23,14 +23,14 @@ if(!$bg_src){
         </div>
     </div>
     <br>
-    <h5>Фоновое изображение(только *.png)</h5>
+    <h5>Фоновое изображение(*.jpg, *.png)</h5>
     <?php
     $form = ActiveForm::begin([
         'id' => 'bg-form',
     ])
     ?>
 
-    <?= $form->field($model, 'background_img')->fileInput(['id' => 'file-input', 'accept' => 'image/*']); ?>
+    <?= $form->field($model, 'background_img')->fileInput(['id' => 'file-input', 'accept' => 'image/*'])->label(false); ?>
     <?//= Html::submitButton('отправить', ['id' => 'submit-btn', 'class' => 'btn btn-success']) ?>
 
     <?php

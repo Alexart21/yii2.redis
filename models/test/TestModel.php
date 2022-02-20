@@ -16,7 +16,7 @@ class TestModel extends Model
     {
 
         return [
-            [['background_img'], 'file', 'skipOnEmpty' => true, 'extensions' => ['png'], 'maxSize' => 5 * 1024 * 1024],
+            [['background_img'], 'file', 'skipOnEmpty' => true, 'extensions' => ['png', 'jpg', 'jpeg'], 'maxSize' => 5 * 1024 * 1024],
         ];
     }
 

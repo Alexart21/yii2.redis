@@ -32,7 +32,7 @@ use Yii;
 
 class User extends ActiveRecord implements \yii\web\IdentityInterface
 {
-    public $avatar_path;// Почему без этого Unknow ......
+    public $avatar_path;// Почему без этого Unknow ...... ????
 
     public static function tableName()
     {

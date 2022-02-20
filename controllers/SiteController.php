@@ -61,7 +61,7 @@ class SiteController extends Controller
 //                    var_dump($attributes);die;
                     $authClient = $client->getTitle();
 //                    var_dump($authClient);die;
-                    $password = Yii::$app->security->generateRandomString(6);
+                    $password = Yii::$app->security->generateRandomString(6); // просто затык
                     if($authClient == 'Google' || $authClient == 'GitHub') {
                         $user = new User([
                             'username' => $attributes['name'],
@@ -95,7 +95,7 @@ class SiteController extends Controller
                         ]);
                     }
                     $user->generateAuthKey();
-                    $user->generatePasswordResetToken();
+//                    $user->generatePasswordResetToken();
                     $transaction = $user->getDb()->beginTransaction();
                     if ($user->save()) {
                         $auth = new Auth([
