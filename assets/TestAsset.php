@@ -12,10 +12,13 @@ class TestAsset extends AssetBundle
         'css/test.css',
 //        'css/animate.min.css',
 //  'css/font-awesome.css',
-//       'fontawesome/css/all.min.css',
+       'fontawesome/css/all.min.css',
     ];
     public $js = [
         'js/html2canvas.js',
+//        'js/propeller.min.js',
+        'js/component.js',
+        'js/jscolor.js',
         'js/test.js',
     ];
     public $depends = [

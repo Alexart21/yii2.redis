@@ -1,4 +1,6 @@
+<h3>Исправленная версия <a href="https://alexart.houme21.ru/test/new">здесь</a></h3>
 <?php
+die;
 //var_dump($path);die;
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;

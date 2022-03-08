@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use yii\base\BaseObject;
 use yii\helpers\FileHelper;
 use yii\web\Controller;
 use app\models\test\TestModel;
@@ -18,12 +19,18 @@ class TestController extends Controller
         $this->enableCsrfValidation = false;
         $model = new TestModel();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-//            var_dump($_FILES);die;
 
-            return 'HERRREEE!';
         }
         return $this->render('index', compact('model'));
     }
 
+    public function actionNew()
+    {
+        $model = new TestModel();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+
+        }
+        return $this->render('new', compact('model'));
+    }
 
 }
