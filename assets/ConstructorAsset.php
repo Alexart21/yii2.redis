@@ -13,7 +13,7 @@ class ConstructorAsset extends AssetBundle
     ];
     public $js = [
         'vue_assets/js/chunk-vendors.177daa20.js',
-        'vue_assets/js/app.63225a58.js',
+        'vue_assets/js/app.5f1492b5.js',
     ];
     public $depends = [
     ];

@@ -1,3 +1,6 @@
+<?php
+$this->title = 'Онлайн дизайн чехлов';
+?>
 <noscript><strong>Для отображения страницы включите  Javascript !</strong></noscript>
 <div id="app">Загрузка...</div>
 <script>window.onload = () => {
