@@ -1,5 +1,5 @@
 window.onload = () => {
-    //overlay
+    //overlay  когда нет картинки накрываем кнопки
     let imgOver = document.querySelector('.img-block-over');
     if (!localStorage.getItem('src')) {
         imgOver.style.height = document.querySelector('.img-control').clientHeight + 'px';
@@ -21,7 +21,7 @@ window.onload = () => {
         container.style.backgroundImage = 'url("/img/test/img1.png")';
     }
 
-    if (localStorage.getItem('inText')) {
+    if (localStorage.getItem('inText')) { // текст
         contenteditable.style.left = localStorage.getItem('textX') + 'px';
         contenteditable.style.top = localStorage.getItem('textY') + 'px';
         contenteditable.style.fontSize = localStorage.getItem('fontSize') + 'px';
@@ -37,9 +37,9 @@ window.onload = () => {
         letSps.value = localStorage.getItem('letSps');
     }
 
-    if (localStorage.getItem('src')) {
+    if (localStorage.getItem('src')) { // картинка
         dragableImg.src = localStorage.getItem('src');
-        resizeableImage($('.resize-image'));
+        resizeableImage($('.resize-image')); // инициализация плагина трансформации
         imgBlock.style.display = 'block';
         mainBlock.style.display = 'block';
     } else {
@@ -56,25 +56,24 @@ window.onload = () => {
 
     }
 
-    if (localStorage.getItem('transform')) {
+    if (localStorage.getItem('transform')) { // поворот картинки
         dragableImg.style.transform = localStorage.getItem('transform');
     }
 
     /* Вешаем события на кнопи */
     clearBtn.addEventListener('click', () => {
-        clear(dragableImg, container);
+        clear();
     });
     /* Нажали сохранить */
     exportBtn.addEventListener('click', () => {
         // проверка зафиксили ли текст
         let text = document.querySelector('.contenteditable').innerText;
         if (text) {
-            let next = confirm('Вы редатировали текст.Зафиксировать его перед скриншотом? (отмена - продолжить редактирование)');
-            if (!next) return;
+            // let next = confirm('Вы редатировали текст.Зафиксировать его перед скриншотом? (отмена - продолжить редактирование)');
+            // if (!next) return;
             fixText(contenteditable, container);
         }
         // убираем те элементы которы не должны быть на скриншоте
-        // document.querySelector('.resize-img').style.border = 'none';
         if (document.querySelector('.btn-block')) {
             document.querySelector('.btn-block').style.display = 'none';
         }
@@ -127,7 +126,6 @@ function exportImg(elem, innerImg) {
         localStorage.setItem('src', innerImg.src);
         // console.log(innerImg.style.transform);
         if (innerImg.style.transform) { // если только вертели картинку
-            // console.log(innerImg.style.transform);
             localStorage.setItem('transform', innerImg.style.transform);
         }
         // перезагружаемся
@@ -136,7 +134,7 @@ function exportImg(elem, innerImg) {
 }
 
 /* Возвращаем в девственное состояние */
-function clear(dragablElem, container) {
+function clear() {
     localStorage.clear();
     // перезагружаемся
     location.reload();
@@ -152,11 +150,6 @@ function str_rand(len) {
         result = result + words.substring(position, position + 1);
     }
     return result;
-}
-
-//
-function showDragImg(elem) {
-    elem.style.visibility = 'visible';
 }
 
 // получить расширение файла
@@ -196,8 +189,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-/////
+// получаем файл картинки, вставляем в нужный блок, инициализируем плагин
 function readFile(input, img) {
+    // console.log(input);
+    // return;
     let file = input.files[0];
     if (getFileExt(file.name) != 'png') {
         alert('Ата-та, только PNG');
@@ -207,24 +202,21 @@ function readFile(input, img) {
     let reader = new FileReader();
     reader.readAsDataURL(file)
     reader.onload = function () {
-        // console.log(reader.result);
         container.src = reader.result;
-        resizeableImage($('.resize-image')); // init плагина
-        // document.querySelector('.img-control').style.display = 'block';
-        // document.querySelector('.main-block').style.display = 'block';
+        // resizeableImage($('.resize-image')); // init плагина
+        resizeableImage(container); // init плагина
     };
     reader.onerror = function () {
         console.log(reader.error);
     };
-
 }
 
-function imgAdd(elem) {
-    document.querySelector('.img-block-over').style.display = 'none';
+function imgAdd(elem) { // имитируем клик на input type=file
+    document.querySelector('.img-block-over').style.display = 'none'; // снимаем оверлей
     elem.click();
 }
 
-function allAdd() {
+function allAdd() { // верхняя кнопка "с плюсиком"
     let buttons = document.querySelectorAll('.rBt');
     let i = 0;
     while (buttons[i]) {
@@ -237,20 +229,14 @@ function allAdd() {
     }
 }
 
-function textAdd(area) {
+function textAdd(area) { // пока не задействована
     document.getElementById('contenteditable').style.display = 'block';
-    // area.style.display = 'inlineBlock';
-    // resizeableImage($('#contenteditable')); // init плагина
 }
 
-/* Драг дроп блока с текстом */
+/* Drag & Drop блока с текстом */
 contenteditable.onmousedown = function (event) {
-
     let shiftX = event.clientX - contenteditable.getBoundingClientRect().left;
     let shiftY = event.clientY - contenteditable.getBoundingClientRect().top;
-
-    // contenteditable.style.position = 'absolute';
-    // contenteditable.style.zIndex = 1000;
     document.body.append(contenteditable);
 
     moveAt(event.pageX, event.pageY);
@@ -261,25 +247,15 @@ contenteditable.onmousedown = function (event) {
         contenteditable.style.left = pageX - shiftX + 'px';
         contenteditable.style.top = pageY - shiftY + 'px';
     }
-
     function onMouseMove(event) {
         moveAt(event.pageX, event.pageY);
     }
-
     // передвигаем блок при событии mousemove
     document.addEventListener('mousemove', onMouseMove);
-
     // отпустить блок, удалить ненужные обработчики
     contenteditable.onmouseup = function (e) {
         document.removeEventListener('mousemove', onMouseMove);
         contenteditable.onmouseup = null;
-
-        /*let container = document.getElementById('img-container');
-        let end = confirm('Зафиксировать текстовый слой? (отмена - продолжить редактирование)');
-        if (end) { // создаем клон блока с текстом а прежний убиваем
-            fixText(contenteditable, container);
-            localStorage.setItem('textFixed', 1);
-        }*/
     };
 
 };
@@ -287,12 +263,14 @@ contenteditable.onmousedown = function (event) {
 contenteditable.ondragstart = function () {
     return false;
 }
-/**/
 
 /* Убиваем текстовый контейнер.И на его место копию.После драгдропа не берется скриншот !!!!!!!!!!!!!!! */
+// запускается перед снятием скриншота
 function fixText(textContainer, mainContainer) {
+    // получаем координаты
     let x = textContainer.offsetLeft - mainContainer.offsetLeft;
     let y = textContainer.offsetTop - mainContainer.offsetTop;
+    // данные с контролов в правой части страницы
     let inText = textContainer.innerText;
     let font = document.getElementById('font').value;
     let fontSize = document.getElementById('fontSize').value;
@@ -322,7 +300,7 @@ function fixText(textContainer, mainContainer) {
     localStorage.setItem('letSps', letSps);
 }
 
-// control
+// Привязываем события на контролах
 innerText.addEventListener('input', () => {
     contenteditable.innerText = innerText.value;
 });
@@ -343,108 +321,3 @@ letSps.addEventListener('input', () => {
     console.log('here');
     contenteditable.style.letterSpacing = letSps.value + 'px';
 });
-
-
-/**********************************************/
-/*DRAG DROP Взял откудато с codepen.io */
-/* Работает не трогаю */
-/*document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
-    const dropZoneElement = inputElement.closest(".drop-zone");
-
-    dropZoneElement.addEventListener("click", (e) => {
-        inputElement.click();
-    });
-
-    inputElement.addEventListener("change", (e) => {
-        if (inputElement.files.length) {
-            updateThumbnail(dropZoneElement, inputElement.files[0]);
-        }
-    });
-
-    dropZoneElement.addEventListener("dragover", (e) => {
-        e.preventDefault();
-        dropZoneElement.classList.add("drop-zone--over");
-    });
-
-    ["dragleave", "dragend"].forEach((type) => {
-        dropZoneElement.addEventListener(type, (e) => {
-            dropZoneElement.classList.remove("drop-zone--over");
-        });
-    });
-
-    dropZoneElement.addEventListener("drop", (e) => {
-        e.preventDefault();
-
-        if (e.dataTransfer.files.length) {
-            inputElement.files = e.dataTransfer.files;
-            updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
-        }
-
-        dropZoneElement.classList.remove("drop-zone--over");
-    });
-});
-
-/!**
- * Updates the thumbnail on a drop zone element.
- *
- * @param {HTMLElement} dropZoneElement
- * @param {File} file
- *!/
-function updateThumbnail(dropZoneElement, file) {
-    let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
-
-    // First time - remove the prompt
-    if (dropZoneElement.querySelector(".drop-zone__prompt")) {
-        dropZoneElement.querySelector(".drop-zone__prompt").remove();
-    }
-
-    // First time - there is no thumbnail element, so lets create it
-    if (!thumbnailElement) {
-        thumbnailElement = document.createElement("div");
-        thumbnailElement.classList.add("drop-zone__thumb");
-        dropZoneElement.appendChild(thumbnailElement);
-    }
-
-    thumbnailElement.dataset.label = file.name;
-
-    // Show thumbnail for image files
-    if (file.type.startsWith("image/")) {
-        const reader = new FileReader();
-
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-            let img = reader.result;
-            thumbnailElement.style.backgroundImage = `url('${img}')`;
-            let fileExt = getFileExt(file.name); // расширение файла
-            // допустимые расширения
-            let res = ['png', 'PNG'].indexOf(fileExt);
-            if (res < 0) {
-                alert('Недопустимый тип файла !');
-                return;
-            }
-            // такой финт ушами чтобы узнать реальные размеры Base64 изображения
-            const tmpImg = new Image();
-            tmpImg.src = img;
-            tmpImg.onload = function() {
-                const imgWidth = tmpImg.naturalWidth;
-                const imgHeight = tmpImg.naturalHeight;
-                const newImg = document.getElementById('img2');
-                newImg.src = img; //
-                newImg.style.width = imgWidth + 'px';
-                newImg.style.height = imgHeight + 'px';
-                // вставляем в инпуты ширины/высоты
-                document.getElementById('width').value = imgWidth;
-                document.getElementById('height').value = imgHeight;
-                // сохраняем
-                localStorage.setItem('src', img);
-                localStorage.setItem('w', imgWidth);
-                localStorage.setItem('h', imgHeight);
-                location.reload();
-            };
-        };
-    } else {
-        thumbnailElement.style.backgroundImage = null;
-    }
-
-}*/
-/////////////

@@ -1,5 +1,5 @@
 <?php
-
+//die;
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 
@@ -32,7 +32,7 @@ if (!$bg_src) {
         </div>
         <div class="right" style="margin-left: 1em">
             <div class="img-control">
-                <div class="img-block-over"></div>
+<!--                <div class="img-block-over"></div>-->
                 <div style="width: 10em">
                     <b>Поворот картинки</b>
                     <div class="d-flex justify-content-between">
@@ -74,7 +74,7 @@ if (!$bg_src) {
                 <br>
                 <b>Размер (px)</b>
                 <br>
-                <input id="fontSize" type="number" min="16" max="300" value="24">
+                <input id="fontSize" type="number" min="1" max="300" value="24">
                 <br>
                 <br>
                 <b>Цвет</b>

@@ -33,4 +33,9 @@ class TestController extends Controller
         return $this->render('new', compact('model'));
     }
 
+    public function actionAlert()
+    {
+        return $this->render('alert');
+    }
+
 }
