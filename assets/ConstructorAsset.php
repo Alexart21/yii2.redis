@@ -9,11 +9,11 @@ class ConstructorAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'vue_assets/css/app.3340355b.css',
+        'vue_assets/css/app.c3441e6c.css',
     ];
     public $js = [
         'vue_assets/js/chunk-vendors.177daa20.js',
-        'vue_assets/js/app.5f1492b5.js',
+        'vue_assets/js/app.43df74c9.js',
     ];
     public $depends = [
     ];
