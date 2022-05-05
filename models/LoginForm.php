@@ -40,7 +40,7 @@ class LoginForm extends Model
                 'uncheckedMessage' => 'Подтвердите, что вы не робот'],*/
 
             //reCaptcha v3
-           /* [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator3::className(),
+            /*[['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator3::class,
                 'secret' => Yii::$app->params['secretV3'], // unnecessary if reСaptcha is already configured
                 'threshold' => 0.5,
                 'action' => 'login',

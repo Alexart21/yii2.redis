@@ -5,6 +5,7 @@ use yii\bootstrap4\Modal;
 use yii\helpers\Html;
 use yii\widgets\MaskedInput;
 use yii\widgets\Pjax;
+use Yii;
 
 $this->title = 'Call';
 ?>
@@ -37,16 +38,16 @@ Modal::begin([
             ]);
         ?>
 
-        <?/*= $form->field($formModel, 'reCaptcha')->widget(
+        <?php echo $form->field($formModel, 'reCaptcha')->widget(
             \himiklab\yii2\recaptcha\ReCaptcha2::class,
             [
-                'siteKey' => '6LfRBQEaAAAAAEqEbZSrlYH0sQz5Q-bX58GHPNjL', // unnecessary is reCaptcha component was set up
+                'siteKey' =>  Yii::$app->params['siteKeyV2'], // unnecessary is reCaptcha component was set up
             ]
-        ) */?>
+        ) ?>
 
-        <?/*= \himiklab\yii2\recaptcha\ReCaptcha3::widget([
+        <?php /*echo \himiklab\yii2\recaptcha\ReCaptcha3::widget([
             'name' => 'reCaptcha',
-            'siteKey' => '6LfNdr4ZAAAAAIKLdnRzRCWwNM6HyP0qo0nYglbN', // unnecessary is reCaptcha component was set up
+            'siteKey' => Yii::$app->params['siteKeyV2'], // unnecessary is reCaptcha component was set up
             'action' => 'call',
         ]) */?>
 

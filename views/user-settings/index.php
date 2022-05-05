@@ -202,7 +202,8 @@ $csrf_token = Yii::$app->request->csrfToken;
                         return;
                     }
                     // В config/params.php не забудь изменения !!!
-                    url = '<?= Yii::$app->params['protocol'] ?>://<?= Yii::$app->params['siteUrl'] ?>/user-settings';
+                    //url = '<?php //echo Yii::$app->params['protocol'] ?>//://<?php //echo Yii::$app->params['siteUrl'] ?>///user-settings';
+                    url = '/user-settings';
                     /* Fetch без индикатора загрузки */
                     /*let response = fetch(url, {
                         method: 'POST',

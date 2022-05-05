@@ -116,12 +116,13 @@ class UserController extends Controller
         $model = new LoginForm();
 
         // AJAX валидация ( только для поля usename_or_email)
-        if (Yii::$app->request->isAjax) {
+        // При включенной AJAX валидации google reCaptcha выдает ошибку!!! выбирай...
+        /*if (Yii::$app->request->isAjax) {
             if ($model->load(Yii::$app->request->post())) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
                 return ActiveForm::validate($model);
             }
-        }
+        }*/
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $user = User::findByUsernameOrEmail($model->login_or_email); // проверяем по имени либо email
@@ -190,12 +191,13 @@ class UserController extends Controller
         $this->layout = 'auth';
         $model = new SignupForm();
         // AJAX валидация (usename, email, password)
-        if (Yii::$app->request->isAjax) {
+        // При включенной AJAX валидации google reCaptcha выдает ошибку!!! выбирай...
+        /*if (Yii::$app->request->isAjax) {
             if ($model->load(Yii::$app->request->post())) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
                 return ActiveForm::validate($model);
             }
-        }
+        }*/
         // обычная отправка формы
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $usrId = $model->signupRequest(); // занесли в базу и отправили пимьмо заявителю вернули ID нового юзера

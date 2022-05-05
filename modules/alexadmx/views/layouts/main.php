@@ -19,10 +19,13 @@ $newCallCount = $session->get('newCallCount');
 $allPostCount = $session->get('allPostCount');
 $allCallCount = $session->get('allCallCount');
 
-$model = User::findOne(['username' => $user]);
+$model = User::findOne(['id' => User::ADMIN_ID]);
+//debug($model);
+//var_dump($model->avatar_path);
+//die;
 $avatar = $model->avatar_path ? '/upload/users/usr' . $model->id . '/img/' . $model->avatar_path : '/upload/default_avatar/no-image.png';
+//$avatar = '/upload/users/usr1/img/admin.png';
 //var_dump($avatar);die;
-//$avatar = null;
 ?>
 
 <?php $this->beginPage() ?>

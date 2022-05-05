@@ -29,25 +29,29 @@ $this->params['breadcrumbs'][] = $this->title;
     ]);
     ?>
     <!--    <fieldset>-->
-    <?= $form->field($model, 'username', ['enableAjaxValidation' => true])->textInput(['autofocus' => true, 'placeholder' => 'Имя'])->label(false)->error(['style' => 'max-width:300px']) ?>
-    <?= $form->field($model, 'email', ['enableAjaxValidation' => true])->textInput(['placeholder' => 'email'])->label(false) ?>
-    <?= $form->field($model, 'password', ['enableAjaxValidation' => true, 'template' => "<div class='form-group'> {input} <span class=\"clicked fa fa-eye-slash\"></span><div>{error}</div></div>",])->passwordInput(['class' => 'pass-input', 'placeholder' => 'пароль'])->label(false) ?>
+    <!-- При включенной AJAX валидации google reCaptcha выдает ошибку!!! выбирай... -->
+    <?php //echo $form->field($model, 'username', ['enableAjaxValidation' => true])->textInput(['autofocus' => true, 'placeholder' => 'Имя'])->label(false)->error(['style' => 'max-width:300px']) ?>
+    <?= $form->field($model, 'username')->textInput(['autofocus' => true, 'placeholder' => 'Имя'])->label(false)->error(['style' => 'max-width:300px']) ?>
+    <?php //echo $form->field($model, 'email', ['enableAjaxValidation' => true])->textInput(['placeholder' => 'email'])->label(false) ?>
+    <?= $form->field($model, 'email')->textInput(['placeholder' => 'email'])->label(false) ?>
+    <?php //echo $form->field($model, 'password', ['enableAjaxValidation' => true, 'template' => "<div class='form-group'> {input} <span class=\"clicked fa fa-eye-slash\"></span><div>{error}</div></div>",])->passwordInput(['class' => 'pass-input', 'placeholder' => 'пароль'])->label(false) ?>
+    <?= $form->field($model, 'password', ['template' => "<div class='form-group'> {input} <span class=\"clicked fa fa-eye-slash\"></span><div>{error}</div></div>",])->passwordInput(['class' => 'pass-input', 'placeholder' => 'пароль'])->label(false) ?>
     <?= $form->field($model, 'password_repeat', ['template' => "<div class='form-group'> {input} <span class=\"clicked fa fa-eye-slash\"></span><div>{error}</div></div>",])->passwordInput(['class' => 'pass-input', 'placeholder' => 'пароль еще раз'])->label(false) ?>
-    <!--            --><? //= $form->field($model,'avatar')->fileInput()  ?>
+    <!--            --><?php //echo $form->field($model,'avatar')->fileInput()  ?>
     <!--<h3>Аватар</h3>
     <div class="drop-zone">
         <span class="drop-zone__prompt"><span class="fa fa-cloud-download-alt"></span><br>Кликните или перетащите файл<br><b>(jpg,tif,png,gif)</b></span>
-        <?/*= $form->field($model, 'avatar')->fileInput(['class' => 'drop-zone__input'])->label(false) */?>
+        <?php /*echo $form->field($model, 'avatar')->fileInput(['class' => 'drop-zone__input'])->label(false) */?>
     </div>
     <br>-->
-    <? /*= $form->field($model, 'reCaptcha')->widget(
-                \himiklab\yii2\recaptcha\ReCaptcha2::class,
-                [
-                    'siteKey' => '6LfRBQEaAAAAAEqEbZSrlYH0sQz5Q-bX58GHPNjL', // unnecessary is reCaptcha component was set up
-                ]
-            )  */ ?>
+    <?php /*echo $form->field($model, 'reCaptcha')->widget(
+        \himiklab\yii2\recaptcha\ReCaptcha2::class,
+        [
+            'siteKey' =>  Yii::$app->params['siteKeyV2'], // unnecessary is reCaptcha component was set up
+        ]
+    ) */?>
 
-    <? /*= \himiklab\yii2\recaptcha\ReCaptcha3::widget([
+    <?php /*echo \himiklab\yii2\recaptcha\ReCaptcha3::widget([
                 'name' => 'reCaptcha',
                 'siteKey' => '6LfNdr4ZAAAAAIKLdnRzRCWwNM6HyP0qo0nYglbN', // unnecessary is reCaptcha component was set up
                 'action' => 'signup',

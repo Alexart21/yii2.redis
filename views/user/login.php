@@ -1,7 +1,10 @@
 <?php
+//debug(Yii::$app->params);
+//die;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 use yii\bootstrap4\Modal;
+//use Yii;
 
 $this->title = 'Вход';
 //$this->params['breadcrumbs'][] = $this->title; // в виде закрывает поля
@@ -42,23 +45,19 @@ Modal::begin([
     <?php $form = ActiveForm::begin([
         'id' => 'login-form',
     ]); ?>
+<!-- При включенной AJAX валидации google reCaptcha выдает ошибку!!! выбирай... -->
+<?php //echo $form->field($model, 'login_or_email', ['enableAjaxValidation' => true, 'template' => "<div class='form-group'> {input} <span class=\"clicked fa fa-user\"></span><div>{error}</div></div>",])->textInput(['placeholder' => 'Имя или E-mail', 'autofocus' => true]) ?>
 
-    <?= $form->field($model, 'login_or_email', ['enableAjaxValidation' => true, 'template' => "<div class='form-group'> {input} <span class=\"clicked fa fa-user\"></span><div>{error}</div></div>",])->textInput(['placeholder' => 'Имя или E-mail', 'autofocus' => true]) ?>
+    <?= $form->field($model, 'login_or_email', ['template' => "<div class='form-group'> {input} <span class=\"clicked fa fa-user\"></span><div>{error}</div></div>",])->textInput(['placeholder' => 'Имя или E-mail', 'autofocus' => true]) ?>
     <br/>
     <?= $form->field($model, 'password', ['template' => "<div class='form-group'> {input} <span class=\"clicked fa fa-eye-slash\"></span><div>{error}</div></div>",])->passwordInput(['class' => 'pass-input', 'placeholder' => 'Пароль']) ?>
 
-    <?/*= $form->field($model, 'reCaptcha')->widget(
+    <?php /*echo $form->field($model, 'reCaptcha')->widget(
         \himiklab\yii2\recaptcha\ReCaptcha2::class,
         [
-            'siteKey' => '6LfRBQEaAAAAAEqEbZSrlYH0sQz5Q-bX58GHPNjL', // unnecessary is reCaptcha component was set up
+            'siteKey' =>  Yii::$app->params['siteKeyV2'], // unnecessary is reCaptcha component was set up
         ]
-    )  */?>
-
-    <? /*= \himiklab\yii2\recaptcha\ReCaptcha3::widget([
-        'name' => 'reCaptcha',
-        'siteKey' => '6LfNdr4ZAAAAAIKLdnRzRCWwNM6HyP0qo0nYglbN', // unnecessary is reCaptcha component was set up
-        'action' => 'login',
-    ]) */ ?>
+    ) */?>
 
     <?= $form->field($model, 'rememberMe')->checkbox([
         'template' => "<div class=\"squaredTwo\">{input} {label}<span id =\"labelText\">Запомнить на " . Yii::$app->params['rememberMeDay'] . " дней</span></div>\n<div class=\"col-lg-8\">{error}</div>",

@@ -32,7 +32,7 @@ use Yii;
 
 class User extends ActiveRecord implements \yii\web\IdentityInterface
 {
-    public $avatar_path;// Почему без этого Unknow ...... ????
+//    public $avatar_path;// Почему без этого Unknow ...... ????
 
     public static function tableName()
     {
@@ -66,6 +66,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_REQUEST, self::STATUS_DELETED]],
             ['role', 'in', 'range' => [self::ROLE_USER, self::ROLE_ADMIN]],
             ['avatar_path', 'string'],
+            ['avatar_path', 'safe'],
             [['username', 'email'], 'required'],
             [['role', 'status', 'created_at', 'updated_at'], 'integer'],
             [['register_token', 'password_reset_token'], 'string'],

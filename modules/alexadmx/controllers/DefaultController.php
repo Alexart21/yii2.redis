@@ -94,7 +94,8 @@ class DefaultController extends AppAlexadmxController
             }
 
             $date = date('Y-m-d', $data['last_mod']);
-            $XML .= "\r\n<url>\r\n\t<loc>https://www." . Yii::$app->params['siteUrl'] . $data['page'] . "</loc>\r\n\t<changefreq>weekly</changefreq>\r\n\t<lastmod>" . $date . "</lastmod>\r\n\t<priority>" . $contentPriority . "</priority>\r\n</url>";
+//            $XML .= "\r\n<url>\r\n\t<loc>https://" . Yii::$app->params['siteUrl'] . $data['page'] . "</loc>\r\n\t<changefreq>weekly</changefreq>\r\n\t<lastmod>" . $date . "</lastmod>\r\n\t<priority>" . $contentPriority . "</priority>\r\n</url>";
+            $XML .= "\r\n<url>\r\n\t<loc>https://" . 'alexart.s-solo.ru' . $data['page'] . "</loc>\r\n\t<changefreq>weekly</changefreq>\r\n\t<lastmod>" . $date . "</lastmod>\r\n\t<priority>" . $contentPriority . "</priority>\r\n</url>";
         }
 
 

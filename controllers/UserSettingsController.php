@@ -77,6 +77,7 @@ class UserSettingsController extends \yii\web\Controller
     public function actionIndex()
     {
         $model = User::findOne(Yii::$app->user->identity->getId());
+
         if (!$model) {
             throw new MethodNotAllowedHttpException('Нет такого пользователя.Как ты сюда попал(а)?!');
         }

@@ -5,7 +5,7 @@ return [
     'bk_email' => 'alexart21@bk.ru', // куда
     'sender_email' => 'mail@houme21.ru', // от кого
     /**/
-    'siteUrl' =>'alexart.local',
+    'siteUrl' =>'alexart.s-solo.ru',
     'protocol' =>'https',
     'company' => 'Alex-art21',
     'email' => 'mail@site.ru',
@@ -15,7 +15,7 @@ return [
     'tel1_min' => '+79876680484',
     'tel1_i' => '79876680484',
     'admin' => 'admin_alex',
-    'rateLimit' => 10, // попыток входа в минуту. В scripts.js Тоже можно эту цифру (строка )
+    'rateLimit' => 5, // попыток входа в минуту. В scripts.js Тоже можно эту цифру (строка )
     /*
         1728000 => 20 суток
         2592000 => 30 суток

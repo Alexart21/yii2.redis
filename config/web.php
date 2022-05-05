@@ -199,7 +199,7 @@ $config = [
                 ],
         ],
 
-        'reCaptcha' => [ // for houme21.ru
+        'reCaptcha' => [
             'class' => 'himiklab\yii2\recaptcha\ReCaptchaConfig',
             'siteKeyV2' => $my_config['siteKeyV2'],
             'secretV2' => $my_config['secretV2'],

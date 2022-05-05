@@ -95,7 +95,6 @@ class SiteController extends Controller
                         ]);
                     }
                     $user->generateAuthKey();
-//                    $user->generatePasswordResetToken();
                     $transaction = $user->getDb()->beginTransaction();
                     if ($user->save()) {
                         $auth = new Auth([

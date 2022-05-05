@@ -49,11 +49,15 @@ class User extends \yii\db\ActiveRecord
         return [
             [['username'], 'trim'],
             [['username'], 'string', 'max' => 100],
+            ['avatar_path', 'string'],
+            ['avatar_path', 'safe'],
             // имя проверяем на уникальность в базе кроме текукущего (имя не изменили)
             ['username', 'unique', 'targetClass' => '\app\models\User', 'message' => 'Такое имя уже существует.Введите другое', 'when' => function ($model) {
                 return $model->username != Yii::$app->user->identity->username;
             }],
-            ['username', 'match', 'pattern' => '/^[a-z]\w*$/i', 'message' => 'Имя должно начинаться с буквы и содержать только буквенные символы,числовые символы и знак подчеркивания'],
+            // данная валидация не катит при oAuth авторизации. Там имя может придти с пробелом Вася Пупкин например.
+            //И все пипец! метод save() не сработает! Не проходит валидация.Имей в виду!
+//            ['username', 'match', 'pattern' => '/^[a-z]\w*$/i', 'message' => 'Имя должно начинаться с буквы и содержать только буквенные символы,числовые символы и знак подчеркивания'],
             [['avatar'], 'file', 'skipOnEmpty' => true, 'extensions' => ['jpeg', 'jpg', 'png', 'gif', 'webp'], 'maxSize' => Yii::$app->params['max_avatar_size'] * 1024],
         ];
     }
