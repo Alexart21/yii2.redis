@@ -12,11 +12,13 @@ $this->params['breadcrumbs'][] = $this->title;
 <h3><?= $this->title . ' для пользователя ' . '<span class="text-primary underline">' . $user->username . '</span>' ?></h3>
 <div class="pass" style="max-width: 600px">
     <?php $form = ActiveForm::begin(['id' => 'reset-password-form']); ?>
-    <?= $form->field($model, 'password', ['template' => "<div class='form-group'> {input} <span class=\"fa fa-eye\"></span><div>{error}</div></div>",])->textInput(['autofocus' => true, 'placeholder' => 'новый пароль', 'class' => 'pass-field'])->label(false) ?>
-    <?= $form->field($model, 'password_repeat', ['template' => "<div class='form-group'> {input} <span class=\"fa fa-eye\"></span><div>{error}</div></div>",])->textInput(['placeholder' => 'повторите пароль', 'class' => 'pass-field'])->label(false) ?>
+    <?= $form->field($model, 'password', ['template' => "<div class='form-group'> {input} <span onclick='toggleViz()' class=\"eye fa fa-eye\"></span><div>{error}</div></div>",])->textInput(['autofocus' => true, 'placeholder' => 'новый пароль', 'class' => 'pass-field'])->label(false) ?>
+    <?= $form->field($model, 'password_repeat', ['template' => "<div class='form-group'> {input} <span onclick='toggleViz()' class=\"eye fa fa-eye\"></span><div>{error}</div></div>",])->textInput(['placeholder' => 'повторите пароль', 'class' => 'pass-field'])->label(false) ?>
     <div style="display: inline-block">
         <button type="button" class="btn btn-light" onclick="generatePass()">сгенерировать</button>&nbsp;&nbsp;
-        кол-во символов&nbsp;&nbsp;<input id="len" type="number" min="6" max="256" value="12" style="width: 3em !important;">
+        кол-во символов&nbsp;&nbsp;<input id="len" type="number" min="6" max="256" value="12"
+                                          style="width: 3em !important;">
+        &nbsp;&nbsp;<button type="button" onclick="clearForm()" class="btn btn-warning">сброс</button>
     </div>
     <br>
     <br>
@@ -27,24 +29,6 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 <script>
-    // Переключение видимости символов пароля и иконки
-    const icon = document.querySelectorAll('.fa');
-    let inp = [];
-    for (let i = 0; i < icon.length; i++) {
-        icon[i].addEventListener('click', (e) => {
-            inp[i] = icon[i].previousElementSibling;
-            if (icon[i].classList.contains('fa-eye-slash')) {
-                icon[i].classList.remove('fa-eye-slash');
-                icon[i].classList.add('fa-eye');
-                inp[i].setAttribute('type', 'text');
-            } else {
-                icon[i].classList.remove('fa-eye');
-                icon[i].classList.add('fa-eye-slash');
-                inp[i].setAttribute('type', 'password');
-            }
-        });
-    }
-    //
     function strRand(len) { // случайная строка
         let result = '';
         let words = '0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM@#$%&';
@@ -55,16 +39,37 @@ $this->params['breadcrumbs'][] = $this->title;
         }
         return result;
     }
-    function generatePass(){
+    //
+    function generatePass() {
         const len = document.getElementById('len').value;
-        // console.log(len);
         const str = strRand(len);
         const fields = document.querySelectorAll('.pass-field');
-        // console.log(fields);
         let i = 0;
-        while (fields[i]){
+        while (fields[i]) {
             fields[i].value = str;
             i++;
         }
+    }
+    // Переключение видимости символов пароля и иконки
+    function toggleViz() {
+        let fields = document.querySelectorAll('.pass-field');
+        let icons = document.querySelectorAll('.eye');
+        let i = 0;
+        while (fields[i]) {
+            if (fields[i].getAttribute('type') === 'text') {
+                fields[i].setAttribute('type', 'password');
+                icons[i].classList.remove('fa-eye');
+                icons[i].classList.add('fa-eye-slash');
+            } else {
+                fields[i].setAttribute('type', 'text');
+                icons[i].classList.remove('fa-eye-slash');
+                icons[i].classList.add('fa-eye');
+            }
+            i++;
+        }
+    }
+    //
+    function clearForm(){
+        document.forms[0].reset();
     }
 </script>
