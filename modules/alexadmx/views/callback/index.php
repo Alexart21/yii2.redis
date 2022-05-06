@@ -51,11 +51,11 @@ $session = Yii::$app->session;
 //            'date',
             [
                 'attribute' => 'date',
-                'format' => ['datetime', 'php:d M Y H:i:s'],
+                'format' => ['datetime', 'php:d M Y H:i'],
             ],
             /*[
                 'attribute' => 'date',
-                'format' => 'date',
+                'format' => 'raw',
             ],*/
             [
                 'attribute' => 'is_read',

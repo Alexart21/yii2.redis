@@ -10,7 +10,7 @@ use app\models\User;
 AdminLteAsset::register($this);
 
 $user = strtolower(Yii::$app->user->identity->username);
-
+// данные в сессию записаны в родительском контроллере AppAlexadmxController
 $session = Yii::$app->session;
 
 $newPostCount = $session->get('newPostCount');
@@ -19,13 +19,8 @@ $newCallCount = $session->get('newCallCount');
 $allPostCount = $session->get('allPostCount');
 $allCallCount = $session->get('allCallCount');
 
-$model = User::findOne(['id' => User::ADMIN_ID]);
-//debug($model);
-//var_dump($model->avatar_path);
-//die;
+$model = User::findOne(User::ADMIN_ID);
 $avatar = $model->avatar_path ? '/upload/users/usr' . $model->id . '/img/' . $model->avatar_path : '/upload/default_avatar/no-image.png';
-//$avatar = '/upload/users/usr1/img/admin.png';
-//var_dump($avatar);die;
 ?>
 
 <?php $this->beginPage() ?>

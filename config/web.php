@@ -48,7 +48,11 @@ $config = [
     ],
     'components' => [
         'formatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'dateFormat' => 'dd MMMM yyyy',
             'datetimeFormat' => 'php:d F Y H:i:s',
+            'defaultTimeZone' => 'Europe/Moscow',
+            'locale' => 'ru'
         ],
         'authClientCollection' => [
             'class' => 'yii\authclient\Collection',

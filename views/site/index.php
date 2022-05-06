@@ -398,13 +398,13 @@ $this->endBlock('h1');
     ]
 ) */?>
 
-<?= $form->field($indexForm, 'reCaptcha')->widget(
+<?php /*echo $form->field($indexForm, 'reCaptcha')->widget(
     \himiklab\yii2\recaptcha\ReCaptcha3::class,
     [
         'siteKey' => Yii::$app->params['siteKeyV3'], // unnecessary is reCaptcha component was set up
         'action' => 'index',
     ]
-); ?>
+); */?>
 
     <div class="form-group">
         <?= Html::submitButton('Отправить', ['class' => 'btn success-button animated bounceInDown wow', 'data-wow-delay' => '0.1s']) ?>

@@ -15,9 +15,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= $form->field($model, 'password', ['template' => "<div class='form-group'> {input} <span onclick='toggleViz()' class=\"eye fa fa-eye\"></span><div>{error}</div></div>",])->textInput(['oninput' => 'changeInput()', 'autofocus' => true, 'placeholder' => 'новый пароль', 'class' => 'pass-field'])->label(false) ?>
     <?= $form->field($model, 'password_repeat', ['template' => "<div class='form-group'> {input} <span onclick='toggleViz()' class=\"eye fa fa-eye\"></span><div>{error}</div></div>",])->textInput(['oninput' => 'changeInput()', 'placeholder' => 'повторите пароль', 'class' => 'pass-field'])->label(false) ?>
     <div style="display: inline-block">
-        <button type="button" class="btn btn-light" onclick="generatePass()">сгенерировать</button>&nbsp;&nbsp;
         кол-во символов&nbsp;&nbsp;<input id="len" type="number" min="6" max="256" value="12"
                                           style="width: 3em !important;">
+        <button type="button" class="btn btn-secondary" onclick="generatePass()">генерировать</button>&nbsp;&nbsp;
         &nbsp;&nbsp;<button id="clearBtn" type="button" onclick="clearForm()" style="display: inline;visibility: hidden" class="btn btn-warning">сброс</button>
     </div>
     <br>
