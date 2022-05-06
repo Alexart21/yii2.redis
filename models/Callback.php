@@ -53,7 +53,7 @@ class Callback extends \yii\db\ActiveRecord
             'name' => 'Имя',
             'tel' => 'Тел.',
             'date' => 'Дата',
-            'is_read' => 'статус',
+            'is_read' => 'статус(0-новое 1-обработано)',
         ];
     }
 
