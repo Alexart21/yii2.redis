@@ -12,13 +12,13 @@ $this->params['breadcrumbs'][] = $this->title;
 <h3><?= $this->title . ' для пользователя ' . '<span class="text-primary underline">' . $user->username . '</span>' ?></h3>
 <div class="pass" style="max-width: 600px">
     <?php $form = ActiveForm::begin(['id' => 'reset-password-form']); ?>
-    <?= $form->field($model, 'password', ['template' => "<div class='form-group'> {input} <span onclick='toggleViz()' class=\"eye fa fa-eye\"></span><div>{error}</div></div>",])->textInput(['autofocus' => true, 'placeholder' => 'новый пароль', 'class' => 'pass-field'])->label(false) ?>
-    <?= $form->field($model, 'password_repeat', ['template' => "<div class='form-group'> {input} <span onclick='toggleViz()' class=\"eye fa fa-eye\"></span><div>{error}</div></div>",])->textInput(['placeholder' => 'повторите пароль', 'class' => 'pass-field'])->label(false) ?>
+    <?= $form->field($model, 'password', ['template' => "<div class='form-group'> {input} <span onclick='toggleViz()' class=\"eye fa fa-eye\"></span><div>{error}</div></div>",])->textInput(['oninput' => 'changeInput()', 'autofocus' => true, 'placeholder' => 'новый пароль', 'class' => 'pass-field'])->label(false) ?>
+    <?= $form->field($model, 'password_repeat', ['template' => "<div class='form-group'> {input} <span onclick='toggleViz()' class=\"eye fa fa-eye\"></span><div>{error}</div></div>",])->textInput(['oninput' => 'changeInput()', 'placeholder' => 'повторите пароль', 'class' => 'pass-field'])->label(false) ?>
     <div style="display: inline-block">
         <button type="button" class="btn btn-light" onclick="generatePass()">сгенерировать</button>&nbsp;&nbsp;
         кол-во символов&nbsp;&nbsp;<input id="len" type="number" min="6" max="256" value="12"
                                           style="width: 3em !important;">
-        &nbsp;&nbsp;<button type="button" onclick="clearForm()" class="btn btn-warning">сброс</button>
+        &nbsp;&nbsp;<button id="clearBtn" type="button" onclick="clearForm()" style="display: inline;visibility: hidden" class="btn btn-warning">сброс</button>
     </div>
     <br>
     <br>
@@ -29,6 +29,25 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 <script>
+    // переключение видимости кнопки "сброс"
+    function changeInput(){
+        const fields = document.querySelectorAll('.pass-field');
+        const clearBtn = document.getElementById('clearBtn');
+        let flag = false;
+        let i = 0;
+        while (fields[i]) {
+           if(fields[i].value){
+               flag = true;
+           }
+            i++;
+        }
+        if(flag){
+            clearBtn.style.visibility = 'visible';
+        }else{
+            clearBtn.style.visibility = 'hidden';
+        }
+    }
+    //
     function strRand(len) { // случайная строка
         let result = '';
         let words = '0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM@#$%&';
@@ -49,6 +68,7 @@ $this->params['breadcrumbs'][] = $this->title;
             fields[i].value = str;
             i++;
         }
+        changeInput();
     }
     // Переключение видимости символов пароля и иконки
     function toggleViz() {
@@ -71,5 +91,6 @@ $this->params['breadcrumbs'][] = $this->title;
     //
     function clearForm(){
         document.forms[0].reset();
+        document.getElementById('clearBtn').style.visibility = 'hidden';
     }
 </script>
