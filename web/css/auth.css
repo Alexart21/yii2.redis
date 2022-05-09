@@ -63,6 +63,16 @@ body {
     max-width: 300px;
 }
 
+.logo-over{
+    display: block;
+    position: absolute;
+    z-index: 1000000;
+    left: 0;
+    top: 0;width: 240px;
+    height: 138px;
+    background: transparent
+}
+
 #container{
     height: 100%;
     display: flex;

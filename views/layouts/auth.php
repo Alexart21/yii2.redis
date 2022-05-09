@@ -33,6 +33,9 @@ header('Strict-Transport-Security: max-age=31536000');
 </head>
 <body>
 <?php $this->beginBody() ?>
+<!-- кликабельный оверлей поверх логотипа -->
+<a href="/" title="на главную" class="logo-over">
+</a>
 <div id="container">
     <div class="breadcrumb-out">
         <?php
@@ -58,7 +61,6 @@ header('Strict-Transport-Security: max-age=31536000');
                     if (!Yii::$app->user->isGuest) :
                         $imgLink = Yii::$app->user->identity->avatar_path ? '/upload/users/usr' . Yii::$app->user->identity->id . '/img/' . Yii::$app->user->identity->avatar_path : '/upload/default_avatar/no-image.png';
                         ?>
-<!--                        <img class="avatar-icon" src="--><?//= $imgLink ?><!--" alt="">-->
                         <b>[<?= Yii::$app->user->identity->username ?>]</b>
                         &nbsp;<a href="/user/logout" data-method="post" title="выход"><i class="fa fa-sign-out-alt"></i></a>
                     <?php

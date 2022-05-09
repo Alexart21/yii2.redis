@@ -91,6 +91,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'format' => ['datetime', 'php:d M Y H:i:s'],
         ],
         [
+            'attribute' => 'last_login',
+            'format' => ['datetime', 'php:d M Y H:i:s'],
+        ],
+        [
             'attribute' => 'password',
             'format' => 'raw',
             'value' => function($model)

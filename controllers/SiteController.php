@@ -95,6 +95,7 @@ class SiteController extends Controller
                         ]);
                     }
                     $user->generateAuthKey();
+                    $user->last_login = time();
                     $transaction = $user->getDb()->beginTransaction();
                     if ($user->save()) {
                         $auth = new Auth([

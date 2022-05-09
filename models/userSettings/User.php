@@ -26,6 +26,7 @@ use Yii;
  * @property int $status
  * @property int $created_at
  * @property int $updated_at
+ * @property int $last_login
  *
  * @property Auth[] $auths
  */

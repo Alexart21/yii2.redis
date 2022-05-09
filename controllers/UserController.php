@@ -130,6 +130,8 @@ class UserController extends Controller
             if ($user) {
                 if ($user->isStatusActive()) { // статус 10 для активных
                     $model->login();
+                    $user->last_login = time();
+                    $user->save();
                     if (User::isUserAdmin(Yii::$app->user->identity->username)) { // для админа
                         return $this->redirect('/alexadmx');
                     }
