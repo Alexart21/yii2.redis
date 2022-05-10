@@ -46,9 +46,9 @@ class UserSettingsController extends \yii\web\Controller
             'rateLimiter' => [
                 // сторонняя фича. Пишется в кэш.Бд не трогается.
                 'class' => \ethercreative\ratelimiter\RateLimiter::class,
-//                'only' => ['login'],
-//                'only' => ['login', 'signup', 'requestPasswordReset', 'passwordReset'],
+                'only' => ['avatar', 'email', 'pass', 'close'],
                 // The maximum number of all'ow'ed requests
+//                'rateLimit' => Yii::$app->params['rateLimit'],
                 'rateLimit' => Yii::$app->params['rateLimit'],
                 // The time period for the rates to apply to
                 'timePeriod' => 60,
@@ -59,7 +59,7 @@ class UserSettingsController extends \yii\web\Controller
                 'separateRates' => false,
                 // Whether to return HTTP headers containing the current rate limiting information
                 'enableRateLimitHeaders' => true,
-                'errorMessage' => 'Лимит запросов исчерпан. Не более ' . Yii::$app->params['rateLimit'] . ' попыток в минуту',
+                'errorMessage' => 'Лимит запросов исчерпан. Не более ' . Yii::$app->params['rateLimit'] . ' запросов в минуту',
             ],
         ];
     }
@@ -110,8 +110,18 @@ class UserSettingsController extends \yii\web\Controller
                     throw $e;
                 }
             }
+        }
+        return $this->render('index', compact('model'));
+    }
+
+    public function actionAvatar()
+    {
+        if (Yii::$app->request->isPost) {
             // картинку (здесь асинхронный feth() Yii его не определяет как AJAX)
             if (!empty($_FILES["avatar"]["size"])) { // пришла картинка (использовали на клиенте JS fetch() ())
+                $model = User::findOne(Yii::$app->user->identity->getId());
+                $transaction = User::getDb()->beginTransaction();
+
                 if ($_FILES["avatar"]["size"] > Yii::$app->params['max_avatar_size'] * 1024) { // картинка больше чем позволено
                     Yii::$app->response->statusCode = 413; // 'Length Required'
                     return;
@@ -125,12 +135,17 @@ class UserSettingsController extends \yii\web\Controller
                 $imgName = substr(time(), -4) . strtolower(Yii::$app->security->generateRandomString(12)) . '.' . 'png';
                 $usrId = Yii::$app->user->identity->getId();
                 $basePath = Yii::getAlias('@app/web') . '/upload/users/';
-                $imgDir = $basePath . 'usr' . $usrId . '/img';
-                if (!FileHelper::createDirectory($imgDir)) {
-                    Yii::$app->response->statusCode = 400;
-                    return;
-//                    die('<h1 style="color:red">Непредвиденная ошибка</h1>' . __FILE__ . '<br>' . __LINE__);
+                $imgDir = $basePath . 'usr' . $usrId . '/img/avatar/';
+                // если есть папка с аватаром - очищаем, если нет - создаем
+                if(is_dir($imgDir)){
+                    $this->clearDir($imgDir);
+                }else{
+                    if (!FileHelper::createDirectory($imgDir)) {
+                        Yii::$app->response->statusCode = 400;
+                        return;
+                    }
                 }
+
                 $imgPath = FileHelper::normalizePath($imgDir . '/' . $imgName);
                 try {
                     $model->avatar_path = $imgName;
@@ -148,7 +163,6 @@ class UserSettingsController extends \yii\web\Controller
                 return true;
             }
         }
-        return $this->render('index', compact('model'));
     }
 
     // закрытие аккаунта
@@ -312,8 +326,13 @@ class UserSettingsController extends \yii\web\Controller
     }
 
 
-    public function actionTest()
+    private function clearDir($dir)
     {
-        return $this->render('test');
+        $files =  FileHelper::findFiles($dir);
+        if(!empty($files)){
+            foreach ($files as $file){
+                unlink($file);
+            }
+        }
     }
 }

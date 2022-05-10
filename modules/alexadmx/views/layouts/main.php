@@ -20,7 +20,7 @@ $allPostCount = $session->get('allPostCount');
 $allCallCount = $session->get('allCallCount');
 
 $model = User::findOne(User::ADMIN_ID);
-$avatar = $model->avatar_path ? '/upload/users/usr' . $model->id . '/img/' . $model->avatar_path : '/upload/default_avatar/no-image.png';
+$avatar = $model->avatar_path ? '/upload/users/usr' . $model->id . '/img/avatar/' . $model->avatar_path : '/upload/default_avatar/no-image.png';
 ?>
 
 <?php $this->beginPage() ?>

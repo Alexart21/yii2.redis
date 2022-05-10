@@ -65,6 +65,7 @@ class UserController extends Controller
             'rateLimiter' => [
                 // сторонняя фича. Пишется в кэш.Бд не трогается.
                 'class' => \ethercreative\ratelimiter\RateLimiter::class,
+                'only' => ['login', 'signup', 'requestPasswordReset', 'passwordReset'],
                 // The maximum number of all'ow'ed requests
                 'rateLimit' => Yii::$app->params['rateLimit'],
                 // The time period for the rates to apply to

@@ -60,7 +60,7 @@ $csrf_token = Yii::$app->request->csrfToken;
         default: $status = 'неизвестен';
     }
     //
-    $imgLink = $model->avatar_path ? '/upload/users/usr' . $model->id . '/img/' . $model->avatar_path : '/upload/default_avatar/no-image.png';
+    $imgLink = $model->avatar_path ? '/upload/users/usr' . $model->id . '/img/avatar/' . $model->avatar_path : '/upload/default_avatar/no-image.png';
     ?>
     <?php
     $form = ActiveForm::begin();
@@ -203,7 +203,7 @@ $csrf_token = Yii::$app->request->csrfToken;
                     }
                     // В config/params.php не забудь изменения !!!
                     //url = '<?php //echo Yii::$app->params['protocol'] ?>//://<?php //echo Yii::$app->params['siteUrl'] ?>///user-settings';
-                    url = '/user-settings';
+                    const url = '/user-settings/avatar';
                     /* Fetch без индикатора загрузки */
                     /*let response = fetch(url, {
                         method: 'POST',
@@ -258,6 +258,7 @@ $csrf_token = Yii::$app->request->csrfToken;
                             switch (code) {
                                 case 413 : errText = 'Слишком большой файл.';break;
                                 case 415 : errText = 'Не распознан файл изображения.';break;
+                                case 429 : errText = 'Не более <?= Yii::$app->params['rateLimit'] ?> запросов в минуту.';break;
                                 default : errText = '';
                             }
                             avatar.src = currentSrc;
