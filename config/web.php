@@ -104,10 +104,11 @@ $config = [
             'class' => 'yii\rbac\PhpManager',
         ],*/
         /* Redis кэш */
+        /* Здесь хост прописан для докер контейнера!(гдето может быть и localhost) */
         /*'cache' => [
             'class' => 'yii\redis\Cache',
             'redis' => [
-                'hostname' => 'localhost',
+                'hostname' => '172.17.0.1',
                 'port' => 6379,
                 'database' => 0,
             ]
@@ -115,7 +116,7 @@ $config = [
         /*'session' => [
             'class' => 'yii\redis\Session',
             'redis' => [
-                'hostname' => 'localhost',
+                'hostname' => '172.17.0.1',
                 'port' => 6379,
                 'database' => 0,
             ]

@@ -1,138 +1,3 @@
-<style>
-    body{
-        margin-left: 2em;
-    }
-
-    #msgs-content {
-        display: flex;
-        flex-direction: column-reverse;
-        position: relative;
-        width: 400px;
-        height: 400px;
-        padding: 1em;
-        border: 1px solid blue;
-        overflow-y: auto;
-        margin-bottom: -20px;
-    }
-
-    #schat{
-        position: relative;
-        width: 400px;
-        /*height: 400px;*/
-        padding: 1em;
-        padding-top: 2em;
-        border: 1px solid blue;
-        overflow-y: auto;
-        margin-bottom: -20px;
-    }
-
-    .msg-line {
-        position: relative;
-        background: #eee;
-        padding: .5em;
-        border: 1px solid transparent;
-        border-radius: 5px;
-        margin-bottom: 40px;
-    }
-
-    .full-name {
-        display: block;
-        padding: 0 .5em;
-        position: absolute;
-        left: 0;
-        top: -36px;
-        /*background: #eee;
-        border-top: 1px solid red;
-        border-left: 1px solid red;
-        border-right: 1px solid red;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;*/
-    }
-
-    #chatform-name, #msg {
-        width: 300px;
-        padding-left: 1em;
-    }
-
-
-    .control-label[for=msg]::after {
-        content: '';
-    }
-
-    #chatform-name, #chatform-name:focus, #chatform-name:active {
-        font-weight: bold;
-        border: none !important;
-        outline: none !important;
-        border-left: 1px solid #222 !important;
-        border-bottom: 1px solid #222 !important;
-        background: transparent;
-        border-bottom-left-radius: 5px !important;
-        margin-bottom: -18px;
-    }
-
-    #msg {
-        height: 60px;
-        padding-right: 40px;
-        /*border: none !important;*/
-        outline: none !important;
-        border: 1px solid #222;
-    }
-
-    .ip {
-        font-size: 70%;
-        font-weight: lighter;
-    }
-
-    .msg-line b {
-        font-size: 140% !important;
-    }
-
-    button.fa-telegram-plane {
-        font-size: 40px !important;
-        background: transparent;
-        display: block;
-        position: absolute;
-        bottom: 10px;
-        left: 260px;
-    }
-
-    button.fa-telegram-plane:active, button.fa-telegram-plane:visited {
-        border: none !important;
-        outline: none !important;
-    }
-
-    .dt {
-        display: block;
-        text-align: right;
-        font-size: 70%;
-    }
-
-    .dateOnly {
-        font-size: 100% !important;
-        /*color: hsl(60,100%,50%);*/
-    }
-    #msgsClear, #btnSetUsername, #saveChat{
-        transform: scale(0.8);
-    }
-
-    #msgsClear, #saveChat{
-        display: inline-block;
-        margin-top: 1em;
-    }
-
-    #list li{
-        font-weight: bold;
-        cursor: pointer;
-    }
-
-    #schat > button{
-        color: red !important;
-        position: absolute;
-        right: .5em;
-        top: .5em;
-    }
-</style>
-
 <h1>Web socket chat</h1>
 <div class="d-flex flex-row justify-content-lg-start">
     <div>
@@ -164,12 +29,19 @@
 
     <div id="storage" style="display: none">
         <h2>Есть сохраненные чаты:</h2>
-        <ul id="list"></ul>
+        <ol id="list"></ol>
         <button id="delAll" class="btn btn-danger">удалить все</button>
         <div id="schat" style="display: none"></div>
     </div>
 </div>
 <script>
+    function readCookie(name) {
+        const matches = document.cookie.match(new RegExp(
+            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+        ));
+        return matches ? decodeURIComponent(matches[1]) : undefined;
+    }
+    //
     window.onload = () => {
         $(function () {
             let chat = new WebSocket('ws://localhost:8080/wschat');
@@ -268,33 +140,53 @@
 
     /* Сохранить чат */
     saveChat.addEventListener('click', ()=>{
-        let schat = document.querySelector('#msgs-content').innerHTML;
-        if(schat.length > 0) {
+        const all = localStorage.getItem('wschats');
+        let wschats;
+        if(all){
+          wschats = JSON.parse(all)
+        }else{
+            wschats = [];
+        }
+        const data = document.querySelector('#msgs-content').innerHTML;
+        if(data.length > 0) {
             const dt = new Date();
             const name = prompt('имя для сохранения') + '_' + dt.getFullYear() + '-' + (parseInt(dt.getMonth()) + 1).toString() + '-' + dt.getDate();
-            localStorage.setItem(name, schat);
+            const chat = {};
+            chat.name = name;
+            chat.data = data;
+            wschats.push(chat)
+            localStorage.setItem('wschats', JSON.stringify(wschats));
         }
     });
     /* Сохраненные чаты */
-    if(localStorage.length > 0){
+    let allChats = localStorage.getItem('wschats');
+    if(allChats){
+        allChats = JSON.parse(allChats);
         storage.style.display = 'block';
-        let keys = Object.keys(localStorage);
+        // let keys = Object.keys(localStorage);
         const list = document.getElementById('list');
         // выводим список сохраненных чатов
-        for(let key of keys) {
+        allChats.forEach((item) => {
             let li = document.createElement('li');
             let a = document.createElement('a');
-            a.innerText = key;
-            a.setAttribute('data-chat', key);
+            a.innerText = item.name;
+            a.setAttribute('data-chat', item.name);
             li.append(a);
             list.append(li);
-        }
+        })
         // отображаем нужный чат
         // let chatLi = document.querySelector('#list');
         list.onclick = (e) => {
             let key = e.target.getAttribute('data-chat');
             schat.style.display = 'block';
-            schat.innerHTML = localStorage.getItem(key) + '<button type="button" class="close"></button>';
+            // console.log(allChats)
+            let chatData;
+            allChats.forEach((item) => {
+                if(item.name === key){
+                    chatData = item.data;
+                }
+            })
+            schat.innerHTML = chatData + '<button type="button" class="close"></button>';
             const close = document.querySelector('#schat > button');
             close.onclick = () => {
                 schat.style.display = 'none';
@@ -303,7 +195,7 @@
 
         /* Удалить все сохраненные чаты */
         delAll.onclick = () => {
-            localStorage.clear();
+            localStorage.removeItem('wschats');
             list.innerHTML = '';
             storage.style.display = 'none';
         };

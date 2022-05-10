@@ -6,7 +6,7 @@ use yii\web\Controller;
 
 class WschatController extends Controller
 {
-    public $layout = 'test';
+    public $layout = 'wschat';
 
     public function actionIndex()
     {

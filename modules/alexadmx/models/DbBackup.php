@@ -55,13 +55,14 @@ class DbBackup extends Model
                     Yii::$app->session->setFlash('error', 'Дирректория не доступна для записи.');
                     return Yii::$app->response->redirect(['alexadmx/db-backup/index']);
                 }
-                $fileName = 'dump_' . date('d-m-Y_H-i-s') . '.sql';
-                $filePath = $path . DIRECTORY_SEPARATOR . $fileName;
+//                $fileName = 'dump_' . date('d-m-Y_H-i-s') . '.sql';
                 $db = Yii::$app->getDb();
                 if (!$db) {
                     Yii::$app->session->setFlash('error', 'Нет подключения к базе данных.');
                     return Yii::$app->response->redirect(['alexadmx/db-backup/index']);
                 }
+                $fileName = $this->getDsnAttribute('dbname', $db->dsn) . '_' . date('d-m-Y_H-i-s') . '.sql';
+                $filePath = $path . DIRECTORY_SEPARATOR . $fileName;
                 //Экранируем скобку которая есть в пароле
                 $db->password = str_replace("(", "\(", $db->password);
                 exec('mysqldump --host=' . $this->getDsnAttribute('host', $db->dsn) . ' --user=' . $db->username . ' --password=' . $db->password . ' ' . $this->getDsnAttribute('dbname', $db->dsn) . ' --skip-add-locks > ' . $filePath);
