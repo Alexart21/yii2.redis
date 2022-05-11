@@ -23,7 +23,7 @@ class m211106_075628_create_table_chat extends Migration
         }
 
         $this->createTable($this->tableName, [
-            'id' => $this->primaryKey()->unsigned()->notNull(),
+            'id' => $this->primaryKey()->notNull(),
             'name' => $this->string(40)->notNull(),
             'text' => $this->string(1024)->notNull(),
             'ip' => $this->string(50),

@@ -27,7 +27,6 @@ class FileBackupController extends AppAlexadmxController
 
     public function actionCreate()
     {
-//        set_time_limit(0);
         $backup = Yii::$app->backup;
         $result = $backup->create();
         return Yii::$app->response->redirect(['alexadmx/file-backup/index']);

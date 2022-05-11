@@ -31,6 +31,7 @@ $config = [
 //    'bootstrap' => ['log'],
     'defaultRoute' => 'site/index',
     'language' => 'ru',
+    'timeZone' => 'Europe/Moscow',
     'modules' => [
         'alexadmx' => [ // подключаем модуль админки
             'class' => 'app\modules\alexadmx\Module',
@@ -90,15 +91,15 @@ $config = [
         'backup' => [
             'class' => 'demi\backup\Component',
             // The directory for storing backups files
-            'backupsFolder' => __DIR__ . '/../.backups', // <project-root>/.backups
+            'backupsFolder' => __DIR__ . '/../.backups', // <project-root>/backups
             // Directories that will be added to db-backup
             'directories' => [
-                'upload' => '@app/web/upload',
+                'img' => '@app/web/img',
             ],
             // не будет автоудаления
             'expireTime' => null,
             // бэкап БД реализовал по другому
-             'db' => false,
+            'db' => false,
         ],
         /*'authManager' => [
             'class' => 'yii\rbac\PhpManager',

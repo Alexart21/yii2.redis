@@ -6,4 +6,7 @@ return [
     'password' => 'root',
     'charset' => 'utf8',
     'enableSchemaCache' => true,
+    'on afterOpen' => function($event) {
+        $event->sender->createCommand("SET time_zone='Europe/Moscow';")->execute();
+    },
 ];

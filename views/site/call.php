@@ -5,7 +5,6 @@ use yii\bootstrap4\Modal;
 use yii\helpers\Html;
 use yii\widgets\MaskedInput;
 use yii\widgets\Pjax;
-use Yii;
 
 $this->title = 'Call';
 ?>

@@ -1,13 +1,9 @@
-php_value display_errors 1
-php_value display_startup_errors 1
-php_value error_reporting E_ALL
-
-php_value date.timezone 'Europe/Moscow'
+#php_value error_reporting E_ALL
+#php_value date.timezone 'Europe/Moscow'
 # Без этого google reCapcha не хочит
 php_flag allow_url_fopen on
 
 RewriteEngine on
-
 # redirect from https://
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
