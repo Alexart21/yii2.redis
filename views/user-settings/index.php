@@ -4,6 +4,7 @@
 //debug(unserialize(''));
 //die;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use Yii;
 
@@ -17,28 +18,33 @@ $csrf_token = Yii::$app->request->csrfToken;
     .label {
         cursor: pointer;
     }
+
     .alert {
         display: none;
     }
+
     .img-container img {
         max-width: 100%;
     }
-    #user-btn{
+
+    #user-btn {
         visibility: hidden;
     }
-    .fade{
-        background: rgba(0,0,0,.8);
+
+    .fade {
+        background: rgba(0, 0, 0, .8);
     }
-    .modal-content{
+
+    .modal-content {
         border: 1px solid #000 !important;
         box-shadow: 0 0 20px #fff;
     }
 
-    #container > div.cont-wrapper > div > div.alert{
+    #container > div.cont-wrapper > div > div.alert {
         max-width: 20em !important;
     }
 
-    .progress{
+    .progress {
         visibility: hidden;
         height: 2em;
         border: 0px solid transparent;
@@ -53,11 +59,18 @@ $csrf_token = Yii::$app->request->csrfToken;
 <body>
 <div class="site-login">
     <?php
-    switch ($model->status){
-        case 0 : $status = 'удален';break;
-        case 1 : $status = 'не подтвердивший регистрацию';break;
-        case 10 : $status = 'активен';break;
-        default: $status = 'неизвестен';
+    switch ($model->status) {
+        case 0 :
+            $status = 'удален';
+            break;
+        case 1 :
+            $status = 'не подтвердивший регистрацию';
+            break;
+        case 10 :
+            $status = 'активен';
+            break;
+        default:
+            $status = 'неизвестен';
     }
     //
     $imgLink = $model->avatar_path ? '/upload/users/usr' . $model->id . '/img/avatar/' . $model->avatar_path : '/upload/default_avatar/no-image.png';
@@ -76,14 +89,26 @@ $csrf_token = Yii::$app->request->csrfToken;
     <h5>кликните для смены изображения</h5>
     <span style="max-width: 15em;display: block">jpg, png, gif, webp (макс. <?= Yii::$app->params['max_avatar_size'] ?>kb)</span>
     <br>
+    <div class="d-flex justify-content-center">
     <label class="label">
         <img class="rounded-circle" id="avatar" style="width: 160px;" src="<?= $imgLink ?>" alt="avatar">
         <?= $form->field($model, 'avatar', ['template' => "{input}{error}",])->fileInput(['class' => 'sr-only', 'id' => 'input', 'accept' => 'image/*'])->label(false) ?>
     </label>
     <?php
+    if ($model->avatar_path):
+    ?>
+    <div class="d-flex flex-column justify-content-end">
+        <?= Html::a('удалить', 'user-settings/delete-avatar', ['class' => 'avatar-del align-items-end btn btn-light']) ?>
+    </div>
+    <?php
+    endif;
+    ?>
+    </div>
+    <?php
     ActiveForm::end();
     ?>
-    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true"  data-keyboard="false" data-backdrop="false">
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true"
+         data-keyboard="false" data-backdrop="false">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -109,7 +134,7 @@ $csrf_token = Yii::$app->request->csrfToken;
     </div>
     <br>
     <div class="alert" role="alert"></div>
-<!--    <hr class="auth-hr">-->
+    <!--    <hr class="auth-hr">-->
     <a href="/user-settings/email" class="btn-set">Изменить Email</a>
     <br>
     <a href="/user-settings/pass" class="btn-set">Изменить пароль</a>
@@ -197,7 +222,7 @@ $csrf_token = Yii::$app->request->csrfToken;
                     formData.append('avatar', blob, 'test.png');
                     formData.append('<?= $csrf_param ?>', '<?= $csrf_token ?>');
                     // console.log(blob.size);
-                    if (blob.size > 1024*<?= Yii::$app->params['max_avatar_size'] ?>){
+                    if (blob.size > 1024 * <?= Yii::$app->params['max_avatar_size'] ?>) {
                         $alert.show().addClass('alert-danger').text('Слишком большой файл. Кадрированное изображение не должно превышать <?= Yii::$app->params['max_avatar_size'] ?> кb');
                         return;
                     }
@@ -229,11 +254,11 @@ $csrf_token = Yii::$app->request->csrfToken;
                     xhr.timeout = 20000;
 
                     xhr.onreadystatechange = () => {
-                        if(xhr.readyState == 1) {
+                        if (xhr.readyState == 1) {
                             document.body.style.cursor = 'progress';
                             progressBlock.style.visibility = 'visible';
                             progressBar.classList.add('progress-bar-animated');
-                            if (progressBar.classList.contains('bg-danger')){
+                            if (progressBar.classList.contains('bg-danger')) {
                                 progressBar.classList.remove('bg-danger');
                                 progressBar.classList.add('bg-success');
                             }
@@ -256,10 +281,17 @@ $csrf_token = Yii::$app->request->csrfToken;
                             let code = xhr.status;
                             // console.log("Ошибка " + code);
                             switch (code) {
-                                case 413 : errText = 'Слишком большой файл.';break;
-                                case 415 : errText = 'Не распознан файл изображения.';break;
-                                case 429 : errText = 'Не более <?= Yii::$app->params['rateLimit'] ?> запросов в минуту.';break;
-                                default : errText = '';
+                                case 413 :
+                                    errText = 'Слишком большой файл.';
+                                    break;
+                                case 415 :
+                                    errText = 'Не распознан файл изображения.';
+                                    break;
+                                case 429 :
+                                    errText = 'Не более <?= Yii::$app->params['rateLimit'] ?> запросов в минуту.';
+                                    break;
+                                default :
+                                    errText = '';
                             }
                             avatar.src = currentSrc;
                             // footerIcon.src = footerIconSrc;
@@ -283,6 +315,7 @@ $csrf_token = Yii::$app->request->csrfToken;
     function getFileExt(fname) {
         return fname.slice((fname.lastIndexOf(".") - 1 >>> 0) + 2);
     }
+
     /* Показывать кнопку "изменить имя" только при изменнении инпута */
     const userField = document.getElementById('user-username');
     const userBtn = document.getElementById('user-btn');

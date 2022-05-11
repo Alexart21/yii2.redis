@@ -39,12 +39,12 @@ class m211106_075629_create_table_user extends Migration
             'status' => $this->tinyInteger()->notNull()->defaultValue(1),
             'created_at' => $this->integer(),
             'updated_at' => $this->integer(),
+            'last_login' => $this->integer(),
         ], $collation);
 
 
         $this->createIndex('id', $this->tableName, 'id', true);
         $this->createIndex('username', $this->tableName, ['username','email']);
-        $this->createIndex('username_2', $this->tableName, ['username','email']);
 
     }
 

@@ -308,13 +308,17 @@ class UserSettingsController extends \yii\web\Controller
     /* Удаление аватара */
     public function actionDeleteAvatar()
     {
-        $user = User::findOne(Yii::$app->user->identity->getId());
+        $usrId = Yii::$app->user->identity->getId();
+        $user = User::findOne($usrId);
         if (!$user) {
             throw new MethodNotAllowedHttpException('Нет такого пользователя.Как ты сюда попал(а)?!');
         }
+
+        $delDir = Yii::getAlias('@app/web') . '/upload/users/' . 'usr' . $usrId;
         //
         $transaction = User::getDb()->beginTransaction();
         try {
+            FileHelper::removeDirectory($delDir);
             $user->avatar_path = null;
             $user->save();
             $transaction->commit();
@@ -322,13 +326,13 @@ class UserSettingsController extends \yii\web\Controller
             $transaction->rollBack();
             throw $e;
         }
-        return $this->goHome();
+        return $this->redirect('/user-settings');
     }
 
 
     private function clearDir($dir)
     {
-        $files =  FileHelper::findFiles($dir);
+        $files = FileHelper::findFiles($dir);
         if(!empty($files)){
             foreach ($files as $file){
                 unlink($file);

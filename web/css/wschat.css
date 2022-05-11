@@ -119,9 +119,14 @@ button.fa-telegram-plane:active, button.fa-telegram-plane:visited {
     margin-top: 1em;
 }
 
+#list{
+    list-style: none;
+}
+
 #list li{
     font-weight: bold;
     cursor: pointer;
+    margin-left: -1em;
 }
 
 #schat > button{

@@ -508,3 +508,13 @@ a.btn-set, a.btn-set:active, a.btn-set:visited{
     text-shadow: 0 .5px var(--btn-color);
     /*text-decoration: underline !important;*/
 }
+
+.label{
+    display: block;
+}
+
+.avatar-del{
+    display: block;
+    /*height: 2em;*/
+    /*background: lime;*/
+}

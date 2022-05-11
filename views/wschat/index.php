@@ -29,7 +29,7 @@
 
     <div id="storage" style="display: none">
         <h2>Есть сохраненные чаты:</h2>
-        <ol id="list"></ol>
+        <ul id="list"></ul>
         <button id="delAll" class="btn btn-danger">удалить все</button>
         <div id="schat" style="display: none"></div>
     </div>
@@ -137,13 +137,13 @@
     msgsClear.addEventListener('click', ()=>{
         $('#msgs-content').text('');
     });
-
+    // все сохраненные
+    let allChats = localStorage.getItem('wschats');
     /* Сохранить чат */
     saveChat.addEventListener('click', ()=>{
-        const all = localStorage.getItem('wschats');
         let wschats;
-        if(all){
-          wschats = JSON.parse(all)
+        if(allChats){
+          wschats = JSON.parse(allChats)
         }else{
             wschats = [];
         }
@@ -159,11 +159,9 @@
         }
     });
     /* Сохраненные чаты */
-    let allChats = localStorage.getItem('wschats');
     if(allChats){
         allChats = JSON.parse(allChats);
         storage.style.display = 'block';
-        // let keys = Object.keys(localStorage);
         const list = document.getElementById('list');
         // выводим список сохраненных чатов
         allChats.forEach((item) => {
@@ -175,11 +173,9 @@
             list.append(li);
         })
         // отображаем нужный чат
-        // let chatLi = document.querySelector('#list');
         list.onclick = (e) => {
             let key = e.target.getAttribute('data-chat');
             schat.style.display = 'block';
-            // console.log(allChats)
             let chatData;
             allChats.forEach((item) => {
                 if(item.name === key){
