@@ -111,16 +111,11 @@ class UserController extends AppAlexadmxController
     public function actionDelete($id)
     {
         $user = $this->findModel($id);
-
-        // Удаляем фото аватарки если есть
-        if ($user->avatar_path) {
-            $path = Yii::getAlias('@app/web') . '/upload/users/usr' . $user->id;
-            $path = FileHelper::normalizePath($path);
-//            die($path);
-            FileHelper::removeDirectory($path);
-        }
+        // Удаляем папку с файлами
+        $path = Yii::getAlias('@upload') . '/users/usr' . $user->id;
+        FileHelper::removeDirectory(FileHelper::normalizePath($path));
         // удаляем запись в базе
-        $this->findModel($id)->delete();
+        $user->delete();
 
         return $this->redirect(['index']);
     }

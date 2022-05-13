@@ -1,6 +1,5 @@
 <?php
-//die('view');
-use yii\bootstrap4\ActiveForm;
+use yii\widgets\ActiveForm;
 use yii\bootstrap4\Modal;
 use yii\helpers\Html;
 use yii\widgets\MaskedInput;
@@ -12,7 +11,6 @@ $this->title = 'Call';
 Modal::begin([
     'id' => 'callback',
     'title' => '<h3>Укажите Ваш номер телефона и мы перезвоним Вам</h3>',
-    //    'footer' => 'TEST'
 ]);
 ?>
 <div class="row" style="padding: 1em">
@@ -40,13 +38,13 @@ Modal::begin([
         <?php /*echo $form->field($formModel, 'reCaptcha')->widget(
             \himiklab\yii2\recaptcha\ReCaptcha2::class,
             [
-                'siteKey' =>  Yii::$app->params['siteKeyV2'], // unnecessary is reCaptcha component was set up
+                'siteKey' => '6LfRBQEaAAAAAEqEbZSrlYH0sQz5Q-bX58GHPNjL', // unnecessary is reCaptcha component was set up
             ]
         ) */?>
 
         <?php /*echo \himiklab\yii2\recaptcha\ReCaptcha3::widget([
             'name' => 'reCaptcha',
-            'siteKey' => Yii::$app->params['siteKeyV2'], // unnecessary is reCaptcha component was set up
+            'siteKey' => '6LfNdr4ZAAAAAIKLdnRzRCWwNM6HyP0qo0nYglbN', // unnecessary is reCaptcha component was set up
             'action' => 'call',
         ]) */?>
 

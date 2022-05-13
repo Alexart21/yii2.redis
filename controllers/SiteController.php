@@ -216,10 +216,11 @@ class SiteController extends Controller
     public function actionCall()
     {
         $request = Yii::$app->request;
-        if ($request->isAjax) {
+        if ($request->isPjax) {
             $formModel = new CallForm();
 
             if ($formModel->load($request->post()) && $formModel->validate()) { // Форма отправлен
+//                die('HERE');
                 // Отправка email и запись в БД
                 $success = $formModel->callSend();
                 $call = new Callback();
@@ -228,7 +229,7 @@ class SiteController extends Controller
                 return $this->renderPartial('call_ok', compact('success', 'res'));
             }
             // модальное окно с формой
-            return $this->renderPartial('call', compact('formModel'));
+            return $this->renderAjax('call', compact('formModel'));
         }
     }
 

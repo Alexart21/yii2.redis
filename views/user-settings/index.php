@@ -1,11 +1,6 @@
 <?php
-//die(\Yii::$app->user->identity->password_hash);
-//die(date('Y-m-d'));
-//debug(unserialize(''));
-//die;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use Yii;
 
 $this->title = 'Личный кабинет';
 $this->params['breadcrumbs'][] = $this->title;
@@ -76,10 +71,21 @@ $csrf_token = Yii::$app->request->csrfToken;
     <h5>кликните для смены изображения</h5>
     <span style="max-width: 15em;display: block">jpg, png, gif, webp (макс. <?= Yii::$app->params['max_avatar_size'] ?>kb)</span>
     <br>
+    <div class="d-flex justify-content-center">
     <label class="label">
         <img class="rounded-circle" id="avatar" style="width: 160px;" src="<?= $imgLink ?>" alt="avatar">
         <?= $form->field($model, 'avatar', ['template' => "{input}{error}",])->fileInput(['class' => 'sr-only', 'id' => 'input', 'accept' => 'image/*'])->label(false) ?>
     </label>
+    <?php
+    if ($model->avatar_path):
+        ?>
+        <div class="d-flex flex-column justify-content-end">
+            <?= Html::a('удалить', 'user-settings/delete-avatar', ['class' => 'avatar-del align-items-end btn btn-light']) ?>
+        </div>
+    <?php
+    endif;
+    ?>
+    </div>
     <?php
     ActiveForm::end();
     ?>

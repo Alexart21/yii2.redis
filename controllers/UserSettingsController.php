@@ -134,7 +134,8 @@ class UserSettingsController extends \yii\web\Controller
                 }
                 $imgName = substr(time(), -4) . strtolower(Yii::$app->security->generateRandomString(12)) . '.' . 'png';
                 $usrId = Yii::$app->user->identity->getId();
-                $basePath = Yii::getAlias('@app/web') . '/upload/users/';
+//                $basePath = Yii::getAlias('@app/web') . '/upload/users/';
+                $basePath = Yii::getAlias('@upload') . '/users/';
                 $imgDir = $basePath . 'usr' . $usrId . '/img/avatar/';
                 // если есть папка с аватаром - очищаем, если нет - создаем
                 if(is_dir($imgDir)){
@@ -308,13 +309,17 @@ class UserSettingsController extends \yii\web\Controller
     /* Удаление аватара */
     public function actionDeleteAvatar()
     {
-        $user = User::findOne(Yii::$app->user->identity->getId());
+        $usrId = Yii::$app->user->identity->getId();
+        $user = User::findOne($usrId);
         if (!$user) {
             throw new MethodNotAllowedHttpException('Нет такого пользователя.Как ты сюда попал(а)?!');
         }
+
+        $delDir = Yii::getAlias('@upload') . '/users/' . 'usr' . $usrId . '/img/avatar';
         //
         $transaction = User::getDb()->beginTransaction();
         try {
+            FileHelper::removeDirectory($delDir);
             $user->avatar_path = null;
             $user->save();
             $transaction->commit();
@@ -322,7 +327,8 @@ class UserSettingsController extends \yii\web\Controller
             $transaction->rollBack();
             throw $e;
         }
-        return $this->goHome();
+        return $this->redirect('/user-settings');
+
     }
 
 

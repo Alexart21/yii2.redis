@@ -23,6 +23,7 @@ $config = [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
+        '@upload'   => '@app/web/upload',
         '@vue_assets' => '@app/web/vue_assets',
     ],
     'name' => 'Alex-art21',
