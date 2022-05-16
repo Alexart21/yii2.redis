@@ -7,6 +7,6 @@ return [
     'charset' => 'utf8',
     'enableSchemaCache' => true,
     'on afterOpen' => function($event) {
-        $event->sender->createCommand("SET time_zone='Europe/Moscow';")->execute();
+        $event->sender->createCommand("SET GLOBAL time_zone='+03:00';")->execute();
     },
 ];
