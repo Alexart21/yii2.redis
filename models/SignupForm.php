@@ -37,7 +37,7 @@ class SignupForm extends Model
             ['email', 'string', 'max' => 100],
             ['email', 'unique', 'targetClass' => '\app\models\User', 'message' => 'Такой email уже существует.Введите другой'],
             ['password', 'string', 'length' => [Yii::$app->params['min_pass_length'], 100]],
-            ['password', 'match', 'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^\w\s]).*/', 'message' => 'Пароль должен быть не менее ' . Yii::$app->params['min_pass_length'] . ' символов, только латиница, содержать не менее одной заглавной и строчной буквы, хотя бы одну цифру и спецсимвол'],
+            ['password', 'match', 'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^\w\s]).*/', 'message' => 'Пароль должен быть не менее ' . Yii::$app->params['min_pass_length'] . ' символов, только латиница, содержать не менее одной заглавной буквы, хотя бы одну цифру и спецсимвол'],
             ['password_repeat', 'compare', 'compareAttribute' => 'password', 'message' => "Пароли не совпадают !"],
 //            [['avatar'], 'file', 'extensions' => ['jpeg', 'jpg', 'png', 'gif', 'webp'], 'skipOnEmpty' => true, 'maxSize' => 1024 * Yii::$app->params['max_avatar_size']],
             //            //reCaptcha v2

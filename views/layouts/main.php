@@ -47,6 +47,23 @@ AppAsset::register($this);
     <!-- end loader -->
     <output id="my-modal"></output>
     <div id="container">
+        <?php
+        $cookies = Yii::$app->request->cookies;
+        ?>
+        <?php
+        // напоминание о необходимости завершить регистрацию
+        if (($cookie = $cookies->get('register_confirm')) !== null) :
+        ?>
+            <div class="alert alert-danger fade in alert-dismissible show" style="position: absolute;z-index: 100;width: 100%;transform: scaleY(2)">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="top: .5em;transform: scaleY(0.5)">
+                    <span aria-hidden="true" style="font-size:20px;">×</span>
+                </button>
+                <span style="letter-spacing: 3px"><strong>Внимание!</strong> Для завершения регистрации необходимо пройти по ссылке, высланной Вам на
+                e-mail.</span>
+            </div>
+        <?php
+        endif;
+        ?>
         <!--Flash-->
         <?php if (Yii::$app->session->hasFlash('success')): ?>
             <?php

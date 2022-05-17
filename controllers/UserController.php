@@ -156,6 +156,8 @@ class UserController extends Controller
     /* Регистрация пользователя */
     public function actionSignup($id = null, $token = null)
     {
+        $cookies = Yii::$app->response->cookies;
+
         if ($id && $token) { // пришли по ссылке для подтверждения регистрации
 
             $id = (int)$id;
@@ -179,6 +181,8 @@ class UserController extends Controller
             if ($user->save()) {
                 $transaction->commit();
                 Yii::$app->session->setFlash('success', 'Вы успешно прошли регистрацию! Введите данные для входа.');
+                // удаляем куку-напоминание о необходимости подтвердить регистрацию
+                $cookies->remove('register_confirm');
                 return $this->redirect('/user/login');
             } else {
                 $transaction->rollBack();
@@ -205,7 +209,14 @@ class UserController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $usrId = $model->signupRequest(); // занесли в базу и отправили пимьмо заявителю вернули ID нового юзера
             if ($usrId) {
-                Yii::$app->session->setFlash('success', 'Перейдите по ссылке, высланной Вам на E-mail для подтверждения регистрации');
+                // при наличии этой куки юзеру будет выводится напоминание о необходимости подтвердить регистрацию
+                $cookies->add(new \yii\web\Cookie([
+                    'name' => 'register_confirm',
+                    'value' => '1',
+                    'expire' => time() + Yii::$app->params['user.registerTokenExpire'],
+                ]));
+                //
+//                Yii::$app->session->setFlash('success', 'Перейдите по ссылке, высланной Вам на E-mail для подтверждения регистрации');
                 return $this->redirect('/');
             } else {
                 Yii::$app->session->setFlash('error', 'Во время выполнения запроса произошла ошибка!');
