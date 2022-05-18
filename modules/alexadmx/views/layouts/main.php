@@ -19,6 +19,9 @@ $newCallCount = $session->get('newCallCount');
 $allPostCount = $session->get('allPostCount');
 $allCallCount = $session->get('allCallCount');
 
+$userCount = $session->get('userCount');
+$userCount = $userCount == 1 ? null : $userCount; // админа не считаем
+
 $model = User::findOne(User::ADMIN_ID);
 $avatar = $model->avatar_path ? '/upload/users/usr' . $model->id . '/img/avatar/' . $model->avatar_path : '/upload/default_avatar/no-image.png';
 ?>
@@ -31,7 +34,7 @@ $avatar = $model->avatar_path ? '/upload/users/usr' . $model->id . '/img/avatar/
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
-        <link rel="icon" type="image/png" href="/icons/64x64.png" />
+        <link rel="icon" type="image/png" href="/icons/64x64.png"/>
         <?php $this->head() ?>
     </head>
     <body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
@@ -66,7 +69,7 @@ $avatar = $model->avatar_path ? '/upload/users/usr' . $model->id . '/img/avatar/
                 Отсебятина
                 -->
                 <style>
-                    .sidebar-toggle:before{
+                    .sidebar-toggle:before {
                         content: none !important;
                     }
                 </style>
@@ -77,13 +80,20 @@ $avatar = $model->avatar_path ? '/upload/users/usr' . $model->id . '/img/avatar/
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto py-4 py-md-0">
                         <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                            <a title="на сайт" class="nav-link" href="/"><i class="fa fa-home" style="font-size: 30px;color: #fff"></i></a>
+                            <a title="на сайт" class="nav-link" href="/"><i class="fa fa-home"
+                                                                            style="font-size: 30px;color: #fff"></i></a>
                         </li>
                         <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                             <a class="nav-link" href="/alexadmx">главная</a>
                         </li>
                         <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                            <a class="nav-link" href="/alexadmx/post" data-toggle="tooltip" title="Непрочитанных : <?= $newPostCount ?> Всего : <?= $allPostCount ?>">
+                            <a class="nav-link" href="/alexadmx/user"><i class="fa fa-user" style="font-size: 30px"></i>
+                                <span><?= $userCount ?></span>
+                            </a>
+                        </li>
+                        <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                            <a class="nav-link" href="/alexadmx/post" data-toggle="tooltip"
+                               title="Непрочитанных : <?= $newPostCount ?> Всего : <?= $allPostCount ?>">
                                 <i class="fa fa-envelope" style="font-size: 30px"></i>
                                 <?php
                                 $p = empty($newPostCount) ? null : $newPostCount;
@@ -92,7 +102,8 @@ $avatar = $model->avatar_path ? '/upload/users/usr' . $model->id . '/img/avatar/
                             </a>
                         </li>
                         <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                            <a class="nav-link" href="/alexadmx/callback" data-toggle="tooltip" title="Непрочитанных : <?= $newCallCount ?> Всего : <?= $allCallCount ?>">
+                            <a class="nav-link" href="/alexadmx/callback" data-toggle="tooltip"
+                               title="Непрочитанных : <?= $newCallCount ?> Всего : <?= $allCallCount ?>">
                                 <i class="fa fa-phone" style="font-size: 30px"></i>
                                 <?php
                                 $c = empty($newCallCount) ? null : $newCallCount;
@@ -102,14 +113,15 @@ $avatar = $model->avatar_path ? '/upload/users/usr' . $model->id . '/img/avatar/
                         </li>
                         <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                             <a class="pjax" href="/alexadmx/default/avatar?user=<?= $user ?>">
-                            <img id="avatar" class="avatar" src="<?= $avatar ?>">
+                                <img id="avatar" class="avatar" src="<?= $avatar ?>">
                             </a>
                         </li>
                         <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                             <h4 class="nav-link" style="background: #fff;height: 100%"><?= $user ?></h4>
                         </li>
                         <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                            <a class="nav-link" href="/user/logout" data-method="post"><span title="выйти" class="fa fa-external-link-alt"></span></a>
+                            <a class="nav-link" href="/user/logout" data-method="post"><span title="выйти"
+                                                                                             class="fa fa-external-link-alt"></span></a>
                         </li>
                     </ul>
                 </div>
@@ -177,7 +189,8 @@ $avatar = $model->avatar_path ? '/upload/users/usr' . $model->id . '/img/avatar/
             </section>
         </div>
         <footer class="main-footer">
-            <strong class="company"><?= Yii::$app->params['company'] ?></strong><sup>&copy;</sup> web developer group 2009&mdash;<?= date('Y') ?> тел. <strong
+            <strong class="company"><?= Yii::$app->params['company'] ?></strong><sup>&copy;</sup> web developer group
+            2009&mdash;<?= date('Y') ?> тел. <strong
                     class="corpid"><?= Yii::$app->params['tel1'] ?></strong><br/>
             <strong>Создание и продвижение сайтов в Чебоксарах</strong><br/>
         </footer>
@@ -210,8 +223,8 @@ $avatar = $model->avatar_path ? '/upload/users/usr' . $model->id . '/img/avatar/
         ////
         const alrt = document.querySelector('.alert');
         // console.log(alrt);
-        if(alrt){
-            setTimeout(function() {
+        if (alrt) {
+            setTimeout(function () {
                 alrt.remove();
             }, 4000);
         }

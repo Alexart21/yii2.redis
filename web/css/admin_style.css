@@ -440,3 +440,7 @@ td a span.fa-window-close{
     border: 0 solid transparent;
     border-radius: 50%
 }
+
+a[title=удалить] svg{
+    /*color: red !important;*/
+}

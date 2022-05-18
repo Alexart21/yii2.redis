@@ -212,7 +212,7 @@ class UserController extends Controller
                 // при наличии этой куки юзеру будет выводится напоминание о необходимости подтвердить регистрацию
                 $cookies->add(new \yii\web\Cookie([
                     'name' => 'register_confirm',
-                    'value' => '1',
+                    'value' => $model->email,
                     'expire' => time() + Yii::$app->params['user.registerTokenExpire'],
                 ]));
                 //
