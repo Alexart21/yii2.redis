@@ -41,6 +41,11 @@ class TestController extends Controller
     public function actionFaker(){
         return $this->render('faker');
     }
+
+    public function actionTest()
+    {
+        return $this->render('test');
+    }
     
 
 }

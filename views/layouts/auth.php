@@ -1,6 +1,7 @@
 <?php
 
 use app\assets\AuthAsset;
+
 //use app\assets\AdminLteAsset;
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
@@ -40,8 +41,9 @@ header('Strict-Transport-Security: max-age=31536000');
     <div class="breadcrumb-out">
         <?php
         if (!Yii::$app->user->isGuest) :
-        ?>
-        <b>[<?= Yii::$app->user->identity->username ?>]</b><a href="/user/logout" data-method="post" title="выход" style="margin-left: 3em">
+            ?>
+            <b>[<?= Yii::$app->user->identity->username ?>]</b><a href="/user/logout" data-method="post" title="выход"
+                                                                  style="margin-left: 3em">
             <i class="fa fa-sign-out-alt"></i>&nbsp;выход</a>
         <?php
         endif;
@@ -55,19 +57,24 @@ header('Strict-Transport-Security: max-age=31536000');
     <div class="cont-wrapper">
         <?= $content ?>
     </div>
-            <div class="bottom-menu">
-                <a href="/" title="на главную"><i class="fa fa-home"></i></a>&nbsp;
-                    <?php
-                    if (!Yii::$app->user->isGuest) :
-                        $imgLink = Yii::$app->user->identity->avatar_path ? '/upload/users/usr' . Yii::$app->user->identity->id . '/img/' . Yii::$app->user->identity->avatar_path : '/upload/default_avatar/no-image.png';
-                        ?>
-                        <b>[<?= Yii::$app->user->identity->username ?>]</b>
-                        &nbsp;<a href="/user/logout" data-method="post" title="выход"><i class="fa fa-sign-out-alt"></i></a>
-                    <?php
-                    endif;
-                    ?>
-                </a>
+    <div class="bottom-menu d-flex justify-content-center">
+        <div>
+            <a href="/" title="на главную"><i class="fa fa-home text-dark"></i></a>
+        </div>&nbsp;
+        <?php
+        if (!Yii::$app->user->isGuest) :
+            $imgLink = Yii::$app->user->identity->avatar_path ? '/upload/users/usr' . Yii::$app->user->identity->id . '/img/' . Yii::$app->user->identity->avatar_path : '/upload/default_avatar/no-image.png';
+            ?>
+            <div class="d-flex">
+                <div><b>&nbsp;&nbsp;<span class="username text-primary"><?= Yii::$app->user->identity->username ?></span>&nbsp;&nbsp;</b></div>
+                &nbsp;<div><a href="/user/logout" data-method="post" title="выход"><i
+                                class="fa fa-sign-out-alt text-dark"></i></a></div>
             </div>
+        <?php
+        endif;
+        ?>
+        </a>
+    </div>
     <br>
     <br>
     <audio preload="auto">

@@ -59,27 +59,27 @@ $config = [
         'authClientCollection' => [
             'class' => 'yii\authclient\Collection',
             'clients' => [
-                'google' => [
-                    'class' => 'yii\authclient\clients\Google',
-                    'clientId' => $my_config['G_clientId'],
-                    'clientSecret' => $my_config['G_clientSecret'],
-//                    'returnUrl' => 'https://alexart.houme21.ru/site/auth?authclient=google',
+                'mailru' => [
+                    'class' => 'isudakoff\authclient\MailRu',
+                    'clientId' => $my_config['MailRu_clientId'],
+                    'clientSecret' => $my_config['MailRu_clientSecret'],
                 ],
                 'yandex' => [
                     'class' => 'yii\authclient\clients\Yandex',
                     'clientId' => $my_config['Y_clientId'],
                     'clientSecret' => $my_config['Y_clientSecret'],
                 ],
-                'mailru' => [
-                    'class' => 'isudakoff\authclient\MailRu',
-                    'clientId' => $my_config['MailRu_clientId'],
-                    'clientSecret' => $my_config['MailRu_clientSecret'],
-                ],
                 'vkontakte' => [
                     'class' => 'yii\authclient\clients\VKontakte',
                     'clientId' => $my_config['VK_clientId'],
                     'clientSecret' => $my_config['VK_clientSecret'],
                     'scope' => ['email'],
+                ],
+                'google' => [
+                    'class' => 'yii\authclient\clients\Google',
+                    'clientId' => $my_config['G_clientId'],
+                    'clientSecret' => $my_config['G_clientSecret'],
+//                    'returnUrl' => 'https://alexart.houme21.ru/site/auth?authclient=google',
                 ],
                 'github' => [
                     'class' => 'yii\authclient\clients\GitHub',

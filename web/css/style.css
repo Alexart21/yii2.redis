@@ -449,14 +449,14 @@ header {
 }
 
 #main {
-    margin-bottom: -140px; /* Высота прижатого футера здесь !!! */
+    margin-bottom: -160px; /* Высота прижатого футера здесь !!! */
     min-height: 100%;
     box-shadow: 0 0 20px #555;
 }
 
 #all {
     position: relative !important;
-    padding-bottom: 140px; /* Высота прижатого футера здесь !!! */
+    padding-bottom: 160px; /* Высота прижатого футера здесь !!! */
     overflow: hidden;
     /*background: lime;*/
     /*background: url(/img/left.gif) repeat-y;*/
@@ -527,7 +527,7 @@ header {
 footer {
     position: relative;
     z-index: 100;
-    height: 140px; /* Высота прижатого футера здесь !!! */
+    height: 160px; /* Высота прижатого футера здесь !!! */
     background: #eee;
     border: 1px solid transparent;
     border-bottom-left-radius: 15px;
@@ -2223,3 +2223,34 @@ abbr{
     cursor: pointer;
 }
 /**/
+.user-block{
+    height: 40px;
+}
+
+.user-block div{
+    height: 40px;
+    line-height: 40px;
+}
+
+.user-block .avatar{
+    width: 40px;
+    height: 40px;
+}
+
+.user-block .fa-user-circle{
+    font-size: 30px;
+    line-height: 40px;
+}
+
+.user-block .fa-external-link-alt{
+    line-height: 40px;
+    transform: rotate(45deg);
+    color: #222;
+}
+
+.username{
+    display: inline-block;
+    max-width: 24em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

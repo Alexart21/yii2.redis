@@ -61,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= Html::submitButton('Отправить', ['class' => 'btn success-button', 'name' => 'signup-button', 'style' => 'margin-top:-50px']) ?>
     <!--    </fieldset>-->
     <?php ActiveForm::end(); ?>
-    <hr class="auth-hr">
+    <div class="auth-hr"></div>
     <h3>Или войти с помощью</h3>
     <?= yii\authclient\widgets\AuthChoice::widget([
         'baseAuthUrl' => ['site/auth'],

@@ -54,12 +54,15 @@ AppAsset::register($this);
         <?php
         // напоминание о необходимости завершить регистрацию
         if ($reg_email) :
-        ?>
-            <div class="alert alert-danger fade in alert-dismissible show" style="position: absolute;z-index: 100;width: 100%;transform: scaleY(2)">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="top: .5em;transform: scaleY(0.5)">
+            ?>
+            <div class="alert alert-danger fade in alert-dismissible show"
+                 style="position: absolute;z-index: 100;width: 100%;transform: scaleY(2)">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"
+                        style="top: .5em;transform: scaleY(0.5)">
                     <span aria-hidden="true" style="font-size:20px;">×</span>
                 </button>
-                <span style="letter-spacing: 3px"><strong>Внимание!</strong> Для завершения регистрации необходимо пройти по ссылке, высланной Вам на  <b style="text-decoration: underline"><?= $reg_email ?></b></span>
+                <span style="letter-spacing: 3px"><strong>Внимание!</strong> Для завершения регистрации необходимо пройти по ссылке, высланной Вам на  <b
+                            style="text-decoration: underline"><?= $reg_email ?></b></span>
             </div>
         <?php
         endif;
@@ -334,20 +337,22 @@ AppAsset::register($this);
                 <a href="https://policies.google.com/terms">условиями применения</a>.
             </small>
             <br>
-            <div class="text-center">
+            <div class="d-flex justify-content-center user-block">
                 <?php
                 if (Yii::$app->user->getIsGuest()) :
                     ?>
-                    <b style="font-size: 110%">Гость</b>&nbsp;&nbsp;&nbsp;
-                    <a href="/user/signup">регистрация</a>&nbsp;&nbsp;
-                    <a href="/user/login">вход</a>
-
+                    <div><span class="fa fa-user-circle text-dark"></span></div>&nbsp;&nbsp;&nbsp;
+                    <div><a class="text-dark" href="/user/login">вход</a></div>&nbsp;&nbsp;
+                    <div><a class="text-dark" href="/user/signup">регистрация</a></div>
                 <?php
                 else:
-                    ?>&nbsp;&nbsp;&nbsp;
-                    <a href="/user/logout" data-method="post">выход</a>(<b
-                        style="font-size: 110%"><?= Yii::$app->user->identity->username ?></b>)
-                    <a href="/user-settings">&nbsp;Личный кабинет</a>
+                    $avatar = Yii::$app->user->identity->avatar_path ? '/upload/users/usr' . Yii::$app->user->identity->getId() . '/img/avatar/' . Yii::$app->user->identity->avatar_path : '/upload/default_avatar/no-image.png';
+                    ?>&nbsp;
+                    <div><a href="/user-settings" title="личный кабинет"><img src="<?= $avatar ?>" alt="" class="avatar rounded-circle img-thumbnail"></a></div>
+                    &nbsp;&nbsp;<div class="username"><a href="/user-settings" title="личный кабинет" class="text-dark"><?= Yii::$app->user->identity->username ?></a></div>
+                    &nbsp;&nbsp;
+                    <div>&nbsp;&nbsp;<a href="/user/logout" data-method="post"><span title="выйти"
+                                                                         class="fa fa-external-link-alt"></span></a></div>
                 <?php
                 endif;
                 ?>
