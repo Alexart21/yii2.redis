@@ -23,7 +23,7 @@ $portfArr = [
     [
         'name' => 'Соло мебель',
         'title' => 'Сайт фирмы Соло мебель',
-        'url' => 'new.s-solo.ru',
+        'url' => 's-solo.ru',
     ],
 ];
 ?>
@@ -53,7 +53,6 @@ $portfArr = [
         </div>
         <?php $i++ ?>
     <?php endforeach; ?>
-
 </div>
 <script>
     function atvImg() {

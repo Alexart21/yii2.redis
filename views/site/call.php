@@ -35,12 +35,12 @@ Modal::begin([
             ]);
         ?>
 
-        <?php echo $form->field($formModel, 'reCaptcha')->widget(
+        <?php /*echo $form->field($formModel, 'reCaptcha')->widget(
             \himiklab\yii2\recaptcha\ReCaptcha2::class,
             [
                 'siteKey' =>  Yii::$app->params['siteKeyV2'], // unnecessary is reCaptcha component was set up
             ]
-        ) ?>
+        ) */?>
 
         <?php /*echo \himiklab\yii2\recaptcha\ReCaptcha3::widget([
             'name' => 'reCaptcha',

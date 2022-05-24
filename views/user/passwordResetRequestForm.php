@@ -27,20 +27,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'id' => 'pass-form',
     ]); ?>
     <h3>Укажите Ваш email для сброса пароля</h3>
-    <?= $form->field($model, 'email', ['enableAjaxValidation' => true])->textInput(['placeholder' => 'E-mail'])->label(false) ?>
+    <!-- При AJAX валидации рекапча не работает !!! -->
+    <?= $form->field($model, 'email')->textInput(['placeholder' => 'E-mail'])->label(false) ?>
 
-    <?/*= $form->field($model, 'reCaptcha')->widget(
+    <?= $form->field($model, 'reCaptcha')->widget(
                 \himiklab\yii2\recaptcha\ReCaptcha2::class,
                 [
-                    'siteKey' => '6LfRBQEaAAAAAEqEbZSrlYH0sQz5Q-bX58GHPNjL', // unnecessary is reCaptcha component was set up
+                    'siteKey' =>  Yii::$app->params['siteKeyV2'], // unnecessary is reCaptcha component was set up
                 ]
-            )  */?>
-
-    <? /*= \himiklab\yii2\recaptcha\ReCaptcha3::widget([
-                'name' => 'reCaptcha',
-                'siteKey' => '6LfNdr4ZAAAAAIKLdnRzRCWwNM6HyP0qo0nYglbN', // unnecessary is reCaptcha component was set up
-                'action' => 'request-password-reset',
-            ]) */ ?>
+            )  ?>
 
     <br/>
     <div class="form-group">

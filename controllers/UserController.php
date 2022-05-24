@@ -244,7 +244,7 @@ class UserController extends Controller
     /* Запрос на сброс пароля */
     public function actionRequestPasswordReset()
     {
-        if (Yii::$app->user->identity->username) {
+        if (!Yii::$app->user->isGuest) {
             throw new BadRequestHttpException('Вы уже залогинены как ' . Yii::$app->user->identity->username);
         }
 

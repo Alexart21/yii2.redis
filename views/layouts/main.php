@@ -339,9 +339,9 @@ AppAsset::register($this);
             <br>
             <div class="d-flex justify-content-center user-block">
                 <?php
-                if (Yii::$app->user->getIsGuest()) :
+                if (Yii::$app->user->isGuest) :
                     ?>
-                    <div><span class="fa fa-user-circle text-dark"></span></div>&nbsp;&nbsp;&nbsp;
+                    <div><div class="no-avatar"></div></div>&nbsp;&nbsp;&nbsp;
                     <div><a class="text-dark" href="/user/login">вход</a></div>&nbsp;&nbsp;
                     <div><a class="text-dark" href="/user/signup">регистрация</a></div>
                 <?php
