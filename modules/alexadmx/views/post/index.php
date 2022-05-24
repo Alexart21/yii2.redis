@@ -51,8 +51,8 @@ $session = Yii::$app->session;
                 'format' => 'raw',
                 'value' => function($model)
                 {
-                    if (strlen($model->body) > 50){
-                        $res = substr($model->body, 0, 50) . ' ...<br>' . '<a class="btn btn-secondary" href="/alexadmx/post/view?id=' . $model->id . '">читать дальше</a>';
+                    if (strlen($model->body) > 150){
+                        $res = substr($model->body, 0, 150) . ' ...<br>' . '<a class="btn btn-next" href="/alexadmx/post/view?id=' . $model->id . '">читать дальше</a>';
                     }else{
                         $res = $model->body;
                     }

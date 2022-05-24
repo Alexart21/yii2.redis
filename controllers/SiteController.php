@@ -30,6 +30,16 @@ class SiteController extends Controller
         ];
     }
 
+    /*public function behaviors()
+    {
+        return [
+            'rateLimiter' => [
+                'class' => \yii\filters\RateLimiter::class,
+                'enableRateLimitHeaders' => true,
+            ],
+        ];
+    }*/
+
     public function onAuthSuccess($client)
     {
         $attributes = $client->getUserAttributes();
@@ -152,7 +162,7 @@ class SiteController extends Controller
         }
         /* AJAX вызов страницы (по клику в меню)*/
         if ($request->isAjax && $request->isGet) {
-            return $this->renderPartial('index', compact('data', 'indexForm'));
+            return $this->renderAjax('index', compact('data', 'indexForm'));
         }
         /* обычный запрос */
         return $this->render('index', ['data' => $data, 'indexForm' => $indexForm]);

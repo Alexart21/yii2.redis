@@ -44,12 +44,12 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php /*echo $form->field($model, 'avatar')->fileInput(['class' => 'drop-zone__input'])->label(false) */?>
     </div>
     <br>-->
-    <?php /*echo $form->field($model, 'reCaptcha')->widget(
+    <?php echo $form->field($model, 'reCaptcha')->widget(
         \himiklab\yii2\recaptcha\ReCaptcha2::class,
         [
             'siteKey' =>  Yii::$app->params['siteKeyV2'], // unnecessary is reCaptcha component was set up
         ]
-    ) */?>
+    ) ?>
 
     <?php /*echo \himiklab\yii2\recaptcha\ReCaptcha3::widget([
                 'name' => 'reCaptcha',

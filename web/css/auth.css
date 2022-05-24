@@ -485,9 +485,9 @@ fieldset {
 
 /**/
 .auth-hr {
-    margin: .5em;
     width: 90%;
-    border-bottom: 2px dashed #999;
+    margin: .5em auto;
+    border-bottom: 1px dashed #999;
 }
 
 a.btn-set, a.btn-set:active, a.btn-set:visited {

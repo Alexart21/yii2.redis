@@ -20,7 +20,7 @@ class SignupForm extends Model
 //    public $avatar;
     public $password;
     public $password_repeat;
-//    public $reCaptcha;
+    public $reCaptcha;
 
     /**
      * @inheritdoc
@@ -41,9 +41,9 @@ class SignupForm extends Model
             ['password_repeat', 'compare', 'compareAttribute' => 'password', 'message' => "Пароли не совпадают !"],
 //            [['avatar'], 'file', 'extensions' => ['jpeg', 'jpg', 'png', 'gif', 'webp'], 'skipOnEmpty' => true, 'maxSize' => 1024 * Yii::$app->params['max_avatar_size']],
             //            //reCaptcha v2
-            /*[['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::class,
+            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::class,
                 'secret' => Yii::$app->params['secretV2'], // unnecessary if reСaptcha is already configured
-                'uncheckedMessage' => 'Подтвердите, что вы не робот'],*/
+                'uncheckedMessage' => 'Подтвердите, что вы не робот'],
 
             //reCaptcha v3
             /* [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator3::className(),
@@ -62,7 +62,7 @@ class SignupForm extends Model
             'password' => 'пароль',
             'password_repeat' => 'повторите пароль',
             'avatar' => 'фото на аватар',
-//            'reCaptcha' => '',
+            'reCaptcha' => '',
         ];
     }
 

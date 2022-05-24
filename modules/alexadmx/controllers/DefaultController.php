@@ -149,7 +149,8 @@ class DefaultController extends AppAlexadmxController
                 }
             }
             $header = '<h3>Очистка папок</h3>';
-            return $this->renderPartial('modal', compact('fileCount', 'dirCount', 'errCount', 'header', 'clearSize', 'dirArr'));
+            $flag = false;
+            return $this->renderPartial('modal', compact('flag', 'fileCount', 'dirCount', 'errCount', 'header', 'clearSize', 'dirArr'));
         }
     }
 

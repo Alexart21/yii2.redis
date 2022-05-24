@@ -57,24 +57,24 @@ header('Strict-Transport-Security: max-age=31536000');
     <div class="cont-wrapper">
         <?= $content ?>
     </div>
-    <div class="bottom-menu d-flex justify-content-center">
+    <!--<div class="bottom-menu d-flex justify-content-center">
         <div>
             <a href="/" title="на главную"><i class="fa fa-home text-dark"></i></a>
         </div>&nbsp;
         <?php
-        if (!Yii::$app->user->isGuest) :
+/*        if (!Yii::$app->user->isGuest) :
             $imgLink = Yii::$app->user->identity->avatar_path ? '/upload/users/usr' . Yii::$app->user->identity->id . '/img/' . Yii::$app->user->identity->avatar_path : '/upload/default_avatar/no-image.png';
-            ?>
+            */?>
             <div class="d-flex">
-                <div><b>&nbsp;&nbsp;<span class="username text-primary"><?= Yii::$app->user->identity->username ?></span>&nbsp;&nbsp;</b></div>
+                <div><b>&nbsp;&nbsp;<span class="username text-primary"><?/*= Yii::$app->user->identity->username */?></span>&nbsp;&nbsp;</b></div>
                 &nbsp;<div><a href="/user/logout" data-method="post" title="выход"><i
                                 class="fa fa-sign-out-alt text-dark"></i></a></div>
             </div>
         <?php
-        endif;
-        ?>
+/*        endif;
+        */?>
         </a>
-    </div>
+    </div>-->
     <br>
     <br>
     <audio preload="auto">

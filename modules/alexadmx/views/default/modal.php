@@ -13,8 +13,8 @@ if (!$flag) {
 }
 
 Modal::begin([
-        'header' => $header,
-        'id' => 'modal',
+    'header' => $header,
+    'id' => 'modal',
 ]);
 echo $msg;
 
