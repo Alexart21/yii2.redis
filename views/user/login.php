@@ -71,7 +71,7 @@ Modal::begin([
     <a href="/user/signup" style="display: block;text-align: right">Регистрация</a>
     <?php ActiveForm::end(); ?>
     <div class="auth-hr"></div>
-    <h3>Или войти с помощью</h3>
+    <h3 style="text-align: center">Или войти с помощью</h3>
     <?= yii\authclient\widgets\AuthChoice::widget([
         'baseAuthUrl' => ['site/auth'],
         'popupMode' => false,

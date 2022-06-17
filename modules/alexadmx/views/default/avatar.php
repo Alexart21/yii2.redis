@@ -30,17 +30,17 @@
     }
 </style>
 <?php
-use yii\bootstrap\Modal;
+use yii\bootstrap4\Modal;
 
 Modal::begin([
-//    'header' => '<h3>' . $user . '</h3><h4 style="float: left">E-mail: ' . $email . '</h4>',
+//    'title' => '<h3>' . $model->username . '</h3><h4 style="float: left">E-mail: ' .  $model->email . '</h4>',
     'id' => 'modal',
 ]);
 ?>
 <?php
-echo '<h2>' . $user . '</h2><h4 style="float: left">E-mail: ' . $model->email . '</h4>';
+echo '<h2>' . $model->username . '</h2><h4 style="float: left">E-mail: ' . $model->email . '</h4>';
 //
-$imgPath = $model->avatar_path ? '/upload/users/usr' . $model->id . '/img/' . $model->avatar_path : '/upload/default_avatar/no-image.png';
+$imgPath = $model->avatar_path ? '/upload/users/usr' . $model->id . '/img/avatar/' . $model->avatar_path : '/upload/default_avatar/no-image.png';
 ?>
 <img src="<?= $imgPath ?>" alt="">
 <?php

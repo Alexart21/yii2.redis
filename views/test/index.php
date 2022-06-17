@@ -1,4 +1,5 @@
 <h3>Исправленная версия <a href="https://alexart.houme21.ru/test/new">здесь</a></h3>
+<p><a href="/user/logout" data-method="post">logout</a></p>
 <?php
 die;
 //var_dump($path);die;

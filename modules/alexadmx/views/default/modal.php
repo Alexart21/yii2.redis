@@ -1,5 +1,5 @@
 <?php
-use yii\bootstrap\Modal;
+use yii\bootstrap4\Modal;
 
 if (!$flag) {
     $msg = '<h4>Удалено :</h4> Файлов: <b>' . $fileCount . '</b><br>
@@ -13,7 +13,7 @@ if (!$flag) {
 }
 
 Modal::begin([
-    'header' => $header,
+    'title' => $header,
     'id' => 'modal',
 ]);
 echo $msg;

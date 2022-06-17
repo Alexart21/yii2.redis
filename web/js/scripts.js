@@ -1,3 +1,5 @@
+'use strict'
+
 const screen_w = document.body.clientWidth;
 const screen_h = document.body.clientHeight;
 /*let scrollHeight = Math.max( // полная высота с прокручиваемой частью

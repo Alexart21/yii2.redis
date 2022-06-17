@@ -4,7 +4,7 @@
 // use app\models\User;
 
 $my_config = parse_ini_file(__DIR__ . '/../.secret/config.ini');
-if(!$my_config){
+if (!$my_config) {
     die('Не найден файл ' . __DIR__ . '/../.secret/config.ini');
 }
 $params = require(__DIR__ . '/params.php');
@@ -22,8 +22,8 @@ $config = [
     ],*/
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
-        '@upload'   => '@app/web/upload',
+        '@npm' => '@vendor/npm-asset',
+        '@upload' => '@app/web/upload',
         '@vue_assets' => '@app/web/vue_assets',
     ],
     'name' => 'Alex-art21',
@@ -96,6 +96,7 @@ $config = [
             // Directories that will be added to db-backup
             'directories' => [
                 'img' => '@app/web/img',
+//                'app' => '@app',
             ],
             // не будет автоудаления
             'expireTime' => null,
@@ -106,27 +107,38 @@ $config = [
             'class' => 'yii\rbac\PhpManager',
         ],*/
         /* Redis кэш */
-        /* Здесь хост прописан для докер контейнера!(гдето может быть и localhost) */
+        /*  хост для докер контейнера 'hostname' => '172.17.0.1'(гдето может быть и localhost) */
         /*'cache' => [
             'class' => 'yii\redis\Cache',
             'redis' => [
-                'hostname' => '172.17.0.1',
+                'hostname' => '127.0.0.1',
                 'port' => 6379,
                 'database' => 0,
             ]
         ],*/
-        /*'session' => [
+        /* MemCache */
+        'cache' => [
+            'class' => 'yii\caching\MemCache',
+            'servers' => [
+                [
+                    'host' => '127.0.0.1',
+                    'port' => 11211,
+                    'weight' => 100,
+                ],
+            ],
+        ],
+        'session' => [
             'class' => 'yii\redis\Session',
             'redis' => [
-                'hostname' => '172.17.0.1',
+                'hostname' => '127.0.0.1',
                 'port' => 6379,
                 'database' => 0,
             ]
-        ],*/
-        /* Файловый кэш */
-        'cache' => [
-            'class' => 'yii\caching\FileCache',
         ],
+        /* Файловый кэш */
+        /*'cache' => [
+            'class' => 'yii\caching\FileCache',
+        ],*/
         'view' => [
             'class' => '\rmrevin\yii\minify\View',
             'enableMinify' => !YII_DEBUG,
@@ -203,7 +215,7 @@ $config = [
                 '<action:(index|sozdanie|prodvijenie|parsing|portfolio|politic|call|call_ok)>' => 'site/<action>',
                 '<action:(login|logout|signup|request-password-reset|reset-password)>' => 'user/<action>',
 //                '<action:\w+>' => 'site/<action>',
-                ],
+            ],
         ],
 
         'reCaptcha' => [

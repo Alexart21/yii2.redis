@@ -101,7 +101,7 @@ $(document).on('pjax:complete', () => {
 $('#msgs-content').scrollTop($('#msgs-content')[0].scrollHeight);
 $('.msg-body').replaceUrl();
 echoTime('.dt');
-// setInterval(updateList, 5000);
+setInterval(updateList, 5000);
 
 // переключение формата даты/времени
 dateCheck.addEventListener('click', ()=>{

@@ -21,8 +21,10 @@ class ConstructorController extends Controller
     	die;*/
         $this->enableCsrfValidation = false;
         if (Yii::$app->request->isPost) {
+//            debug($_FILES);
+//            die('here');
             if (!empty($_FILES["screen"]["size"])) { // пришла картинка (использовали на клиенте JS fetch() ())
-                if ($_FILES["avatar"]["size"] > Yii::$app->params['max_screenshot_size'] * 1024 * 1024) { // картинка больше чем позволено
+                if ($_FILES["screen"]["size"] > Yii::$app->params['max_screenshot_size'] * 1024 * 1024) { // картинка больше чем позволено
                     Yii::$app->response->statusCode = 413; // 'Length Required'
                     return;
                 }

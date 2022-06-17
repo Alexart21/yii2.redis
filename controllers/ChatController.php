@@ -11,7 +11,7 @@ use Yii;
 
 class ChatController extends Controller
 {
-    public $layout = 'test';
+    public $layout = 'chat';
 
 
     public function actionIndex()

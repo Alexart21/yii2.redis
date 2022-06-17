@@ -225,6 +225,7 @@ class SiteController extends Controller
     /* Виджет обратного звонка */
     public function actionCall()
     {
+        // die('here');
         $request = Yii::$app->request;
         if ($request->isPjax) {
             $formModel = new CallForm();

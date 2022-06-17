@@ -130,15 +130,18 @@ body {
 
 input[type=text], input[type=password], input[type=password] {
     font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: #0f253c;
     margin: 0 auto;
-    width: 260px;
+    width: 95%;
     height: 30px;
     outline: none;
     border: none;
-    border-bottom: 1px solid #003333;
+    border-bottom: 1px solid #C25025;
     border-bottom-left-radius: 20px;
     padding-left: 1em;
-    box-shadow: 0 2px #003333;
+    box-shadow: 0 1px #0f253c;
     display: inline-block !important;
 }
 
