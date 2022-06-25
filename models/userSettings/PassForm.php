@@ -15,16 +15,21 @@ use Yii;
  *
  * @property string $id
  * @property string $username
+ * @property string $old_username
  * @property string $email
+ * @property string $old_email
  * @property string $avatar_path
  * @property int $role
  * @property string $password_hash
  * @property string $auth_key
  * @property string $register_token
+ * @property string $email_reset_token
+ * @property string $new_email_request
  * @property string $password_reset_token
  * @property int $status
  * @property int $created_at
  * @property int $updated_at
+ * @property int $last_login
  *
  * @property Auth[] $auths
  */

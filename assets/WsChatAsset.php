@@ -13,7 +13,7 @@ class WsChatAsset extends AssetBundle
         'fontawesome/css/all.min.css',
     ];
     public $js = [
-       'js/chat.js',
+       // 'js/chat.js',
     ];
     public $depends = [
 //        'yii\web\JQueryAsset',

@@ -9,7 +9,7 @@
             </div>
         </div>
         <br>
-        <div id="response" style="color:#D00">Cоединения с сервером...</div>
+        <div id="response">Cоединения с сервером...</div>
         <input id="chatform-name" type="text" placeholder="Ваше имя" maxlength="30">
         <button id="btnSetUsername" class="btn btn-success">Установить</button>
         <br>
@@ -41,8 +41,51 @@
         ));
         return matches ? decodeURIComponent(matches[1]) : undefined;
     }
-    //
+    ///
+function sound(){
+    try {
+        let flag = document.getElementById('soundCheck').checked;
+        if(flag) {
+            const snd = new Audio("data:audio/mpeg;base64,//uQxAAAEvGLIVT0AAuBtax3P2QCIAAIAGWUC+HkqfLeTs0zTQg7wL4BGCfQQ3A1BYDjCA4BoHgpWlFh2Lu+QLnkCgpRYu+4uL2QDQPDIT0FBQyRQUpwbh+fo7i4uLvoKA3BufBAoYlehAoKClOKChiIlbigokli4u8O4u73oh7v/6PcIKChlC6J//1vcEChhYNAaGU7u717u78PoZRYdnkALgvHkClOe/ARmPZVAwGIyHA4FQkCQJBAMAHAEzABwATHDWRgjAHQYFwJEe8X1jOkkG4y04RCJQANqNrMDJKMgDIMDRFDAxXiDAy/CIAwrhVUWkuBgVCABqvXuBybuyBzvSGtzQraTgYJkCgaaxbgYrAVAaNjqAZCANLHNWvS4GC0E4GQARAAgNQMHYCwspBusxOtr/DbAs2Q4tCcxlxZZ5qpw//nS+WTcwPjkEQ/qf/m9y4aLD4xY0FCM/1vr/+DY2I0QIoLjKBoVwKACAwIAAAUBGWCCBZIDYgy509qN0uj/1/Pc3uTBLf/LAI423K5bICDMzK72SSB0piCDVSm//uSxAoDzHSZNbzGADAAADSAAAAEJz44gRLSUSRJEVS0SgAhJcOjJdZkxJsZJBqIqloyMjISTExMTExPVtWTkSRJMXWjISls2t81WrfqtqMBoOCJ4Kgqs6Ij3/8t/g1///ywcLVMQU1FMy45OC40VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVUxBTUUzLjk4LjRVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/7ksQ5A8AAAaQAAAAgAAA0gAAABFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVMQU1FMy45OC40VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVX/+5LEOQPAAAGkAAAAIAAANIAAAARVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV");
+            snd.play();
+        }
+    }
+    catch( e ) {
+        console.log( "can't play sounds. " + e.message );
+    }
+}
+/* Отправка по CTrl + Enter */
+let text = document.querySelector('#msg');
+text.onkeydown = function( e ) {
+    if ( e.keyCode === 13 && e.ctrlKey ){
+        chatBtn.click();
+    }
+};
+/* Вывод только времени без даты */
+function echoTime(selector){
+    let flag = document.getElementById('dateCheck').checked;
+    let dt = document.querySelectorAll(selector);
+    if(flag){
+        dt.forEach(function (item) {
+            let dateOnly = item.innerText.slice(0, 11);
+            let timeOnly = item.innerText.slice(11);
+            item.innerHTML = '<span class="fa fa-check" style="font-size: 90%;color: green"></span><span class="dateOnly" style="display: none">' + dateOnly + '</span>' + timeOnly;
+        });
+    }
+}
+//
+/* конец Список функций */
     window.onload = () => {
+        /* Оборачивание ссылок в тег a */
+        $.fn.replaceUrl = function(){
+            var regexp = /((ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?)/gi;
+            this.each(function(){
+                $(this).html(
+                    $(this).html().replace(regexp,'<a href="$1" target="_blank">$1</a>'));
+            });
+            return $(this);
+        };
+        //
         $(function () {
             let chat = new WebSocket('ws://localhost:8080/wschat');
             let user_color = readCookie('user_color'),
@@ -53,9 +96,10 @@
             if(user_color != 'undefined'){
                 updateColor();
             }
+
             chat.onmessage = function (e) {
                 $('#response').text('');
-
+                // console.log(e);
                 let response = JSON.parse(e.data);
                 if (response.type && response.type == 'chat') {
                     let dt = new Date();
@@ -68,9 +112,9 @@
                     $('#msgs-content').scrollTop = $('#msgs-content').height;
                     $('.msg-body').replaceUrl();
                     document.cookie = 'user_color=' + response.user_color;
-                    console.log(dt.toLocaleDateString());
-                    console.log(dt.toLocaleTimeString());
-                    console.log(dt.toLocaleTimeString().slice(0,-3));
+                    // console.log(dt.toLocaleDateString());
+                    // console.log(dt.toLocaleTimeString());
+                    // console.log(dt.toLocaleTimeString().slice(0,-3));
                     sound();
                 } else if (response.message) {
                     $('#response').text(response.message);
@@ -88,6 +132,7 @@
             };
             chat.onopen = function (e) {
                 $('#response').text('Установите имя');
+                // console.log(e);
             };
             let oldMsg = null;
             $('#chatBtn').click(function () {
@@ -196,4 +241,14 @@
             storage.style.display = 'none';
         };
     }
+    //
+    // переключение формата даты/времени
+dateCheck.addEventListener('click', ()=>{
+    let flag = document.querySelector('.dateOnly').style.display;
+    if(flag == 'none'){
+        $('.dateOnly').css('display', 'inline');
+    }else{
+        $('.dateOnly').css('display', 'none');
+    }
+});
 </script>

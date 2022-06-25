@@ -13,27 +13,23 @@ class ConstructorController extends Controller
 
     public function actionIndex()
     {
-    	/*echo 'ConstructorController.php';
-    	echo "<br>";
-    	echo 'line ' . __LINE__;
-    	echo "<br>";
-    	echo "stopped";
-    	die;*/
-        $this->enableCsrfValidation = false;
-        if (Yii::$app->request->isPost) {
-//            debug($_FILES);
-//            die('here');
+//        $this->enableCsrfValidation = false;
+        if (Yii::$app->request->isPost && !empty($_FILES["screen"])) {
+           if(!in_array($_FILES["screen"]['type'], ['image/png'])){
+                Yii::$app->response->statusCode = 415; // 'Unsupported Media Type'
+                return;
+           }
             if (!empty($_FILES["screen"]["size"])) { // пришла картинка (использовали на клиенте JS fetch() ())
                 if ($_FILES["screen"]["size"] > Yii::$app->params['max_screenshot_size'] * 1024 * 1024) { // картинка больше чем позволено
                     Yii::$app->response->statusCode = 413; // 'Length Required'
                     return;
                 }
-                //
-                if (!exif_imagetype($_FILES["screen"]["tmp_name"])) {
+                // почему ф-ия exif_imagetype выдала ошибку разобраться
+                /*if (!exif_imagetype($_FILES["screen"]["tmp_name"])) {
                     Yii::$app->response->statusCode = 415; // 'Unsupported Media Type'
                     return;
 //                    throw new BadRequestHttpException('Не распознан файл изображения');
-                }
+                }*/
                 $imgName = substr(time(), -4) . strtolower(Yii::$app->security->generateRandomString(12)) . '.' . 'png';
                 $basePath = Yii::getAlias('@app/web') . '/upload/screenshots/';
                 if (!file_exists($basePath)) {
