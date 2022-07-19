@@ -24,7 +24,7 @@ class ConstructorController extends Controller
                     Yii::$app->response->statusCode = 413; // 'Length Required'
                     return;
                 }
-                // почему ф-ия exif_imagetype выдала ошибку разобраться
+                // почему ф-ия exif_imagetype выдала ошибку разобраться возможно требуется какаято библиотека
                 /*if (!exif_imagetype($_FILES["screen"]["tmp_name"])) {
                     Yii::$app->response->statusCode = 415; // 'Unsupported Media Type'
                     return;

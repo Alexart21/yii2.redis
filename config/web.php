@@ -139,7 +139,7 @@ $config = [
         /*'cache' => [
             'class' => 'yii\caching\FileCache',
         ],*/
-        'view' => [
+        /*'view' => [
             'class' => '\rmrevin\yii\minify\View',
             'enableMinify' => !YII_DEBUG,
             'concatCss' => true, // concatenate css
@@ -159,7 +159,7 @@ $config = [
                 'jquery.pjax.js', // exclude this file from minification
                 'bootstrap.css', // exclude this file from minification
             ],
-        ],
+        ],*/
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'dfghdhdh2353w46tvw354645',
@@ -243,6 +243,9 @@ $config = [
 
 if (YII_ENV_DEV) {
     // configuration adjustments for 'dev' environment
+    // для работы дебага и GII в docker контейнере
+    // ip вида 172.21.0.1 получен из docker inspect nginx (значение  "Gateway": "172.19.0.1")
+    // перезапустить php контейнер
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',

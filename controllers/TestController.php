@@ -18,9 +18,7 @@ class TestController extends Controller
     {
         $this->enableCsrfValidation = false;
         $model = new TestModel();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
 
-        }
         return $this->render('index', compact('model'));
     }
 
@@ -45,6 +43,23 @@ class TestController extends Controller
     public function actionTest()
     {
         return $this->render('test');
+    }
+
+    public function actionAxios()
+    {
+        $this->enableCsrfValidation = false;
+        if (Yii::$app->request->isPost) {
+            return \Yii::createObject([
+                'class' => 'yii\web\Response',
+                'format' => \yii\web\Response::FORMAT_JSON,
+                'data' => [
+                    'name' => 'Санёк',
+                    'age' => 42,
+                ],
+            ]);
+            die;
+        }
+        return $this->render('axios');
     }
     
 
