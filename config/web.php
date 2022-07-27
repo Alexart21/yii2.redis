@@ -139,7 +139,7 @@ $config = [
         /*'cache' => [
             'class' => 'yii\caching\FileCache',
         ],*/
-        /*'view' => [
+        'view' => [
             'class' => '\rmrevin\yii\minify\View',
             'enableMinify' => !YII_DEBUG,
             'concatCss' => true, // concatenate css
@@ -159,7 +159,7 @@ $config = [
                 'jquery.pjax.js', // exclude this file from minification
                 'bootstrap.css', // exclude this file from minification
             ],
-        ],*/
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'dfghdhdh2353w46tvw354645',

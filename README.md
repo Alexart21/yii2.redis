@@ -1,1 +1,0 @@
-Находиться здесь https://alexart.s-solo.ru

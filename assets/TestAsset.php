@@ -15,12 +15,11 @@ class TestAsset extends AssetBundle
        'fontawesome/css/all.min.css',
     ];
     public $js = [
-//        'js/html2canvas.js',
+        'js/html2canvas.js',
 //        'js/propeller.min.js',
-//        'js/component.js',
-//        'js/jscolor.js',
-//        'js/test.js',
-        'js/axios.min.js',
+        'js/component.js',
+        'js/jscolor.js',
+        'js/test.js',
     ];
     public $depends = [
 //        'yii\web\JQueryAsset',

@@ -13,7 +13,7 @@ class IndexForm extends Model
     public $email;
     public $tel;
     public $text;
-//    public $reCaptcha;
+   // public $reCaptcha;
 
     public function rules()
     {
@@ -39,7 +39,7 @@ class IndexForm extends Model
     public function attributeLabels()
     {
         return [
-//            'reCaptcha' => '',
+           'reCaptcha' => '',
             'name' => 'Имя',
             'tel' => 'Тел.',
             'text' => 'Текст',
