@@ -71,7 +71,7 @@ class SiteController extends Controller
 //                    var_dump($attributes);die;
                     $authClient = $client->getTitle();
 //                    var_dump($authClient);die;
-                    $password = Yii::$app->security->generateRandomString(6); // просто затык
+                    $password = Yii::$app->security->generateRandomString(6); // просто затык поскольку поле обязательное
                     if($authClient == 'Google' || $authClient == 'GitHub') {
                         $user = new User([
                             'username' => $attributes['name'],

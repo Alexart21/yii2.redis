@@ -86,6 +86,12 @@ $config = [
                     'clientId' => $my_config['Git_clientId'],
                     'clientSecret' => $my_config['Git_clientSecret'],
                 ],
+                /*'odnoklassniki' => [
+                  'class' => 'kotchuprik\authclient\Odnoklassniki',
+                  'applicationKey' => $my_config['odnoklassniki_app_public_key'],
+                  'clientId' => $my_config['odnoklassniki_clientId'],
+                  'clientSecret' => $my_config['odnoklassniki_app_clientSecret'],
+              ],*/
             ],
 
         ],
@@ -117,7 +123,7 @@ $config = [
             ]
         ],*/
         /* MemCache */
-        'cache' => [
+        /*'cache' => [
             'class' => 'yii\caching\MemCache',
             'servers' => [
                 [
@@ -126,19 +132,19 @@ $config = [
                     'weight' => 100,
                 ],
             ],
-        ],
-        'session' => [
+        ],*/
+        /*'session' => [
             'class' => 'yii\redis\Session',
             'redis' => [
                 'hostname' => '127.0.0.1',
                 'port' => 6379,
                 'database' => 0,
             ]
-        ],
-        /* Файловый кэш */
-        /*'cache' => [
-            'class' => 'yii\caching\FileCache',
         ],*/
+        /* Файловый кэш */
+        'cache' => [
+            'class' => 'yii\caching\FileCache',
+        ],
         'view' => [
             'class' => '\rmrevin\yii\minify\View',
             'enableMinify' => !YII_DEBUG,
