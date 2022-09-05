@@ -6,7 +6,6 @@ use yii\widgets\Pjax;
 use yii\bootstrap4\Modal;
 
 //use yii\widgets\Spaceless;
-
 header('X-Frame-Options: sameorigin');
 header('X-Content-Type-Options: nosniff');
 header('X-XSS-Protection: 1;mode=block');
