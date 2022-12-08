@@ -42,9 +42,16 @@ class TestController extends Controller
         return $this->render('faker');
     }
 
-    public function actionTest()
+    public function actionAddress()
     {
-        return $this->render('test');
+        $token = "72d8b6890a405a1aaf649d30531852a79418a739";
+        $secret = "5c3d8c81b1ec5359d134344831f557c221967f84";
+        $dadata = new \Dadata\DadataClient($token, $secret);
+
+        $response = $dadata->clean("address", "урюпинск");
+        var_dump($response);
+        die;
+        return $this->render('address');
     }
     
 

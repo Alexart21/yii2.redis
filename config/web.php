@@ -250,7 +250,7 @@ if (YII_ENV_DEV) {
     // для работы дебага и GII в docker контейнере
     // ip вида 172.21.0.1 получен из docker inspect nginx (значение  "Gateway": "172.19.0.1")
     // перезапустить php контейнер
-    $config['bootstrap'][] = 'debug';
+//    $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
         'allowedIPs' => ['127.0.0.1', '172.19.0.1'] // adjust this to your needs
