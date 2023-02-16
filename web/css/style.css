@@ -1,4 +1,6 @@
 :root {
+    --max-container-width: 1600px;
+    /**/
     --logo-color: #e61b05;
     --btn-color: #FD9638;
     --viber-color: #774E98;
@@ -445,8 +447,8 @@ header {
 
 #container {
     position: relative !important;
-    max-width: 1366px;
-    max-width: 1300px; /* Это для своего монитора */
+    /*max-width: 1300px;*/
+    max-width: var(--max-container-width);
     margin: auto;
 }
 
@@ -580,7 +582,8 @@ header noscript {
     z-index: 1;
     width: 100%;
     height: 150px;
-    max-width: 1300px; /* не шире блока #container */
+    /*max-width: 1300px;*/
+    max-width: var(--max-container-width); /* не шире блока #container */
 }
 
 #header_shadow:before, #header_shadow:after {
@@ -614,7 +617,8 @@ header noscript {
 #menu_outer {
     position: relative;
     width: 100%;
-    max-width: 1300px; /*  из значения max-width для блока #container */
+    /*max-width: 1300px; !*  из значения max-width для блока #container *!*/
+    max-width: var(--max-container-width);
     background-color: #fff;
 }
 
